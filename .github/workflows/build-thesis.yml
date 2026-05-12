@@ -12,6 +12,8 @@ jobs:
   build-pdf:
     name: Compile LaTeX thesis
     runs-on: ubuntu-latest
+    env:
+      LATEX_IMAGE: texlive/texlive:latest
 
     steps:
       - name: Check out repository
@@ -22,7 +24,7 @@ jobs:
           docker run --rm \
             -v "${{ github.workspace }}:/work" \
             -w /work \
-            sb2nov/latex:latest \
+            "$LATEX_IMAGE" \
             pdflatex -interaction=nonstopmode -halt-on-error main.tex
 
       - name: BibTeX pass when citations exist
@@ -31,7 +33,7 @@ jobs:
             docker run --rm \
               -v "${{ github.workspace }}:/work" \
               -w /work \
-              sb2nov/latex:latest \
+              "$LATEX_IMAGE" \
               bibtex main
           else
             echo "No citations found in main.aux; skipping bibtex."
@@ -42,12 +44,12 @@ jobs:
           docker run --rm \
             -v "${{ github.workspace }}:/work" \
             -w /work \
-            sb2nov/latex:latest \
+            "$LATEX_IMAGE" \
             pdflatex -interaction=nonstopmode -halt-on-error main.tex
           docker run --rm \
             -v "${{ github.workspace }}:/work" \
             -w /work \
-            sb2nov/latex:latest \
+            "$LATEX_IMAGE" \
             pdflatex -interaction=nonstopmode -halt-on-error main.tex
 
       - name: Upload PDF and log
