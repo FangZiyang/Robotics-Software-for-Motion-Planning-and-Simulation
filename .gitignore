@@ -16,8 +16,8 @@
 *.synctex.gz
 *.toc
 
-# Local generated output
-/main.pdf
+# The compiled thesis PDF is intentionally trackable because CI commits it on
+# pushes to main. Auxiliary LaTeX build files stay ignored above.
 
 # Editor and OS noise
 .DS_Store
