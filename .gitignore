@@ -24,3 +24,8 @@
 Thumbs.db
 .vscode/
 .idea/
+
+# Agents
+.agents/
+agnet/
+agent/
