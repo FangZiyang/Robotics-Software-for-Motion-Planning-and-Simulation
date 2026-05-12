@@ -11,8 +11,8 @@ files, front matter, appendices, figures, bibliography files, and reference PDFs
 - `definitions.tex`: title, author, department, degree, supervisor, and date metadata.
 - `introduction.tex`, `background.tex`, `methodology.tex`,
   `selected_software_commonality.tex`, `measurement_results.tex`,
-  `discussion.tex`, `recommendations.tex`, `conclusion.tex`: thesis body
-  chapters.
+  `developer_interviews.tex`, `discussion.tex`, `recommendations.tex`,
+  `conclusion.tex`: thesis body chapters.
 - `appendixA.tex` through `appendixE.tex`: thesis appendices.
 - `references.bib`, `references_another.bib`: bibliography examples.
 
