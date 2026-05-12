@@ -1,0 +1,60 @@
+name: Build thesis PDF
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-pdf:
+    name: Compile LaTeX thesis
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: First LaTeX pass
+        run: |
+          docker run --rm \
+            -v "${{ github.workspace }}:/work" \
+            -w /work \
+            sb2nov/latex:latest \
+            pdflatex -interaction=nonstopmode -halt-on-error main.tex
+
+      - name: BibTeX pass when citations exist
+        run: |
+          if grep -q '^\\citation' main.aux; then
+            docker run --rm \
+              -v "${{ github.workspace }}:/work" \
+              -w /work \
+              sb2nov/latex:latest \
+              bibtex main
+          else
+            echo "No citations found in main.aux; skipping bibtex."
+          fi
+
+      - name: Final LaTeX passes
+        run: |
+          docker run --rm \
+            -v "${{ github.workspace }}:/work" \
+            -w /work \
+            sb2nov/latex:latest \
+            pdflatex -interaction=nonstopmode -halt-on-error main.tex
+          docker run --rm \
+            -v "${{ github.workspace }}:/work" \
+            -w /work \
+            sb2nov/latex:latest \
+            pdflatex -interaction=nonstopmode -halt-on-error main.tex
+
+      - name: Upload PDF and log
+        uses: actions/upload-artifact@v4
+        with:
+          name: thesis-pdf
+          path: |
+            main.pdf
+            main.log
+          if-no-files-found: error

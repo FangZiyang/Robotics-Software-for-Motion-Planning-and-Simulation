@@ -27,5 +27,21 @@ Thumbs.db
 
 # Agents
 .agents/
+AGENTS.md
+.codex/
+.codex-cache/
+.claude/
+.cursor/
+.continue/
+.aider*
+.skills/
+skills/
+examples/AI_READING_NOTES.md
+examples/AIMSS-LBM-Peter/
+examples/AIMSS-MedImaging-Ao/
+examples/Gabe/
+examples/PDF/
+
+# Common typo/local agent scratch directories
 agnet/
 agent/

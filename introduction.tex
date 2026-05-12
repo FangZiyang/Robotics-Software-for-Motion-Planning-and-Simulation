@@ -1,10 +1,68 @@
 \chapter{Introduction}
+\label{ch:introduction}
 
-Every thesis needs an introductory chapter
+\section{Motivation}
+\label{sec:introduction-motivation}
 
-While you're here, you need to go into \texttt{definitions.tex} to set all the 
-information needed for the front matter (e.g. title, author) and page 
-header/footer.
+Robotics research and engineering increasingly depend on software infrastructure for simulation, motion planning, dynamics, middleware, and related development workflows. In many projects, these software systems are not peripheral tools; they shape how researchers test algorithms, compare alternatives, reproduce results, and move from a simulated setting toward physical robotic systems. The quality and maintainability of these systems therefore affects both scientific work and practical robotics development.
 
-You will also find the School of Graduate Studies' preparation guide (August 
-2021) for theses and reports. I would give it a quick read so you know what's 
+The robotics software ecosystem is broad. Some tools provide full simulation environments, while others focus on planning, physics, dynamics, manipulation, middleware, or domain-specific simulation support. This variety makes the domain useful, but it also makes it difficult for users to understand the current state of available software. A researcher or practitioner choosing a tool may need to consider installation effort, documentation, repository activity, issue management, evidence of performance considerations, and the degree to which the tool fits a particular robotics workflow. These concerns are software engineering concerns as much as robotics concerns.
+
+This report studies robotics software for motion planning and simulation using a State-of-the-Practice approach. The objective is not to propose a new robotics algorithm, implement a new simulator, or benchmark robot performance. Instead, the goal is to collect and organize evidence about existing software packages in the domain. The study emphasizes evidence that can be gathered from public sources, including repositories, documentation, publications, project metadata, and other available project artifacts.
+
+% TODO: Add verified citations for the importance of simulation and motion planning software in robotics.
+
+\section{Research Questions}
+\label{sec:research-questions}
+
+The study is guided by research questions adapted from the Domain X State-of-the-Practice methodology:
+
+\begin{enumerate}[RQ1.]
+    \item What software packages are candidates for a State-of-the-Practice study of robotics software for motion planning and simulation, and how can that candidate set be constructed transparently?
+    \item What artifacts, tools, and publicly visible development practices are present in the selected software packages?
+    \item What commonalities, variabilities, and parameters of variation characterize the selected robotics software packages as a software family?
+    \item What public evidence can be collected for the Domain X measurement categories: installability, correctness and verifiability, surface reliability, surface robustness, surface usability, maintainability, reusability, surface understandability, and visibility/transparency?
+    \item If approved developer interview data becomes available, what developer pain points and quality-improvement practices are reported for this domain?
+\end{enumerate}
+
+These questions separate candidate discovery from software measurement and interpretation. The first question addresses construction of the study set. The second and fourth questions address the repository-based and documentation-based evidence collected through the measurement template. The third question addresses the commonality analysis required by the methodology. The fifth question is conditional because interview findings should be reported only if approved interview materials become available.
+
+\section{Scope}
+\label{sec:introduction-scope}
+
+The working domain for this report is robotics software for motion planning and simulation. The project was initially discussed in relation to inverse kinematics software, but later project communication confirmed the broader domain name used here. This scope includes robotics simulators and closely related software used for planning, dynamics, physics, middleware, and robotic system development.
+
+The scope is intentionally limited by the requirements of the State-of-the-Practice methodology. The study depends on evidence that can be collected from public repositories, documentation, issue trackers, publications, and project metadata. For this reason, open-source availability and repository-based measurability are central filtering criteria. Software that is important in robotics practice may still fall outside the final study set if its core components are proprietary, if public repository evidence is not available, or if the project is no longer sufficiently maintained for contemporary repository-based measurement.
+
+The selected software set is not perfectly homogeneous. Many selected tools are general-purpose robotics simulators, but some, such as ROS 2, MoveIt!, and OMPL, serve different roles in the robotics software ecosystem. They are included because the project scope covers robotics software for motion planning and simulation rather than simulators alone. This distinction is important throughout the report: the study compares software systems within a shared domain boundary, but it does not assume that every system has the same purpose or architecture.
+
+\section{Overview of the Methodology}
+\label{sec:methodology-overview}
+
+The methodology follows the State-of-the-Practice approach for a selected domain. In this project, candidate software packages were identified from three kinds of sources: academic survey papers, community-curated software lists, and LLM-generated software lists. The LLM-generated lists were used only as an auxiliary discovery source. They were not treated as authoritative, and they were combined with other sources to reduce dependence on any single discovery method.
+
+Each software package appearing in the collected sources was counted to produce a mention count. This count is used as a rough source-appearance signal: it indicates how often a package appeared across the collected candidate-discovery materials. It is not treated as a measure of software quality, adoption, research impact, or suitability. After ranking by mention count, the candidate list was filtered using open-source availability, repository-based measurability, and maintenance-related considerations.
+
+The selected software packages are then examined using complementary forms of analysis. First, repository-based and public evidence is collected according to the Domain X measurement template, which organizes observations into summary information, repository metrics, and nine quality categories. Second, a commonality analysis is used to describe shared and variable capabilities across the selected software packages. Third, if approved data becomes available, developer interviews may be used to add practitioner perspectives. The commonality analysis helps explain the domain beyond numeric repository metrics and supports a clearer interpretation of why the selected tools belong in the same study.
+
+% TODO: Add verified citation for the Domain X State-of-the-Practice methodology.
+
+\section{Contributions}
+\label{sec:contributions}
+
+This report makes the following intended contributions:
+
+\begin{enumerate}
+    \item It defines a scoped State-of-the-Practice study for robotics software for motion planning and simulation.
+    \item It documents a candidate discovery process based on academic, community-curated, and LLM-assisted sources.
+    \item It explains how mention count, open-source availability, and repository-based measurability are used to construct a study set.
+    \item It provides a basis for measuring selected robotics software packages using the Domain X Appendix B quality categories and public evidence.
+    \item It introduces a commonality analysis to describe shared capabilities, variations, and parameters of variation across the selected software packages.
+\end{enumerate}
+
+These contributions are methodological and descriptive. They should be read as a structured investigation of existing software rather than as a claim that one software package is best for all robotics tasks.
+
+\section{Organization}
+\label{sec:organization}
+
+Chapter~\ref{ch:background} introduces the software and methodological background needed for the report. Chapter~\ref{ch:methodology} describes the candidate discovery process, mention-count ranking, filtering criteria, measurement procedure, and interview component. Chapter~\ref{ch:selected-software-commonality} presents the selected software set at a high level and explains the planned commonality analysis. Later chapters report measurement results, discuss answers to the research questions, provide recommendations, and summarize conclusions once the measurement evidence has been fully consolidated.
