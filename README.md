@@ -48,9 +48,11 @@ of contents and cross-references.
 
 The repository includes a GitHub Actions workflow at
 `.github/workflows/build-thesis.yml`. On every push, pull request, or manual
-workflow run, GitHub Actions checks out the repository, runs the same Docker
-LaTeX image, compiles `main.pdf`, and uploads `main.pdf` plus `main.log` as a
-workflow artifact named `thesis-pdf`.
+workflow run, GitHub Actions checks out the repository, runs a public TeX Live
+Docker image, compiles `main.pdf`, and uploads `main.pdf` plus `main.log` as a
+workflow artifact named `thesis-pdf`. The local command above uses the Docker
+image already available on this machine; the CI workflow uses
+`texlive/texlive:latest` because GitHub runners must pull a public image.
 
 After pushing to GitHub, open the repository on GitHub, go to the Actions tab,
 select the "Build thesis PDF" run, and download the `thesis-pdf` artifact from
