@@ -54,9 +54,14 @@ workflow artifact named `thesis-pdf`. The local command above uses the Docker
 image already available on this machine; the CI workflow uses
 `texlive/texlive:latest` because GitHub runners must pull a public image.
 
+On pushes to the `main` branch, the workflow also commits the generated
+`main.pdf` back to the repository with a `[skip ci]` commit message. Pull request
+and manual workflow runs still build and upload the PDF artifact, but they do not
+commit a PDF back to the branch.
+
 After pushing to GitHub, open the repository on GitHub, go to the Actions tab,
 select the "Build thesis PDF" run, and download the `thesis-pdf` artifact from
-the completed run.
+the completed run if you need the build log or the PDF from that specific run.
 
 To switch between double-spaced and single-spaced output, edit the package
 selection near the top of `main.tex`.
