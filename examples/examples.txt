@@ -1,0 +1,34 @@
+A nice MEng example report can be found at:
+
+https://gitlab.cas.mcmaster.ca/SEforSC/se4sc/-/tree/git-svn/GradStudents/Gabe
+
+Some other MEng examples can be found in the pub repo.  For instance, some students wrote two tech reports each.  Some tech reports are found in the pub folder.  The citations are in the Reference.bib file.
+
+SmithEtAl2015-Seism-TR (https://gitlab.cas.mcmaster.ca/smiths/pub/-/blob/master/SmithEtAl2015-Seism-TR.pdf)
+SmithEtAl2015-OS-TR (https://gitlab.cas.mcmaster.ca/smiths/pub/-/blob/master/SmithEtAl2015-OS-TR.pdf)
+
+
+Other MEng reports can be found in the pub folder under the following citations:
+
+El-Sewify2012 (https://gitlab.cas.mcmaster.ca/smiths/pub/-/blob/master/El-Sewify2012.pdf)
+Hanebach2009 (https://gitlab.cas.mcmaster.ca/smiths/pub/-/blob/master/Hanebach2009.pdf)
+Sanchez2010 (https://gitlab.cas.mcmaster.ca/smiths/pub/-/blob/master/Sanchez2010.pdf)
+
+
+Some MEng reports related to the State of the Practice for different scientific software domains can be found here:
+
+https://github.com/smiths/AIMSS/tree/master/StateOfPractice/DomainMeasurements/LBM-Peter/Report
+
+https://github.com/smiths/AIMSS/tree/master/StateOfPractice/DomainMeasurements/MedImaging-Ao/Report
+
+
+Some Drasil related MEng reports include:
+
+https://github.com/JacquesCarette/Drasil/blob/master/People/Dong/Thesis_Main.pdf
+
+https://github.com/JacquesCarette/Drasil/tree/master/People/Gabe
+
+https://gitlab.cas.mcmaster.ca/smiths/pub/-/blob/master/Zhao2018.pdf
+
+
+Information on writing is given in the WritingGuidelines folder.

@@ -1,0 +1,76 @@
+\chapter{Selected Software and Commonality Analysis}
+\label{ch:selected-software-commonality}
+
+\section{Overview of Selected Software}
+\label{sec:overview-selected-software}
+
+The selected software set represents a broad robotics software ecosystem rather than a single product category. The set includes simulation environments, physics and dynamics engines, motion planning libraries, middleware, manipulation tools, and related robotics software. This breadth reflects the project domain: robotics software for motion planning and simulation.
+
+The selected set was constructed through the candidate discovery and filtering procedure described in Chapter~\ref{ch:methodology}. The consolidated mention ranking helped identify software that appeared across the collected sources, while open-source availability and repository-based measurability determined whether each candidate could be studied consistently. The resulting list includes well-known names such as Gazebo, Webots, Bullet/PyBullet, CoppeliaSim/V-REP, MuJoCo, ODE, ROS 2, OpenRAVE, Drake, DART, CARLA, OMPL, Pinocchio, MoveIt!, and others.
+
+This chapter does not yet report final measurement results. Instead, it describes the selected software set and establishes the structure for the commonality analysis. Following the Domain X methodology, the final analysis should distinguish commonalities, variabilities, parameters of variation, and relevant terminology. Detailed claims about individual packages should be added only after checking the corresponding documentation, repository, papers, or measurement records.
+
+% TODO: Add a table of the final selected software set after the final naming and repository choices are confirmed.
+
+\section{Software Categories}
+\label{sec:software-categories}
+
+The selected software can be organized into broad categories for analysis. These categories are not strict boundaries. Some packages may reasonably fit more than one role, and some packages may act as infrastructure used by other packages. The categories are therefore used to guide the commonality analysis, not to impose a rigid taxonomy.
+
+\subsection{Robotics Simulators}
+\label{subsec:robotics-simulators}
+
+Robotics simulators provide environments for representing robots, worlds, sensors, actuators, and interactions before or alongside work with physical systems. In the selected set, this category includes packages that are primarily known as simulation environments or simulator platforms. The commonality analysis should examine how these tools describe robot models, environments, interfaces, supported workflows, and integration with other robotics software.
+
+Examples from the selected set that may be discussed under this category include Gazebo, Webots, CoppeliaSim/V-REP, AirSim, CARLA, MORSE, Habitat, Flightmare, and related simulator-oriented packages. These examples should be verified against project documentation before detailed package-specific claims are added.
+
+% TODO: Verify package-specific simulator capabilities from official documentation or repositories.
+
+\subsection{Physics Engines and Dynamics Libraries}
+\label{subsec:physics-engines-dynamics-libraries}
+
+Physics engines and dynamics libraries support the representation of motion, contact, rigid-body or multibody dynamics, collision, and related physical behavior. Some tools in this category may be used directly by robotics researchers, while others may act as underlying engines for higher-level simulation or planning systems.
+
+Examples from the selected set that may be discussed under this category include Bullet/PyBullet, MuJoCo, ODE, PhysX open-source SDK, Drake, DART, Simbody, Pinocchio, Project Chrono, Newton Dynamics, and SOFA. The commonality analysis should distinguish between packages that provide a full user-facing simulation environment and packages that primarily provide lower-level modeling, physics, or dynamics functionality.
+
+% TODO: Confirm the precise role of each physics or dynamics package before finalizing this classification.
+
+\subsection{Motion Planning and Robotics Middleware}
+\label{subsec:motion-planning-robotics-middleware}
+
+Motion planning and middleware tools support planning, integration, communication, manipulation, and robotic system development. These packages may not be simulators, but they can be central to workflows that combine planning and simulation. Including them reflects the broader domain boundary of the project.
+
+Examples from the selected set that may be discussed under this category include ROS 2, MoveIt!, OMPL, OpenRAVE, OROCOS, MRPT, YARP, OpenRTM-aist, and GraspIt!. These tools require careful treatment because they do not all provide the same type of functionality. For example, some are libraries, some are middleware or frameworks, and some are application-oriented tools. The commonality analysis should therefore compare them by role and evidence, not by assuming that they are all simulators.
+
+% TODO: Verify middleware, planning, and manipulation roles using checked documentation and repository evidence.
+
+\section{Common Functional Capabilities}
+\label{sec:common-functional-capabilities}
+
+The commonality analysis should identify capabilities that recur across the selected software set. In the terminology of the Domain X methodology, these recurring capabilities are commonalities of the software family. At this draft stage, the expected common themes include support for representing robotic systems, enabling simulation or planning workflows, exposing APIs or interfaces, documenting installation and usage, and connecting with broader robotics ecosystems. These themes must be refined through evidence collected from project documentation, repositories, and measurement files.
+
+One likely common concern is model representation. Many robotics tools need some way to represent robots, environments, kinematic structures, dynamic properties, or simulation scenes. Another likely concern is interaction with external software, such as middleware, planning stacks, programming language APIs, visualization tools, or data formats. A third likely concern is reproducibility of use, including installation instructions, examples, tutorials, and documented dependencies.
+
+The commonality analysis should separate functional capabilities from quality evidence. For example, a package may document an API, but the quality, completeness, and maintainability of that API documentation are measurement questions. Similarly, a package may support a simulation workflow, but whether that workflow is easy to install or reproduce should be evaluated through the measurement procedure.
+
+% TODO: Replace expected themes with verified commonalities after reviewing package documentation and measurement data.
+
+\section{Variability Across Software Packages}
+\label{sec:variability-across-software-packages}
+
+The selected software packages vary in purpose, scale, interfaces, and intended users. In the Domain X methodology, these differences are variabilities within the software family. Some packages provide graphical simulation environments; others provide libraries or frameworks used by developers. Some focus on physics or dynamics, while others focus on planning, manipulation, middleware, or domain-specific simulation. These variations are part of the domain rather than exceptions to it.
+
+Important dimensions of variation may include software role, licensing model, supported platforms, programming language interfaces, repository organization, documentation style, installation process, supported robot or environment models, and integration with other robotics tools. For each dimension, the final analysis should record parameters of variation, such as the possible software roles, supported operating systems, or interface types. Where meaningful, it should also record binding time: for example, whether a choice is made when selecting the software, compiling it, configuring it, or running it. These dimensions should be recorded only when supported by checked evidence.
+
+This variability is important for interpreting later measurement results. A full simulator and a planning library may not be expected to have identical artifacts, documentation, or user workflows. The discussion chapter should therefore avoid treating all packages as interchangeable products. Instead, it should interpret measurements in relation to each package's role in the robotics software ecosystem.
+
+\section{Boundary Cases in the Selected Set}
+\label{sec:boundary-cases-selected-set}
+
+Several selected packages are boundary cases because they do not fit the category of full robotics simulators. ROS 2, MoveIt!, and OMPL are the clearest examples identified in the project materials. They are included because the thesis scope is robotics software for motion planning and simulation, not only robotics simulators. Their inclusion should be explained rather than hidden.
+
+Boundary cases are useful because they clarify the domain definition. A robotics workflow for motion planning and simulation often depends on middleware, planning libraries, manipulation frameworks, and simulator components working together. Excluding all non-simulator tools would make the study simpler but less representative of the software ecosystem described in the project materials.
+
+At the same time, boundary cases require careful comparison. The report should not claim that middleware, planning libraries, and simulators provide the same user-facing functionality. Instead, these tools should be compared through evidence appropriate to their roles, and the commonality analysis should identify both shared concerns and role-specific variation.
+
+% TODO: Revisit this section after the final commonality analysis table is created.
