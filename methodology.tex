@@ -1,122 +1,250 @@
 \chapter{Methodology}
 \label{ch:methodology}
 
+This chapter describes the methodology used to conduct the State-of-the-Practice study of robotics software for motion planning and simulation. The methodology follows Smith et al.~\cite{Smith2021} and adapts it to the current domain. Section~\ref{sec:domain-selection} describes the domain selection process. Section~\ref{sec:domain-expert-interaction} describes the role of the domain expert. Section~\ref{sec:candidate-software-discovery} describes the three-source candidate discovery process. Section~\ref{sec:mention-count-ranking} describes the mention-count ranking method. Section~\ref{sec:filtering-criteria} describes the filtering criteria applied to the candidate list. Section~\ref{sec:final-software-set} presents the final study set of 28 packages. Section~\ref{sec:measurement-procedure} describes the measurement procedure using the Domain~X template. Section~\ref{sec:commonality-analysis-procedure} describes the commonality analysis procedure. Section~\ref{sec:interview-component} describes the planned developer interview component.
+
 \section{Domain Selection}
 \label{sec:domain-selection}
 
-The selected domain is robotics software for motion planning and simulation. The scope covers software used in robotics workflows, including simulation, planning, dynamics, middleware, and related support tools. Earlier project discussions considered inverse kinematics software, but later communication established the broader domain used in this thesis.
+The first step of the Domain~X methodology is to identify a suitable research software domain. To be applicable for the methodology, the chosen domain must meet four criteria~\cite{Smith2021}: (i)~it must have a well-defined and stable theoretical underpinning, ideally supported by standard textbooks; (ii)~there must be a community of researchers and practitioners studying the domain; (iii)~the software packages in the domain must include open-source options; and (iv)~a preliminary search should suggest that there are close to 30 candidate software packages that qualify as research software.
 
-The boundary is broader than "robotics simulators" alone. Many robotics workflows combine a simulator with planning libraries, physics engines, middleware, and supporting tools. Restricting the study to full simulators would make comparison simpler, but it would omit software central to motion planning and simulation practice. The broader scope better matches the project goal as long as the thesis distinguishes software roles.
+The selected domain is \emph{robotics software for motion planning and simulation}. Motion planning and simulation are established subfields of robotics with well-defined theoretical foundations~\cite{lavalle2006planning,choset2005principles}. There is an active international research community, regular conferences (such as ICRA, IROS, and RSS), and a substantial body of published work. A preliminary search confirmed the existence of numerous open-source software packages spanning simulation environments, physics engines, dynamics libraries, motion planning libraries, and robotics middleware.
 
-Domain selection also follows the Domain X methodology. The methodology expects a domain with a stable technical basis, an identifiable community, open-source software options, and enough candidate packages to support comparison. Motion planning and simulation are established robotics topics, and the project materials identify a substantial set of candidate packages with public artifacts.
+The domain boundary is broader than ``robotics simulators'' alone. Many robotics workflows combine a simulator with planning libraries, physics engines, middleware, and supporting tools. Restricting the study to full simulators would make comparison simpler but would omit software that belongs to core motion planning and simulation workflows.
 
-The methodology also expects a domain expert to vet the software list, domain analysis, and later ranking. The project materials identify Dr. Matthew Giamou as the domain expert involved in scope and candidate-list discussions. Material awaiting further expert review is marked as pending rather than final.
+Earlier project discussions considered a narrower domain focused on inverse kinematics software. After consultation with the supervisor and domain expert, the scope was broadened to the current domain, which provides a richer set of candidate packages and better reflects the interconnected nature of robotics software ecosystems.
+
+\section{Interaction with the Domain Expert}
+\label{sec:domain-expert-interaction}
+
+The Domain~X methodology emphasizes that a domain expert is an essential member of the assessment team. Pitfalls exist if non-experts attempt to produce an authoritative list of software or definitively rank packages without domain knowledge. Non-experts must rely on information available online, which has two known drawbacks: (i)~online resources may contain false or inaccurate information; and (ii)~online resources may omit relevant information that is so ingrained with experts that nobody thinks to record it explicitly~\cite{Smith2021}.
+
+Domain experts may be recruited from academia or industry. The only requirements are knowledge of the domain and a willingness to be engaged in the assessment process. The domain expert does not need to be a software developer, but they should be a user of domain software. Given that domain experts are likely to be busy people, the methodology is designed to minimize the burden on their time~\cite{Dong2021}.
+
+For this study, the domain expert is Dr.~Matthew Giamou of the Department of Computing and Software at McMaster University. Dr.~Giamou's research includes robotics, motion planning, and state estimation. He reviewed the candidate software list, confirmed that the scope was appropriate, and provided guidance on inclusion and exclusion decisions. Material in this thesis that has not yet received final expert review is marked as pending.
+
+The domain expert was asked to review the candidate software list and provide feedback on scope and coverage. Dr.~Giamou confirmed that the list was reasonable and that most of the shortlisted tools were familiar to him. He noted that several packages (ROS~2, MoveIt!, and OMPL) are not full simulators but can fit within a coherent narrative if their roles are explained carefully. He also confirmed that excluding MATLAB/Simulink, Unity, NVIDIA Isaac Sim, and RaiSim on methodological grounds was acceptable and would not misrepresent the domain.
 
 \section{Candidate Software Discovery}
 \label{sec:candidate-software-discovery}
 
-Candidate discovery used three source categories: academic sources, community-curated sources, and LLM-assisted sources. Using more than one category reduced dependence on any single search method. The resulting list was consolidated and filtered before measurement.
+Candidate software packages were identified from three types of sources: academic survey papers, community-curated software lists, and LLM-generated software lists. Using multiple source types reduces dependence on any single search method and provides broader coverage of the domain. The collected names were consolidated to merge equivalent entries (for example, ``V-REP'' and ``CoppeliaSim'' refer to the same package), and the consolidated list was used as input to the mention-count ranking described in Section~\ref{sec:mention-count-ranking}.
 
 \subsection{Academic Sources}
 \label{subsec:academic-sources}
 
-Academic sources identified software packages that appear in research discussions of robotics simulators, simulation tools, and related challenges. The source catalogue includes survey-style or comparative papers that mention packages such as Gazebo, Webots, V-REP/CoppeliaSim, MuJoCo, and PyBullet. These sources give a research-facing view of the domain.
+Academic sources identify software packages that appear in research discussions of robotics simulators, simulation tools, and related challenges. These sources included survey papers and comparative studies that discuss packages such as Gazebo, Webots, V-REP/CoppeliaSim, MuJoCo, and PyBullet in the context of robotics research. Academic sources connect software packages to published research contexts and provide a research-facing view of the domain.
 
-Academic sources connect software packages to published research contexts, but they are not sufficient by themselves. Papers may emphasize packages relevant to a specific research question, robot type, or time period. Some active tools may not appear in the selected papers, while older tools may remain visible because they mattered when the paper was written. Academic sources were combined with other discovery sources.
-
-% TODO: Add verified BibTeX entries and citations for the academic candidate-discovery papers.
+Academic sources have known limitations as the sole basis for candidate discovery. Survey papers may emphasize packages relevant to a specific research question, robot type, or time period. Some active tools may not appear in the selected papers, while older tools may remain visible because they were prominent when a survey was written. For these reasons, academic sources were combined with community-curated and LLM-assisted sources rather than used in isolation.
 
 \subsection{Community-Curated Sources}
 \label{subsec:community-curated-sources}
 
-Community-curated sources broadened the view of robotics software practice. The source catalogue includes GitHub topic pages, "awesome" lists, robotics software lists, best-of lists, and other community-maintained aggregations. Examples include sources focused on motion planning, robotics simulation, robotics libraries, ROS 2, Webots, multibody dynamics simulation, and robotic tooling.
+Community-curated sources broaden the view of robotics software practice beyond what appears in academic surveys. The source catalogue included GitHub topic pages, ``awesome'' lists (curated collections such as \texttt{awesome-robotics-libraries} and \texttt{awesome-robotics-simulation}), robotics software directories, best-of lists, and other community-maintained aggregations. Sources covered topics including motion planning, robotics simulation, robotics libraries, ROS~2 ecosystem tools, multibody dynamics simulation, and general robotic tooling.
 
-These sources collect software that practitioners and community contributors consider relevant. They can reveal projects not emphasized in academic surveys and show relationships between simulators, planning libraries, middleware, physics engines, and tools. They also vary in maintenance quality, inclusion criteria, and update frequency. For that reason, they were used as discovery aids rather than evidence of software quality.
+These sources collect software that practitioners and community contributors consider relevant. They can reveal projects that are underrepresented in academic surveys and can show relationships between simulators, planning libraries, middleware, physics engines, and tools. Community-curated sources also vary in maintenance quality, inclusion criteria, and update frequency. They were therefore used as discovery aids rather than as indicators of software quality.
 
 \subsection{LLM-Assisted Sources}
 \label{subsec:llm-assisted-sources}
 
-LLM-generated software lists were used as an auxiliary source for candidate discovery. This modifies the original State-of-the-Practice methodology, so the thesis records it explicitly. The LLM-generated lists were not authoritative and did not determine the final software set. They broadened the search alongside academic and community-curated sources.
+LLM-generated software lists were used as an auxiliary source for candidate discovery. This modifies the original Domain~X methodology, which prescribes search engine queries and domain expert consultation as the primary discovery methods. The modification is recorded explicitly so that the methodology remains transparent and reproducible in principle.
 
-The reason for including LLM-assisted discovery is practical: large language models can surface software names that appear across public information. Their output can also be incomplete, outdated, or wrong. Names from these sources therefore require consolidation, filtering, and verification against public evidence before they can support thesis claims. In this project, LLM-assisted sources contribute to candidate discovery, not to final measurement claims.
+The reason for including LLM-assisted discovery is practical: large language models can surface software names that appear across a wide range of public information, functioning as a broad aggregation mechanism over existing public data. However, LLM output can also be incomplete, outdated, or incorrect. Names obtained from LLM-generated lists therefore require consolidation, filtering, and verification against public evidence before they can support any thesis claims. In this project, LLM-assisted sources contributed to candidate discovery but did not determine the final study set, and they were never treated as authoritative.
+
+This approach was discussed with the supervisor, who noted that while the use of LLMs is technically a modification of the peer-reviewed methodology, it is defensible for two reasons: (i)~LLMs were used together with academic and community-curated sources, not as the sole discovery method; and (ii)~LLMs can be understood as a large-scale aggregation mechanism over existing public information, analogous in effect to a broad search over indexed web content.
 
 \section{Mention Count Ranking}
 \label{sec:mention-count-ranking}
 
-After collecting candidate names, the project consolidated equivalent names and counted how often each package appeared across the sources. The consolidated ranking is recorded in \path{examples/software-list-counting-result.xlsx}, in the worksheet \texttt{final.m}. The worksheet contains the columns \texttt{Rank}, \texttt{Software/Framework/Engine}, and \texttt{Mention Count}.
+After consolidating equivalent names across the collected sources, each unique software package was counted once per source to produce a mention count. A package that appeared in five academic papers and three community-curated lists would receive a mention count of eight. The consolidated ranking was recorded during the discovery phase and is a transparent input to the filtering process.
 
-The top entries in the consolidated ranking include Gazebo with 22 mentions, Webots with 16 mentions, Bullet/PyBullet with 16 mentions, CoppeliaSim/V-REP with 13 mentions, MuJoCo with 12 mentions, ODE with 10 mentions, ROS/ROS 2 with 10 mentions, and OpenRAVE with 9 mentions. These counts help organize the candidate list and make the selection process more transparent.
+The top entries in the consolidated ranking include Gazebo (22 mentions), Webots (16), Bullet/PyBullet (16), CoppeliaSim/V-REP (13), MuJoCo (12), ODE (10), ROS~2 (10), and OpenRAVE (9). These counts help organize the candidate list and make the selection process auditable. The full ranked list with mention counts is preserved in the project materials.
 
-Mention count is a source-appearance signal. It is not a measure of software quality, user adoption, research impact, maintainability, or suitability for a robotics task. A package can appear frequently because it is historically established, widely discussed, broadly useful, or simply visible in the selected sources. A specialized or newer package may be underrepresented. The ranking is an input to candidate filtering, not a final evaluation.
+Mention count is a source-appearance signal and must be interpreted accordingly. It is not a measure of software quality, user adoption, research impact, maintainability, or suitability for any particular robotics task. A package can appear frequently because it is historically established, widely discussed in survey papers, broadly useful across application areas, or simply visible in the particular sources collected. A more specialized or newer package may be underrepresented even if it is technically strong. The mention count serves as one input to candidate filtering, not as a final evaluation or ranking of the software.
 
 \section{Filtering Criteria}
 \label{sec:filtering-criteria}
 
-The ranked candidate list was filtered to identify packages suitable for repository-based State-of-the-Practice measurement. In the Domain X methodology, the initial filters are scope, usage, and age. In this project, those filters are implemented through domain fit, open-source availability, repository-based measurability, and activity or maintenance status. The initial and filtered lists are preserved for traceability.
+The ranked candidate list was filtered to identify packages suitable for repository-based State-of-the-Practice measurement. In the Domain~X methodology, the initial filters are scope, usage, and age, applied in priority order until the list reaches a manageable size of approximately 30 packages~\cite{Smith2021}. In this project, these filters are implemented through three criteria: open-source availability, repository-based measurability, and activity and maintenance status. Both the initial and filtered lists are preserved for traceability.
 
 \subsection{Open Source Availability}
 \label{subsec:open-source-availability}
 
-Open-source availability was required because the study depends on public software artifacts. The Domain X candidate criteria require viewable source code and prefer software with repository-based empirical measures. Source code, repository history, issue trackers, documentation, and release information provide evidence for later measurements. A package with proprietary core components cannot be measured consistently with the same repository-mining procedure used for open-source packages.
+Open-source availability was required because the study depends on public software artifacts for measurement. The Domain~X candidate criteria require that source code be viewable and express a preference for GitHub-style repositories from which empirical measures can be collected~\cite{Smith2021}. Source code, repository history, issue trackers, documentation, and release information provide the evidence base for the measurements reported in Chapter~\ref{ch:measurement-results}.
 
-This criterion led to the exclusion of several prominent robotics tools. The project materials identify MATLAB/Simulink, Unity, NVIDIA Isaac Sim, and RaiSim as prominent in the robotics ecosystem but unsuitable for consistent repository-based measurement because their core components are not open source in the required way. These exclusions reflect method constraints, not the value of the tools.
+This criterion led to the exclusion of several prominent robotics tools whose core components are not open source:
+
+\begin{itemize}
+    \item \textbf{MATLAB and Simulink} are major platforms in both robotics research and industry, widely used for algorithm development, control design, and simulation. However, MATLAB is proprietary software. Its source code is not publicly available, and its development process is not accessible through public repositories. These properties prevent the kind of repository-based measurement that this study depends on. Dr.~Giamou confirmed that excluding MATLAB and Simulink does not misrepresent the domain.
+    \item \textbf{Unity} is a widely used game engine with robotics simulation capabilities, but its core simulation engine is proprietary.
+    \item \textbf{NVIDIA Isaac Sim} builds on NVIDIA Omniverse and provides advanced robotics simulation features, but its core platform components are not open source.
+    \item \textbf{RaiSim} is a high-performance physics simulator for robotics, but its source code is not publicly available under an open-source license.
+\end{itemize}
+
+These exclusions reflect methodological constraints rather than judgements about the quality or importance of the excluded tools. Each of these platforms plays a significant role in robotics research and industry, and their exclusion limits the coverage of the study. This limitation is discussed further in Chapter~\ref{ch:discussion}.
 
 \subsection{Repository-Based Measurability}
 \label{subsec:repository-based-measurability}
 
-Repository-based measurability requires enough public evidence to apply the measurement process. Relevant evidence may include source repositories, commit history, issue data, documentation, release information, build or installation instructions, test artifacts, and project metadata. Packages without sufficient public evidence cannot be measured consistently. This criterion corresponds to the Domain X preference for GitHub-style repositories or equivalent sources from which empirical measures can be collected.
+Repository-based measurability requires that a package have sufficient public evidence to support the measurement process described in Section~\ref{sec:measurement-procedure}. Relevant evidence includes source repositories, commit history, issue data, documentation, release information, build or installation instructions, test artifacts, and project metadata. Packages without sufficient public evidence cannot be measured consistently and were excluded.
 
-This criterion also affects how multi-repository projects are handled. Some robotics software systems are distributed across multiple repositories or organizations. In such cases, the study must define which repositories are measured and preserve that decision as part of the measurement record. The same principle applies to projects that have changed names, migrated repositories, or split into successor projects.
+This criterion also governs how multi-repository projects are handled. Some robotics software systems are distributed across multiple repositories or GitHub organizations. In such cases, the repositories most representative of the core software were selected for measurement, and this choice was documented as part of the measurement record. The same principle applies to projects that have changed names, migrated repositories, or spawned successor projects.
 
 \subsection{Activity and Maintenance Status}
 \label{subsec:activity-maintenance-status}
 
-Activity and maintenance status were considered because the project focuses on contemporary software practice. In the Domain X methodology, age is one of the initial filtering criteria, measured by the last date when a change was made, with exceptions for older packages that are still recommended or currently used. Tools that are no longer maintained may have historical value, but they provide weaker evidence about current practice. The project materials identify MRDS and USARSim as packages excluded for this reason.
+Activity and maintenance status were considered because the study focuses on contemporary software practice. In the Domain~X methodology, age is one of the initial filtering criteria, measured by the last date when a change was made, with exceptions for older packages that remain highly recommended and currently in use~\cite{Smith2021}. Tools that are no longer maintained provide weaker evidence about current development practices.
 
-Activity-related evidence is a snapshot. Repository activity, last commit date, issue counts, and release status can change after measurement. The finalized measurement data should record the timing and source of these observations.
+The primary activity indicator used in this study is the Domain~X alive/dead rule: a package is considered alive if it has received commits or version releases within the last 18 months from the measurement date. The following packages were excluded on maintenance grounds:
+
+\begin{itemize}
+    \item \textbf{MRDS} (Microsoft Robotics Developer Studio) has not received updates since 2012 and is no longer supported by Microsoft.
+    \item \textbf{USARSim} (Unified System for Automation and Robot Simulation) is no longer actively maintained and does not represent current practice.
+\end{itemize}
+
+Activity-related evidence is a snapshot. Repository activity, last commit dates, and release status can change after measurement. The measurement records in Chapter~\ref{ch:measurement-results} include the measurement date to make the snapshot nature of the data explicit.
 
 \section{Final Software Set}
 \label{sec:final-software-set}
 
-After ranking and filtering, the working candidate software list includes Gazebo, Webots, Bullet/PyBullet, CoppeliaSim/V-REP, MuJoCo, ODE, ROS 2, OpenRAVE, PhysX open-source SDK, AirSim, Drake, DART, CARLA, MORSE, Simbody, OMPL, Pinocchio, OROCOS, SOFA, MoveIt!, GraspIt!, Habitat, Project Chrono, Flightmare, MRPT, Newton Dynamics, YARP, and OpenRTM-aist.
+After ranking by mention count and applying the filtering criteria described above, the final study set consists of 28 software packages. Table~\ref{tab:final-software-set} lists the packages alphabetically with their primary roles in the robotics software ecosystem.
 
-This set contains software with different roles. Most entries are associated with simulation, physics, dynamics, planning, or robotics infrastructure, but they are not direct substitutes. ROS 2, MoveIt!, and OMPL are boundary cases because they are not full simulators in the same sense as Gazebo or Webots. They are retained because the study scope is robotics software for motion planning and simulation, not simulator applications alone.
+\begin{table}[H]
+\centering
+\caption{Final software set with primary roles.}
+\label{tab:final-software-set}
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Software} & \textbf{Primary Role} \\
+\midrule
+AirSim & Simulator (aerial vehicles) \\
+Bullet / PyBullet & Physics engine \\
+CARLA & Simulator (autonomous driving) \\
+CoppeliaSim (V-REP) & Simulator (general robotics) \\
+DART & Dynamics library \\
+Drake & Toolbox (dynamics, planning, control) \\
+Flightmare & Simulator (quadrotor) \\
+Gazebo & Simulator (general robotics) \\
+GraspIt! & Manipulation (grasping) \\
+Habitat & Simulator (embodied AI) \\
+MORSE & Simulator (academic robotics) \\
+MoveIt! & Manipulation (motion planning) \\
+MRPT & Library (mobile robotics) \\
+MuJoCo & Physics engine \\
+Newton Dynamics & Physics engine \\
+ODE (Open Dynamics Engine) & Physics engine \\
+OMPL & Motion planning library \\
+OpenRAVE & Planning framework \\
+OpenRTM-aist & Middleware (RT components) \\
+OROCOS & Control framework \\
+PhysX (open-source SDK) & Physics engine \\
+Pinocchio & Dynamics library \\
+Project Chrono & Multi-physics simulation \\
+ROS~2 & Middleware and SDK \\
+Simbody & Multibody dynamics library \\
+SOFA & Simulation framework \\
+Webots & Simulator (general robotics) \\
+YARP & Middleware (humanoid robotics) \\
+\bottomrule
+\end{tabular}
+\end{table}
 
-The final thesis needs to discuss several excluded packages explicitly. MATLAB/Simulink was excluded because it is not open source and does not support the same public repository-based measurement process. Unity, NVIDIA Isaac Sim, and RaiSim were excluded because their core components are not open source enough for consistent repository mining. MRDS and USARSim were excluded because they are no longer actively maintained. GPMP2 and CHOMP were discussed but not added explicitly because doing so would deviate from the established candidate selection process.
+This set is deliberately heterogeneous. Most entries are associated with simulation, physics, dynamics, planning, or robotics infrastructure, but they are not direct substitutes for one another. ROS~2, MoveIt!, and OMPL are boundary cases because they are not full simulators in the same sense as Gazebo or Webots. They are retained because the study scope is robotics software for motion planning and simulation, not simulator applications alone. Chapter~\ref{ch:selected-software-commonality} provides a detailed analysis of software categories, commonalities, and variabilities across this set.
 
 \section{Measurement Procedure}
 \label{sec:measurement-procedure}
 
-The measurement procedure follows the Domain X method for collecting structured evidence about software packages in a selected domain. For each selected package, the study gathers source code, documentation, publications when applicable, repository metadata, issue-tracker evidence, release information, and installation evidence. The measurement record also identifies the repository or repositories measured, since some robotics projects are distributed across multiple repositories.
+The measurement procedure follows the Domain~X method for collecting structured evidence about software packages in a selected domain~\cite{Smith2021}. For each of the 28 selected packages, the study gathered source code, documentation, publications where applicable, repository metadata, issue-tracker evidence, release information, and installation evidence. The measurement record identifies the specific repository or repositories measured, since some robotics projects are distributed across multiple repositories.
 
-The main instrument is the Domain X Appendix B measurement template. The template contains 108 questions grouped under summary information, repository metrics, and nine quality categories: installability; correctness and verifiability; surface reliability; surface robustness; surface usability; maintainability; reusability; surface understandability; and visibility/transparency. Applying the same template to each package keeps later comparison from becoming a set of ad hoc observations.
+\subsection{Measurement Template}
+\label{subsec:measurement-template}
 
-Repository metrics are collected separately from the quality impressions. GitHub-style metrics include stars, forks, watchers, open and closed pull requests, issue counts, developers, releases, and last commit dates. GitStats-style metrics include binary files, added and deleted lines, and commit activity over time. The scc-style metrics include text-based files, total lines, code lines, comment lines, and blank lines. Processed measures include whether the project appears alive or dead under the 18-month activity rule, the percentage of identified issues closed, and the percentage of code that is comments.
+The primary measurement instrument is the Domain~X Appendix~B measurement template. The template contains 108 questions grouped into the following sections:
 
-The installation-based parts of the template are performed in a controlled environment and recorded as a snapshot. The Domain X method expects installation on a virtual machine and limits installation effort so the method remains feasible across many packages. Installation observations record the operating system, dependency instructions, installation steps, validation procedure, and whether errors are descriptive and recoverable.
+\begin{enumerate}
+    \item \textbf{Summary Information} (17 questions): software name, URL, affiliation, purpose, number of developers, funding, release dates, status, license, platforms, software category, development model, publications, source code URL, programming languages, evidence of performance consideration, and additional comments.
+    \item \textbf{Installability} (15 questions): installation instructions (presence, organization, linearity, completeness), compatible operating systems, automation, error handling, validation, number of steps, operating system used, dependencies, and uninstall behaviour.
+    \item \textbf{Correctness and Verifiability} (9 questions): requirements or theory documentation, correctness techniques, tutorial availability and quality, unit tests, and continuous integration evidence.
+    \item \textbf{Surface Reliability} (5 questions): installation and tutorial breakage, error messages, and recoverability.
+    \item \textbf{Surface Robustness} (2 questions): handling of unexpected input and edge cases.
+    \item \textbf{Surface Usability} (5 questions): tutorial, user manual, user characteristics, support model.
+    \item \textbf{Maintainability} (8 questions): version number, contribution guidance, available artifacts, issue tracking, issue closure rate, comment percentage, and version control.
+    \item \textbf{Reusability} (2 questions): number of code files and API documentation.
+    \item \textbf{Surface Understandability} (9 questions): code formatting, coding standards, identifier quality, constant usage, comment clarity, algorithm references, parameter ordering, and modularization.
+    \item \textbf{Visibility and Transparency} (4 questions): development process definition, process documentation, development environment documentation, and release notes.
+\end{enumerate}
 
-Several measurement questions require interpretation rules. The last commit date is a snapshot at the time of measurement. The percentage of identified issues closed is computed consistently, such as closed issues divided by total identified issues when GitHub issue data is used. Publication counts may require a defined scoping rule, especially for widely used software. Evidence that performance was considered comes from explicit references to speed, storage, throughput, benchmarks, papers, documentation, or source code rather than from assumptions. Because performance evidence is a summary-information field in Appendix B, it is not reported as one of the nine top-level quality categories.
+Applying the same template to every package ensures that comparisons are based on a consistent set of observations rather than ad hoc impressions. Each quality section concludes with an overall impression score on a scale of 1 to 10, assigned using the scoring guidelines in the Domain~X Appendix~C impression calculator.
 
-After the quality measures are collected, the Domain X methodology uses the measurement-template impression calculator and AHP to support ranking across the nine quality categories. In this thesis, any AHP ranking appears only after the underlying measurements are available and checked. The ranking is an analysis aid for comparing evidence under the chosen criteria, not a universal claim that one robotics package is best for every use case.
+\subsection{Repository Metrics}
+\label{subsec:repository-metrics}
 
-% TODO: Replace this section with the final measurement protocol details once the consolidated measurement files, measurement dates, and repository choices are available.
+Repository metrics are collected separately from the quality impression scores. Three categories of repository data are gathered:
+
+\begin{enumerate}
+    \item \textbf{GitHub-style metrics:} stars, forks, watchers, open pull requests, closed pull requests, number of developers, open issues, closed issues, initial release date, and last commit date.
+    \item \textbf{GitStats-style metrics:} number of text-based files, number of binary files, total lines, lines added, lines deleted, total commits, commits by year (last 5 years), and commits by month (last 12 months).
+    \item \textbf{SCC-style metrics:} number of text-based files, total lines, code lines, comment lines, and blank lines.
+\end{enumerate}
+
+From these raw data, three processed measures are calculated:
+
+\begin{enumerate}
+    \item \textbf{Alive/dead status:} alive is defined as the presence of commits or version releases within the last 18 months from the measurement date.
+    \item \textbf{Percentage of identified issues that are closed:} computed as closed issues divided by total identified issues.
+    \item \textbf{Percentage of code that is comments:} computed as comment lines divided by total lines.
+\end{enumerate}
+
+\subsection{Measurement Execution}
+\label{subsec:measurement-execution}
+
+The Domain~X methodology recommends performing installation-based measurements in a controlled environment, typically a virtual machine, to ensure a clean and reproducible starting state~\cite{Smith2021}. For this study, installation measurements were performed on a Linux-based virtual machine. The operating system, installation steps, dependencies, and any issues encountered were recorded for each package.
+
+The methodology also recommends a time budget to keep the overall measurement workload feasible. The target is approximately 160 person-hours for the entire domain, with 1 to 4 hours allocated per package for template completion and up to 2 hours for installation~\cite{Smith2021}. Measurement was conducted during May 2026. All time-sensitive data (last commit dates, issue counts, stars, forks, etc.) should be understood as snapshots taken during this period.
+
+Several measurement questions require explicit interpretation rules:
+
+\begin{itemize}
+    \item \textbf{Last commit date} is recorded at the time of measurement and may change for active repositories.
+    \item \textbf{Percentage of identified issues that are closed} is computed consistently as closed issues divided by total identified issues, using GitHub issue data where available.
+    \item \textbf{Evidence that performance was considered} is assessed by searching software artifacts for explicit references to speed, storage, throughput, performance optimization, parallelism, multi-core processing, or similar considerations.
+    \item \textbf{Percentage of code that is comments} is computed using the SCC tool's line-based method, as comment lines divided by total lines.
+\end{itemize}
+
+\subsection{Ranking with AHP}
+\label{subsec:ahp-ranking}
+
+After the quality measures are collected, the Domain~X methodology uses the Analytic Hierarchy Process (AHP) to support ranking across the nine quality categories~\cite{Saaty1980}. AHP is a decision-making technique that uses pairwise comparisons between alternatives to calculate relative scores. It organizes multiple criteria in a hierarchical structure and enables the combination of individual quality rankings into an overall ranking based on the relative priorities assigned to each quality.
+
+In this study, AHP is applied to the nine quality impression scores for the 28 software packages. The AHP process produces a ranking that is an analysis aid for comparing evidence under the chosen criteria. It is not a universal claim that one package is best for every robotics use case. Sensitivity analysis can be applied to assess whether the ranking is stable under reasonable variations in quality weightings. Any AHP ranking reported in this thesis appears only after the underlying measurements are available and verified.
 
 \section{Commonality Analysis Procedure}
 \label{sec:commonality-analysis-procedure}
 
-The commonality analysis identifies shared and variable capabilities across the selected packages. It explains the domain and supplements repository-based metrics. The analysis is based on checked evidence from documentation, repositories, papers, or other reliable project materials.
+The commonality analysis identifies shared and variable capabilities across the selected software packages, treating them as members of a software family as defined by Parnas~\cite{Parnas1976} and Weiss~\cite{Weiss1997}. The analysis supplements repository-based metrics by describing what the packages do and how their roles differ, providing context for interpreting the measurement results reported in Chapter~\ref{ch:measurement-results}.
 
-Following the Domain X methodology, the analysis should treat the selected packages as members of a software family and document four kinds of information. First, it should list commonalities: goals, assumptions, functions, artifacts, or domain concepts that appear across multiple family members. Second, it should list variabilities: places where family members differ. Third, it should describe parameters of variation, meaning the possible values for each variability. Fourth, where appropriate, it should record binding time, such as whether a variation is fixed at specification time, build time, configuration time, or run time.
+Following the Domain~X methodology, the analysis proceeds in six steps:
 
-The procedure first groups the selected packages into broad software roles, such as robotics simulators, physics and dynamics libraries, and planning or middleware tools. It then identifies capabilities that appear across multiple tools, such as support for robot models, simulated environments, motion planning workflows, dynamics or physics representation, APIs, documentation, and integration with robotics ecosystems. It also records variations in scope, supported platforms, licensing, interfaces, and intended use cases.
+\begin{enumerate}
+    \item \textbf{Write an introduction} to the domain and the software family.
+    \item \textbf{Write an overview of domain knowledge,} summarizing the key concepts and terminology relevant to robotics software for motion planning and simulation.
+    \item \textbf{List commonalities:} identify goals, assumptions, functions, artifacts, and domain concepts that recur across multiple family members. For example, many packages in the study set share the goal of simulating robot dynamics, the assumption that robot models are described using standard formats (such as URDF or SDF), and the function of providing an API for programmatic control.
+    \item \textbf{List variabilities:} identify dimensions on which family members differ. These include software role (simulator, physics engine, planning library, middleware), supported platforms, licensing, programming language interfaces, documentation style, and intended use cases.
+    \item \textbf{List parameters of variation:} for each variability, describe the possible values. For example, the software role parameter can take values such as general-purpose simulator, domain-specific simulator, physics engine, dynamics library, motion planning library, manipulation framework, or middleware.
+    \item \textbf{Add terminology, definitions, and acronyms} that are standard in the domain, to ensure that the analysis is accessible to readers outside robotics.
+\end{enumerate}
 
-Because the selected set is heterogeneous, the commonality analysis does not force all tools into a single comparison template. Its purpose is to describe shared concerns and meaningful differences, not to claim that every package provides the same functionality.
+The procedure first groups the selected packages into broad categories based on their primary roles: robotics simulators, physics and dynamics engines, and planning or middleware tools. It then identifies capabilities that appear across multiple categories, such as support for robot model representation, simulated environments, motion planning workflows, dynamics computation, and integration with robotics ecosystems.
+
+Because the selected set is heterogeneous, the commonality analysis does not force all tools into a single comparison template. Its purpose is to describe shared concerns and meaningful differences, not to claim that every package provides identical functionality. The analysis is based on checked evidence from documentation, repositories, publications, and other reliable project materials. Capabilities that appear likely but have not been verified remain marked as needing confirmation.
 
 \section{Interview Component}
 \label{sec:interview-component}
 
-The Domain X methodology includes a developer survey or interview component with semi-structured questions about developer background, users, project organization, software qualities, pain points, documentation, maintainability, understandability, usability, and reproducibility. The project materials indicate that interviews with software developers, maintainers, or programmers may be part of the broader State-of-the-Practice exercise. The interview component is associated with research ethics approval through MacREM. The available materials do not yet include interview transcripts, participant responses, approved summaries, or final interview findings.
+The Domain~X methodology includes a developer survey component designed to capture information that is not visible in public repositories: the development process as experienced by practitioners, the pain points they encounter, their perceptions of software quality threats, and the strategies they use to address those threats~\cite{Smith2021}. The methodology prescribes semi-structured interviews based on a list of 20 questions covering developer background, project organization, user understanding, development obstacles (past and present), documentation practices, and specific software qualities including maintainability, understandability, usability, and reproducibility.
 
-For now, the interview component is planned or pending. Later revisions can describe recruitment, consent, protocols, confidentiality, and qualitative analysis if approved materials become available. Chapter~\ref{ch:developer-interviews} is reserved for this material. Interview findings should appear only when supported by approved interview data.
+For this study, the interview component is associated with research ethics approval through the McMaster Research Ethics Board (MacREM). The project materials indicate that interviews with software developers, maintainers, or programmers associated with the studied packages may form part of the broader State-of-the-Practice exercise.
 
-% TODO: Update this section if ethics approval documents, interview protocols, or approved interview summaries are added to the project.
+As of the current thesis draft, approved interview data (including transcripts, participant responses, approved summaries, or final interview findings) is not yet available. The interview component is therefore described as planned or pending. Chapter~\ref{ch:developer-interviews} is reserved for this material and currently describes the planned protocol, recruitment strategy, and analysis framework. Interview findings will be added only when supported by approved data.
+
+The methodology recommends sending interview requests to developers from all packages in the study set to avoid selection bias, with an expected response rate between 15\% and 30\% based on prior applications of the methodology~\cite{Dong2021}. Interview contacts are typically identified through project websites, code repositories, publications, or institutional biography pages.
