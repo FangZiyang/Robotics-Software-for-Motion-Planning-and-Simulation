@@ -58,7 +58,7 @@ This approach was discussed with the supervisor, who noted that while the use of
 
 After consolidating equivalent names across the collected sources, each unique software package was counted once per source to produce a mention count. A package that appeared in five academic papers and three community-curated lists would receive a mention count of eight. The consolidated ranking was recorded during the discovery phase and is a transparent input to the filtering process.
 
-The top entries in the consolidated ranking include Gazebo (22 mentions), Webots (16), Bullet/PyBullet (16), CoppeliaSim/V-REP (13), MuJoCo (12), ODE (10), ROS~2 (10), and OpenRAVE (9). These counts help organize the candidate list and make the selection process auditable. The full ranked list with mention counts is preserved in the project materials.
+The top entries in the consolidated ranking include Gazebo (22 mentions), Webots (16), Bullet/PyBullet (16), CoppeliaSim/V-REP (13), MuJoCo (12), ODE (10), ROS~2 (10), and OpenRAVE (9). These counts help organize the candidate list and make the selection process auditable. The full ranked list with mention counts, including packages that did not survive the filtering step described in Section~\ref{sec:filtering-criteria}, is preserved in the project materials (\texttt{examples/software-list-counting-result.xlsx}, sheet \texttt{final.m}; companion source catalogue in \texttt{examples/sofware-counting-webs.csv}).
 
 Mention count is a source-appearance signal and must be interpreted accordingly. It is not a measure of software quality, user adoption, research impact, maintainability, or suitability for any particular robotics task. A package can appear frequently because it is historically established, widely discussed in survey papers, broadly useful across application areas, or simply visible in the particular sources collected. A more specialized or newer package may be underrepresented even if it is technically strong. The mention count serves as one input to candidate filtering, not as a final evaluation or ranking of the software.
 
@@ -100,6 +100,15 @@ The primary activity indicator used in this study is the Domain~X alive/dead rul
 \begin{itemize}
     \item \textbf{MRDS} (Microsoft Robotics Developer Studio) has not received updates since 2012 and is no longer supported by Microsoft.
     \item \textbf{USARSim} (Unified System for Automation and Robot Simulation) is no longer actively maintained and does not represent current practice.
+\end{itemize}
+
+\subsection{Scope and Coverage Filters}
+\label{subsec:scope-coverage-filters}
+
+Two additional exclusions were applied to keep the study set methodologically coherent rather than to remove tools for quality reasons:
+
+\begin{itemize}
+    \item \textbf{GPMP2} (Gaussian Process Motion Planner 2) and \textbf{CHOMP} (Covariant Hamiltonian Optimization for Motion Planning) are optimization-based motion planning algorithms with public reference implementations. They are relevant to motion planning research but are narrower in scope than the general-purpose simulators, physics engines, planning frameworks, and middleware tools that dominate the candidate list. Including them alongside Gazebo, MoveIt!, or ROS~2 would force a comparison between full software stacks and single-algorithm libraries, which would distort the commonality analysis and the cross-package measurements. They were therefore excluded to maintain methodological consistency, not because of any quality concern.
 \end{itemize}
 
 Activity-related evidence is a snapshot. Repository activity, last commit dates, and release status can change after measurement. The measurement records in Chapter~\ref{ch:measurement-results} include the measurement date to make the snapshot nature of the data explicit.
@@ -159,7 +168,7 @@ The measurement procedure follows the Domain~X method for collecting structured 
 \subsection{Measurement Template}
 \label{subsec:measurement-template}
 
-The primary measurement instrument is the Domain~X Appendix~B measurement template. The template contains 108 questions grouped into the following sections:
+The primary measurement instrument is the Domain~X Appendix~B measurement template. The template contains approximately 108 fields when supplementary entries (free-text ``additional comments'' fields after each section and the GitHub-style and GitStats/SCC repository metric panels) are counted alongside the substantive questions. The substantive questions are grouped into the following sections:
 
 \begin{enumerate}
     \item \textbf{Summary Information} (17 questions): software name, URL, affiliation, purpose, number of developers, funding, release dates, status, license, platforms, software category, development model, publications, source code URL, programming languages, evidence of performance consideration, and additional comments.
