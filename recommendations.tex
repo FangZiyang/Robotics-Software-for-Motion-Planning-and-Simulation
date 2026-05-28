@@ -1,15 +1,29 @@
-\chapter{Recommendations}
-\label{ch:recommendations}
+\chapter{Threats to Validity}
+\label{ch:threats-to-validity}
 
-\section{Recommendations for Robotics Software Users}
-\label{sec:recommendations-users}
+Any study based on publicly available artifacts is constrained by what those artifacts can reveal. The threats below concern how the candidate set was assembled, how the measurements were made, and what the resulting scores can reasonably claim.
 
-\section{Recommendations for Software Maintainers}
-\label{sec:recommendations-maintainers}
+\section{Candidate Discovery}
+\label{sec:threat-candidate-discovery}
 
-\section{Recommendations for Future State-of-the-Practice Studies}
-\label{sec:recommendations-future-sop}
+The candidate set was built from academic survey papers, community-curated lists, and LLM-assisted discovery. Source appearance counts show how often a package turns up across those sources, not how good the software is. A package with high mention counts may simply be older or more broadly targeted; a technically strong tool with a narrower audience could score low. Any package absent from all three source types would not enter the candidate pool, whatever its actual quality.
 
-% Drafting note: Keep recommendations tied to measured evidence and observed
-% commonalities. Do not introduce unsupported claims here.
+\section{Measurement Consistency}
+\label{sec:threat-measurement-consistency}
 
+All measurements are based on public evidence collected in May 2026 and reflect the state of each repository at that moment. The same project measured a year earlier or later might score differently. Some quality questions also require judgment---whether documentation is adequate, for example---and two evaluators reading the same artifacts could reach different conclusions. Where judgment calls were made, the rationale is recorded in the measurement template.
+
+\section{Snapshot-Based Repository Data}
+\label{sec:threat-snapshot-repository-data}
+
+Metrics like star counts, fork counts, open issues, commit frequency, and lines of code were recorded in May 2026 and reflect that point in time only. They change continuously. A project that appears inactive at the measurement date may have had a burst of development beforehand, or may be in a stable maintenance phase rather than in decline.
+
+\section{Use of LLM-Assisted Candidate Sources}
+\label{sec:threat-llm-assisted-sources}
+
+LLM-generated candidate lists supplemented the academic and community-curated sources but did not drive them. These lists reflect the training data of the model rather than an independent survey of the domain, so a package unknown to the model could be absent from its output. Each package still required corroboration from at least one other source before entering the candidate pool.
+
+\section{Scope Boundaries}
+\label{sec:threat-scope-boundaries}
+
+Deciding which tools fall inside or outside the scope of MPS software involves judgment. The criteria are documented in Chapter~\ref{ch:methodology}, but any boundary choice shapes the candidate pool and therefore the scope of valid comparisons. Tools excluded from the study---proprietary platforms, discontinued projects, narrowly scoped libraries---may differ systematically from those that were measured.

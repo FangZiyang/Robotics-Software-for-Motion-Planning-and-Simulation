@@ -58,6 +58,28 @@ jobs:
             "$LATEX_IMAGE" \
             pdflatex -interaction=nonstopmode -halt-on-error main.tex
 
+      - name: Check for undefined citations
+        run: |
+          echo "Checking main.log for undefined citation warnings..."
+          if grep -E 'Citation .+ undefined' main.log; then
+            echo ""
+            echo "ERROR: One or more citations are unresolved (shown as '?' in PDF)."
+            echo "Fix the \\cite{} keys or add the missing entries to your .bib file."
+            exit 1
+          fi
+          echo "All citations resolved."
+
+      - name: Check for undefined references
+        run: |
+          echo "Checking main.log for undefined reference warnings..."
+          if grep -E 'Reference .+ undefined' main.log; then
+            echo ""
+            echo "ERROR: One or more cross-references are unresolved (shown as '?' in PDF)."
+            echo "Fix the \\ref{} / \\eqref{} keys or ensure the referenced labels exist."
+            exit 1
+          fi
+          echo "All references resolved."
+
       - name: Upload PDF and log
         uses: actions/upload-artifact@v4
         with:

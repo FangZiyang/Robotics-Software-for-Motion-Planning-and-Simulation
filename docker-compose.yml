@@ -1,0 +1,6 @@
+services:
+  latex:
+    image: sb2nov/latex:latest
+    working_dir: /work
+    volumes:
+      - .:/work

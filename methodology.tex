@@ -1,14 +1,14 @@
 \chapter{Methodology}
 \label{ch:methodology}
 
-This chapter describes the methodology used to conduct the State-of-the-Practice study of robotics software for motion planning and simulation. The methodology follows Smith et al.~\cite{Smith2021} and adapts it to the current domain. Section~\ref{sec:domain-selection} describes the domain selection process. Section~\ref{sec:domain-expert-interaction} describes the role of the domain expert. Section~\ref{sec:candidate-software-discovery} describes the three-source candidate discovery process. Section~\ref{sec:mention-count-ranking} describes the mention-count ranking method. Section~\ref{sec:filtering-criteria} describes the filtering criteria applied to the candidate list. Section~\ref{sec:final-software-set} presents the final study set of 28 packages. Section~\ref{sec:measurement-procedure} describes the measurement procedure using the Domain~X template. Section~\ref{sec:commonality-analysis-procedure} describes the commonality analysis procedure. Section~\ref{sec:interview-component} describes the planned developer interview component.
+This chapter describes the methodology used to conduct the State-of-the-Practice study of MPS software. The methodology follows \citet{Smith2021} and adapts it to the current domain. Section~\ref{sec:domain-selection} describes the domain selection process. Section~\ref{sec:domain-expert-interaction} describes the role of the domain expert. Section~\ref{sec:candidate-software-discovery} describes the three-source candidate discovery process. Section~\ref{sec:mention-count-ranking} describes the mention-count ranking method. Section~\ref{sec:filtering-criteria} describes the filtering criteria applied to the candidate list. Section~\ref{sec:final-software-set} presents the selected set of 28 packages. Section~\ref{sec:measurement-procedure} describes the measurement procedure using the Domain~X template. Section~\ref{sec:commonality-analysis-procedure} describes the commonality analysis procedure. Section~\ref{sec:interview-component} describes the planned developer interview component.
 
 \section{Domain Selection}
 \label{sec:domain-selection}
 
 The first step of the Domain~X methodology is to identify a suitable research software domain. To be applicable for the methodology, the chosen domain must meet four criteria~\cite{Smith2021}: (i)~it must have a well-defined and stable theoretical underpinning, ideally supported by standard textbooks; (ii)~there must be a community of researchers and practitioners studying the domain; (iii)~the software packages in the domain must include open-source options; and (iv)~a preliminary search should suggest that there are close to 30 candidate software packages that qualify as research software.
 
-The selected domain is \emph{robotics software for motion planning and simulation}. Motion planning and simulation are established subfields of robotics with well-defined theoretical foundations~\cite{lavalle2006planning,choset2005principles}. There is an active international research community, regular conferences (such as ICRA, IROS, and RSS), and a substantial body of published work. A preliminary search confirmed the existence of numerous open-source software packages spanning simulation environments, physics engines, dynamics libraries, motion planning libraries, and robotics middleware.
+The selected domain is \emph{MPS (motion planning and simulation)}. Motion planning and simulation are established subfields of robotics with well-defined theoretical foundations~\cite{lavalle2006planning,choset2005principles}. There is an active international research community, regular conferences (such as ICRA, IROS, and RSS), and a substantial body of published work. A preliminary search confirmed the existence of numerous open-source software packages spanning simulation environments, physics engines, dynamics libraries, motion planning libraries, and robotics middleware.
 
 The domain boundary is broader than ``robotics simulators'' alone. Many robotics workflows combine a simulator with planning libraries, physics engines, middleware, and supporting tools. Restricting the study to full simulators would make comparison simpler but would omit software that belongs to core motion planning and simulation workflows.
 
@@ -21,7 +21,7 @@ The Domain~X methodology emphasizes that a domain expert is an essential member 
 
 Domain experts may be recruited from academia or industry. The only requirements are knowledge of the domain and a willingness to be engaged in the assessment process. The domain expert does not need to be a software developer, but they should be a user of domain software. Given that domain experts are likely to be busy people, the methodology is designed to minimize the burden on their time~\cite{Dong2021}.
 
-For this study, the domain expert is Dr.~Matthew Giamou of the Department of Computing and Software at McMaster University. Dr.~Giamou's research includes robotics, motion planning, and state estimation. He reviewed the candidate software list, confirmed that the scope was appropriate, and provided guidance on inclusion and exclusion decisions. Material in this thesis that has not yet received final expert review is marked as pending.
+For this study, the domain expert is Dr.~Matthew Giamou of the Department of Computing and Software at McMaster University. Dr.~Giamou's research includes robotics, motion planning, and state estimation. He reviewed the candidate software list, confirmed that the scope was appropriate, and provided guidance on inclusion and exclusion decisions. Material in this report that has not yet received final expert review is marked as pending.
 
 The domain expert was asked to review the candidate software list and provide feedback on scope and coverage. Dr.~Giamou confirmed that the list was reasonable and that most of the shortlisted tools were familiar to him. He noted that several packages (ROS~2, MoveIt!, and OMPL) are not full simulators but can fit within a coherent narrative if their roles are explained carefully. He also confirmed that excluding MATLAB/Simulink, Unity, NVIDIA Isaac Sim, and RaiSim on methodological grounds was acceptable and would not misrepresent the domain.
 
@@ -49,7 +49,7 @@ These sources collect software that practitioners and community contributors con
 
 LLM-generated software lists were used as an auxiliary source for candidate discovery. This modifies the original Domain~X methodology, which prescribes search engine queries and domain expert consultation as the primary discovery methods. The modification is recorded explicitly so that the methodology remains transparent and reproducible in principle.
 
-The reason for including LLM-assisted discovery is practical: large language models can surface software names that appear across a wide range of public information, functioning as a broad aggregation mechanism over existing public data. However, LLM output can also be incomplete, outdated, or incorrect. Names obtained from LLM-generated lists therefore require consolidation, filtering, and verification against public evidence before they can support any thesis claims. In this project, LLM-assisted sources contributed to candidate discovery but did not determine the final study set, and they were never treated as authoritative.
+The reason for including LLM-assisted discovery is practical: large language models can surface software names that appear across a wide range of public information, functioning as a broad aggregation mechanism over existing public data. However, LLM output can also be incomplete, outdated, or incorrect. Names obtained from LLM-generated lists therefore require consolidation, filtering, and verification against public evidence before they can support any claims in this report. In this project, LLM-assisted sources contributed to candidate discovery but did not determine the selected set, and they were never treated as authoritative.
 
 This approach was discussed with the supervisor, who noted that while the use of LLMs is technically a modification of the peer-reviewed methodology, it is defensible for two reasons: (i)~LLMs were used together with academic and community-curated sources, not as the sole discovery method; and (ii)~LLMs can be understood as a large-scale aggregation mechanism over existing public information, analogous in effect to a broad search over indexed web content.
 
@@ -81,7 +81,7 @@ This criterion led to the exclusion of several prominent robotics tools whose co
     \item \textbf{RaiSim} is a high-performance physics simulator for robotics, but its source code is not publicly available under an open-source license.
 \end{itemize}
 
-These exclusions reflect methodological constraints rather than judgements about the quality or importance of the excluded tools. Each of these platforms plays a significant role in robotics research and industry, and their exclusion limits the coverage of the study. This limitation is discussed further in Chapter~\ref{ch:discussion}.
+These exclusions reflect methodological constraints rather than judgements about the quality or importance of the excluded tools. Each of these platforms plays a significant role in robotics research and industry, and their exclusion limits the coverage of the study. This limitation is discussed further in Chapter~\ref{ch:threats-to-validity}.
 
 \subsection{Repository-Based Measurability}
 \label{subsec:repository-based-measurability}
@@ -105,7 +105,7 @@ The primary activity indicator used in this study is the Domain~X alive/dead rul
 \subsection{Scope and Coverage Filters}
 \label{subsec:scope-coverage-filters}
 
-Two additional exclusions were applied to keep the study set methodologically coherent rather than to remove tools for quality reasons:
+Two additional exclusions were applied to keep the selected packages methodologically coherent rather than to remove tools for quality reasons:
 
 \begin{itemize}
     \item \textbf{GPMP2} (Gaussian Process Motion Planner 2) and \textbf{CHOMP} (Covariant Hamiltonian Optimization for Motion Planning) are optimization-based motion planning algorithms with public reference implementations. They are relevant to motion planning research but are narrower in scope than the general-purpose simulators, physics engines, planning frameworks, and middleware tools that dominate the candidate list. Including them alongside Gazebo, MoveIt!, or ROS~2 would force a comparison between full software stacks and single-algorithm libraries, which would distort the commonality analysis and the cross-package measurements. They were therefore excluded to maintain methodological consistency, not because of any quality concern.
@@ -116,7 +116,7 @@ Activity-related evidence is a snapshot. Repository activity, last commit dates,
 \section{Final Software Set}
 \label{sec:final-software-set}
 
-After ranking by mention count and applying the filtering criteria described above, the final study set consists of 28 software packages. Table~\ref{tab:final-software-set} lists the packages alphabetically with their primary roles in the robotics software ecosystem.
+After ranking by mention count and applying the filtering criteria described above, the selected set consists of 28 software packages. Table~\ref{tab:final-software-set} lists the packages alphabetically with their primary roles in the robotics software ecosystem.
 
 \begin{table}[H]
 \centering
@@ -158,7 +158,7 @@ YARP & Middleware (humanoid robotics) \\
 \end{tabular}
 \end{table}
 
-This set is deliberately heterogeneous. Most entries are associated with simulation, physics, dynamics, planning, or robotics infrastructure, but they are not direct substitutes for one another. ROS~2, MoveIt!, and OMPL are boundary cases because they are not full simulators in the same sense as Gazebo or Webots. They are retained because the study scope is robotics software for motion planning and simulation, not simulator applications alone. Chapter~\ref{ch:selected-software-commonality} provides a detailed analysis of software categories, commonalities, and variabilities across this set.
+This set is deliberately heterogeneous. Most entries are associated with simulation, physics, dynamics, planning, or robotics infrastructure, but they are not direct substitutes for one another. ROS~2, MoveIt!, and OMPL are boundary cases because they are not full simulators in the same sense as Gazebo or Webots. They are retained because the study scope is MPS software, not simulator applications alone. Chapter~\ref{ch:selected-software-commonality} provides a detailed analysis of software categories, commonalities, and variabilities across this set.
 
 \section{Measurement Procedure}
 \label{sec:measurement-procedure}
@@ -225,19 +225,19 @@ Several measurement questions require explicit interpretation rules:
 
 After the quality measures are collected, the Domain~X methodology uses the Analytic Hierarchy Process (AHP) to support ranking across the nine quality categories~\cite{Saaty1980}. AHP is a decision-making technique that uses pairwise comparisons between alternatives to calculate relative scores. It organizes multiple criteria in a hierarchical structure and enables the combination of individual quality rankings into an overall ranking based on the relative priorities assigned to each quality.
 
-In this study, AHP is applied to the nine quality impression scores for the 28 software packages. The AHP process produces a ranking that is an analysis aid for comparing evidence under the chosen criteria. It is not a universal claim that one package is best for every robotics use case. Sensitivity analysis can be applied to assess whether the ranking is stable under reasonable variations in quality weightings. Any AHP ranking reported in this thesis appears only after the underlying measurements are available and verified.
+In this study, AHP is applied to the nine quality impression scores for the 28 software packages. The AHP process produces a ranking that is an analysis aid for comparing evidence under the chosen criteria. It is not a universal claim that one package is best for every robotics use case. Sensitivity analysis can be applied to assess whether the ranking is stable under reasonable variations in quality weightings. Any AHP ranking reported in this report appears only after the underlying measurements are available and verified.
 
 \section{Commonality Analysis Procedure}
 \label{sec:commonality-analysis-procedure}
 
-The commonality analysis identifies shared and variable capabilities across the selected software packages, treating them as members of a software family as defined by Parnas~\cite{Parnas1976} and Weiss~\cite{Weiss1997}. The analysis supplements repository-based metrics by describing what the packages do and how their roles differ, providing context for interpreting the measurement results reported in Chapter~\ref{ch:measurement-results}.
+The commonality analysis identifies shared and variable capabilities across the selected software packages, treating them as members of a software family as defined by \citet{Parnas1976} and \citet{Weiss1997}. The analysis supplements repository-based metrics by describing what the packages do and how their roles differ, providing context for interpreting the measurement results reported in Chapter~\ref{ch:measurement-results}.
 
 Following the Domain~X methodology, the analysis proceeds in six steps:
 
 \begin{enumerate}
     \item \textbf{Write an introduction} to the domain and the software family.
-    \item \textbf{Write an overview of domain knowledge,} summarizing the key concepts and terminology relevant to robotics software for motion planning and simulation.
-    \item \textbf{List commonalities:} identify goals, assumptions, functions, artifacts, and domain concepts that recur across multiple family members. For example, many packages in the study set share the goal of simulating robot dynamics, the assumption that robot models are described using standard formats (such as URDF or SDF), and the function of providing an API for programmatic control.
+    \item \textbf{Write an overview of domain knowledge,} summarizing the key concepts and terminology relevant to MPS software.
+    \item \textbf{List commonalities:} identify goals, assumptions, functions, artifacts, and domain concepts that recur across multiple family members. For example, many of the selected packages share the goal of simulating robot dynamics, the assumption that robot models are described using standard formats (such as URDF or SDF), and the function of providing an API for programmatic control.
     \item \textbf{List variabilities:} identify dimensions on which family members differ. These include software role (simulator, physics engine, planning library, middleware), supported platforms, licensing, programming language interfaces, documentation style, and intended use cases.
     \item \textbf{List parameters of variation:} for each variability, describe the possible values. For example, the software role parameter can take values such as general-purpose simulator, domain-specific simulator, physics engine, dynamics library, motion planning library, manipulation framework, or middleware.
     \item \textbf{Add terminology, definitions, and acronyms} that are standard in the domain, to ensure that the analysis is accessible to readers outside robotics.
@@ -254,6 +254,6 @@ The Domain~X methodology includes a developer survey component designed to captu
 
 For this study, the interview component is associated with research ethics approval through the McMaster Research Ethics Board (MacREM). The project materials indicate that interviews with software developers, maintainers, or programmers associated with the studied packages may form part of the broader State-of-the-Practice exercise.
 
-As of the current thesis draft, approved interview data (including transcripts, participant responses, approved summaries, or final interview findings) is not yet available. The interview component is therefore described as planned or pending. Chapter~\ref{ch:developer-interviews} is reserved for this material and currently describes the planned protocol, recruitment strategy, and analysis framework. Interview findings will be added only when supported by approved data.
+As of the current report draft, approved interview data (including transcripts, participant responses, approved summaries, or final interview findings) is not yet available. The interview component is therefore described as planned or pending. Chapter~\ref{ch:developer-interviews} is reserved for this material and currently describes the planned protocol, recruitment strategy, and analysis framework. Interview findings will be added only when supported by approved data.
 
 The methodology recommends sending interview requests to developers from all packages in the study set to avoid selection bias, with an expected response rate between 15\% and 30\% based on prior applications of the methodology~\cite{Dong2021}. Interview contacts are typically identified through project websites, code repositories, publications, or institutional biography pages.
