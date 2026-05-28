@@ -1,7 +1,7 @@
 \chapter{Introduction}
 \label{ch:introduction}
 
-Robotics software for motion planning and simulation enables researchers and engineers to model robot kinematics and dynamics, simulate sensor data, plan collision-free trajectories, and test control strategies before deploying to physical hardware. In practice this software is central to experimental reproducibility and to the transition from simulation to physical deployment, so its engineering quality has direct consequences for both research and operational outcomes.
+Robotics software for motion planning and simulation enables researchers and engineers to model robot kinematics and dynamics, simulate sensor data, plan collision-free trajectories, and test control strategies before deploying to physical hardware. In practice, this software is central to experimental reproducibility and to the transition from simulation to physical deployment, so its engineering quality has direct consequences for both research and operational outcomes.
 
 Developing this software takes considerable effort, and the engineering quality of the result matters. A simulator that produces incorrect trajectories, or a planner that crashes under realistic inputs, can compromise experimental results in ways that are not immediately obvious. Qualities such as correctness, reliability, and long-term sustainability are not guaranteed by domain expertise alone.
 
@@ -67,9 +67,9 @@ These contributions are methodological and descriptive. The report characterizes
 The remainder of this report is organized as follows:
 
 \begin{itemize}
-    \item \textbf{Chapter~\ref{ch:background}} introduces the robotics software domain and the motion planning and simulation context, reviews prior State-of-the-Practice studies, defines the software quality attributes used in this study, and provides background on commonality analysis.
+    \item \textbf{Chapter~\ref{ch:background}} introduces the robotics software domain and the motion planning and simulation context, reviews prior State-of-the-Practice studies, defines the software quality attributes used in this study, provides background on commonality analysis and the Analytic Hierarchy Process, and discusses the role and limitations of open-source repository-based measurement.
     \item \textbf{Chapter~\ref{ch:methodology}} describes the full methodology: domain selection, candidate discovery from multiple source types, filtering criteria, the measurement procedure using the Domain~X template~\cite{Smith2021}, commonality analysis procedure, and the planned interview component. This chapter addresses RQ1 and RQ2 at the procedural level.
-    \item \textbf{Chapter~\ref{ch:selected-software-commonality}} presents the 28 selected packages as a software family and reports the commonality analysis, including shared capabilities, variability points, and parameters of variation. This chapter addresses RQ1.
+    \item \textbf{Chapter~\ref{ch:selected-software-commonality}} presents the 28 selected packages as a software family and reports the commonality analysis, including shared capabilities, variability points, and parameters of variation. This chapter complements the package characterization from RQ1 by analyzing the selected software as a product family.
     \item \textbf{Chapter~\ref{ch:measurement-results}} reports the quality measurement results for the selected packages across the nine Domain~X quality categories, including repository metrics and overall observations. This chapter addresses RQ2.
     \item \textbf{Chapter~\ref{ch:discussion}} compares the MPS findings with results from prior State-of-the-Practice studies in other research software domains, examining similarities and differences with respect to repository artifacts, tool usage, and development practices. This chapter addresses RQ3--RQ5.
     \item \textbf{Chapter~\ref{ch:developer-interviews}} describes the planned developer interview component, including the adapted Domain~X interview protocol and analysis approach. This component addresses RQ6--RQ9. Because no approved interview data is currently available, interview findings are reserved for a future study.
