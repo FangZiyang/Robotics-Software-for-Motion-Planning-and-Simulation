@@ -1,7 +1,7 @@
-\chapter{Measurement Results}
+\chapter{Ranking Projects by Quality Measure}
 \label{ch:measurement-results}
 
-This chapter reports the measurement results for the 28 selected software packages. All data was collected during May 2026 and represents a snapshot of repository state, documentation, and project activity at that time. The measurements follow the Domain~X Appendix~B template and cover the nine quality categories described in Section~\ref{sec:software-quality-attributes}. Section~\ref{sec:repository-project-metadata} presents summary information and project metadata. Sections~\ref{sec:installability-results} through~\ref{sec:visibility-transparency-results} report results for each quality category. Section~\ref{sec:repository-metrics-results} reports repository metrics. Section~\ref{sec:overall-observations} synthesizes the findings.
+This chapter ranks the 28 selected software packages by measured engineering quality and compares that ranking with community-facing indicators of visibility and adoption. All data was collected during May 2026 and represents a snapshot of repository state, documentation, and project activity at that time. The quality measurements follow the Domain~X Appendix~B template and cover the nine quality categories described in Section~\ref{sec:software-quality-attributes}. Section~\ref{sec:repository-project-metadata} presents summary metadata. Sections~\ref{sec:installability-results} through~\ref{sec:visibility-transparency-results} report per-category results. Section~\ref{sec:repository-metrics-results} reports repository metrics. Section~\ref{sec:overall-observations} synthesizes the per-category findings and reports the quality-mean ranking. Section~\ref{sec:quality-vs-community} compares the quality-mean ranking with community indicators of visibility and adoption.
 
 \section{Repository and Project Metadata}
 \label{sec:repository-project-metadata}
@@ -385,6 +385,56 @@ Several patterns emerge from the measurement results:
 
 \textbf{Repository activity is concentrated in a subset of packages.} A small number of packages (Drake, SOFA, Project Chrono, YARP, Pinocchio) account for a disproportionate share of total commits. This reflects sustained multi-year development by well-resourced teams. At the other extreme, several packages show minimal activity in the last 12 months.
 
-\textbf{The relationship between community popularity and measurement scores is not linear.} AirSim leads in GitHub stars by a wide margin (18,159) but scores in the middle tier (7--8) across most quality categories. This is consistent with the finding in the MI study~\cite{Dong2021} that GitHub popularity and measurement-based rankings do not always align. Popularity metrics are cumulative and backward-looking, while measurement scores reflect current documentation and process quality.
+\textbf{The relationship between community popularity and measurement scores is not linear.} Section~\ref{sec:quality-vs-community} reports the explicit ranking comparison; popularity metrics are cumulative and backward-looking, while measurement scores reflect current documentation and process quality.
 
 These observations are descriptive and are based on the specific measurement procedure, time frame, and interpretation rules described in Chapter~\ref{ch:methodology}. They are not claims that any single package is universally superior. Chapters~\ref{ch:comparison-research-software} and~\ref{ch:discussion} interpret these results in the context of the research questions.
+
+\section{Comparison with Community Indicators}
+\label{sec:quality-vs-community}
+
+The Domain~X quality mean reported in Section~\ref{sec:overall-observations} reflects the per-package state of documentation, testing, release management, and related software engineering practices in May 2026. Community indicators such as GitHub stars, forks, and recent commit activity capture a different signal: cumulative visibility, user adoption, and word-of-mouth attention built up over time. The two need not agree. This section presents both rankings side by side, using the per-package quality mean from Table~\ref{tab:overall-impressions} and the star count from Table~\ref{tab:repository-metrics}, and identifies where the indicators converge and where they diverge.
+
+\begin{table}[H]
+\centering
+\caption{Quality-mean rank versus GitHub stars rank for the 28 selected packages. $\Delta = S - Q$: positive values indicate a higher quality rank than stars rank (under-recognized for its quality); negative values indicate a higher stars rank than quality rank (popular without proportional quality scores). Ties receive the same rank. ODE is hosted on BitBucket and is excluded from the stars rank, consistent with Table~\ref{tab:repository-metrics}.}
+\label{tab:quality-vs-community}
+\small
+\begin{tabular}{@{}p{2.5cm}cccrr@{}}
+\toprule
+\textbf{Software} & \textbf{Q-Mean} & \textbf{Q-Rank} & \textbf{Stars} & \textbf{S-Rank} & \textbf{$\Delta$} \\
+\midrule
+Gazebo           & 10.0 & 1  & 1,337  & 17 & $+16$ \\
+Drake            & 8.9  & 2  & 4,025  & 8  & $+6$  \\
+OMPL             & 8.8  & 3  & 2,047  & 14 & $+11$ \\
+MoveIt!          & 8.7  & 4  & 1,803  & 15 & $+11$ \\
+Pinocchio        & 8.7  & 4  & 3,354  & 10 & $+6$  \\
+ROS~2            & 8.7  & 4  & 5,475  & 5  & $+1$  \\
+Habitat          & 8.0  & 7  & 3,662  & 9  & $+2$  \\
+MuJoCo           & 7.9  & 8  & 13,440 & 4  & $-4$  \\
+AirSim           & 7.8  & 9  & 18,159 & 1  & $-8$  \\
+MRPT             & 7.8  & 9  & 2,133  & 13 & $+4$  \\
+Webots           & 7.8  & 9  & 4,345  & 7  & $-2$  \\
+CARLA            & 7.7  & 12 & 13,941 & 3  & $-9$  \\
+OpenRAVE         & 7.7  & 12 & 801    & 21 & $+9$  \\
+DART             & 7.6  & 14 & 1,081  & 19 & $+5$  \\
+Bullet/PyBullet  & 7.4  & 15 & 14,465 & 2  & $-13$ \\
+CoppeliaSim      & 7.4  & 15 & 146    & 25 & $+10$ \\
+Proj.\ Chrono    & 7.4  & 15 & 2,836  & 11 & $-4$  \\
+MORSE            & 7.2  & 18 & 367    & 23 & $+5$  \\
+YARP             & 7.2  & 18 & 590    & 22 & $+4$  \\
+Simbody          & 7.0  & 20 & 2,521  & 12 & $-8$  \\
+OpenRTM-aist     & 6.9  & 21 & 24     & 26 & $+5$  \\
+PhysX (OSS)      & 6.8  & 22 & 4,532  & 6  & $-16$ \\
+SOFA             & 6.8  & 22 & 1,194  & 18 & $-4$  \\
+OROCOS           & 6.6  & 24 & 879    & 20 & $-4$  \\
+ODE              & 6.3  & 25 & ---    & ---& ---   \\
+Flightmare       & 6.1  & 26 & 1,353  & 16 & $-10$ \\
+Newton Dyn.      & 5.6  & 27 & 24     & 26 & $-1$  \\
+GraspIt!         & 5.0  & 28 & 213    & 24 & $-4$  \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The 28 packages fall into four broad patterns. \textbf{Rough agreement at the top.} Drake ($\Delta = +6$), ROS~2 ($\Delta = +1$), Pinocchio ($\Delta = +6$), and Habitat ($\Delta = +2$) appear in the top tier on both indicators; well-resourced projects with sustained development tend to combine strong engineering practice with substantial visibility. \textbf{High quality, low visibility.} Gazebo ($\Delta = +16$), OMPL ($\Delta = +11$), and MoveIt! ($\Delta = +11$) score at or near the top on quality but sit well below their quality rank on stars. The Gazebo gap is partially explained at the end of Section~\ref{sec:repository-metrics-results}: Gazebo's user base interacts with it primarily through ROS rather than its GitHub repository directly, so star counts undercount its reach. OMPL and MoveIt! are libraries embedded inside larger workflows and may attract attention as dependencies rather than as standalone projects. \textbf{High visibility, mid-pack quality.} AirSim ($\Delta = -8$), Bullet/PyBullet ($\Delta = -13$), CARLA ($\Delta = -9$), and PhysX (OSS) ($\Delta = -16$) sit at or near the top on stars but in the middle or lower tier on the quality mean. These projects share characteristics: broad user bases drawn from adjacent fields (gaming, autonomous-driving research, real-time physics), corporate or game-engine origins, and uneven research-software quality practice. \textbf{Consistently low.} GraspIt! ($\Delta = -4$), Newton Dynamics ($\Delta = -1$), and OpenRTM-aist ($\Delta = +5$) cluster near the bottom on both indicators; inactive or narrowly used projects tend to accumulate gaps in documentation, releases, and visibility together.
+
+These patterns are consistent with the finding from the Medical Imaging State-of-the-Practice study that GitHub popularity and measurement-based rankings do not align in a simple way~\cite{Dong2021}. They support the broader argument that community-facing indicators of visibility and adoption are not interchangeable with measured software engineering quality; treating stars as a quality proxy obscures meaningful differences across packages.
