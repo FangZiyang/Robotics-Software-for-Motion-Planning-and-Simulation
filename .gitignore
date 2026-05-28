@@ -45,3 +45,8 @@ examples/PDF/
 # Common typo/local agent scratch directories
 agnet/
 agent/
+
+# Internal Chinese translation (not for submission)
+zh/*.md
+zh/*.py
+zh/*.pdf
