@@ -1,7 +1,7 @@
 \chapter{Introduction}
 \label{ch:introduction}
 
-Robotics software for motion planning and simulation enables researchers and engineers to model robot kinematics and dynamics, simulate sensor data, plan collision-free trajectories, and test control strategies before deploying to physical hardware. In practice, this software is central to experimental reproducibility and to the transition from simulation to physical deployment, so its engineering quality has direct consequences for both research and operational outcomes.
+Robotics software for motion planning and simulation (MPS) enables researchers and engineers to model robot kinematics and dynamics, simulate sensor data, plan collision-free trajectories, and test control strategies before deploying to physical hardware. In practice, this software is central to experimental reproducibility and to the transition from simulation to physical deployment, so its engineering quality has direct consequences for both research and operational outcomes.
 
 Developing this software takes considerable effort, and the engineering quality of the result matters. A simulator that produces incorrect trajectories, or a planner that crashes under realistic inputs, can compromise experimental results in ways that are not immediately obvious. Qualities such as correctness, reliability, and long-term sustainability are not guaranteed by domain expertise alone.
 
@@ -17,7 +17,7 @@ This chapter is organized as follows. Section~\ref{sec:research-questions} state
 The following research questions guide this study. The abbreviation MPS (motion planning and simulation) is used throughout to refer to the studied software domain; the robotics context is implied.
 
 \begin{enumerate}[RQ1.]
-    \item What software packages are candidates for the State-of-the-Practice study of robotics software for motion planning and simulation?
+    \item What software packages are candidates for the State-of-the-Practice study of MPS software?
     \item What is the ranking of the candidate packages from RQ1 with respect to the software qualities of installability, correctness and verifiability, reliability, robustness, usability, maintainability, reusability, understandability, and visibility and transparency?
     \item How do MPS projects compare to other research software domains with respect to the artifacts present in their repositories?
     \item How do MPS projects compare to other research software domains with respect to the use of tools?
@@ -33,7 +33,7 @@ RQ1 and RQ2 are artifact-based: candidate discovery and quality measurement. RQ3
 \section{Scope}
 \label{sec:introduction-scope}
 
-The working domain for this report is \emph{robotics software for motion planning and simulation}. This domain was established through discussion with the supervisor and the domain expert, Dr.~Matthew Giamou. It was initially discussed in relation to inverse kinematics software, but later project communication settled on the broader domain used here. The scope includes robotics simulators and closely related software used for planning, dynamics, physics, middleware, and robotic system development.
+The working domain for this report is \emph{MPS (motion planning and simulation)}. This domain was established through discussion with the supervisor and the domain expert, Dr.~Matthew Giamou. It was initially discussed in relation to inverse kinematics software, but later project communication settled on the broader domain used here. The scope includes robotics simulators and closely related software used for planning, dynamics, physics, middleware, and robotic system development.
 
 Several important and widely used tools fall outside the scope of this study. MATLAB and Simulink are major platforms in both robotics research and industry, but they are proprietary and do not permit the kind of public repository-based measurement that this study depends on. Dr.~Giamou confirmed that excluding MATLAB and Simulink does not misrepresent the domain. Unity, NVIDIA Isaac Sim, and RaiSim were excluded because their core simulation components are not open source, which prevents consistent repository mining across the study set. MRDS and USARSim were excluded because they are no longer actively maintained and do not represent current practice. GPMP2 and CHOMP, while relevant to optimization-based motion planning, are more narrowly scoped than the general-purpose tools in the candidate list and were excluded to maintain methodological consistency.
 
@@ -52,7 +52,7 @@ This report adapts the State-of-the-Practice methodology developed by Smith et a
 This report makes the following contributions:
 
 \begin{enumerate}
-    \item A scoped State-of-the-Practice study of robotics software for motion planning and simulation, applying the peer-reviewed methodology of Smith et al.~\cite{Smith2021} to a new domain.
+    \item A scoped State-of-the-Practice study of MPS software, applying the peer-reviewed methodology of Smith et al.~\cite{Smith2021} to a new domain.
     \item A transparent candidate discovery and selection process that combines academic sources, community-curated lists, and auxiliary LLM-assisted discovery, with explicit discussion of the role and limitations of each source type.
     \item A public-artifact measurement dataset for 28 selected software packages, covering repository evidence, documentation, releases, issue trackers, testing and continuous-integration evidence, and project metadata, organized across the nine quality categories defined in the Domain~X measurement template~\cite{Smith2021}.
     \item A commonality analysis identifying shared capabilities, variability points, and parameters of variation across the selected packages.
