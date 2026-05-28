@@ -1,29 +1,29 @@
 \chapter{Threats to Validity}
 \label{ch:threats-to-validity}
 
-This chapter discusses the main threats to the validity of the study. The threats arise from the candidate discovery process, the public-artifact measurement approach, the interpretation of quality scores, and the auxiliary data sources used.
+Any study based on publicly available artifacts is constrained by what those artifacts can reveal. The threats below concern how the candidate set was assembled, how the measurements were made, and what the resulting scores can reasonably claim.
 
 \section{Candidate Discovery}
 \label{sec:threat-candidate-discovery}
 
-The candidate package set was assembled from academic survey papers, community-curated lists, and auxiliary LLM-assisted discovery. Source appearance counts reflect how often a package is cited across the collected sources, not the quality or fitness-for-purpose of the software. A package with high mention counts may simply have been available earlier or targeted at a broader audience than packages with fewer citations. Packages that were not referenced in any of the collected sources would not appear in the candidate set regardless of their technical merit.
+The candidate set was built from academic survey papers, community-curated lists, and LLM-assisted discovery. Source appearance counts show how often a package turns up across those sources, not how good the software is. A package with high mention counts may simply be older or more broadly targeted; a technically strong tool with a narrower audience could score low. Any package absent from all three source types would not enter the candidate pool, whatever its actual quality.
 
 \section{Measurement Consistency}
 \label{sec:threat-measurement-consistency}
 
-The quality measurements are based on evidence that was publicly available at the time of the study (May 2026). Scores reflect the state of the public repository and documentation at a single point in time; they may not reflect the current or historical state of a project. Different evaluators examining the same evidence may reach different conclusions on some quality questions. Where scoring required a judgement call, the rationale is recorded in the measurement template, but some subjectivity remains.
+All measurements are based on public evidence collected in May 2026 and reflect the state of each repository at that moment. The same project measured a year earlier or later might score differently. Some quality questions also require judgment---whether documentation is adequate, for example---and two evaluators reading the same artifacts could reach different conclusions. Where judgment calls were made, the rationale is recorded in the measurement template.
 
 \section{Snapshot-Based Repository Data}
 \label{sec:threat-snapshot-repository-data}
 
-Repository metrics such as star counts, fork counts, open issues, commit frequency, and lines of code are snapshots recorded in May 2026. These metrics change continuously and should not be interpreted as stable measures of project health. A project with low activity at the time of measurement may have been more active in prior periods or may resume activity later.
+Metrics like star counts, fork counts, open issues, commit frequency, and lines of code were recorded in May 2026 and reflect that point in time only. They change continuously. A project that appears inactive at the measurement date may have had a burst of development beforehand, or may be in a stable maintenance phase rather than in decline.
 
 \section{Use of LLM-Assisted Candidate Sources}
 \label{sec:threat-llm-assisted-sources}
 
-LLM-generated candidate lists were used as an auxiliary discovery source to supplement academic and community-curated sources. These lists may reflect the training data of the underlying model rather than an authoritative survey of the domain. They were treated as one input among several and were not used as the sole or primary basis for inclusion or exclusion decisions.
+LLM-generated candidate lists supplemented the academic and community-curated sources but did not drive them. These lists reflect the training data of the model rather than an independent survey of the domain, so a package unknown to the model could be absent from its output. Each package still required corroboration from at least one other source before entering the candidate pool.
 
 \section{Scope Boundaries}
 \label{sec:threat-scope-boundaries}
 
-The scope of this study is robotics software for motion planning and simulation. The boundary between in-scope and out-of-scope software requires judgement in some cases. Proprietary tools, discontinued projects, and narrowly scoped libraries were excluded based on criteria described in Chapter~\ref{ch:methodology}, but the boundary decisions affect which packages are measured and which comparisons are possible.
+Deciding which tools fall inside or outside robotics software for motion planning and simulation involves judgment. The criteria are documented in Chapter~\ref{ch:methodology}, but any boundary choice shapes the candidate pool and therefore the scope of valid comparisons. Tools excluded from the study---proprietary platforms, discontinued projects, narrowly scoped libraries---may differ systematically from those that were measured.

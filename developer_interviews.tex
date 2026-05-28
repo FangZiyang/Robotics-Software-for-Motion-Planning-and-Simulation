@@ -1,27 +1,27 @@
 \chapter{Developer Interviews: Planned Component}
 \label{ch:developer-interviews}
 
-Developer interviews are part of the Domain~X State-of-the-Practice methodology~\cite{Smith2021}. They provide qualitative evidence that is difficult to obtain from repositories alone, such as developer pain points, project organization, documentation practices, and the reasons behind particular quality-related decisions.
+Developer interviews are part of the Domain~X State-of-the-Practice methodology~\cite{Smith2021}. They provide qualitative evidence that repositories cannot: the reasons behind development choices, what obstacles developers actually run into, and how teams handle problems that leave no trace in public artifacts.
 
-No approved interview data is currently available for this study. This chapter describes the planned role of the interview component and the protocol that would be used if ethics approval and participant consent are obtained. If approved interview data becomes available before the report is finalized, this chapter should be replaced with interview findings organized as described below. If data is not obtained, the research questions addressed by this component (RQ6--RQ9) remain as directions for future work.
+No approved interview data is available for this study. This chapter describes the planned interview component as a record of methodology and a guide for future work. RQ6--RQ9 remain open questions pending ethics approval and data collection.
 
 \section{Purpose of the Interviews}
 \label{sec:interview-purpose}
 
-Repository and documentation measurements can show visible project artifacts, but they cannot always explain why a team made particular development choices. Interviews can help interpret gaps in public evidence. A project may use testing, continuous integration, or informal review processes that are not clearly visible from the repository. Interviews can also identify obstacles that developers face when maintaining research software over time.
+Public repositories show what a project has produced, but not why particular choices were made. A team might rely on informal code review, use internal CI tooling invisible to outsiders, or follow conventions that are never written down. Interviews surface these practices and, more usefully, identify the obstacles developers encounter that would not appear anywhere in the public record.
 
-The interview component is intended to address RQ6 (developer pain points), RQ7 (comparison of pain points across research software domains), RQ8 (best practices that address pain points), and RQ9 (research software development practices applicable to MPS software). These questions complement the artifact-based findings of Chapters~\ref{ch:selected-software-commonality} and~\ref{ch:measurement-results}.
+The interview component addresses RQ6 through RQ9: developer pain points in MPS software, how those pain points compare across research software domains, what best practices address them, and what the broader research software community might learn from MPS developers. These findings would complement the artifact-based evidence in Chapters~\ref{ch:selected-software-commonality} and~\ref{ch:measurement-results}.
 
 \section{Planned Protocol}
 \label{sec:interview-protocol}
 
-The Domain~X interview guide contains 20 semi-structured questions covering the interviewee's role, the development team, project users, project organization, development practices, documentation, current and past difficulties, and actions taken to address software qualities such as maintainability, understandability, usability, and reproducibility. The interviews are semi-structured so that follow-up questions can clarify answers or explore topics raised by participants.
+The Domain~X interview guide uses 20 semi-structured questions covering the interviewee's background, project organization and user base, development and documentation practices, and recurring difficulties. The semi-structured format allows follow-up on topics that participants raise.
 
-For the MPS domain, the protocol should account for the different roles of tools in the study set. A question about usability or documentation may have different implications for a full simulator than for a lower-level planning library or middleware framework.
+For the MPS domain, the protocol must account for the different roles of tools in the study set. A question about usability or documentation means something different for a full simulator than for a lower-level planning library or middleware framework.
 
 Recruitment and reporting must follow the applicable McMaster ethics approval and consent requirements. No participant responses, identifying details, or interview findings may be included unless the relevant ethics materials, consent records, and approved summaries are available.
 
 \section{Analysis Approach}
 \label{sec:interview-analysis-plan}
 
-Interview responses would be analyzed as qualitative data. The analysis would identify recurring pain points, reported development practices, and strategies used by developers to address software quality. Interview evidence would be connected to the repository and measurement-template evidence where possible, distinguishing between publicly observed evidence and participant-reported evidence.
+Interview responses would be analyzed qualitatively, coding for recurring pain points, reported development practices, and strategies developers use to address quality concerns. Where possible, the interview evidence would be connected to the repository and measurement data, with explicit distinction between what is publicly observable and what participants report.
