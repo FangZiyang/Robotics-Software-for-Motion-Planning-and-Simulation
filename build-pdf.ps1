@@ -8,6 +8,20 @@ $ErrorActionPreference = "Stop"
 
 $ProjectRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
 
+function Get-TrimmedFileText {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$Path
+    )
+
+    $text = Get-Content -Path $Path -Raw -ErrorAction SilentlyContinue
+    if ($null -eq $text) {
+        return ""
+    }
+
+    return $text.Trim()
+}
+
 function Assert-DockerEngineReady {
     $stdout = New-TemporaryFile
     $stderr = New-TemporaryFile
@@ -15,7 +29,7 @@ function Assert-DockerEngineReady {
     try {
         $process = Start-Process `
             -FilePath "docker" `
-            -ArgumentList @("version", "--format", "{{.Server.Version}}") `
+            -ArgumentList @("version", "--format={{.Server.Version}}") `
             -RedirectStandardOutput $stdout.FullName `
             -RedirectStandardError $stderr.FullName `
             -WindowStyle Hidden `
@@ -26,13 +40,17 @@ function Assert-DockerEngineReady {
             throw "Docker engine did not respond within ${DockerReadyTimeoutSeconds}s. Start or restart Docker Desktop, then run this script again."
         }
 
-        if ($process.ExitCode -ne 0) {
-            $message = (Get-Content -Path $stderr.FullName -Raw).Trim()
-            if (-not $message) {
-                $message = (Get-Content -Path $stdout.FullName -Raw).Trim()
-            }
-            throw "Docker engine check failed. Start Docker Desktop and try again. $message"
+        $serverVersion = Get-TrimmedFileText -Path $stdout.FullName
+        if ($serverVersion) {
+            return
         }
+
+        $message = Get-TrimmedFileText -Path $stderr.FullName
+        if (-not $message) {
+            $message = "No Docker server version was returned."
+        }
+
+        throw "Docker engine check failed. Start Docker Desktop and try again. $message"
     }
     finally {
         Remove-Item -LiteralPath $stdout.FullName, $stderr.FullName -Force -ErrorAction SilentlyContinue
