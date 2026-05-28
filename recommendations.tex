@@ -1,15 +1,29 @@
-\chapter{Recommendations}
-\label{ch:recommendations}
+\chapter{Threats to Validity}
+\label{ch:threats-to-validity}
 
-\section{Recommendations for Robotics Software Users}
-\label{sec:recommendations-users}
+This chapter discusses the main threats to the validity of the study. The threats arise from the candidate discovery process, the public-artifact measurement approach, the interpretation of quality scores, and the auxiliary data sources used.
 
-\section{Recommendations for Software Maintainers}
-\label{sec:recommendations-maintainers}
+\section{Candidate Discovery}
+\label{sec:threat-candidate-discovery}
 
-\section{Recommendations for Future State-of-the-Practice Studies}
-\label{sec:recommendations-future-sop}
+The candidate package set was assembled from academic survey papers, community-curated lists, and auxiliary LLM-assisted discovery. Source appearance counts reflect how often a package is cited across the collected sources, not the quality or fitness-for-purpose of the software. A package with high mention counts may simply have been available earlier or targeted at a broader audience than packages with fewer citations. Packages that were not referenced in any of the collected sources would not appear in the candidate set regardless of their technical merit.
 
-% Drafting note: Keep recommendations tied to measured evidence and observed
-% commonalities. Do not introduce unsupported claims here.
+\section{Measurement Consistency}
+\label{sec:threat-measurement-consistency}
 
+The quality measurements are based on evidence that was publicly available at the time of the study (May 2026). Scores reflect the state of the public repository and documentation at a single point in time; they may not reflect the current or historical state of a project. Different evaluators examining the same evidence may reach different conclusions on some quality questions. Where scoring required a judgement call, the rationale is recorded in the measurement template, but some subjectivity remains.
+
+\section{Snapshot-Based Repository Data}
+\label{sec:threat-snapshot-repository-data}
+
+Repository metrics such as star counts, fork counts, open issues, commit frequency, and lines of code are snapshots recorded in May 2026. These metrics change continuously and should not be interpreted as stable measures of project health. A project with low activity at the time of measurement may have been more active in prior periods or may resume activity later.
+
+\section{Use of LLM-Assisted Candidate Sources}
+\label{sec:threat-llm-assisted-sources}
+
+LLM-generated candidate lists were used as an auxiliary discovery source to supplement academic and community-curated sources. These lists may reflect the training data of the underlying model rather than an authoritative survey of the domain. They were treated as one input among several and were not used as the sole or primary basis for inclusion or exclusion decisions.
+
+\section{Scope Boundaries}
+\label{sec:threat-scope-boundaries}
+
+The scope of this study is robotics software for motion planning and simulation. The boundary between in-scope and out-of-scope software requires judgement in some cases. Proprietary tools, discontinued projects, and narrowly scoped libraries were excluded based on criteria described in Chapter~\ref{ch:methodology}, but the boundary decisions affect which packages are measured and which comparisons are possible.
