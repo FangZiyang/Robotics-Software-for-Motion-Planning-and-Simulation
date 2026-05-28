@@ -1,67 +1,96 @@
-# MEng Project Report
+# Chapter 1 Revision — Review Guide
 
-Robotics Software for Motion Planning and Simulation
+**Feedback applied from:** `feedback/chapt1feedback.txt` and `feedback/handwritingfeedback.txt`
 
-This repository contains a thesis/report LaTeX template with separate chapter
-files, front matter, appendices, figures, bibliography files, and reference PDFs.
+---
 
-## Files to edit
+## Files changed
 
-- `main.tex`: the main LaTeX entry point.
-- `definitions.tex`: title, author, department, degree, supervisor, and date metadata.
-- `introduction.tex`, `background.tex`, `methodology.tex`,
-  `selected_software_commonality.tex`, `measurement_results.tex`,
-  `developer_interviews.tex`, `discussion.tex`, `recommendations.tex`,
-  `conclusion.tex`: thesis body chapters.
-- `appendixA.tex` through `appendixE.tex`: thesis appendices.
-- `references.bib`, `references_another.bib`: bibliography examples.
+| File | What changed |
+|---|---|
+| `introduction.tex` | Full Chapter 1 revision (see detail below) |
+| `main.tex` | Chapter order corrected to match target structure |
+| `recommendations.tex` | Converted from Recommendations skeleton to Threats to Validity chapter |
+| `discussion.tex` | Threats to Validity section removed (now lives in Ch 8) |
+| `developer_interviews.tex` | Rewritten as planned component; no findings claimed |
 
-## Manual build
+---
 
-Compile `main.tex` through the Docker LaTeX image used for this project. Run
-this command from the repository root, the folder that contains `main.tex`:
+## Chapter 1 changes
 
-```powershell
-docker run --rm -v "${PWD}:/work" -w /work sb2nov/latex:latest pdflatex -interaction=nonstopmode -halt-on-error main.tex
-```
+### Introductory blurb
+- Para 1: kept (robotics software importance)
+- Para 2: rewritten — emphasizes correctness, reliability, and sustainability explicitly; replaces old "diverse ecosystem" paragraph
+- Para 3: revised — SE best-practices gap; citations Hannay2009, Prabhu2011 retained; "thesis" → "report"
+- Para 4: new — prior SoP studies, this report's goal, MPS abbreviation defined, ranking clarified (ranking is done but not as universal recommendation)
+- Para 5: new — Chapter 1 roadmap
 
-This command starts a temporary Docker container, mounts the current project
-folder into the container at `/work`, runs LaTeX there, and writes the generated
-files back into the same folder. The important pieces are:
+### Section 1.1 — Research Questions
+- Replaced 5 original RQs with 9 supervisor-specified RQs
+- MPS abbreviation (motion planning and simulation) defined here
 
-- `--rm`: delete the temporary container after the command finishes.
-- `-v "${PWD}:/work"`: make the current project folder visible inside Docker.
-- `-w /work`: run commands from that mounted project folder.
-- `sb2nov/latex:latest`: use the LaTeX Docker image.
-- `pdflatex ... main.tex`: compile the thesis entry point.
+### Section 1.2 — Scope
+- "this thesis" → "this report"; no structural changes
 
-If the table of contents or cross-references look stale, run the same command
-twice.
+### Section 1.3 — Overview of the Methodology
+- Condensed from 4 paragraphs to 1; details deferred to Chapter 3
 
-After citations have been added, use the standard LaTeX/BibTeX sequence inside
-the same Docker image: `pdflatex`, `bibtex`, `pdflatex`, `pdflatex`. If the
-current skeleton has no citations yet, `bibtex main` reports that it found no
-citations; in that case, running `pdflatex` twice is enough to update the table
-of contents and cross-references.
+### Section 1.4 — Contributions
+- "This report makes the following contributions:"
+- 5 concrete, non-redundant contributions
+- Contribution 3 cites Smith2021 for Domain X template
+- Package count stated as 28
+- Closing sentence clarifies ranking vs. prescription distinction
 
-## GitHub Actions build
+### Section 1.5 — Organization
+- 8-chapter outline matching actual `main.tex` order
+- Each chapter references its addressed RQs
+- Developer interview chapter described as planned component (no findings)
+- Ch 8 references `ch:threats-to-validity` (correct label in `recommendations.tex`)
+- No conditional/project-plan language; reads as final report outline
 
-The repository includes a GitHub Actions workflow at
-`.github/workflows/build-thesis.yml`. On every push, pull request, or manual
-workflow run, GitHub Actions checks out the repository, runs a public TeX Live
-Docker image, compiles `main.pdf`, and uploads `main.pdf` plus `main.log` as a
-workflow artifact named `thesis-pdf`. The local command above uses the Docker
-image already available on this machine; the CI workflow uses
-`texlive/texlive:latest` because GitHub runners must pull a public image.
+### Global
+- All "thesis" → "report" (zero remaining occurrences verified)
+- Humanizer pass: removed AI writing patterns (rule-of-three, negative parallelisms, "first…then…finally" triples)
+- All TODO comments removed from `introduction.tex`
 
-On pushes to the `main` branch, the workflow also commits the generated
-`main.pdf` back to the repository with a `[skip ci]` commit message. Pull request
-and manual workflow runs still build and upload the PDF artifact, but they do not
-commit a PDF back to the branch.
+---
 
-After pushing to GitHub, open the repository on GitHub, go to the Actions tab,
-select the "Build thesis PDF" run, and download the `thesis-pdf` artifact from
-the completed run if you need the build log or the PDF from that specific run.
+## Structural changes to thesis body
 
-To switch between double-spaced and single-spaced output, edit the package
-selection near the top of `main.tex`.
+### `main.tex` — chapter order corrected
+New order: introduction → background → methodology → selected_software_commonality → measurement_results → **discussion → developer_interviews** → recommendations → conclusion
+
+Previously `developer_interviews` appeared before `discussion`; now corrected to match the target structure (Comparison Ch 6, Developer Pain Points Ch 7).
+
+### `recommendations.tex` → Threats to Validity (Ch 8)
+- Chapter title: `Threats to Validity`
+- Label: `ch:threats-to-validity`
+- Content: five sections covering candidate discovery, measurement consistency, snapshot-based data, LLM-assisted sources, and scope boundaries
+- All placeholder recommendation sections removed
+
+### `discussion.tex`
+- `\section{Threats to Validity}` and its subsections removed (content moved to Ch 8)
+- Remaining sections: Answers to Research Questions, Interpretation of Results, Implications for Users, Implications for Maintainers
+
+### `developer_interviews.tex`
+- Title: "Developer Interviews: Planned Component"
+- States explicitly: no approved interview data available; findings reserved for future study
+- Protocol and analysis approach described as planned methodology
+- "Interview Findings" placeholder section removed
+
+---
+
+## Ranking clarification (key fix)
+
+RQ2 asks for a ranking of packages. The intro now reads consistently:
+
+> The report ranks the selected packages according to the defined quality attributes, but these rankings describe the current state of the practice and are not intended as a universal recommendation for any particular robotics task or context.
+
+This resolves the earlier contradiction where the intro said "the report does not rank packages."
+
+---
+
+## No open TODOs remain in `introduction.tex`
+
+All citation keys verified present in `references.bib`.
