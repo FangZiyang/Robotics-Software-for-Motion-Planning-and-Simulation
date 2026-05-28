@@ -1,7 +1,7 @@
 \chapter{Methodology}
 \label{ch:methodology}
 
-This chapter describes the methodology used to conduct the State-of-the-Practice study of robotics software for motion planning and simulation (MPS software). The methodology follows \citet{Smith2021} and adapts it to the current domain. Section~\ref{sec:domain-selection} describes the domain selection process. Section~\ref{sec:domain-expert-interaction} describes the role of the domain expert. Section~\ref{sec:candidate-software-discovery} describes the three-source candidate discovery process. Section~\ref{sec:mention-count-ranking} describes the mention-count ranking method. Section~\ref{sec:filtering-criteria} describes the filtering criteria applied to the candidate list. Section~\ref{sec:final-software-set} presents the final study set of 28 packages. Section~\ref{sec:measurement-procedure} describes the measurement procedure using the Domain~X template. Section~\ref{sec:commonality-analysis-procedure} describes the commonality analysis procedure. Section~\ref{sec:interview-component} describes the planned developer interview component.
+This chapter describes the methodology used to conduct the State-of-the-Practice study of MPS software. The methodology follows \citet{Smith2021} and adapts it to the current domain. Section~\ref{sec:domain-selection} describes the domain selection process. Section~\ref{sec:domain-expert-interaction} describes the role of the domain expert. Section~\ref{sec:candidate-software-discovery} describes the three-source candidate discovery process. Section~\ref{sec:mention-count-ranking} describes the mention-count ranking method. Section~\ref{sec:filtering-criteria} describes the filtering criteria applied to the candidate list. Section~\ref{sec:final-software-set} presents the selected set of 28 packages. Section~\ref{sec:measurement-procedure} describes the measurement procedure using the Domain~X template. Section~\ref{sec:commonality-analysis-procedure} describes the commonality analysis procedure. Section~\ref{sec:interview-component} describes the planned developer interview component.
 
 \section{Domain Selection}
 \label{sec:domain-selection}
@@ -49,7 +49,7 @@ These sources collect software that practitioners and community contributors con
 
 LLM-generated software lists were used as an auxiliary source for candidate discovery. This modifies the original Domain~X methodology, which prescribes search engine queries and domain expert consultation as the primary discovery methods. The modification is recorded explicitly so that the methodology remains transparent and reproducible in principle.
 
-The reason for including LLM-assisted discovery is practical: large language models can surface software names that appear across a wide range of public information, functioning as a broad aggregation mechanism over existing public data. However, LLM output can also be incomplete, outdated, or incorrect. Names obtained from LLM-generated lists therefore require consolidation, filtering, and verification against public evidence before they can support any claims in this report. In this project, LLM-assisted sources contributed to candidate discovery but did not determine the final study set, and they were never treated as authoritative.
+The reason for including LLM-assisted discovery is practical: large language models can surface software names that appear across a wide range of public information, functioning as a broad aggregation mechanism over existing public data. However, LLM output can also be incomplete, outdated, or incorrect. Names obtained from LLM-generated lists therefore require consolidation, filtering, and verification against public evidence before they can support any claims in this report. In this project, LLM-assisted sources contributed to candidate discovery but did not determine the selected set, and they were never treated as authoritative.
 
 This approach was discussed with the supervisor, who noted that while the use of LLMs is technically a modification of the peer-reviewed methodology, it is defensible for two reasons: (i)~LLMs were used together with academic and community-curated sources, not as the sole discovery method; and (ii)~LLMs can be understood as a large-scale aggregation mechanism over existing public information, analogous in effect to a broad search over indexed web content.
 
@@ -105,7 +105,7 @@ The primary activity indicator used in this study is the Domain~X alive/dead rul
 \subsection{Scope and Coverage Filters}
 \label{subsec:scope-coverage-filters}
 
-Two additional exclusions were applied to keep the study set methodologically coherent rather than to remove tools for quality reasons:
+Two additional exclusions were applied to keep the selected packages methodologically coherent rather than to remove tools for quality reasons:
 
 \begin{itemize}
     \item \textbf{GPMP2} (Gaussian Process Motion Planner 2) and \textbf{CHOMP} (Covariant Hamiltonian Optimization for Motion Planning) are optimization-based motion planning algorithms with public reference implementations. They are relevant to motion planning research but are narrower in scope than the general-purpose simulators, physics engines, planning frameworks, and middleware tools that dominate the candidate list. Including them alongside Gazebo, MoveIt!, or ROS~2 would force a comparison between full software stacks and single-algorithm libraries, which would distort the commonality analysis and the cross-package measurements. They were therefore excluded to maintain methodological consistency, not because of any quality concern.
@@ -116,7 +116,7 @@ Activity-related evidence is a snapshot. Repository activity, last commit dates,
 \section{Final Software Set}
 \label{sec:final-software-set}
 
-After ranking by mention count and applying the filtering criteria described above, the final study set consists of 28 software packages. Table~\ref{tab:final-software-set} lists the packages alphabetically with their primary roles in the robotics software ecosystem.
+After ranking by mention count and applying the filtering criteria described above, the selected set consists of 28 software packages. Table~\ref{tab:final-software-set} lists the packages alphabetically with their primary roles in the robotics software ecosystem.
 
 \begin{table}[H]
 \centering
@@ -237,7 +237,7 @@ Following the Domain~X methodology, the analysis proceeds in six steps:
 \begin{enumerate}
     \item \textbf{Write an introduction} to the domain and the software family.
     \item \textbf{Write an overview of domain knowledge,} summarizing the key concepts and terminology relevant to MPS software.
-    \item \textbf{List commonalities:} identify goals, assumptions, functions, artifacts, and domain concepts that recur across multiple family members. For example, many packages in the study set share the goal of simulating robot dynamics, the assumption that robot models are described using standard formats (such as URDF or SDF), and the function of providing an API for programmatic control.
+    \item \textbf{List commonalities:} identify goals, assumptions, functions, artifacts, and domain concepts that recur across multiple family members. For example, many of the selected packages share the goal of simulating robot dynamics, the assumption that robot models are described using standard formats (such as URDF or SDF), and the function of providing an API for programmatic control.
     \item \textbf{List variabilities:} identify dimensions on which family members differ. These include software role (simulator, physics engine, planning library, middleware), supported platforms, licensing, programming language interfaces, documentation style, and intended use cases.
     \item \textbf{List parameters of variation:} for each variability, describe the possible values. For example, the software role parameter can take values such as general-purpose simulator, domain-specific simulator, physics engine, dynamics library, motion planning library, manipulation framework, or middleware.
     \item \textbf{Add terminology, definitions, and acronyms} that are standard in the domain, to ensure that the analysis is accessible to readers outside robotics.
