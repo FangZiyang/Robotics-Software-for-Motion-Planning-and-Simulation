@@ -8,7 +8,7 @@ The commonality analysis follows the approach described by \citet{Weiss1997} and
 \section{Overview of Selected Software}
 \label{sec:overview-selected-software}
 
-The 28 software packages selected through the discovery and filtering process described in Chapter~\ref{ch:methodology} represent a cross-section of the robotics software ecosystem for motion planning and simulation (MPS software). The set includes tools developed in academic research groups (such as Drake, DART, and OMPL), tools stewarded by open-source organizations and consortia (ROS~2 and Gazebo through Open Robotics, which together also coordinate with the ROS-Industrial Consortium), tools released by corporate research labs (MuJoCo by Google DeepMind, AirSim by Microsoft Research, and Habitat by Meta AI Research), and tools maintained by smaller communities or individual contributors (such as ODE and Newton Dynamics).
+The 28 software packages selected through the discovery and filtering process described in Chapter~\ref{ch:methodology} represent a cross-section of the robotics software ecosystem for motion planning and simulation (MPS software). The set includes tools developed in academic research groups (such as Drake, DART, and OMPL), tools stewarded by open-source foundations and companies (ROS~2 and Gazebo through Open Robotics; the ROS-Industrial Consortium coordinates related industrial applications), tools released by corporate research labs (MuJoCo by Google DeepMind, AirSim by Microsoft Research, and Habitat by Meta AI Research), and tools maintained by smaller communities or individual contributors (such as ODE and Newton Dynamics).
 
 The packages span a period of active development from 2001 (ODE's initial release) to the present, with most showing recent repository activity as of the May 2026 measurement date. All 28 packages have public source repositories. Twenty-seven use standard open-source licenses; CoppeliaSim follows a mixed model that combines a GPL-licensed open-source core with commercial and educational distributions. BSD is the most common license (11 packages), followed by Apache~2.0 (5) and MIT (4); the remainder use LGPL, GPL, zlib, or mixed/dual schemes, as detailed in Table~\ref{tab:summary-metadata} in Chapter~\ref{ch:measurement-results}. The majority of packages are written primarily in C++ with Python bindings, reflecting the dominant languages in the robotics software community. Twenty-seven packages support Linux (PhysX's open-source SDK listed only Windows as a target in the measured snapshot). Most packages also support Windows or macOS, with cross-platform support varying by project (see Chapter~\ref{ch:measurement-results} for details).
 
@@ -60,7 +60,7 @@ The following packages are primarily classified as physics engines or dynamics l
 \end{itemize}
 
 \subsection{Motion Planning, Middleware, and Manipulation Tools}
-\label{subsec:motion-planning-middleware}
+\label{subsec:motion-planning-middleware-manipulation}
 
 Motion planning libraries, robotics middleware, and manipulation tools support planning, integration, communication, grasping, and robotic system development. These packages are not simulators in the same sense as Gazebo or Webots, but they belong to the robotics workflows that combine planning, simulation, and execution. GraspIt!, included here under manipulation, is consistent with the role assigned in Chapter~\ref{ch:methodology}, Table~\ref{tab:final-software-set}.
 
