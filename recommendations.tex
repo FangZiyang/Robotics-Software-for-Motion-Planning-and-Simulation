@@ -11,7 +11,7 @@ The candidate set was built from academic survey papers, community-curated lists
 \section{Measurement Consistency}
 \label{sec:threat-measurement-consistency}
 
-All measurements are based on public evidence collected in May 2026 and reflect the state of each repository at that moment. The same project measured a year earlier or later might score differently. Some quality questions also require judgment---whether documentation is adequate, for example---and two evaluators reading the same artifacts could reach different conclusions. Where judgment calls were made, the rationale is recorded in the measurement template.
+All measurements are based on public evidence collected in May 2026 and reflect the state of each repository at that moment. The same project measured a year earlier or later might score differently. Some quality questions also require judgement---whether documentation is adequate, for example---and two evaluators reading the same artifacts could reach different conclusions. Where judgement calls were made, the rationale is recorded in the measurement template.
 
 \section{Snapshot-Based Repository Data}
 \label{sec:threat-snapshot-repository-data}
@@ -21,9 +21,9 @@ Metrics like star counts, fork counts, open issues, commit frequency, and lines 
 \section{Use of LLM-Assisted Candidate Sources}
 \label{sec:threat-llm-assisted-sources}
 
-LLM-generated candidate lists supplemented the academic and community-curated sources but did not drive them. These lists reflect the training data of the model rather than an independent survey of the domain, so a package unknown to the model could be absent from its output. Each package still required corroboration from at least one other source before entering the candidate pool.
+LLM-generated candidate lists supplemented the academic and community-curated sources but did not drive them. These lists reflect the training data of the model rather than an independent survey of the domain, so a package unknown to the model could be absent from its output. The mention-count ranking aggregated appearances across all three source types, so a package surfacing in only the LLM-generated lists would receive a lower mention count and would be filtered out at the open-source-availability and activity stages before measurement; the procedure does not, however, guarantee that every retained package was independently corroborated by an academic or community-curated source.
 
 \section{Scope Boundaries}
 \label{sec:threat-scope-boundaries}
 
-Deciding which tools fall inside or outside the scope of MPS software involves judgment. The criteria are documented in Chapter~\ref{ch:methodology}, but any boundary choice shapes the candidate pool and therefore the scope of valid comparisons. Tools excluded from the study---proprietary platforms, discontinued projects, narrowly scoped libraries---may differ systematically from those that were measured.
+Deciding which tools fall inside or outside the scope of MPS software involves judgement. The criteria are documented in Chapter~\ref{ch:methodology}, but any boundary choice shapes the candidate pool and therefore the scope of valid comparisons. Tools excluded from the study---proprietary platforms, discontinued projects, narrowly scoped libraries---may differ systematically from those that were measured.

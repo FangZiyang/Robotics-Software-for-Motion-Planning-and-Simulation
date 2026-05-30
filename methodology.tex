@@ -1,7 +1,7 @@
 \chapter{Methodology}
 \label{ch:methodology}
 
-This chapter describes the methodology used to conduct the State-of-the-Practice study of MPS software. The methodology follows \citet{Smith2021} and adapts it to the current domain. Section~\ref{sec:domain-selection} describes the domain selection process. Section~\ref{sec:domain-expert-interaction} describes the role of the domain expert. Section~\ref{sec:candidate-software-discovery} describes the three-source candidate discovery process. Section~\ref{sec:mention-count-ranking} describes the mention-count ranking method. Section~\ref{sec:filtering-criteria} describes the filtering criteria applied to the candidate list. Section~\ref{sec:final-software-set} presents the selected set of 28 packages. Section~\ref{sec:measurement-procedure} describes the measurement procedure using the Domain~X template. Section~\ref{sec:commonality-analysis-procedure} describes the commonality analysis procedure. Section~\ref{sec:interview-component} describes the planned developer interview component.
+This chapter describes the methodology used to conduct the State-of-the-Practice study of MPS software and addresses RQ1 (candidate identification) by documenting how the candidate set was assembled. The methodology follows \citet{Smith2021} and adapts it to the current domain. Section~\ref{sec:domain-selection} describes the domain selection process. Section~\ref{sec:domain-expert-interaction} describes the role of the domain expert. Section~\ref{sec:candidate-software-discovery} describes the three-source candidate discovery process. Section~\ref{sec:mention-count-ranking} describes the mention-count ranking method. Section~\ref{sec:filtering-criteria} describes the filtering criteria applied to the candidate list. Section~\ref{sec:final-software-set} presents the selected set of 28 packages. Section~\ref{sec:measurement-procedure} describes the measurement procedure using the Domain~X template. Section~\ref{sec:commonality-analysis-procedure} describes the commonality analysis procedure. Section~\ref{sec:interview-component} describes the planned developer interview component.
 
 \section{Domain Selection}
 \label{sec:domain-selection}
@@ -21,9 +21,9 @@ The Domain~X methodology emphasizes that a domain expert is an essential member 
 
 Domain experts may be recruited from academia or industry. The only requirements are knowledge of the domain and a willingness to be engaged in the assessment process. The domain expert does not need to be a software developer, but they should be a user of domain software. Given that domain experts are likely to be busy people, the methodology is designed to minimize the burden on their time~\cite{Dong2021}.
 
-For this study, the domain expert is Dr.~Matthew Giamou of the Department of Computing and Software at McMaster University. Dr.~Giamou's research includes robotics, motion planning, and state estimation. He reviewed the candidate software list, confirmed that the scope was appropriate, and provided guidance on inclusion and exclusion decisions. Material in this report that has not yet received final expert review is marked as pending.
+For this study, the domain expert is Dr.~Matthew Giamou of the Department of Computing and Software at McMaster University. Dr.~Giamou's research includes robotics, motion planning, and state estimation. He reviewed the candidate software list, confirmed that the scope was appropriate, and provided guidance on inclusion and exclusion decisions.
 
-The domain expert was asked to review the candidate software list and provide feedback on scope and coverage. Dr.~Giamou confirmed that the list was reasonable and that most of the shortlisted tools were familiar to him. He noted that several packages (ROS~2, MoveIt!, and OMPL) are not full simulators but can fit within a coherent narrative if their roles are explained carefully. He also confirmed that excluding MATLAB/Simulink, Unity, NVIDIA Isaac Sim, and RaiSim on methodological grounds was acceptable and would not misrepresent the domain.
+The domain expert was asked to review the candidate software list and provide feedback on scope and coverage. Dr.~Giamou confirmed that the list was reasonable and that most of the shortlisted tools were familiar to him. He noted that several packages (ROS~2, MoveIt!, and OMPL) are not full simulators but can fit within a coherent narrative if their roles are explained carefully. He also confirmed that excluding MATLAB/Simulink, Unity, NVIDIA Isaac Sim, and RaiSim on methodological grounds (closed source or non-OSS licensing for core components, as detailed in Section~\ref{subsec:open-source-availability}) was acceptable and would not misrepresent the domain. MRDS and USARSim, which are also excluded, were filtered on independent activity grounds (Section~\ref{subsec:activity-maintenance-status}) rather than as a separate expert decision.
 
 \section{Candidate Software Discovery}
 \label{sec:candidate-software-discovery}
@@ -35,7 +35,7 @@ Candidate software packages were identified from three types of sources: academi
 
 Academic sources identify software packages that appear in research discussions of robotics simulators, simulation tools, and related challenges. These sources included survey papers and comparative studies that discuss packages such as Gazebo, Webots, V-REP/CoppeliaSim, MuJoCo, and PyBullet in the context of robotics research. Academic sources connect software packages to published research contexts and provide a research-facing view of the domain.
 
-Academic sources have known limitations as the sole basis for candidate discovery. Survey papers may emphasize packages relevant to a specific research question, robot type, or time period. Some active tools may not appear in the selected papers, while older tools may remain visible because they were prominent when a survey was written. For these reasons, academic sources were combined with community-curated and LLM-assisted sources rather than used in isolation.
+Academic sources have known limitations as the sole basis for candidate discovery. Survey papers tend to emphasize packages relevant to a specific research question, robot type, or time period; some active tools may not appear in any of the surveys read, while older tools sometimes remain visible because they were prominent when a survey was written. That bias is why academic sources were combined with community-curated and LLM-assisted sources rather than used in isolation.
 
 \subsection{Community-Curated Sources}
 \label{subsec:community-curated-sources}
@@ -60,7 +60,7 @@ After consolidating equivalent names across the collected sources, each unique s
 
 The top entries in the consolidated ranking include Gazebo (22 mentions), Webots (16), Bullet/PyBullet (16), CoppeliaSim/V-REP (13), MuJoCo (12), ODE (10), ROS~2 (10), and OpenRAVE (9). These counts help organize the candidate list and make the selection process auditable. The full ranked list with mention counts, including packages that did not survive the filtering step described in Section~\ref{sec:filtering-criteria}, is preserved in the project materials (\texttt{examples/software-list-counting-result.xlsx}, sheet \texttt{final.m}; companion source catalogue in \texttt{examples/sofware-counting-webs.csv}).
 
-Mention count is a source-appearance signal and must be interpreted accordingly. It is not a measure of software quality, user adoption, research impact, maintainability, or suitability for any particular robotics task. A package can appear frequently because it is historically established, widely discussed in survey papers, broadly useful across application areas, or simply visible in the particular sources collected. A more specialized or newer package may be underrepresented even if it is technically strong. The mention count serves as one input to candidate filtering, not as a final evaluation or ranking of the software.
+Mention count is a source-appearance signal and must be interpreted accordingly. It does not measure software quality, user adoption, research impact, maintainability, or suitability for any particular robotics task. A package may appear frequently because it is historically established, because it is broadly useful across application areas, or simply because the sources collected happened to surface it. A more specialized or newer package may be under-represented even when it is technically strong. The mention count is one input to candidate filtering, not the final ranking of the software.
 
 \section{Filtering Criteria}
 \label{sec:filtering-criteria}
@@ -81,7 +81,7 @@ This criterion led to the exclusion of several prominent robotics tools whose co
     \item \textbf{RaiSim} is a high-performance physics simulator for robotics, but its source code is not publicly available under an open-source license.
 \end{itemize}
 
-These exclusions reflect methodological constraints rather than judgements about the quality or importance of the excluded tools. Each of these platforms plays a significant role in robotics research and industry, and their exclusion limits the coverage of the study. This limitation is discussed further in Chapter~\ref{ch:threats-to-validity}.
+The exclusions above are methodological constraints, not judgements about the quality or importance of the excluded tools. Each of these platforms plays a significant role in robotics research and industry, and their exclusion limits the coverage of the study. Chapter~\ref{ch:threats-to-validity} discusses this limitation further.
 
 \subsection{Repository-Based Measurability}
 \label{subsec:repository-based-measurability}
@@ -105,11 +105,7 @@ The primary activity indicator used in this study is the Domain~X alive/dead rul
 \subsection{Scope and Coverage Filters}
 \label{subsec:scope-coverage-filters}
 
-Two additional exclusions were applied to keep the selected packages methodologically coherent rather than to remove tools for quality reasons:
-
-\begin{itemize}
-    \item \textbf{GPMP2} (Gaussian Process Motion Planner 2) and \textbf{CHOMP} (Covariant Hamiltonian Optimization for Motion Planning) are optimization-based motion planning algorithms with public reference implementations. They are relevant to motion planning research but are narrower in scope than the general-purpose simulators, physics engines, planning frameworks, and middleware tools that dominate the candidate list. Including them alongside Gazebo, MoveIt!, or ROS~2 would force a comparison between full software stacks and single-algorithm libraries, which would distort the commonality analysis and the cross-package measurements. They were therefore excluded to maintain methodological consistency, not because of any quality concern.
-\end{itemize}
+Two algorithm-level reference implementations were excluded to keep the selected packages methodologically coherent rather than for quality reasons. \textbf{GPMP2} (Gaussian Process Motion Planner 2) and \textbf{CHOMP} (Covariant Hamiltonian Optimization for Motion Planning) are optimization-based motion planning algorithms with public reference implementations. They are relevant to motion planning research but are narrower in scope than the general-purpose simulators, physics engines, planning frameworks, and middleware tools that dominate the candidate list. Including them alongside Gazebo, MoveIt!, or ROS~2 would force a comparison between full software stacks and single-algorithm libraries, which would distort the commonality analysis and the cross-package measurements. They were therefore excluded to maintain methodological consistency, not because of any quality concern.
 
 Activity-related evidence is a snapshot. Repository activity, last commit dates, and release status can change after measurement. The measurement records in Chapter~\ref{ch:measurement-results} include the measurement date to make the snapshot nature of the data explicit.
 
@@ -172,7 +168,7 @@ The primary measurement instrument is the Domain~X Appendix~B measurement templa
 
 \begin{enumerate}
     \item \textbf{Summary Information} (17 questions): software name, URL, affiliation, purpose, number of developers, funding, release dates, status, license, platforms, software category, development model, publications, source code URL, programming languages, evidence of performance consideration, and additional comments.
-    \item \textbf{Installability} (15 questions): installation instructions (presence, organization, linearity, completeness), compatible operating systems, automation, error handling, validation, number of steps, operating system used, dependencies, and uninstall behaviour.
+    \item \textbf{Installability} (15 questions): installation instructions (presence, single-document organization, linear ordering, completeness, and assumed pre-installed dependencies), compatible operating system versions, installation automation, error handling, installation validation procedure, number of installation steps, operating system used during measurement, dependencies (presence of guidance and required version listing), and uninstall behaviour (problems and residue).
     \item \textbf{Correctness and Verifiability} (9 questions): requirements or theory documentation, correctness techniques, tutorial availability and quality, unit tests, and continuous integration evidence.
     \item \textbf{Surface Reliability} (5 questions): installation and tutorial breakage, error messages, and recoverability.
     \item \textbf{Surface Robustness} (2 questions): handling of unexpected input and edge cases.
@@ -225,7 +221,7 @@ Several measurement questions require explicit interpretation rules:
 
 After the quality measures are collected, the Domain~X methodology uses the Analytic Hierarchy Process (AHP) to support ranking across the nine quality categories~\cite{Saaty1980}. AHP is a decision-making technique that uses pairwise comparisons between alternatives to calculate relative scores. It organizes multiple criteria in a hierarchical structure and enables the combination of individual quality rankings into an overall ranking based on the relative priorities assigned to each quality.
 
-In this study, AHP is applied to the nine quality impression scores for the 28 software packages. The AHP process produces a ranking that is an analysis aid for comparing evidence under the chosen criteria. It is not a universal claim that one package is best for every robotics use case. Sensitivity analysis can be applied to assess whether the ranking is stable under reasonable variations in quality weightings. Any AHP ranking reported in this report appears only after the underlying measurements are available and verified.
+In this study, AHP would be applied to the nine quality impression scores for the 28 software packages and would produce a ranking that is an analysis aid for comparing evidence under the chosen criteria, not a universal claim that one package is best for every robotics use case. Sensitivity analysis would then assess whether the ranking is stable under reasonable variations in quality weightings. AHP rankings are not computed in this report, because a defensible criterion-weighting elicitation has not been completed at the time of writing; Chapter~\ref{ch:measurement-results} therefore reports the per-package quality-mean ranking and a comparison with community indicators in their place.
 
 \section{Commonality Analysis Procedure}
 \label{sec:commonality-analysis-procedure}
@@ -256,4 +252,4 @@ For this study, the interview component is associated with research ethics appro
 
 As of the current report draft, approved interview data (including transcripts, participant responses, approved summaries, or final interview findings) is not yet available. The interview component is therefore described as planned or pending. Chapter~\ref{ch:developer-interviews} is reserved for this material and currently describes the planned protocol, recruitment strategy, and analysis framework. Interview findings will be added only when supported by approved data.
 
-The methodology recommends sending interview requests to developers from all packages in the study set to avoid selection bias, with an expected response rate between 15\% and 30\% based on prior applications of the methodology~\cite{Dong2021}. Interview contacts are typically identified through project websites, code repositories, publications, or institutional biography pages.
+The methodology recommends sending interview requests to developers from all packages in the study set to avoid selection bias. Prior applications of the methodology report response rates roughly in the 15\%--30\% range~\cite{Smith2021,Dong2021}; the exact rate for this study will depend on outreach timing and the response practices of the contacted developers. Interview contacts are typically identified through project websites, code repositories, publications, or institutional biography pages.

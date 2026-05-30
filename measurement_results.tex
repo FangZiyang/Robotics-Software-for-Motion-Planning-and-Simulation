@@ -1,7 +1,7 @@
 \chapter{Ranking Projects by Quality Measure}
 \label{ch:measurement-results}
 
-This chapter ranks the 28 selected software packages by measured engineering quality and compares that ranking with community-facing indicators of visibility and adoption. All data was collected during May 2026 and represents a snapshot of repository state, documentation, and project activity at that time. The quality measurements follow the Domain~X Appendix~B template and cover the nine quality categories described in Section~\ref{sec:software-quality-attributes}. Section~\ref{sec:repository-project-metadata} presents summary metadata. Sections~\ref{sec:installability-results} through~\ref{sec:visibility-transparency-results} report per-category results. Section~\ref{sec:repository-metrics-results} reports repository metrics. Section~\ref{sec:overall-observations} synthesizes the per-category findings and reports the quality-mean ranking. Section~\ref{sec:quality-vs-community} compares the quality-mean ranking with community indicators of visibility and adoption.
+This chapter answers RQ2 by ranking the 28 selected software packages on the nine Domain~X quality categories and by comparing that ranking with community-facing indicators of visibility and adoption. All data was collected during May 2026 and represents a snapshot of repository state, documentation, and project activity at that time. The quality measurements follow the Domain~X Appendix~B template and cover the nine quality categories described in Section~\ref{sec:software-quality-attributes}. Section~\ref{sec:repository-project-metadata} presents summary metadata. Sections~\ref{sec:installability-results} through~\ref{sec:visibility-transparency-results} report per-category results. Section~\ref{sec:repository-metrics-results} reports repository metrics. Section~\ref{sec:overall-observations} synthesizes the per-category findings and reports the quality-mean ranking. Section~\ref{sec:quality-vs-community} compares the quality-mean ranking with community indicators of visibility and adoption.
 
 \section{Repository and Project Metadata}
 \label{sec:repository-project-metadata}
@@ -10,7 +10,7 @@ Table~\ref{tab:summary-metadata} presents summary metadata for all 28 packages, 
 
 \begin{table}[H]
 \centering
-\caption{Summary metadata for the 28 selected software packages (May 2026).}
+\caption{Summary metadata for the 28 selected software packages (May 2026). The Initial Release column records the date associated with the measured public repository: for packages with a single continuous open-source history this is the first public release, while for packages that were renamed, re-licensed, or migrated to open source after an earlier proprietary or pre-release phase (for example CoppeliaSim, MuJoCo, Webots, Gazebo, PhysX), the date reflects that later event rather than the project's original creation.}
 \label{tab:summary-metadata}
 \small
 \begin{tabular}{@{}p{2.5cm}p{3cm}p{1.8cm}p{1.4cm}p{1.8cm}@{}}
@@ -51,11 +51,13 @@ YARP & IIT (Italy) & BSD & 2006 & C++, Python \\
 
 All 28 packages have publicly accessible source repositories. Twenty-seven follow an open-source development model under standard permissive or copyleft licenses; CoppeliaSim is the exception, with a mixed model that combines a GPL-licensed open-source codebase with commercial and educational licenses for its packaged distribution. The most common licenses are BSD (11 packages), Apache~2.0 (5), and MIT (4). The packages span more than two decades of development history: ODE is the oldest, with its initial release in 2001, while PhysX's open-source SDK was released in 2022.
 
-C++ is the dominant implementation language, used as a primary or major language by 26 of 28 packages. The two exceptions in the measurement records are MORSE (primary languages: C and Python) and ODE (primary language listed as unclear in the measurement template because the public source tree spans both C and C++ files without a single declared primary). Python is a primary or secondary language in 26 of 28 packages because of its growing role in robotics research and its use for scripting, bindings, and machine learning integration. Twenty-seven packages support Linux; the sole exception is PhysX, whose open-source SDK release listed only Windows as a target platform in the measurement data. Twenty-four packages support Windows and 23 support macOS.
+C++ is the dominant implementation language, listed as a primary or major language by 25 of 28 packages in the measurement records. Three packages fall outside that count: MORSE (primary languages: C and Python), ODE (primary language listed as ``unclear'' because the public source tree mixes C and C++ files without a single declared primary), and ROS~2 (also ``unclear'' because the ROS~2 organization spans hundreds of repositories with different primary languages, although the core communication libraries themselves are in C++). Python is a primary or secondary language in most packages, reflecting its growing role in robotics research and its use for scripting, bindings, and machine learning integration. Twenty-seven packages support Linux. The recorded exception is PhysX, where the measurement metadata captured only Windows as a target platform; the public NVIDIA-Omniverse/PhysX repository in fact provides a Linux build path tested on Ubuntu 20.04 and later. The platform field for PhysX therefore under-reports its actual platform coverage and should be read alongside that documentation. Twenty-four packages support Windows and 23 support macOS.
 
 As of the May 2026 measurement date, 24 of the 28 packages (86\%) were classified as alive under the Domain~X 18-month activity rule, which defines alive as the presence of any commit or release in the preceding 18 months. Four packages were classified as dead: OpenRAVE (last commit August 2024), MORSE (last commit March 2022), GraspIt! (last commit July 2020), and Flightmare (last commit May 2023). ODE is technically alive under the 18-month rule (last commit 2026-04-14) but its commit activity in the trailing twelve months is sparse (five commits across the year); the analysis that follows treats ODE as a low-activity alive package and discusses its limitations alongside the dead packages where appropriate.
 
-The number of developers---defined as anyone who has made at least one accepted commit---ranges from 6 (CoppeliaSim, Flightmare) to 598 (MoveIt!). The median is approximately 128.5 (the mean of the 14th and 15th values, YARP at 125 and MRPT at 132). The total number of commits across all measured repositories exceeds 240,000. Drake leads with 34{,}786 commits, followed by SOFA (27{,}404) and Project Chrono (19{,}510). These repository-level metrics are snapshots and should not be interpreted as direct measures of project scale or quality without considering factors such as repository age, commit granularity, and whether development activity is concentrated in a single repository.
+The number of developers (anyone who has made at least one accepted commit) ranges from 6 (CoppeliaSim, Flightmare) to 598 (MoveIt!). The median is approximately 128.5 (the mean of the 14th and 15th values, YARP at 125 and MRPT at 132). The total number of commits across all measured repositories exceeds 240,000. Drake leads with 34{,}786 commits, followed by SOFA (27{,}404) and Project Chrono (19{,}510). These repository-level metrics are snapshots and should not be interpreted as direct measures of project scale or quality without considering factors such as repository age, commit granularity, and whether development activity is concentrated in a single repository.
+
+PhysX requires a particular caveat. The measured repository (\texttt{NVIDIA-Omniverse/PhysX}) is the public open-source SDK release of NVIDIA's PhysX engine; the broader production engine and its associated engineering process are developed in an internal NVIDIA codebase that is not publicly accessible. All PhysX scores reported in this chapter, including the small public commit count, the platform support recorded as Windows only, and the per-quality impression scores, reflect only the public SDK surface as it appeared at the measurement date. They should not be read as an assessment of the PhysX engine as a product, or of NVIDIA's internal development practices. Where PhysX scores appear lower than peers in subsequent sections, the gap reflects what is publicly observable rather than a verdict on the engine itself.
 
 \section{Installability}
 \label{sec:installability-results}
@@ -77,18 +79,18 @@ Instructions assume no pre-installed dependencies & 22 & 79\% \\
 Compatible OS versions listed & 17 & 61\% \\
 Installation automation provided (script, makefile, etc.) & 28 & 100\% \\
 Installation validation procedure available & 27 & 96\% \\
-Dependency installation instructions provided & 24 & 86\% \\
+Dependency installation instructions provided & 21 & 75\% \\
 Required package versions listed & 19 & 68\% \\
 No problems caused by uninstall (where available) & 27 & 96\% \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-All 28 packages provide installation instructions, and all provide some form of installation automation (makefiles, scripts, package managers, or container definitions). This is a strong result compared with prior State-of-the-Practice studies in other domains. For context, the Medical Imaging study~\cite{Dong2021} reported that only about half of MI packages were successfully installed.
+All 28 packages provide installation instructions, and all provide some form of installation automation (makefiles, scripts, package managers, or container definitions). For comparison, the Medical Imaging study~\cite{Dong2021} reported that only about half of MI packages installed successfully, so the MPS coverage on this dimension is markedly better.
 
-The number of installation steps ranged from 1 to 11, with a median of 2. The number of extra software packages required before or during installation ranged from 0 to 10, with a median of 1. GraspIt! required the most manual effort (11 steps, 10 extra packages), consistent with its dead status and lack of recent maintenance. At the other extreme, several packages (Webots, MuJoCo, DART, Simbody, and others) required no extra packages and could be installed in a single step using package managers or pre-built binaries.
+The number of installation steps ranged from 1 to 11, with a median of 2. The number of extra software packages required before or during installation ranged from 0 to 10, with a median of 1. GraspIt! required the most manual effort (11 steps, 10 extra packages), consistent with its dead status and lack of recent maintenance. At the other extreme, ten packages (including Webots, MuJoCo, DART, and Simbody) needed no extra packages at all, and nine could be installed in a single step using package managers or pre-built binaries (MuJoCo, Simbody, and MORSE achieved both).
 
-Installation broke for only 2 of the 28 packages during measurement (OpenRAVE and Newton Dynamics); in both cases the installation instance was recoverable. No package broke during initial tutorial testing.
+Installation broke for only 2 of the 28 packages during measurement (OpenRAVE and YARP; OpenRAVE is also classified as inactive in Section~\ref{sec:repository-project-metadata}). In both cases the installation instance was recoverable. No package broke during initial tutorial testing.
 
 The overall installability impression scores (on a 1--10 scale) range from 4 to 10, with a mean of 7.4. The top-scoring packages are Gazebo (10), Pinocchio (10), Bullet/PyBullet (9), MORSE (9), and OMPL (9). The lowest-scoring packages are ODE (4), PhysX (4), and GraspIt! (5). For ODE, the low score reflects outdated installation documentation (the official guide dates from 2006 and refers to GNU make, VC6 project files, and manual copying of library files). For PhysX, the low score reflects difficulty locating the correct build documentation.
 
@@ -108,17 +110,17 @@ Correctness and verifiability assess whether a program matches its specification
 Reference to requirements specifications or theory manuals & 26 & 93\% \\
 Getting-started tutorial present & 28 & 100\% \\
 Tutorial instructions are linear & 27 & 96\% \\
-Tutorial provides expected output & 26 & 93\% \\
-Tutorial output matches expected output & 24 & 86\% \\
+Tutorial provides expected output & 25 & 89\% \\
+Tutorial output matches expected output & 23 & 82\% \\
 Unit tests available & 27 & 96\% \\
 Evidence that performance was considered & 28 & 100\% \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-All 28 packages use at least one technique to build confidence in correctness. The most common technique is automated testing, recorded for 26 of 28 packages (93\%). Assertions in code are used by 23 of 28 packages (82\%). Documentation generation tools such as Doxygen or Sphinx are used by 12 packages (43\%). Several packages combine multiple techniques: Drake, DART, Pinocchio, OMPL, Project Chrono, and Habitat use automated testing, assertions, and documentation generation together.
+All 28 packages use at least one technique to build confidence in correctness. Unit tests, as recorded in Table~\ref{tab:correctness-summary}, are present for 27 of 28 packages (96\%); of those, 26 also have an automated-testing setup (CI runs that exercise the tests on each push or pull request), giving an automated-testing rate of 26 of 28 (93\%). Assertions in code are used by 23 of 28 packages (82\%). Documentation generation tools such as Doxygen or Sphinx are used by 12 packages (43\%). Ten packages combine all three techniques: DART, Drake, Habitat, Newton Dynamics, OMPL, OROCOS, PhysX, Pinocchio, Project Chrono, and SOFA all use automated testing, assertions, and a documentation generator together.
 
-All 28 packages provide a getting-started tutorial, and 27 of 28 provide linear tutorial instructions. Twenty-six packages provide an expected tutorial output, and in 24 cases the measured output matched the expected output. The four cases where output did not match or was not applicable correspond to packages where the tutorial required environment-specific configuration not captured by the standard measurement procedure.
+All 28 packages provide a getting-started tutorial, and 27 of 28 provide linear tutorial instructions. Twenty-five of 28 packages publish an expected tutorial output; the remaining three (SOFA, Flightmare, Newton Dynamics) do not, so for those packages the match check is not applicable. Of the 25 with an expected output, 23 matched on the measurement run (23 of 25 = 92\%) and two more (MuJoCo and OpenRTM-aist) were recorded as not applicable for the match check because the tutorial output depended on environment-specific configuration that the standard measurement procedure could not reproduce. The match indicator in Table~\ref{tab:correctness-summary} therefore reports 23 of 28 (82\%); five packages fall outside ``output matches expected output'' under any reading.
 
 Unit tests are available for 27 of 28 packages. CoppeliaSim's unit test status is unclear because its test infrastructure is not publicly visible in the same way as the other packages, a consequence of its mixed commercial/open-source licensing model.
 
@@ -129,7 +131,7 @@ The overall correctness and verifiability impression scores range from 5 to 10, 
 
 Surface reliability assesses failure-free operation during the limited interactions performed during measurement: installation and initial tutorial use. These are surface checks, not comprehensive reliability experiments.
 
-As noted in Section~\ref{sec:installability-results}, installation broke for 2 of 28 packages (OpenRAVE and Newton Dynamics). In both cases, a descriptive error message was displayed and the installation instance was recoverable. No package broke during initial tutorial testing.
+As noted in Section~\ref{sec:installability-results}, installation broke for 2 of 28 packages (OpenRAVE and YARP). In both cases, a descriptive error message was displayed and the installation instance was recoverable. No package broke during initial tutorial testing.
 
 The overall surface reliability impression scores range from 6 to 10, with a mean of 7.8. The top-scoring packages are Gazebo (10), Drake (10), ROS~2 (9), OMPL (9), Pinocchio (9), and MoveIt! (9). Three packages scored below 7: PhysX (6), GraspIt! (6), and Newton Dynamics (6).
 
@@ -138,7 +140,7 @@ The generally high surface reliability scores reflect the fact that most package
 \section{Surface Robustness}
 \label{sec:surface-robustness-results}
 
-Surface robustness assesses whether software handles unexpected or unanticipated input reasonably, including edge cases such as malformed input files. All 28 packages were assessed as handling unexpected input reasonably (producing appropriate error messages or graceful degradation rather than crashes or undefined behaviour). Twenty-seven of 28 packages were assessed as handling newline conversion (replacing newlines with carriage returns and newlines in plain-text input files) gracefully.
+Surface robustness assesses whether software handles unexpected or unanticipated input reasonably, including edge cases such as malformed input files. All 28 packages were assessed as handling unexpected input reasonably (producing appropriate error messages or graceful degradation rather than crashes or undefined behaviour). For the newline-conversion check (replacing newlines with carriage returns and newlines in plain-text input files), 25 of 28 packages handled the conversion gracefully; the remaining three (CoppeliaSim, ODE, PhysX) were recorded as not applicable because their workflows do not take plain-text input files in this form.
 
 The overall surface robustness impression scores range from 5 to 10, with a mean of 7.4. Gazebo scores highest (10), followed by Drake (9). The lowest-scoring package is GraspIt! (5). The narrow range of scores reflects the binary nature of the surface robustness checks in the Domain~X template: most packages either pass both checks or pass one of two, resulting in similar scores.
 
@@ -147,7 +149,7 @@ The overall surface robustness impression scores range from 5 to 10, with a mean
 
 Surface usability assesses the presence and quality of user-facing documentation, tutorials, and support infrastructure. It is not a full usability evaluation; no user studies or task-completion experiments were conducted.
 
-All 28 packages provide a getting-started tutorial and a user manual. This is a notably strong result. In contrast, the Medical Imaging study~\cite{Dong2021} found that only 22 of 29 MI packages (76\%) provided a user manual. Only one package in the current study (MuJoCo) documents expected user characteristics, which is consistent with findings from other domains where this practice is rare~\cite{Dong2021,Smith2024LBM}.
+All 28 packages provide a getting-started tutorial and a user manual. The Medical Imaging study~\cite{Dong2021}, by comparison, found that only 22 of 29 MI packages (76\%) provided a user manual. Only one package in the current study (MuJoCo) documents expected user characteristics, which is consistent with findings from other domains where this practice is rare~\cite{Dong2021,Smith2024LBM}.
 
 Table~\ref{tab:support-models} summarizes the user support models adopted by the study packages. Most packages use multiple support channels.
 
@@ -171,9 +173,9 @@ ROS Answers integration & 4 \\
 \end{tabular}
 \end{table}
 
-GitHub Issues is the universal support channel, used by all 28 packages. Dedicated documentation websites are also universal. Community-oriented channels (forums, Discord servers, mailing lists) show more variation: 9 packages maintain official forums, 8 maintain mailing lists, and 6 maintain Discord servers. This variation partly reflects project age and governance model---newer packages and those stewarded by companies or large labs tend to favor Discord and GitHub Discussions, while older academic packages more commonly use mailing lists.
+GitHub Issues is the universal support channel, used by all 28 packages, and a dedicated documentation website or wiki is also present for every package. The other channels show more variation: 10 packages use GitHub Discussions, 9 maintain an official forum, 8 use a mailing list or Google Group, 6 maintain a Discord server, 5 use a Stack Exchange or Stack Overflow tag, and 4 integrate with ROS~Answers. This variation partly reflects project age and governance model. Newer packages and those stewarded by companies or large labs tend to favour Discord and GitHub Discussions, while older academic packages more commonly use mailing lists and dedicated forums.
 
-The overall surface usability impression scores range from 5 to 10, with a mean of 7.3. Gazebo (10), Drake (9), and MoveIt! (9) score highest; they have comprehensive documentation suites and multiple support channels. Newton Dynamics (5) and GraspIt! (5) score lowest.
+The overall surface usability impression scores range from 5 to 10, with a mean of 7.3. Gazebo (10), Drake (9), MoveIt! (9), and ROS~2 (9) score highest; they pair multiple support channels with thorough user, developer, and API documentation. Newton Dynamics (5) and GraspIt! (5) score lowest.
 
 \section{Maintainability}
 \label{sec:maintainability-results}
@@ -191,26 +193,26 @@ Maintainability assesses the effort required to modify a software system or comp
 Version number documented & 28 & 100\% & --- \\
 Code review / contribution guide & 26 & 93\% & --- \\
 Non-code artifacts present & 28 & 100\% & All have config, docs, etc. \\
-Issue tracking via git/GitHub & 28 & 100\% & --- \\
-Version control via git/GitHub & 28 & 100\% & --- \\
+Issue tracking via GitHub or equivalent & 28 & 100\% & --- \\
+Version control via git (GitHub or BitBucket) & 28 & 100\% & 27 on GitHub, ODE on BitBucket \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-All 28 packages use git for version control and host their repositories on GitHub (with the exception of ODE, which uses BitBucket alongside a GitHub mirror). All 28 packages use GitHub Issues or the equivalent for issue tracking. This uniformity is partly a selection effect---the Domain~X methodology expresses a preference for GitHub-style repositories because they facilitate consistent measurement---but it also reflects the near-universal adoption of git and GitHub in the contemporary robotics software community.
+All 28 packages use git for version control. Twenty-seven of the 28 host their primary repository on GitHub; ODE is the exception, hosting on BitBucket alongside a GitHub mirror. All 28 use GitHub Issues or the equivalent (BitBucket Issues for ODE) for issue tracking. This uniformity is partly a selection effect, since the Domain~X methodology expresses a preference for GitHub-style repositories because they facilitate consistent measurement; it also reflects the near-universal adoption of git and GitHub in the contemporary robotics software community.
 
-The percentage of identified issues that are closed ranges from 34.6\% (Flightmare) to 100\% (DART, Newton Dynamics), with a mean of 79.8\% and a median of 82.3\%. A high closure rate can indicate active issue management, but it can also reflect a low rate of new issue reporting or a practice of closing stale issues aggressively. These percentages should be interpreted with caution.
+The percentage of identified issues that are closed ranges from 34.6\% (Flightmare) to 100\% (DART, Newton Dynamics), with a mean of 79.1\% and a median of 82.0\% across the 27 packages that yielded a measurable closure rate (ODE returns no value because the BitBucket API call did not populate this field, as noted under Table~\ref{tab:repository-metrics}). A high closure rate can indicate active issue management, but it can also reflect a low rate of new issue reporting or a practice of closing stale issues aggressively. These percentages should be interpreted with caution.
 
-The percentage of code that consists of comments ranges from 0.0\% (ROS~2, which is measured as zero code lines due to its multi-repository structure where the core communication libraries are compiled from source) to 27.98\% (OROCOS), with a mean of approximately 14.2\% excluding the ROS~2 outlier. OROCOS (27.98\%), OMPL (27.42\%), OpenRTM-aist (26.34\%), MoveIt! (26.12\%), and Simbody (25.27\%) lead in comment density. Webots (1.93\%), GraspIt! (2.05\%), and MORSE (2.67\%) have the lowest comment percentages. The Domain~X methodology treats 10\% as a threshold for the maintainability impression calculator.
+The percentage of code that consists of comments ranges from 1.1\% (Project Chrono) to 28.0\% (OROCOS), with a mean of 13.2\% across the 27 packages with comparable single-repository measurements. The ROS~2 entry is excluded from this range and mean because its multi-repository structure does not yield a comparable single-repository code-line count (Table~\ref{tab:repository-metrics} marks it as not measured rather than as zero). OROCOS (28.0\%), OMPL (27.4\%), OpenRTM-aist (26.3\%), MoveIt! (26.1\%), and Simbody (25.3\%) lead in comment density. Project Chrono (1.1\%), Webots (1.9\%), GraspIt! (2.1\%), MORSE (2.7\%), and Bullet/PyBullet (2.8\%) have the lowest comment percentages. The Domain~X methodology treats 10\% as a threshold for the maintainability impression calculator.
 
-The overall maintainability impression scores range from 4 to 10, with a mean of 7.5. Gazebo (10), ROS~2 (9), OMPL (9), Pinocchio (9), and MoveIt! (9) score highest. GraspIt! (4) and Flightmare (4) score lowest, weighed down by their dead or very low activity status and limited contribution infrastructure.
+The overall maintainability impression scores range from 4 to 10, with a mean of 7.5. Gazebo (10), Drake (9), MoveIt! (9), Pinocchio (9), and ROS~2 (9) score highest. GraspIt! (4) and Flightmare (4) score lowest, weighed down by their dead or very low activity status and limited contribution infrastructure.
 
 \section{Reusability}
 \label{sec:reusability-results}
 
 Reusability assesses the extent to which software components can be used in problem solutions other than the one for which they were originally developed. The Domain~X template measures reusability through two indicators: the number of code files (as a rough proxy for component granularity) and the presence of API documentation.
 
-The number of code files varies widely across the selected packages, from 221 (OROCOS) to 7,823 (Newton Dynamics), with a median of approximately 1,500. All 28 packages provide API documentation. Where the measurement records identify documentation-generation tools, the most common tools are Doxygen and Sphinx.
+The number of code files varies widely across the 27 packages with a comparable single-repository count, from 118 (Flightmare) to 7,823 (Newton Dynamics), with a median of 1,266 (Pinocchio at the midpoint of the sorted list). ROS~2 is again excluded from this distribution because its multi-repository structure does not yield a single-repository file count comparable to the rest. All 28 packages provide API documentation; where the measurement records identify documentation-generation tools, the most common are Doxygen and Sphinx.
 
 The overall reusability impression scores range from 5 to 10, with a mean of 7.6. Gazebo (10), MuJoCo (9), OMPL (9), Pinocchio (9), ROS~2 (9), and MoveIt! (9) score highest. These packages are designed for integration into larger robotics systems or serve as the foundation that other tools build upon. MORSE (5) and GraspIt! (5) score lowest.
 
@@ -234,7 +236,7 @@ Explicit identification of a coding standard & 14 & 50\% \\
 Consistent, distinctive, and meaningful identifiers & 28 & 100\% \\
 Hard-coded constants (other than 0 and 1) present & 28 & 100\% \\
 Comments are clear and describe what is being done & 28 & 100\% \\
-Name/URL of algorithms used is mentioned & 27 & 96\% \\
+Name/URL of algorithms used is mentioned & 28 & 100\% \\
 Code is modularized & 28 & 100\% \\
 \bottomrule
 \end{tabular}
@@ -321,20 +323,20 @@ Newton Dyn. & 24 & 5 & 17,755 & 1,585,430 & 15.7\% & 100.0\% \\
 
 \noindent\textit{Notes:} ROS~2 code line and comment counts are not directly comparable because the ROS~2 organization spans hundreds of repositories. ODE is hosted on BitBucket; star, fork and issue-closure metrics are reported as ``\,---\,'' because the BitBucket APIs used during measurement did not return values for these fields under our access configuration, not because they are conceptually unavailable on that platform. The ``code lines'' column reports SCC-measured code lines in the primary measured repository. $^\dagger$ For PhysX, the commit count reflects only the public open-source SDK release on \texttt{NVIDIA-Omniverse/PhysX}; the broader internal NVIDIA codebase is not publicly accessible and is therefore not represented in this metric.
 
-GitHub stars---a rough proxy for community attention---span four orders of magnitude, from 24 (OpenRTM-aist, Newton Dynamics) to 18,159 (AirSim). The median is approximately 2,300. The correlation between stars and measurement scores is not straightforward. AirSim leads in stars by a wide margin but does not appear among the top-scoring packages in most quality categories. Conversely, Gazebo scores highly across most quality categories but has relatively modest star counts (1,337), likely because its community engagement predates the current GitHub repository organization and because its user base interacts with it primarily through ROS rather than directly through its GitHub page.
+GitHub stars (a rough proxy for community attention) span almost three orders of magnitude, from 24 (OpenRTM-aist, Newton Dynamics) to 18,159 (AirSim). The median is approximately 2,300. The correlation between stars and measurement scores is not straightforward. AirSim leads in stars by a wide margin but does not appear among the top-scoring packages in most quality categories. Conversely, Gazebo scores highly across most quality categories but has relatively modest star counts (1,337), likely because its community engagement predates the current GitHub repository organization and because its user base interacts with it primarily through ROS rather than directly through its GitHub page.
 
 The number of commits ranges from 139 (Flightmare, which is now inactive) to 34,786 (Drake). Commit activity in the last 12 months shows a similar range: Drake leads with sustained high monthly activity, while several dead packages (MORSE, GraspIt!, Flightmare) show zero or near-zero recent commits.
 
-The percentage of code that is comments shows substantial variation, from 1.1\% (Project Chrono) to 28.0\% (OROCOS). The Domain~X maintainability calculator uses 10\% as a threshold: 20 of 28 packages (71\%) exceed this threshold. The packages below 10\% include some of the largest codebases in the study (Bullet/PyBullet at 2.8\%, SOFA at 4.5\%, Project Chrono at 1.1\%), suggesting that codebase size alone does not determine comment density.
+The percentage of code that is comments shows substantial variation, from 1.1\% (Project Chrono) to 28.0\% (OROCOS). The Domain~X maintainability calculator uses 10\% as a threshold; 15 of the 27 packages with comparable measurements (about 56\%) exceed it. The packages below 10\% include some of the largest codebases in the study (Bullet/PyBullet at 2.8\%, SOFA at 4.5\%, Project Chrono at 1.1\%), so codebase size alone does not determine comment density.
 
 \section{Overall Observations}
 \label{sec:overall-observations}
 
-Table~\ref{tab:overall-impressions} summarizes the overall impression scores across all nine quality categories for each package, along with a simple unweighted per-package mean. The scores reported here are the raw 1--10 impression values assigned during measurement using the Domain~X Appendix~C calculator. They are \emph{not} the definitive ranking of the study: that role is reserved for the AHP-based analysis described in Chapter~\ref{ch:methodology}, which accounts for differential importance weights across qualities.
+Table~\ref{tab:overall-impressions} summarizes the overall impression scores across all nine quality categories for each package, along with a simple unweighted per-package mean. The scores reported here are the raw 1--10 impression values assigned during measurement using the Domain~X Appendix~C calculator. The unweighted mean treats all nine qualities as equally important; a weighted ranking using the Analytic Hierarchy Process, as described in Chapter~\ref{ch:methodology}, would account for differential importance across qualities but is not computed in this report (Chapter~\ref{ch:background}, Section~\ref{sec:ahp-background}).
 
 \begin{table}[H]
 \centering
-\caption{Overall impression scores by quality category (1--10 scale) with an unweighted per-package mean. I = Installability, C = Correctness, SR = Surface Reliability, SRo = Surface Robustness, SU = Surface Usability, M = Maintainability, Re = Reusability, SUnd = Surface Understandability, VT = Visibility/Transparency. The Mean column is the simple arithmetic mean of the nine category scores and is intentionally unweighted; it is not a substitute for the AHP-based ranking, which would apply differential importance weights across qualities.}
+\caption{Overall impression scores by quality category (1--10 scale) with an unweighted per-package mean. I = Installability, C = Correctness, SR = Surface Reliability, SRo = Surface Robustness, SU = Surface Usability, M = Maintainability, Re = Reusability, SUnd = Surface Understandability, VT = Visibility/Transparency. The Mean column is the simple arithmetic mean of the nine category scores. The Domain~X methodology supports a weighted ranking via the Analytic Hierarchy Process (Chapter~\ref{ch:background}, Section~\ref{sec:ahp-background}); that weighted ranking is not computed in this report.}
 \label{tab:overall-impressions}
 \small
 \begin{tabular}{@{}p{2.5cm}cccccccccc@{}}
@@ -346,7 +348,7 @@ Bullet/PyBullet & 9 & 7 & 8 & 7 & 7 & 7 & 8 & 7 & 7 & 7.4 \\
 CARLA & 7 & 8 & 8 & 7 & 8 & 8 & 8 & 7 & 8 & 7.7 \\
 CoppeliaSim & 8 & 8 & 8 & 7 & 7 & 7 & 8 & 7 & 7 & 7.4 \\
 DART & 8 & 8 & 8 & 7 & 7 & 8 & 8 & 7 & 7 & 7.6 \\
-Drake & 7 & 10 & 10 & 9 & 9 & 9 & 8 & 9 & 9 & 8.9 \\
+Drake & 7 & 10 & 10 & 9 & 9 & 9 & 8 & 8 & 9 & 8.8 \\
 Flightmare & 7 & 6 & 7 & 8 & 6 & 4 & 6 & 6 & 5 & 6.1 \\
 Gazebo & 10 & 10 & 10 & 10 & 10 & 10 & 10 & 10 & 10 & 10.0 \\
 GraspIt! & 5 & 5 & 6 & 5 & 5 & 4 & 5 & 5 & 5 & 5.0 \\
@@ -357,7 +359,7 @@ MRPT & 8 & 8 & 7 & 8 & 7 & 8 & 8 & 8 & 8 & 7.8 \\
 MuJoCo & 7 & 7 & 8 & 8 & 8 & 8 & 9 & 8 & 8 & 7.9 \\
 Newton Dyn. & 6 & 5 & 6 & 6 & 5 & 5 & 6 & 6 & 5 & 5.6 \\
 ODE & 4 & 6 & 7 & 7 & 6 & 6 & 7 & 7 & 7 & 6.3 \\
-OMPL & 9 & 9 & 9 & 8 & 8 & 9 & 9 & 9 & 9 & 8.8 \\
+OMPL & 9 & 9 & 9 & 8 & 8 & 8 & 9 & 9 & 9 & 8.7 \\
 OpenRAVE & 8 & 8 & 8 & 7 & 8 & 8 & 7 & 8 & 7 & 7.7 \\
 OpenRTM-aist & 7 & 8 & 7 & 7 & 6 & 7 & 6 & 7 & 7 & 6.9 \\
 OROCOS & 7 & 8 & 7 & 6 & 6 & 6 & 7 & 6 & 6 & 6.6 \\
@@ -368,26 +370,24 @@ ROS~2 & 8 & 9 & 9 & 8 & 9 & 9 & 9 & 8 & 9 & 8.7 \\
 Simbody & 7 & 7 & 7 & 7 & 7 & 7 & 7 & 7 & 7 & 7.0 \\
 SOFA & 6 & 6 & 8 & 7 & 6 & 7 & 7 & 7 & 7 & 6.8 \\
 Webots & 8 & 8 & 8 & 7 & 8 & 8 & 8 & 7 & 8 & 7.8 \\
-YARP & 7 & 8 & 7 & 7 & 7 & 8 & 7 & 7 & 7 & 7.2 \\
+YARP & 7 & 8 & 7 & 7 & 7 & 8 & 7 & 7 & 8 & 7.3 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Several patterns emerge from the measurement results:
+A handful of packages anchor the top of the table. Gazebo scores 10 in all nine categories and is the most consistently high-rated package in the study. Drake and MoveIt! score 9 or 10 across most categories, and ROS~2, OMPL, and Pinocchio sit just below them. These packages share several traits: established stewardship (large organizations or active research groups), continuous contributor activity, comprehensive documentation, automated testing wired into CI/CD, and published contribution guidelines and release notes. None of these traits is individually decisive, but the combination separates the top tier from the rest.
 
-\textbf{High performers across multiple qualities.} Gazebo scores 10 in all nine categories, making it the most consistently high-rated package in the study. Drake and MoveIt! score 9 or 10 across most categories. ROS~2, OMPL, and Pinocchio also show strong scores across the board. These packages share several characteristics: they are stewarded by established organizations or research groups, have active contributor communities, maintain comprehensive documentation, use automated testing and CI/CD, and publish clear contribution guidelines and release notes.
+The bottom of the table tracks maintenance status, but only loosely. GraspIt! (last commit July 2020), Flightmare (last commit May 2023), and MORSE (last commit March 2022) appear in the lower tier for most quality categories. Newton Dynamics, though technically alive at the May 2026 measurement date, joins them, reflecting its largely individual-maintained codebase and thin documentation infrastructure. OpenRAVE is also classified as dead under the 18-month rule (last commit August 2024), but its quality scores cluster in the middle of the table rather than the bottom; the documentation, test infrastructure, and codebase organization built during years of active development have not visibly degraded in the period since. In short, packages that go inactive tend to accumulate outdated documentation, broken installation procedures, and unresolved issues, but the rate at which they do so depends on the engineering capital accumulated before they went quiet.
 
-\textbf{Dead or inactive packages score lower across the board.} GraspIt! (last commit July 2020), Flightmare (last commit May 2023), and MORSE (last commit March 2022) appear in the bottom tier for most quality categories. This is expected: packages that are no longer maintained tend to accumulate outdated documentation, broken installation procedures, and unresolved issues. Newton Dynamics, while technically alive (last commit May 2026), scores in the bottom tier, reflecting its status as a primarily individual-maintained project with limited documentation infrastructure.
+Installability is generally strong across the domain. All 28 packages provide installation instructions and some form of automation, and only 2 broke during installation. This compares favourably with prior State-of-the-Practice studies, where the Medical Imaging study reported successful installation for only about half of the measured packages~\cite{Dong2021}. The widespread adoption of standard package managers (APT, pip, Conda), containerization (Docker), and CMake-based builds in the robotics community is the most plausible explanation.
 
-\textbf{Installability is generally strong.} All 28 packages provide installation instructions and automation, and only 2 broke during installation. This compares favorably with prior State-of-the-Practice studies. The widespread adoption of package managers (APT, pip, Conda), containerization (Docker), and standardized build systems (CMake) in the robotics community likely contributes to this result.
+Documentation is universally present but varies in depth. All packages provide tutorials, user manuals, and API documentation. Only one package documents expected user characteristics, and only 14 of 28 explicitly identify a coding standard. The same gaps appear in the medical imaging and LBM samples~\cite{Dong2021,Smith2024LBM}, so they look more like patterns of research software practice than peculiarities of MPS.
 
-\textbf{Documentation is universally present but varies in depth.} All packages provide tutorials, user manuals, and API documentation. However, only one package documents expected user characteristics, and only 14 explicitly identify a coding standard. These gaps are consistent with findings in medical imaging and LBM software~\cite{Dong2021,Smith2024LBM} and reflect broader patterns in research software development.
+Repository activity is concentrated in a small subset of packages: Drake, SOFA, Project Chrono, YARP, and Pinocchio account for a disproportionate share of total commits, reflecting sustained multi-year development by well-resourced teams. At the other extreme, several packages show minimal activity in the last 12 months.
 
-\textbf{Repository activity is concentrated in a subset of packages.} A small number of packages (Drake, SOFA, Project Chrono, YARP, Pinocchio) account for a disproportionate share of total commits. This reflects sustained multi-year development by well-resourced teams. At the other extreme, several packages show minimal activity in the last 12 months.
+The relationship between community popularity and measurement scores is not linear. Section~\ref{sec:quality-vs-community} reports the explicit ranking comparison. Star counts accumulate over years and capture cumulative attention; the quality scores capture what each project's documentation, tests, and release infrastructure look like today, so the two indicators answer different questions and need not agree.
 
-\textbf{The relationship between community popularity and measurement scores is not linear.} Section~\ref{sec:quality-vs-community} reports the explicit ranking comparison; popularity metrics are cumulative and backward-looking, while measurement scores reflect current documentation and process quality.
-
-These observations are descriptive and are based on the specific measurement procedure, time frame, and interpretation rules described in Chapter~\ref{ch:methodology}. They are not claims that any single package is universally superior. Chapter~\ref{ch:comparison-research-software} interprets these results against prior State-of-the-Practice studies, and Chapter~\ref{ch:conclusions} answers the research questions in light of the evidence.
+These observations are descriptive and depend on the specific measurement procedure, time frame, and interpretation rules described in Chapter~\ref{ch:methodology}. They are not claims that any single package is universally superior. Chapter~\ref{ch:comparison-research-software} interprets these results against prior State-of-the-Practice studies, and Chapter~\ref{ch:conclusions} answers the research questions in light of the evidence.
 
 \section{Comparison with Community Indicators}
 \label{sec:quality-vs-community}
@@ -404,11 +404,11 @@ The Domain~X quality mean reported in Section~\ref{sec:overall-observations} ref
 \textbf{Software} & \textbf{Q-Mean} & \textbf{Q-Rank} & \textbf{Stars} & \textbf{S-Rank} & \textbf{$\Delta$} \\
 \midrule
 Gazebo           & 10.0 & 1  & 1,337  & 17 & $+16$ \\
-Drake            & 8.9  & 2  & 4,025  & 8  & $+6$  \\
-OMPL             & 8.8  & 3  & 2,047  & 14 & $+11$ \\
-MoveIt!          & 8.7  & 4  & 1,803  & 15 & $+11$ \\
-Pinocchio        & 8.7  & 4  & 3,354  & 10 & $+6$  \\
-ROS~2            & 8.7  & 4  & 5,475  & 5  & $+1$  \\
+Drake            & 8.8  & 2  & 4,025  & 8  & $+6$  \\
+MoveIt!          & 8.7  & 3  & 1,803  & 15 & $+12$ \\
+OMPL             & 8.7  & 3  & 2,047  & 14 & $+11$ \\
+Pinocchio        & 8.7  & 3  & 3,354  & 10 & $+7$  \\
+ROS~2            & 8.7  & 3  & 5,475  & 5  & $+2$  \\
 Habitat          & 8.0  & 7  & 3,662  & 9  & $+2$  \\
 MuJoCo           & 7.9  & 8  & 13,440 & 4  & $-4$  \\
 AirSim           & 7.8  & 9  & 18,159 & 1  & $-8$  \\
@@ -420,8 +420,8 @@ DART             & 7.6  & 14 & 1,081  & 19 & $+5$  \\
 Bullet/PyBullet  & 7.4  & 15 & 14,465 & 2  & $-13$ \\
 CoppeliaSim      & 7.4  & 15 & 146    & 25 & $+10$ \\
 Proj.\ Chrono    & 7.4  & 15 & 2,836  & 11 & $-4$  \\
-MORSE            & 7.2  & 18 & 367    & 23 & $+5$  \\
-YARP             & 7.2  & 18 & 590    & 22 & $+4$  \\
+YARP             & 7.3  & 18 & 590    & 22 & $+4$  \\
+MORSE            & 7.2  & 19 & 367    & 23 & $+4$  \\
 Simbody          & 7.0  & 20 & 2,521  & 12 & $-8$  \\
 OpenRTM-aist     & 6.9  & 21 & 24     & 26 & $+5$  \\
 PhysX (OSS)      & 6.8  & 22 & 4,532  & 6  & $-16$ \\
@@ -435,6 +435,6 @@ GraspIt!         & 5.0  & 28 & 213    & 24 & $-4$  \\
 \end{tabular}
 \end{table}
 
-The 28 packages fall into four broad patterns. \textbf{Rough agreement at the top.} Drake ($\Delta = +6$), ROS~2 ($\Delta = +1$), Pinocchio ($\Delta = +6$), and Habitat ($\Delta = +2$) appear in the top tier on both indicators; well-resourced projects with sustained development tend to combine strong engineering practice with substantial visibility. \textbf{High quality, low visibility.} Gazebo ($\Delta = +16$), OMPL ($\Delta = +11$), and MoveIt! ($\Delta = +11$) score at or near the top on quality but sit well below their quality rank on stars. The Gazebo gap is partially explained at the end of Section~\ref{sec:repository-metrics-results}: Gazebo's user base interacts with it primarily through ROS rather than its GitHub repository directly, so star counts undercount its reach. OMPL and MoveIt! are libraries embedded inside larger workflows and may attract attention as dependencies rather than as standalone projects. \textbf{High visibility, mid-pack quality.} AirSim ($\Delta = -8$), Bullet/PyBullet ($\Delta = -13$), CARLA ($\Delta = -9$), and PhysX (OSS) ($\Delta = -16$) sit at or near the top on stars but in the middle or lower tier on the quality mean. These projects share characteristics: broad user bases drawn from adjacent fields (gaming, autonomous-driving research, real-time physics), corporate or game-engine origins, and uneven research-software quality practice. \textbf{Consistently low.} GraspIt! ($\Delta = -4$), Newton Dynamics ($\Delta = -1$), and OpenRTM-aist ($\Delta = +5$) cluster near the bottom on both indicators; inactive or narrowly used projects tend to accumulate gaps in documentation, releases, and visibility together.
+The 28 packages fall into four broad patterns. \textbf{Rough agreement at the top.} Drake ($\Delta = +6$), ROS~2 ($\Delta = +2$), Pinocchio ($\Delta = +7$), and Habitat ($\Delta = +2$) appear in the top tier on both indicators; well-resourced projects with sustained development tend to combine strong engineering practice with substantial visibility. \textbf{High quality, low visibility.} Gazebo ($\Delta = +16$), OMPL ($\Delta = +11$), and MoveIt! ($\Delta = +12$) score at or near the top on quality but sit well below their quality rank on stars. The Gazebo gap is partially explained at the end of Section~\ref{sec:repository-metrics-results}: Gazebo's user base interacts with it primarily through ROS rather than its GitHub repository directly, so star counts undercount its reach. OMPL and MoveIt! are libraries embedded inside larger workflows and may attract attention as dependencies rather than as standalone projects. \textbf{High visibility, mid-pack quality.} AirSim ($\Delta = -8$), Bullet/PyBullet ($\Delta = -13$), CARLA ($\Delta = -9$), and PhysX (OSS) ($\Delta = -16$) sit at or near the top on stars but in the middle or lower tier on the quality mean. These projects share characteristics: broad user bases drawn from adjacent fields (gaming, autonomous-driving research, real-time physics), corporate or game-engine origins, and uneven research-software quality practice. \textbf{Consistently low.} GraspIt! ($\Delta = -4$) and Newton Dynamics ($\Delta = -1$) cluster near the bottom on both indicators; inactive or narrowly used projects tend to accumulate gaps in documentation, releases, and visibility together. OpenRTM-aist sits near the bottom on both indicators as well, but with $\Delta = +5$ its quality rank (21) is modestly better than its stars rank (26), so it belongs in this group only in the sense of low absolute standing on both axes, not as a case where popularity outruns quality.
 
 These patterns are consistent with the finding from the Medical Imaging State-of-the-Practice study that GitHub popularity and measurement-based rankings do not align in a simple way~\cite{Dong2021}. They support the broader argument that community-facing indicators of visibility and adoption are not interchangeable with measured software engineering quality; treating stars as a quality proxy obscures meaningful differences across packages.

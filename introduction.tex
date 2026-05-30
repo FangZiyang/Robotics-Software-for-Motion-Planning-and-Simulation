@@ -14,14 +14,14 @@ These consequences make software quality a central concern for motion planning a
 
 Software engineers have developed methods and tools for improving software quality: version control, automated testing, and continuous integration are standard practice in professional contexts. There has historically been a gap, however, between these practices and what researchers actually do when developing scientific software. Scientists and engineers working on research software tend to learn software engineering skills informally, picking them up from colleagues or through trial and error rather than through formal training~\cite{Hannay2009}. \citet{Hannay2009} observe that many scientists show indifference to standard software engineering concepts, and \citet{Prabhu2011} report that more than half of the scientists they surveyed did not use a debugger. Because much of the software studied in this report originates in research settings, these concerns apply directly to the domain.
 
-Previous State-of-the-Practice studies have investigated this gap across several scientific software domains, including geographic information systems, mesh generation, seismology, statistical software for psychology, medical imaging software, and Lattice Boltzmann method software~\cite{smith2018state,smith2016state,Smith2018Seismology,smith2018statistical,Dong2021,Smith2024LBM}. This report applies the same methodology~\cite{Smith2021} to robotics software for motion planning and simulation (hereafter referred to as MPS software, where MPS stands for motion planning and simulation). The aim is to understand how MPS software holds up against established software engineering practices and how it compares with other research software domains. The comparison identifies where MPS developers already meet those practices and where gaps remain. The report ranks the selected packages according to the defined quality attributes; those rankings describe the current state of the practice, not a recommendation for any particular robotics task or context.
+Previous State-of-the-Practice studies have investigated this gap across several scientific software domains, including geographic information systems, mesh generation, seismology, statistical software for psychology, medical imaging software, and Lattice Boltzmann method software~\cite{smith2018state,smith2016state,Smith2018Seismology,smith2018statistical,Dong2021,Smith2024LBM}. This report applies the same methodology~\cite{Smith2021} to MPS software. The aim is to understand how MPS software holds up against established software engineering practices and how it compares with other research software domains. The comparison identifies where MPS developers already meet those practices and where gaps remain. The report ranks the selected packages according to the defined quality attributes; those rankings describe the current state of the practice, not a recommendation for any particular robotics task or context.
 
 This chapter is organized as follows. Section~\ref{sec:research-questions} states the research questions. Section~\ref{sec:introduction-scope} defines the scope of the study. Section~\ref{sec:methodology-overview} provides a high-level overview of the methodology. Section~\ref{sec:contributions} describes the contributions of the report. Section~\ref{sec:organization} outlines the remaining chapters.
 
 \section{Research Questions}
 \label{sec:research-questions}
 
-The following research questions guide this study. The abbreviation MPS (motion planning and simulation) is used throughout to refer to the studied software domain; the robotics context is implied.
+The following research questions guide this study. MPS, defined above, refers throughout to the studied robotics software domain.
 
 \begin{enumerate}[RQ1.]
     \item What software packages are candidates for the State-of-the-Practice study of MPS software?
@@ -31,8 +31,8 @@ The following research questions guide this study. The abbreviation MPS (motion 
     \item How do MPS projects compare to other research software domains with respect to the principles, processes, and methodologies used?
     \item What are the pain points for developers working on MPS software projects?
     \item How do the pain points for MPS developers compare to the pain points for developers in other research software domains?
-    \item For MPS developers, what specific best practices address their pain points and software quality concerns?
-    \item What research software development practices could potentially address the pain points identified in RQ6?
+    \item For MPS developers, what specific best practices address the pain points identified in RQ6 and the software quality concerns identified in RQ2?
+    \item What research software development practices, beyond those already used by MPS developers, address the pain points identified in RQ6?
 \end{enumerate}
 
 RQ1 covers candidate discovery; RQ2 measures the selected packages from public artifacts. RQ3--RQ5 compare MPS software with prior State-of-the-Practice studies of other research software domains. RQ6--RQ9 concern the developer perspective on pain points and best practices, and are conditional on approved interview data being available.
