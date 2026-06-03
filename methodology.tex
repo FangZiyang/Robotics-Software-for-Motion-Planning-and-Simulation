@@ -6,9 +6,9 @@ This chapter describes the methodology used to conduct the State-of-the-Practice
 \section{Domain Selection}
 \label{sec:domain-selection}
 
-The first step of the Domain~X methodology is to identify a suitable research software domain. To be applicable for the methodology, the chosen domain must meet four criteria~\cite{Smith2021}: (i)~it must have a well-defined and stable theoretical underpinning, ideally supported by standard textbooks; (ii)~there must be a community of researchers and practitioners studying the domain; (iii)~the software packages in the domain must include open-source options; and (iv)~a preliminary search should suggest that there are close to 30 candidate software packages that qualify as research software.
+The first step of the Domain~X methodology is to identify a suitable research software domain. To be applicable for the methodology, the chosen domain must meet four criteria~\citep{Smith2021}: (i)~it must have a well-defined and stable theoretical underpinning, ideally supported by standard textbooks; (ii)~there must be a community of researchers and practitioners studying the domain; (iii)~the software packages in the domain must include open-source options; and (iv)~a preliminary search should suggest that there are close to 30 candidate software packages that qualify as research software.
 
-The selected domain is \emph{MPS (motion planning and simulation)}. Motion planning and simulation are established subfields of robotics with well-defined theoretical foundations~\cite{lavalle2006planning,choset2005principles}. There is an active international research community, regular conferences (such as ICRA, IROS, and RSS), and a substantial body of published work. A preliminary search confirmed the existence of numerous open-source software packages spanning simulation environments, physics engines, dynamics libraries, motion planning libraries, and robotics middleware.
+The selected domain is \emph{MPS (motion planning and simulation)}. Motion planning and simulation are established subfields of robotics with well-defined theoretical foundations~\citep{lavalle2006planning,choset2005principles}. There is an active international research community, regular conferences (such as ICRA, IROS, and RSS), and a substantial body of published work. A preliminary search confirmed the existence of numerous open-source software packages spanning simulation environments, physics engines, dynamics libraries, motion planning libraries, and robotics middleware.
 
 The domain boundary is broader than ``robotics simulators'' alone. Many robotics workflows combine a simulator with planning libraries, physics engines, middleware, and supporting tools. Restricting the study to full simulators would make comparison simpler but would omit software that belongs to core motion planning and simulation workflows.
 
@@ -17,9 +17,9 @@ Earlier project discussions considered a narrower domain focused on inverse kine
 \section{Interaction with the Domain Expert}
 \label{sec:domain-expert-interaction}
 
-The Domain~X methodology emphasizes that a domain expert is an essential member of the assessment team. Pitfalls exist if non-experts attempt to produce an authoritative list of software or definitively rank packages without domain knowledge. Non-experts must rely on information available online, which has two known drawbacks: (i)~online resources may contain false or inaccurate information; and (ii)~online resources may omit relevant information that is so ingrained with experts that nobody thinks to record it explicitly~\cite{Smith2021}.
+The Domain~X methodology emphasizes that a domain expert is an essential member of the assessment team. Pitfalls exist if non-experts attempt to produce an authoritative list of software or definitively rank packages without domain knowledge. Non-experts must rely on information available online, which has two known drawbacks: (i)~online resources may contain false or inaccurate information; and (ii)~online resources may omit relevant information that is so ingrained with experts that nobody thinks to record it explicitly~\citep{Smith2021}.
 
-Domain experts may be recruited from academia or industry. The only requirements are knowledge of the domain and a willingness to be engaged in the assessment process. The domain expert does not need to be a software developer, but they should be a user of domain software. Given that domain experts are likely to be busy people, the methodology is designed to minimize the burden on their time~\cite{Dong2021}.
+Domain experts may be recruited from academia or industry. The only requirements are knowledge of the domain and a willingness to be engaged in the assessment process. The domain expert does not need to be a software developer, but they should be a user of domain software. Given that domain experts are likely to be busy people, the methodology is designed to minimize the burden on their time~\citep{Dong2021}.
 
 For this study, the domain expert is Dr.~Matthew Giamou of the Department of Computing and Software at McMaster University. Dr.~Giamou's research includes robotics, motion planning, and state estimation. He reviewed the candidate software list, confirmed that the scope was appropriate, and provided guidance on inclusion and exclusion decisions.
 
@@ -65,12 +65,12 @@ Mention count is a source-appearance signal and must be interpreted accordingly.
 \section{Filtering Criteria}
 \label{sec:filtering-criteria}
 
-The ranked candidate list was filtered to identify packages suitable for repository-based State-of-the-Practice measurement. In the Domain~X methodology, the initial filters are scope, usage, and age, applied in priority order until the list reaches a manageable size of approximately 30 packages~\cite{Smith2021}. In this project, these filters are implemented through three criteria: open-source availability, repository-based measurability, and activity and maintenance status. Both the initial and filtered lists are preserved for traceability.
+The ranked candidate list was filtered to identify packages suitable for repository-based State-of-the-Practice measurement. In the Domain~X methodology, the initial filters are scope, usage, and age, applied in priority order until the list reaches a manageable size of approximately 30 packages~\citep{Smith2021}. In this project, these filters are implemented through three criteria: open-source availability, repository-based measurability, and activity and maintenance status. Both the initial and filtered lists are preserved for traceability.
 
 \subsection{Open Source Availability}
 \label{subsec:open-source-availability}
 
-Open-source availability was required because the study depends on public software artifacts for measurement. The Domain~X candidate criteria require that source code be viewable and express a preference for GitHub-style repositories from which empirical measures can be collected~\cite{Smith2021}. Source code, repository history, issue trackers, documentation, and release information provide the evidence base for the measurements reported in Chapter~\ref{ch:measurement-results}.
+Open-source availability was required because the study depends on public software artifacts for measurement. The Domain~X candidate criteria require that source code be viewable and express a preference for GitHub-style repositories from which empirical measures can be collected~\citep{Smith2021}. Source code, repository history, issue trackers, documentation, and release information provide the evidence base for the measurements reported in Chapter~\ref{ch:measurement-results}.
 
 This criterion led to the exclusion of several prominent robotics tools whose core components are not open source:
 
@@ -93,7 +93,7 @@ This criterion also governs how multi-repository projects are handled. Some robo
 \subsection{Activity and Maintenance Status}
 \label{subsec:activity-maintenance-status}
 
-Activity and maintenance status were considered because the study focuses on contemporary software practice. In the Domain~X methodology, age is one of the initial filtering criteria, measured by the last date when a change was made, with exceptions for older packages that remain highly recommended and currently in use~\cite{Smith2021}. Tools that are no longer maintained provide weaker evidence about current development practices.
+Activity and maintenance status were considered because the study focuses on contemporary software practice. In the Domain~X methodology, age is one of the initial filtering criteria, measured by the last date when a change was made, with exceptions for older packages that remain highly recommended and currently in use~\citep{Smith2021}. Tools that are no longer maintained provide weaker evidence about current development practices.
 
 The primary activity indicator used in this study is the Domain~X alive/dead rule: a package is considered alive if it has received commits or version releases within the last 18 months from the measurement date. The following packages were excluded on maintenance grounds:
 
@@ -159,7 +159,7 @@ This set is deliberately heterogeneous. Most entries are associated with simulat
 \section{Measurement Procedure}
 \label{sec:measurement-procedure}
 
-The measurement procedure follows the Domain~X method for collecting structured evidence about software packages in a selected domain~\cite{Smith2021}. For each of the 28 selected packages, the study gathered source code, documentation, publications where applicable, repository metadata, issue-tracker evidence, release information, and installation evidence. The measurement record identifies the specific repository or repositories measured, since some robotics projects are distributed across multiple repositories.
+The measurement procedure follows the Domain~X method for collecting structured evidence about software packages in a selected domain~\citep{Smith2021}. For each of the 28 selected packages, the study gathered source code, documentation, publications where applicable, repository metadata, issue-tracker evidence, release information, and installation evidence. The measurement record identifies the specific repository or repositories measured, since some robotics projects are distributed across multiple repositories.
 
 \subsection{Measurement Template}
 \label{subsec:measurement-template}
@@ -203,9 +203,9 @@ From these raw data, three processed measures are calculated:
 \subsection{Measurement Execution}
 \label{subsec:measurement-execution}
 
-The Domain~X methodology recommends performing installation-based measurements in a controlled environment, typically a virtual machine, to ensure a clean and reproducible starting state~\cite{Smith2021}. For this study, installation measurements were performed on a Linux-based virtual machine. The operating system, installation steps, dependencies, and any issues encountered were recorded for each package.
+The Domain~X methodology recommends performing installation-based measurements in a controlled environment, typically a virtual machine, to ensure a clean and reproducible starting state~\citep{Smith2021}. For this study, installation measurements were performed on a Linux-based virtual machine. The operating system, installation steps, dependencies, and any issues encountered were recorded for each package.
 
-The methodology also recommends a time budget to keep the overall measurement workload feasible. The target is approximately 160 person-hours for the entire domain, with 1 to 4 hours allocated per package for template completion and up to 2 hours for installation~\cite{Smith2021}. Measurement was conducted during May 2026. All time-sensitive data (last commit dates, issue counts, stars, forks, etc.) should be understood as snapshots taken during this period.
+The methodology also recommends a time budget to keep the overall measurement workload feasible. The target is approximately 160 person-hours for the entire domain, with 1 to 4 hours allocated per package for template completion and up to 2 hours for installation~\citep{Smith2021}. Measurement was conducted during May 2026. All time-sensitive data (last commit dates, issue counts, stars, forks, etc.) should be understood as snapshots taken during this period.
 
 Several measurement questions require explicit interpretation rules:
 
@@ -219,7 +219,7 @@ Several measurement questions require explicit interpretation rules:
 \subsection{Ranking with AHP}
 \label{subsec:ahp-ranking}
 
-After the quality measures are collected, the Domain~X methodology uses the Analytic Hierarchy Process (AHP) to support ranking across the nine quality categories~\cite{Saaty1980}. AHP is a decision-making technique that uses pairwise comparisons between alternatives to calculate relative scores. It organizes multiple criteria in a hierarchical structure and enables the combination of individual quality rankings into an overall ranking based on the relative priorities assigned to each quality.
+After the quality measures are collected, the Domain~X methodology uses the Analytic Hierarchy Process (AHP) to support ranking across the nine quality categories~\citep{Saaty1980}. AHP is a decision-making technique that uses pairwise comparisons between alternatives to calculate relative scores. It organizes multiple criteria in a hierarchical structure and enables the combination of individual quality rankings into an overall ranking based on the relative priorities assigned to each quality.
 
 In this study, AHP would be applied to the nine quality impression scores for the 28 software packages and would produce a ranking that is an analysis aid for comparing evidence under the chosen criteria, not a universal claim that one package is best for every robotics use case. Sensitivity analysis would then assess whether the ranking is stable under reasonable variations in quality weightings. AHP rankings are not computed in this report, because a defensible criterion-weighting elicitation has not been completed at the time of writing; Chapter~\ref{ch:measurement-results} therefore reports the per-package quality-mean ranking and a comparison with community indicators in their place.
 
@@ -246,10 +246,10 @@ Because the selected set is heterogeneous, the commonality analysis does not for
 \section{Interview Component}
 \label{sec:interview-component}
 
-The Domain~X methodology includes a developer survey component designed to capture information that is not visible in public repositories: the development process as experienced by practitioners, the pain points they encounter, their perceptions of software quality threats, and the strategies they use to address those threats~\cite{Smith2021}. The methodology prescribes semi-structured interviews based on a list of 20 questions covering developer background, project organization, user understanding, development obstacles (past and present), documentation practices, and specific software qualities including maintainability, understandability, usability, and reproducibility.
+The Domain~X methodology includes a developer survey component designed to capture information that is not visible in public repositories: the development process as experienced by practitioners, the pain points they encounter, their perceptions of software quality threats, and the strategies they use to address those threats~\citep{Smith2021}. The methodology prescribes semi-structured interviews based on a list of 20 questions covering developer background, project organization, user understanding, development obstacles (past and present), documentation practices, and specific software qualities including maintainability, understandability, usability, and reproducibility.
 
 For this study, the interview component is associated with research ethics approval through the McMaster Research Ethics Board (MacREM). The project materials indicate that interviews with software developers, maintainers, or programmers associated with the studied packages may form part of the broader State-of-the-Practice exercise.
 
 As of the current report draft, approved interview data (including transcripts, participant responses, approved summaries, or final interview findings) is not yet available. The interview component is therefore described as planned or pending. Chapter~\ref{ch:developer-interviews} is reserved for this material and currently describes the planned protocol, recruitment strategy, and analysis framework. Interview findings will be added only when supported by approved data.
 
-The methodology recommends sending interview requests to developers from all packages in the study set to avoid selection bias. Prior applications of the methodology report response rates roughly in the 15\%--30\% range~\cite{Smith2021,Dong2021}; the exact rate for this study will depend on outreach timing and the response practices of the contacted developers. Interview contacts are typically identified through project websites, code repositories, publications, or institutional biography pages.
+The methodology recommends sending interview requests to developers from all packages in the study set to avoid selection bias. Prior applications of the methodology report response rates roughly in the 15\%--30\% range~\citep{Smith2021,Dong2021}; the exact rate for this study will depend on outreach timing and the response practices of the contacted developers. Interview contacts are typically identified through project websites, code repositories, publications, or institutional biography pages.

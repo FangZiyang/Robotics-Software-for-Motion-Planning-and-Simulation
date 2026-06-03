@@ -16,8 +16,15 @@
 *.synctex.gz
 *.toc
 
-# The compiled thesis PDF is intentionally trackable because CI commits it on
+# The compiled report PDF is intentionally trackable because CI commits it on
 # pushes to main. Auxiliary LaTeX build files stay ignored above.
+#
+# Tracked PDF (NOT added to .gitignore):
+#   - Robotics-Software-State-of-Practice.pdf
+#
+# main.pdf is the raw pdflatex output; CI copies it to the tracked name above,
+# so the raw copy itself stays untracked.
+main.pdf
 
 # Editor and OS noise
 .DS_Store

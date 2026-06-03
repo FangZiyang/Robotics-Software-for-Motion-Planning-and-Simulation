@@ -1,29 +1,25 @@
-\chapter{Threats to Validity}
-\label{ch:threats-to-validity}
+\chapter{Recommendations for Future Practice}
+\label{ch:recommendations}
 
-Any study based on publicly available artifacts is constrained by what those artifacts can reveal. The threats below concern how the candidate set was assembled, how the measurements were made, and what the resulting scores can reasonably claim.
+The recommendations in this chapter come from the public-artifact measurements, the commonality analysis, and the comparison with prior State-of-the-Practice studies. They are meant for future MPS software practice; they are not a ranking of packages or a prescription that every project should adopt the same process.
 
-\section{Candidate Discovery}
-\label{sec:threat-candidate-discovery}
+\section{Recommendations for MPS Software Users}
+\label{sec:recommendations-users}
 
-The candidate set was built from academic survey papers, community-curated lists, and LLM-assisted discovery. Source appearance counts show how often a package turns up across those sources, not how good the software is. A package with high mention counts may simply be older or more broadly targeted; a technically strong tool with a narrower audience could score low. Any package absent from all three source types would not enter the candidate pool, whatever its actual quality.
+Users should choose packages by task fit before quality score. The selected set includes full simulators, physics engines, planning libraries, middleware, and robotics development frameworks. A highly ranked simulator may be the wrong choice for a project that needs a planning library, and a strong middleware framework cannot replace a physics engine. The commonality analysis in Chapter~\ref{ch:selected-software-commonality} should therefore be read alongside the measurement results.
 
-\section{Measurement Consistency}
-\label{sec:threat-measurement-consistency}
+Users should also treat public artifacts as evidence of adoption risk. Installation instructions, tutorials, API documentation, issue trackers, and release notes reduce the effort needed to evaluate and maintain a package. Sparse documentation, weak release history, or inactive repositories do not make a package unusable, but they increase the work needed before a project can depend on it.
 
-All measurements are based on public evidence collected in May 2026 and reflect the state of each repository at that moment. The same project measured a year earlier or later might score differently. Some quality questions also require judgement---whether documentation is adequate, for example---and two evaluators reading the same artifacts could reach different conclusions. Where judgement calls were made, the rationale is recorded in the measurement template.
+\section{Recommendations for MPS Software Maintainers}
+\label{sec:recommendations-maintainers}
 
-\section{Snapshot-Based Repository Data}
-\label{sec:threat-snapshot-repository-data}
+Maintainers should make development practices visible. The measured MPS projects often provide installation guides, tutorials, API references, and issue trackers, but formal and explanatory artifacts are less consistent. Coding standards, user assumptions, design rationale, and requirements-style information are useful because many MPS packages are adopted by researchers, graduate students, industry developers, and contributors who were not part of the original project.
 
-Metrics like star counts, fork counts, open issues, commit frequency, and lines of code were recorded in May 2026 and reflect that point in time only. They change continuously. A project that appears inactive at the measurement date may have had a burst of development beforehand, or may be in a stable maintenance phase rather than in decline.
+Maintainers should document the purpose of testing and automation rather than only exposing the workflow files. Continuous-integration evidence is common in the measured repositories, but CI can mean builds, tests, documentation generation, static checks, packaging, or release automation. A short explanation of what the automation checks would make the evidence easier for users and contributors to interpret.
 
-\section{Use of LLM-Assisted Candidate Sources}
-\label{sec:threat-llm-assisted-sources}
+\section{Recommendations for Future State-of-the-Practice Studies}
+\label{sec:recommendations-sop}
 
-LLM-generated candidate lists supplemented the academic and community-curated sources but did not drive them. These lists reflect the training data of the model rather than an independent survey of the domain, so a package unknown to the model could be absent from its output. The mention-count ranking aggregated appearances across all three source types, so a package surfacing in only the LLM-generated lists would receive a lower mention count and would be filtered out at the open-source-availability and activity stages before measurement; the procedure does not, however, guarantee that every retained package was independently corroborated by an academic or community-curated source.
+Future State-of-the-Practice studies in heterogeneous software domains should separate domain membership from software role. MPS software is broad: packages may appear in the same workflow without serving the same function. Recording each package's role through commonality analysis helps avoid treating related tools as interchangeable products.
 
-\section{Scope Boundaries}
-\label{sec:threat-scope-boundaries}
-
-Deciding which tools fall inside or outside the scope of MPS software involves judgement. The criteria are documented in Chapter~\ref{ch:methodology}, but any boundary choice shapes the candidate pool and therefore the scope of valid comparisons. Tools excluded from the study---proprietary platforms, discontinued projects, narrowly scoped libraries---may differ systematically from those that were measured.
+Future studies should also keep public-artifact evidence separate from developer-reported evidence. Repositories can reveal documentation, issue tracking, releases, testing evidence, and development visibility. They reveal less about internal decision making, informal review, funding constraints, and developer pain points. Those topics require interviews or other qualitative evidence, and claims about them should be tied to the interview records or consented summaries that support them.

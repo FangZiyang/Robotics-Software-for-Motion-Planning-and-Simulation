@@ -1,4 +1,4 @@
-name: Build thesis PDF
+name: Build report PDF
 
 on:
   push:
@@ -14,11 +14,13 @@ permissions:
 
 jobs:
   build-pdf:
-    name: Compile LaTeX thesis
+    name: Compile LaTeX report
     runs-on: ubuntu-latest
 
     env:
       LATEX_IMAGE: texlive/texlive:latest
+      MAIN_BASENAME: main
+      FINAL_BASENAME: Robotics-Software-State-of-Practice
 
     steps:
       - name: Check out repository
@@ -30,18 +32,18 @@ jobs:
             -v "${{ github.workspace }}:/work" \
             -w /work \
             "$LATEX_IMAGE" \
-            pdflatex -interaction=nonstopmode -halt-on-error main.tex
+            pdflatex -interaction=nonstopmode -halt-on-error "$MAIN_BASENAME.tex"
 
       - name: BibTeX pass when citations exist
         run: |
-          if grep -q '^\\citation' main.aux; then
+          if grep -q '^\\citation' "$MAIN_BASENAME.aux"; then
             docker run --rm \
               -v "${{ github.workspace }}:/work" \
               -w /work \
               "$LATEX_IMAGE" \
-              bibtex main
+              bibtex "$MAIN_BASENAME"
           else
-            echo "No citations found in main.aux; skipping bibtex."
+            echo "No citations found in $MAIN_BASENAME.aux; skipping bibtex."
           fi
 
       - name: Final LaTeX passes
@@ -50,18 +52,18 @@ jobs:
             -v "${{ github.workspace }}:/work" \
             -w /work \
             "$LATEX_IMAGE" \
-            pdflatex -interaction=nonstopmode -halt-on-error main.tex
+            pdflatex -interaction=nonstopmode -halt-on-error "$MAIN_BASENAME.tex"
 
           docker run --rm \
             -v "${{ github.workspace }}:/work" \
             -w /work \
             "$LATEX_IMAGE" \
-            pdflatex -interaction=nonstopmode -halt-on-error main.tex
+            pdflatex -interaction=nonstopmode -halt-on-error "$MAIN_BASENAME.tex"
 
       - name: Check for undefined citations
         run: |
-          echo "Checking main.log for undefined citation warnings..."
-          if grep -E 'Citation .+ undefined' main.log; then
+          echo "Checking $MAIN_BASENAME.log for undefined citation warnings..."
+          if grep -E 'Citation .+ undefined' "$MAIN_BASENAME.log"; then
             echo ""
             echo "ERROR: One or more citations are unresolved (shown as '?' in PDF)."
             echo "Fix the \\cite{} keys or add the missing entries to your .bib file."
@@ -71,8 +73,8 @@ jobs:
 
       - name: Check for undefined references
         run: |
-          echo "Checking main.log for undefined reference warnings..."
-          if grep -E 'Reference .+ undefined' main.log; then
+          echo "Checking $MAIN_BASENAME.log for undefined reference warnings..."
+          if grep -E 'Reference .+ undefined' "$MAIN_BASENAME.log"; then
             echo ""
             echo "ERROR: One or more cross-references are unresolved (shown as '?' in PDF)."
             echo "Fix the \\ref{} / \\eqref{} keys or ensure the referenced labels exist."
@@ -80,19 +82,22 @@ jobs:
           fi
           echo "All references resolved."
 
+      - name: Rename combined PDF
+        run: cp "$MAIN_BASENAME.pdf" "$FINAL_BASENAME.pdf"
+
       - name: Upload PDF and log
         uses: actions/upload-artifact@v4
         with:
-          name: thesis-pdf
+          name: report-pdf
           path: |
-            main.pdf
-            main.log
+            ${{ env.FINAL_BASENAME }}.pdf
+            ${{ env.MAIN_BASENAME }}.log
           if-no-files-found: error
 
       - name: Commit and push compiled PDF
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: stefanzweifel/git-auto-commit-action@v7
         with:
-          commit_message: 'Update compiled thesis PDF [skip ci]'
-          file_pattern: 'main.pdf'
+          commit_message: 'Update compiled report PDF [skip ci]'
+          file_pattern: ${{ env.FINAL_BASENAME }}.pdf
           branch: main
