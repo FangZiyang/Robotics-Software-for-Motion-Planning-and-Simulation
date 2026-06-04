@@ -1,0 +1,24 @@
+\chapter{Threats to Validity}
+\label{ch:threats-to-validity}
+
+Any study based on publicly available artifacts is constrained by what those artifacts can reveal. The threats below are organized by threat type: reliability, construct validity, internal validity, and external validity.
+
+\section{Reliability}
+\label{sec:threat-reliability}
+
+All measurements are based on public evidence collected in May 2026 and reflect the state of each repository at that moment. The same project measured earlier or later might score differently. Some quality questions also require judgement, such as whether documentation is adequate or whether project metadata is complete enough to support a score. Where judgement calls were made, the rationale is recorded in the measurement template.
+
+\section{Construct Validity}
+\label{sec:threat-construct-validity}
+
+The measurements use public artifacts as evidence for software qualities. This is a practical choice, but it does not capture every aspect of the underlying constructs. For example, visible testing evidence does not prove that a package is correct, and visible issue-tracking activity does not fully describe maintainability. Source appearance counts also show how often a package appears across candidate sources, not how good the software is.
+
+\section{Internal Validity}
+\label{sec:threat-internal-validity}
+
+The candidate set was built from academic survey papers, community-curated lists, and LLM-assisted discovery. LLM-generated lists supplemented the academic and community-curated sources but did not drive them. These lists reflect the training data of the model rather than an independent survey of the MPS domain, so a package unknown to the model could be absent from its output. Filtering decisions also affect the measured set: a package can be excluded because it is outside scope, unavailable as open source, inactive, or not measurable from public repositories.
+
+\section{External Validity}
+\label{sec:threat-external-validity}
+
+The selected set covers open-source MPS software that can be measured through public artifacts. Proprietary platforms, discontinued projects, and narrowly scoped libraries may differ from the measured packages. The results therefore describe the selected open-source MPS sample, not all robotics software. The selected set is also deliberately heterogeneous, so comparisons should be interpreted as evidence about development practice across a domain rather than as direct product-to-product comparisons.

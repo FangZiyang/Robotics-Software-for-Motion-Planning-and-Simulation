@@ -1,15 +1,58 @@
-\chapter{Developer Pain Points}
+\chapter{Developer Pain Points and Interview Findings}
 \label{ch:developer-interviews}
 
-Developer interviews are part of the Domain~X State-of-the-Practice methodology~\citep{Smith2021}. They provide qualitative evidence that repositories cannot: the reasons behind development choices, what obstacles developers actually run into, and how teams handle problems that leave no trace in public artifacts. The interview protocol, recruitment plan, and qualitative analysis approach are described in Section~\ref{sec:interview-component} of Chapter~\ref{ch:methodology} and are not repeated here.
+This chapter is the result chapter for the developer interview component and addresses RQ6--RQ9. The interview protocol, recruitment logic, ethics status, and analysis procedure are described in Section~\ref{sec:interview-component} of Chapter~\ref{ch:methodology}; they are not repeated here. The purpose of this chapter is to report the developer pain points identified from the interviews, analyze the practices developers use or propose in response to those pain points, and relate the interview findings to the public-artifact evidence reported in Chapters~\ref{ch:selected-software-commonality} through~\ref{ch:comparison-research-software}.
 
-% TODO: Insert the developer pain-point findings (summary of pain points,
-% reported workarounds, and recommended practices) once the approved
-% interview data are available.
+The chapter is organized around the evidence base for the interviews, the recurring pain points reported by developers, the practices developers use to address those pain points, and the relationship between interview findings and repository-based measurements.
 
-\section{Developer Perspective}
-\label{sec:interview-purpose}
+\section{Interview Evidence Base}
+\label{sec:interview-evidence-base}
 
-Public repositories show what a project has produced, but not why particular choices were made. A team might rely on informal code review, use internal CI tooling invisible to outsiders, or follow conventions that are never written down. Interviews surface these practices and, more usefully, identify the obstacles developers encounter that would not appear anywhere in the public record.
+This section describes the evidence base for the interview findings. It reports the number of contacted projects, the number of participating developers, the number of represented MPS software packages, the form of the records used for analysis, and any limits imposed by consent or confidentiality.
 
-The interview component addresses RQ6 through RQ9: developer pain points in MPS software, how those pain points compare across research software domains, what best practices address them, and what the broader research software community might learn from MPS developers. These findings would complement the artifact-based evidence in Chapters~\ref{ch:selected-software-commonality} and~\ref{ch:measurement-results}.
+\noindent\textit{[Interview evidence summary to be inserted: contacted projects, participating developers, represented packages, record type, and reporting constraints.]}
+
+The interview evidence is distinct from the repository evidence used earlier in the report. Public artifacts show visible practices, such as documentation, issue tracking, releases, test evidence, and continuous-integration configuration. Interviews provide less visible information, such as internal decision making, perceived development obstacles, informal review practices, funding or time constraints, and the reasons behind particular engineering choices.
+
+\section{Overview of Developer Pain Points}
+\label{sec:developer-pain-points-overview}
+
+This section answers RQ6 by summarizing the recurring pain points reported by MPS developers. The grouping is derived from the interview evidence rather than imposed only from prior studies. Prior State-of-the-Practice reports suggest useful comparison categories, such as resource constraints, testing and correctness, documentation, maintainability, tooling, and project management, but the final categories for the MPS domain reflect the interview responses.
+
+\noindent\textit{[Pain-point summary table to be inserted: theme, number of participants or projects, supporting interview question or code, and brief interpretation.]}
+
+If a developer reports a pain point that is specific to a single project or software role, the text identifies it as such rather than presenting it as a domain-wide finding.
+
+\section{Practices Used to Address Pain Points}
+\label{sec:practices-address-pain-points}
+
+This section analyzes what developers report doing in response to the pain points identified in Section~\ref{sec:developer-pain-points-overview}. It separates practices that developers already use from practices they propose or are considering. That distinction is important because an implemented practice provides different evidence from a recommendation or aspiration.
+
+\noindent\textit{[Practice-response analysis to be inserted: pain point, reported practice, status of the practice, and evidence of effect.]}
+
+The analysis connects each practice to the pain point it addresses. For example, if developers discuss practices related to documentation, testing, continuous integration, release management, contribution review, modularization, or user support, the chapter states whether those practices were reported as current practice, past attempts, or future plans.
+
+\section{Analysis by Software Quality}
+\label{sec:interview-analysis-software-quality}
+
+This section connects the interview findings to the software qualities measured in Chapter~\ref{ch:measurement-results}. The repository-based measurements cover installability, correctness and verifiability, surface reliability, surface robustness, surface usability, maintainability, reusability, surface understandability, and visibility and transparency. The interviews add developer explanations for why those qualities are difficult to improve or how teams try to improve them in practice.
+
+\noindent\textit{[Quality-by-quality interview analysis to be inserted.]}
+
+The analysis keeps developer-reported evidence separate from public-artifact evidence. For instance, an interview may reveal testing, review, release, or documentation practices that are not obvious from the repository. Conversely, a repository may expose artifacts that were not emphasized by the developer. The chapter uses these differences to refine the interpretation of the measurements, not to replace the measurement record.
+
+\section{Comparison with Other Research Software Domains}
+\label{sec:interview-cross-domain-comparison}
+
+This section addresses RQ7 and RQ9 by comparing the MPS interview findings with findings from prior State-of-the-Practice studies, particularly the medical imaging and Lattice Boltzmann method reports discussed in Chapter~\ref{ch:comparison-research-software}. The comparison identifies pain points that appear across multiple domains and pain points that seem more specific to MPS software.
+
+\noindent\textit{[Cross-domain comparison to be inserted: MPS pain point, similar MI/LBM finding, difference in context, and implication for future practice.]}
+
+The comparison also supports future-practice recommendations. A practice observed in another research software domain is presented as a candidate practice for MPS only when the connection to an MPS pain point is clear. This avoids treating recommendations from other domains as automatically transferable.
+
+\section{Summary of Interview Findings}
+\label{sec:interview-summary}
+
+This chapter closes by summarizing the evidence-based answers to RQ6--RQ9. The summary identifies the main MPS developer pain points, the practices developers use or propose to address them, how those pain points compare with other research software domains, and which future-practice recommendations are supported by the interview evidence.
+
+\noindent\textit{[Summary of interview findings to be inserted: RQ6--RQ9 answers and recommendations supported by the interview evidence.]}

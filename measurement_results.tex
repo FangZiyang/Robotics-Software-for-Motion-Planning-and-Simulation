@@ -135,7 +135,7 @@ As noted in Section~\ref{sec:installability-results}, installation broke for 2 o
 
 The overall surface reliability impression scores range from 6 to 10, with a mean of 7.8. The top-scoring packages are Gazebo (10), Drake (10), ROS~2 (9), OMPL (9), Pinocchio (9), and MoveIt! (9). Three packages scored below 7: PhysX (6), GraspIt! (6), and Newton Dynamics (6).
 
-The generally high surface reliability scores reflect the fact that most packages installed without incident and all tutorials ran without breakage. This is a positive signal for the domain, though it should be interpreted cautiously: the measurement procedure involves a shallow interaction (installation plus one tutorial) on a single operating system, and does not constitute a systematic reliability evaluation.
+The generally high surface reliability scores reflect the fact that most packages installed without incident and all tutorials ran without breakage. This is a positive signal for the MPS domain, though it should be interpreted cautiously: the measurement procedure involves a shallow interaction (installation plus one tutorial) on a single operating system, and does not constitute a systematic reliability evaluation.
 
 \section{Surface Robustness}
 \label{sec:surface-robustness-results}
@@ -242,7 +242,7 @@ Code is modularized & 28 & 100\% \\
 \end{tabular}
 \end{table}
 
-All 28 packages exhibit consistent indentation and formatting, meaningful identifiers, clear comments, and modularized code organization. These are baseline indicators of professional software development practice, and their universal presence is a positive signal for the domain.
+All 28 packages exhibit consistent indentation and formatting, meaningful identifiers, clear comments, and modularized code organization. These are baseline indicators of professional software development practice, and their universal presence is a positive signal for the MPS domain.
 
 Fourteen of 28 packages (50\%) explicitly identify a coding standard. This is stronger than the MI comparison point, where code style guides were rare~\citep{Dong2021}, but it still leaves half of the measured MPS packages without an explicit coding-standard artifact. Packages that do identify a coding standard include Gazebo, Webots, Bullet/PyBullet, MuJoCo, ROS~2, Drake, OMPL, Pinocchio, MoveIt!, Habitat, Project Chrono, MRPT, YARP, and OpenRTM-aist.
 
@@ -379,7 +379,7 @@ A handful of packages anchor the top of the table. Gazebo scores 10 in all nine 
 
 The bottom of the table tracks maintenance status, but only loosely. GraspIt! (last commit July 2020), Flightmare (last commit May 2023), and MORSE (last commit March 2022) appear in the lower tier for most quality categories. Newton Dynamics, though technically alive at the May 2026 measurement date, joins them, reflecting its largely individual-maintained codebase and thin documentation infrastructure. OpenRAVE is also classified as dead under the 18-month rule (last commit August 2024), but its quality scores cluster in the middle of the table rather than the bottom; the documentation, test infrastructure, and codebase organization built during years of active development have not visibly degraded in the period since. In short, packages that go inactive tend to accumulate outdated documentation, broken installation procedures, and unresolved issues, but the rate at which they do so depends on the engineering capital accumulated before they went quiet.
 
-Installability is generally strong across the domain. All 28 packages provide installation instructions and some form of automation, and only 2 broke during installation. This compares favourably with prior State-of-the-Practice studies, where the Medical Imaging study reported successful installation for only about half of the measured packages~\citep{Dong2021}. The widespread adoption of standard package managers (APT, pip, Conda), containerization (Docker), and CMake-based builds in the robotics community is the most plausible explanation.
+Installability is generally strong across the MPS domain. All 28 packages provide installation instructions and some form of automation, and only 2 broke during installation. This compares favourably with prior State-of-the-Practice studies, where the Medical Imaging study reported successful installation for only about half of the measured packages~\citep{Dong2021}. The widespread adoption of standard package managers (APT, pip, Conda), containerization (Docker), and CMake-based builds in the robotics community is the most plausible explanation.
 
 Documentation is universally present but varies in depth. All packages provide tutorials, user manuals, and API documentation. Only one package documents expected user characteristics, and only 14 of 28 explicitly identify a coding standard. The same gaps appear in the medical imaging and LBM samples~\citep{Dong2021,Smith2024LBM}, so they look more like patterns of research software practice than peculiarities of MPS.
 

@@ -1,20 +1,20 @@
 \chapter{Introduction}
 \label{ch:introduction}
 
-Robotics software for motion planning and simulation (MPS) enables researchers and engineers to model robot kinematics and dynamics, simulate sensor data, plan collision-free trajectories, and test control strategies before deploying to physical hardware. In practice, this software is central to experimental reproducibility and to the transition from simulation to physical deployment, so its engineering quality has direct consequences for both research and operational outcomes. Figure~\ref{fig:motion-planning-example} shows one representative path-planning task.
+Robotics software for motion planning and simulation (MPS) enables researchers and engineers to model robot kinematics and dynamics, simulate sensor data, plan collision-free trajectories, and test control strategies before deploying to physical hardware. A sample of MPS software is shown in Figure~\ref{fig:motion-planning-example}.
 
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
-    \includegraphics[width=0.85\textwidth]{figures/chapter1-motion-planning}
+    \includegraphics[width=0.68\textwidth]{figures/chapter1-motion-planning}
     \caption{An illustrative path planning task: a manipulator computing a collision-free path around an obstacle.}
     \label{fig:motion-planning-example}
 \end{figure}
 
-These consequences make software quality a central concern for motion planning and simulation software. A simulator that produces incorrect trajectories, or a planner that crashes under realistic inputs, can compromise experimental results in ways that are not immediately obvious. Qualities such as correctness, reliability, and long-term sustainability are important for MPS software.
+In practice, this software is central to experimental reproducibility and to the transition from simulation to physical deployment, so its engineering quality has direct consequences for both research and operational outcomes. These consequences make software quality a central concern for motion planning and simulation software. A simulator that produces incorrect trajectories, or a planner that crashes under realistic inputs, can compromise experimental results in ways that are not immediately obvious. Qualities such as correctness, reliability, and long-term sustainability are important for MPS software.
 
 Software engineers have developed methods and tools for improving software quality: version control, automated testing, and continuous integration are standard practice in professional contexts. However, a gap exists between these practices and what researchers actually do when developing scientific software. Scientists and engineers working on research software tend to learn software engineering skills informally, picking them up from colleagues or through trial and error rather than through formal training~\citep{Hannay2009}. \citet{Hannay2009} observe that many scientists show indifference to standard software engineering concepts, and \citet{Prabhu2011} report that more than half of the scientists they surveyed did not use a debugger. Because much of the software studied in this report originates in research settings, these concerns apply directly to the MPS domain.
 
-Previous State-of-the-Practice studies have investigated this gap across several scientific software domains, including geographic information systems~\citep{smith2018state}, mesh generation~\citep{smith2016state}, seismology~\citep{Smith2018Seismology}, statistical software for psychology~\citep{smith2018statistical}, medical imaging software~\citep{Dong2021}, and Lattice Boltzmann method software~\citep{Smith2024LBM}. This report applies the same methodology~\citep{Smith2021} to MPS software. The aim is to understand how MPS software holds up against established software engineering practices and how it compares with other research software domains. The comparison identifies where MPS developers already meet those practices and where gaps remain. The report ranks the selected packages according to the defined quality attributes; those rankings describe the current state of the practice, not a recommendation of any single software package.
+Previous State-of-the-Practice studies have investigated this gap across several scientific software domains, including geographic information systems~\citep{smith2018state}, mesh generation~\citep{smith2016state}, seismology~\citep{Smith2018Seismology}, statistical software for psychology~\citep{smith2018statistical}, medical imaging software~\citep{Dong2021}, and Lattice Boltzmann method software~\citep{Smith2024LBM}. This report applies the same methodology~\citep{Smith2021} to MPS software. The aim is to understand how MPS software holds up against established software engineering practices and how it compares with other research software domains. The comparison identifies where MPS developers already meet those practices and where gaps remain. The report ranks the selected packages according to the defined quality attributes; these rankings describe the current state of practice in software development, rather than serving as recommendations for any particular software package.
 
 This chapter is organized as follows. Section~\ref{sec:research-questions} states the research questions, while Section~\ref{sec:introduction-scope} defines the scope of the study. A high-level overview of the methodology is provided in Section~\ref{sec:methodology-overview}. Section~\ref{sec:contributions} describes the contributions of the report, and Section~\ref{sec:organization} outlines the remaining chapters.
 
@@ -47,13 +47,13 @@ The selected set is deliberately heterogeneous. Full simulators sit alongside mi
 \section{Overview of the Methodology}
 \label{sec:methodology-overview}
 
-This report adapts the State-of-the-Practice methodology~\citep{Smith2021}. The scope and exclusions were reviewed with a domain expert to reduce the risk of misrepresenting the domain. At a high level, the methodology consists of the following steps:
+This report adapts the State-of-the-Practice methodology~\citep{Smith2021}. The scope and exclusions were reviewed with a domain expert to reduce the risk of misrepresenting the MPS domain. At a high level, the methodology consists of the following steps:
 
 \begin{enumerate}
     \item Define the MPS software domain and selection criteria.
     \item Identify candidate packages from academic sources, community-curated lists, and auxiliary LLM-assisted discovery.
     \item Filter the candidate list using domain relevance, public measurability, and repository-based evidence.
-    \item Measure the selected packages using repository artifacts, documentation, releases, issue trackers, and project metadata.
+    \item Measure and rank the selected packages relative to one another using repository artifacts, documentation, releases, issue trackers, and project metadata.
     \item Analyze the selected packages as a software family through commonality analysis.
     \item Compare the MPS findings with prior State-of-the-Practice studies of other (and relatively recent) research software domains.
     \item Supplement the artifact-based results with developer interviews on their pain points and best practices.
@@ -72,7 +72,7 @@ This report makes the following contributions:
     \item A comparison of MPS software with findings from prior State-of-the-Practice studies in other research software domains~\citep{Smith2024LBM,Dong2021,Smith2018Seismology}.
 \end{enumerate}
 
-These contributions are descriptive and methodological. The report characterizes existing software by measuring it against defined quality attributes. The resulting rankings describe the current state of the practice; they do not prescribe one tool as best for every robotics task.
+These contributions are descriptive and methodological. The report characterizes existing software by measuring it against defined quality attributes. The resulting rankings describe the current state of practice in software development; they do not prescribe any particular software package.
 
 \section{Organization}
 \label{sec:organization}
@@ -85,7 +85,7 @@ The remainder of this report is organized as follows. The research questions are
     \item \textbf{Chapter~\ref{ch:selected-software-commonality}} presents the 28 selected packages as a software family and reports the commonality analysis: shared capabilities, variability points, and parameters of variation.
     \item \textbf{Chapter~\ref{ch:measurement-results}} ranks the selected packages on the nine Domain~X quality categories, reports the measurement results and repository metrics, and compares the quality-based ranking with community-facing indicators of visibility and adoption.
     \item \textbf{Chapter~\ref{ch:comparison-research-software}} compares MPS software with prior State-of-the-Practice studies of other scientific software domains on three dimensions: repository artifacts, tool usage, and development principles, processes, and methodologies.
-    \item \textbf{Chapter~\ref{ch:developer-interviews}} reports the developer pain points for MPS software: a summary of the pain points, what developers do about them, and recommended practices.
+    \item \textbf{Chapter~\ref{ch:developer-interviews}} reports the developer pain points and interview findings for MPS software: the interview evidence base, recurring pain points, practices used to address them, quality-related findings, and cross-domain comparison.
     \item \textbf{Chapter~\ref{ch:recommendations}} gives recommendations for future MPS software practice, based on the public-artifact measurements, commonality analysis, and cross-domain comparison.
     \item \textbf{Chapter~\ref{ch:threats-to-validity}} discusses threats to validity, including limitations related to candidate selection, public-artifact measurement, source bias, and the interpretation of quality scores.
     \item \textbf{Chapter~\ref{ch:conclusions}} summarizes the study, answers the research questions, states the key findings, and identifies directions for future work.
