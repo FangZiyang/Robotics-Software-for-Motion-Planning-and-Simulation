@@ -1,7 +1,65 @@
 \chapter{Excluded Software Packages}
 \label{appendix:excluded-software-packages}
 
-% Drafting note: Record software excluded after ranking and filtering, with
-% evidence-based reasons such as proprietary licensing, insufficient public
-% repository evidence, or inactivity.
+This appendix records software packages that were considered during candidate discovery but excluded before measurement. Exclusions follow the criteria described in Section~\ref{sec:filtering-criteria}: open-source availability, repository-based measurability, and activity and maintenance status. A small number of additional packages were excluded to keep the selected set methodologically coherent, also described below.
 
+\section*{Excluded for Lack of Open-Source Availability}
+
+The packages in Table~\ref{tab:excluded-non-oss} have proprietary core components or closed source code, which prevents the repository-based measurement described in Section~\ref{sec:measurement-procedure}. Dr.~Giamou confirmed that excluding these tools on methodological grounds does not misrepresent the MPS domain.
+
+\begin{table}[H]
+\centering
+\caption{Packages excluded for lack of open-source availability.}
+\label{tab:excluded-non-oss}
+\small
+\begin{tabular}{@{}p{3.5cm}p{9.5cm}@{}}
+\toprule
+\textbf{Package} & \textbf{Reason for exclusion} \\
+\midrule
+MATLAB / Simulink & Proprietary software; source code not publicly available; development process not accessible through public repositories. \\
+Unity & Game engine with robotics simulation capabilities, but the core simulation engine is proprietary. \\
+NVIDIA Isaac Sim & Built on NVIDIA Omniverse; core platform components are not open source. \\
+RaiSim & High-performance physics simulator; source code not publicly available under an open-source license. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section*{Excluded for Inactivity}
+
+The packages in Table~\ref{tab:excluded-inactive} were excluded under the Domain~X alive/dead rule (Section~\ref{subsec:activity-maintenance-status}): no commits or releases within the 18 months preceding the May 2026 measurement date, and no current maintenance.
+
+\begin{table}[H]
+\centering
+\caption{Packages excluded on activity grounds.}
+\label{tab:excluded-inactive}
+\small
+\begin{tabular}{@{}p{3.5cm}p{9.5cm}@{}}
+\toprule
+\textbf{Package} & \textbf{Reason for exclusion} \\
+\midrule
+MRDS (Microsoft Robotics Developer Studio) & No updates since 2012; no longer supported by Microsoft. \\
+USARSim (Unified System for Automation and Robot Simulation) & No active maintenance; does not represent current practice. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section*{Excluded to Maintain Methodological Coherence}
+
+The packages in Table~\ref{tab:excluded-scope} are public reference implementations of motion planning algorithms rather than general-purpose simulators, planning frameworks, physics engines, or middleware. Including them alongside Gazebo, MoveIt!, or ROS~2 would force a comparison between full software stacks and single-algorithm libraries and would distort both the commonality analysis and the cross-package measurements. They were excluded to maintain methodological consistency, not because of any quality concern.
+
+\begin{table}[H]
+\centering
+\caption{Packages excluded to maintain methodological coherence.}
+\label{tab:excluded-scope}
+\small
+\begin{tabular}{@{}p{3.5cm}p{9.5cm}@{}}
+\toprule
+\textbf{Package} & \textbf{Reason for exclusion} \\
+\midrule
+GPMP2 (Gaussian Process Motion Planner~2) & Single-algorithm optimization-based motion planning reference implementation; narrower in scope than the general-purpose packages that dominate the candidate list. \\
+CHOMP (Covariant Hamiltonian Optimization for Motion Planning) & Single-algorithm optimization-based motion planning reference implementation; narrower in scope than the general-purpose packages that dominate the candidate list. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The full filtered candidate list, including packages excluded at each step, is preserved in the project materials (\texttt{examples/software-list-counting-result.xlsx}).

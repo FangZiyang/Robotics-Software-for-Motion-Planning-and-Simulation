@@ -1,6 +1,57 @@
 \chapter{Mention Count Source List}
 \label{appendix:mention-count-source-list}
 
-% Drafting note: Use this appendix for source lists and mention-count audit
-% material. Keep raw copied web material out of the main prose.
+This appendix lists the sources used to construct the consolidated mention-count ranking described in Section~\ref{sec:mention-count-ranking}. Sources fall into two categories: community-curated robotics software lists and academic survey or comparison papers. The auxiliary LLM-generated lists are not enumerated here; they are recorded as a single discovery source in the project materials (\texttt{examples/sofware-counting-webs.csv}) and are discussed in Section~\ref{subsec:llm-assisted-sources}.
 
+\section*{Community-Curated Sources}
+
+Table~\ref{tab:community-mention-sources} lists the 15 community-curated sources used for candidate discovery. Each source is a public list, GitHub Topic page, or Wikipedia article that aggregates robotics software relevant to motion planning or simulation.
+
+\begin{table}[H]
+\centering
+\caption{Community-curated sources used for mention counting.}
+\label{tab:community-mention-sources}
+\small
+\begin{tabular}{@{}p{4.6cm}p{8.2cm}@{}}
+\toprule
+\textbf{Source} & \textbf{Description} \\
+\midrule
+GitHub Topic: motion-planning & GitHub Topic page aggregating active motion planning projects. \\
+GitHub Topic: robotics-simulation & GitHub Topic page aggregating robotics simulation projects. \\
+GitHub Topic: path-planning & GitHub Topic page for path and motion planning. \\
+GitHub Topic: robotics-navigation & GitHub Topic page for navigation and planning. \\
+best-of-robot-simulators & Curated list of robotic simulators (knmcguire). \\
+Awesome Robotics Libraries & Robotics library list with planning and simulation sections (jslee02). \\
+Awesome Robotics (ahundt) & Comprehensive robotics list covering planning, optimization, and simulation. \\
+Awesome Robotics (kiloreux) & Community-maintained robotics list with planning and simulation entries. \\
+Awesome Motion Planning & Motion planning list covering classical and modern libraries (AGV-IIT-KGP). \\
+Awesome Multibody Dynamics Simulation & Multibody dynamics and simulation list (jslee02). \\
+Awesome Robotic Tooling & Robotic tools and libraries list (Ly0n). \\
+Awesome ROS 2 & ROS~2 ecosystem list including navigation, planning, and simulation (fkromer). \\
+Awesome Webots & Webots-focused ecosystem list (lukicdarkoo). \\
+Awesome Robotics Projects & Robotics projects list with planning and simulation components (mjyc). \\
+Wikipedia: Robotics simulator & Wikipedia article aggregating robotics simulator entries. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section*{Academic Sources}
+
+Table~\ref{tab:academic-mention-sources} lists the academic sources used for candidate discovery. These papers compare or survey simulators and tools used in robotics research.
+
+\begin{table}[H]
+\centering
+\caption{Academic sources used for mention counting.}
+\label{tab:academic-mention-sources}
+\small
+\begin{tabular}{@{}p{6.8cm}p{6.0cm}@{}}
+\toprule
+\textbf{Source} & \textbf{Packages discussed} \\
+\midrule
+A Comparison of Humanoid Robot Simulators: A Quantitative Approach (arXiv:2008.04627) & Gazebo, Webots, V-REP/CoppeliaSim \\
+A Study on the Challenges of Using Robotics Simulators for Testing (2020, arXiv:2004.07368) & Gazebo, Webots, MuJoCo, PyBullet \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The raw catalogue of these sources, including the URLs captured during discovery and the per-source package mentions, is preserved in \texttt{examples/sofware-counting-webs.csv}. The consolidated ranking with per-package mention counts is in \texttt{examples/software-list-counting-result.xlsx} (sheet \texttt{final.m}).

@@ -1,6 +1,87 @@
 \chapter{Full Candidate Software List}
 \label{appendix:full-candidate-software-list}
 
-% Drafting note: Use this appendix for the complete candidate list before final
-% filtering, or for a table exported from the candidate-discovery materials.
+This appendix records the candidate software packages considered during candidate discovery (Section~\ref{sec:candidate-software-discovery}). The list combines packages surfaced through academic survey papers, community-curated lists, and LLM-assisted discovery. Each package was scored by mention count, then evaluated against the filtering criteria in Section~\ref{sec:filtering-criteria}. The ranked mention counts are preserved in \texttt{examples/software-list-counting-result.xlsx} (sheet \texttt{final.m}); the per-source catalogue is in \texttt{examples/sofware-counting-webs.csv}.
 
+Table~\ref{tab:full-candidate-list} lists the candidate packages with their primary role in the MPS workflow and their status after filtering. Packages marked \textit{Measured} are reported in Chapter~\ref{ch:measurement-results}; packages marked \textit{Excluded} are explained in Appendix~\ref{appendix:excluded-software-packages}; packages marked \textit{Not selected} appeared in one or more LLM-assisted discovery sources but did not reach the measured set, either because they ranked below the cutoff after mention counting and filtering, or because they are subsumed by a measured package (for example, \textit{Orocos~KDL} is a component of \textit{OROCOS}).
+
+\begin{longtable}{@{}p{4.0cm}p{4.8cm}p{3.6cm}@{}}
+\caption{Candidate software packages considered for measurement.}
+\label{tab:full-candidate-list}\\
+\toprule
+\textbf{Package} & \textbf{Primary role} & \textbf{Status} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Package} & \textbf{Primary role} & \textbf{Status} \\
+\midrule
+\endhead
+AirSim & Simulator (aerial vehicles) & Measured \\
+Bullet / PyBullet & Physics engine & Measured \\
+CARLA & Simulator (autonomous driving) & Measured \\
+CoppeliaSim (V-REP) & Simulator (general robotics) & Measured \\
+DART & Dynamics library & Measured \\
+Drake & Toolbox (dynamics, planning, control) & Measured \\
+Flightmare & Simulator (quadrotor) & Measured \\
+Gazebo & Simulator (general robotics) & Measured \\
+GraspIt! & Manipulation (grasping) & Measured \\
+Habitat-Sim & Simulator (embodied AI) & Measured \\
+MORSE & Simulator (academic robotics) & Measured \\
+MoveIt! / MoveIt~2 & Manipulation (motion planning) & Measured \\
+MRPT & Library (mobile robotics) & Measured \\
+MuJoCo & Physics engine & Measured \\
+Newton Dynamics & Physics engine & Measured \\
+ODE (Open Dynamics Engine) & Physics engine & Measured \\
+OMPL & Motion planning library & Measured \\
+OpenRAVE & Planning framework & Measured \\
+OpenRTM-aist & Middleware (RT components) & Measured \\
+OROCOS & Real-time control framework & Measured \\
+PhysX (open-source SDK) & Physics engine & Measured \\
+Pinocchio & Dynamics library & Measured \\
+Project Chrono & Multi-physics simulation & Measured \\
+ROS~2 & Middleware and SDK & Measured \\
+Simbody & Multibody dynamics library & Measured \\
+SOFA & Simulation framework & Measured \\
+Webots & Simulator (general robotics) & Measured \\
+YARP & Middleware (humanoid robotics) & Measured \\
+\midrule
+MATLAB / Simulink & Robotics development environment & Excluded (non-OSS) \\
+Unity & Game engine / simulator & Excluded (non-OSS) \\
+NVIDIA Isaac Sim & Simulator (high-fidelity, AI) & Excluded (non-OSS) \\
+RaiSim & Physics simulator & Excluded (non-OSS) \\
+MRDS & Simulator (Microsoft) & Excluded (inactive) \\
+USARSim & Simulator (robot/automation) & Excluded (inactive) \\
+GPMP2 & Motion planning algorithm (reference impl.) & Excluded (scope) \\
+CHOMP & Motion planning algorithm (reference impl.) & Excluded (scope) \\
+\midrule
+ROS (ROS~1) & Middleware (predecessor of ROS~2) & Not selected \\
+iGibson / OmniGibson & Simulator (interactive household) & Not selected \\
+ManiSkill & Simulator (manipulation benchmark) & Not selected \\
+SAPIEN & Simulator (general robotics) & Not selected \\
+robosuite & Simulator (manipulation, MuJoCo-based) & Not selected \\
+Tesseract & Planning environment (optimization) & Not selected \\
+TrajOpt & Trajectory optimization library & Not selected \\
+SBPL & Motion planning library (search-based) & Not selected \\
+STOMP & Motion planning algorithm & Not selected \\
+KineoWorks & Path planning (Siemens, commercial) & Not selected \\
+Robotics Toolbox for MATLAB & Robotics toolbox (MATLAB) & Not selected \\
+RBDL & Rigid body dynamics library & Not selected \\
+iDynTree & Multibody dynamics, estimation & Not selected \\
+Orocos KDL & Kinematics and dynamics (subsumed by OROCOS) & Not selected \\
+KDL & Kinematics library (KU Leuven) & Not selected \\
+Crocoddyl & Optimal control library (DDP) & Not selected \\
+ros2\_control & Robot control framework (ROS~2) & Not selected \\
+Navigation2 (Nav2) & Mobile robot navigation stack & Not selected \\
+FCL & Collision and proximity queries & Not selected \\
+Crazyswarm / Crazyswarm2 & Multi-drone control and planning & Not selected \\
+Polymetis & Robot controllers (PyTorch) & Not selected \\
+acados & Real-time NMPC and MHE solvers & Not selected \\
+CasADi & AD and nonlinear optimization & Not selected \\
+do-mpc & Python MPC and MHE & Not selected \\
+RoboDK & Industrial robot simulator and OLP & Not selected \\
+RobotStudio & Industrial robot simulator (ABB) & Not selected \\
+Delmia & Digital manufacturing suite (Dassault) & Not selected \\
+\bottomrule
+\end{longtable}
+
+The 28 measured packages were selected after the mention-count ranking and the filtering criteria in Section~\ref{sec:filtering-criteria}. Packages marked \textit{Not selected} appeared in the candidate pool but did not meet the open-source, repository-measurability, or activity criteria, or were subsumed by another measured package. Packages such as \textit{KineoWorks}, \textit{Robotics Toolbox for MATLAB}, \textit{RoboDK}, \textit{RobotStudio}, and \textit{Delmia} are proprietary or industrial tools and therefore fall outside the open-source criterion. \textit{ROS}~(ROS~1) is the predecessor of \textit{ROS~2}; the active successor was chosen so that the measurement reflects current practice.

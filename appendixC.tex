@@ -1,9 +1,157 @@
 \chapter{Measurement Template}
 \label{appendix:measurement-template}
 
-% Drafting note: Include the Domain X Appendix B measurement template or a
-% summarized version of the fields used in this project. Preserve the nine
-% quality categories from Appendix B: installability; correctness and
-% verifiability; surface reliability; surface robustness; surface usability;
-% maintainability; reusability; surface understandability; and
-% visibility/transparency.
+This appendix reproduces the structure of the measurement template used in this study. The template is adapted from the Domain~X Appendix~B template~\citep{Smith2021} and is grouped into project metadata, the nine quality categories described in Section~\ref{sec:software-quality-attributes}, and repository metrics collected through the DomainX tooling. The full per-package responses are recorded in the project material \texttt{summary.csv}, with one row per question and one column per package. Each quality section ends with an overall impression score on a 1--10 scale.
+
+\section*{Project Metadata}
+
+\begin{itemize}
+    \item Software name.
+    \item URL.
+    \item Affiliation: institution(s).
+    \item Software purpose.
+    \item Number of developers (commits-based count from repository logs).
+    \item Funding source (unfunded, unclear, or funded with a string identifying the source).
+    \item Initial release date.
+    \item Last commit date.
+    \item Status (alive, dead, or unclear; alive requires commits in the previous 18 months).
+    \item License (GNU GPL, BSD, MIT, terms of use, trial, none, unclear, other).
+    \item Supported platforms (Windows, Linux, macOS, Android, other).
+    \item Software category (concept, public, or private).
+    \item Development model (open source, freeware, commercial, or unclear).
+    \item Number of publications mentioning the software.
+    \item Source code URL.
+    \item Programming languages.
+    \item Whether performance was considered.
+\end{itemize}
+
+\section*{Installability}
+
+\begin{itemize}
+    \item Are installation instructions present?
+    \item Are the instructions in one place (single document or web page)?
+    \item Are the instructions linear (a single sequence of steps)?
+    \item Are the instructions written assuming no dependencies are pre-installed?
+    \item Are compatible operating system versions listed?
+    \item Is the installation automated (makefile, script, installer, container)?
+    \item If installation broke, was a descriptive error message displayed?
+    \item Is there a specified way to validate the installation?
+    \item Number of installation steps (including manual steps such as unzip).
+    \item Operating system used for installation.
+    \item Number of extra packages required before or during installation.
+    \item Are required package versions listed?
+    \item Are dependency installation instructions provided?
+    \item Were there problems caused by uninstall (where applicable)?
+    \item Overall installability impression (1--10).
+\end{itemize}
+
+\section*{Correctness and Verifiability}
+
+\begin{itemize}
+    \item Is there any reference to requirements specifications or theory manuals?
+    \item What tools or techniques are used to build confidence in correctness (literate programming, automated testing, assertions, continuous integration, etc.)?
+    \item Is there a getting-started tutorial?
+    \item Are tutorial instructions linear?
+    \item Does the tutorial provide an expected output?
+    \item Does the tutorial output match the expected output?
+    \item Are unit tests available?
+    \item Is there evidence that performance was considered?
+    \item Overall correctness and verifiability impression (1--10).
+\end{itemize}
+
+\section*{Surface Reliability}
+
+\begin{itemize}
+    \item Did the software break during installation?
+    \item If installation broke, was a descriptive error message displayed?
+    \item Did the software break during the initial tutorial test?
+    \item If the tutorial test broke, was a descriptive error message displayed?
+    \item If the tutorial test broke, was recovery possible?
+    \item Overall surface reliability impression (1--10).
+\end{itemize}
+
+\section*{Surface Robustness}
+
+\begin{itemize}
+    \item Does the software handle unexpected or unanticipated input gracefully (data of the wrong type, malformed input, etc.)?
+    \item For text input files, does the software handle modified line endings or other text-file edge cases?
+    \item Overall surface robustness impression (1--10).
+\end{itemize}
+
+\section*{Surface Usability}
+
+\begin{itemize}
+    \item Is there a getting-started tutorial?
+    \item Is there a user manual?
+    \item Are expected user characteristics documented?
+    \item What is the user support model (FAQ, user forum, email address for questions, etc.)?
+    \item Overall surface usability impression (1--10).
+\end{itemize}
+
+\section*{Maintainability}
+
+\begin{itemize}
+    \item What is the current version number?
+    \item Is there information on code review or contribution practices?
+    \item Are non-code artifacts available, and which kinds?
+    \item What issue tracking tool is in use?
+    \item What percentage of identified issues are closed?
+    \item What percentage of code consists of comments?
+    \item Which version control system is in use?
+    \item Overall maintainability impression (1--10).
+\end{itemize}
+
+\section*{Reusability}
+
+\begin{itemize}
+    \item How many code files are there?
+    \item Is the API documented?
+    \item Overall reusability impression (1--10).
+\end{itemize}
+
+\section*{Surface Understandability}
+
+\begin{itemize}
+    \item Is indentation and formatting style consistent?
+    \item Is a coding standard explicitly identified?
+    \item Are code identifiers consistent and meaningful?
+    \item Are constants other than 0 and 1 hard-coded into the program?
+    \item Are comments clear?
+    \item Are parameters in the same order for all functions?
+    \item Is the name or URL of any algorithm used mentioned?
+    \item Is the code modularized?
+    \item Overall surface understandability impression (1--10).
+\end{itemize}
+
+\section*{Visibility and Transparency}
+
+\begin{itemize}
+    \item Is the development process defined?
+    \item Are there documents recording the development process and status?
+    \item Is the development environment documented?
+    \item Are release notes available?
+    \item Overall visibility and transparency impression (1--10).
+\end{itemize}
+
+\section*{Repository Metrics}
+
+Counts collected from the primary repository at the measurement date. For projects with multiple repositories, the choice of the primary repository is recorded as part of the measurement notes.
+
+\begin{itemize}
+    \item Number of text-based files.
+    \item Number of binary files.
+    \item Total lines in text-based files.
+    \item Total lines added to text-based files.
+    \item Total lines deleted from text-based files.
+    \item Total number of commits.
+    \item Commits per year for the last five years (or since project start if younger).
+    \item Commits per month for the last twelve months.
+    \item Code lines, comment lines, and blank lines in text-based files.
+    \item Number of stars.
+    \item Number of forks.
+    \item Number of repository watchers.
+    \item Number of open pull requests.
+    \item Number of closed pull requests.
+\end{itemize}
+
+Each substantive question above corresponds to one row in \texttt{summary.csv}, with the per-package answer recorded in the column for that package. Including the supplementary entries (overall impression scores per category and the free-text additional-comments fields), the template contains approximately 108 fields per package.
