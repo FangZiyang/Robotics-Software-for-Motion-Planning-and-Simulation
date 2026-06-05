@@ -1,5 +1,6 @@
 param(
     [string]$Main = "main",
+    [string]$Output = "Robotics-Software-State-of-Practice",
     [switch]$Fast,
     [int]$DockerReadyTimeoutSeconds = 20
 )
@@ -76,20 +77,21 @@ try {
     Assert-DockerEngineReady
 
     $texFile = "${Main}.tex"
+    $jobName = "-jobname=$Output"
 
-    Invoke-LatexCommand @("pdflatex", "-interaction=nonstopmode", "-halt-on-error", $texFile)
-
-    if (-not $Fast) {
-        Invoke-LatexCommand @("bibtex", $Main)
-    }
-
-    Invoke-LatexCommand @("pdflatex", "-interaction=nonstopmode", "-halt-on-error", $texFile)
+    Invoke-LatexCommand @("pdflatex", $jobName, "-interaction=nonstopmode", "-halt-on-error", $texFile)
 
     if (-not $Fast) {
-        Invoke-LatexCommand @("pdflatex", "-interaction=nonstopmode", "-halt-on-error", $texFile)
+        Invoke-LatexCommand @("bibtex", $Output)
     }
 
-    Write-Host "PDF generated: $ProjectRoot\$Main.pdf"
+    Invoke-LatexCommand @("pdflatex", $jobName, "-interaction=nonstopmode", "-halt-on-error", $texFile)
+
+    if (-not $Fast) {
+        Invoke-LatexCommand @("pdflatex", $jobName, "-interaction=nonstopmode", "-halt-on-error", $texFile)
+    }
+
+    Write-Host "PDF generated: $ProjectRoot\$Output.pdf"
 }
 finally {
     Pop-Location

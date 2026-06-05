@@ -16,14 +16,14 @@
 *.synctex.gz
 *.toc
 
-# The compiled report PDF is intentionally trackable because CI commits it on
-# pushes to main. Auxiliary LaTeX build files stay ignored above.
+# The named report PDF is intentionally trackable for review/submission.
+# Auxiliary LaTeX build files stay ignored above.
 #
 # Tracked PDF (NOT added to .gitignore):
 #   - Robotics-Software-State-of-Practice.pdf
 #
-# main.pdf is the raw pdflatex output; CI copies it to the tracked name above,
-# so the raw copy itself stays untracked.
+# main.pdf is a legacy/raw output from running pdflatex directly on main.tex.
+# The supported build script uses -jobname and writes the named PDF above.
 main.pdf
 
 # Editor and OS noise

@@ -16,7 +16,7 @@ This runs:
 pdflatex -> bibtex -> pdflatex -> pdflatex
 ```
 
-The generated PDF is `main.pdf`.
+The generated PDF is `Robotics-Software-State-of-Practice.pdf`.
 
 ## Faster build while editing
 
@@ -33,10 +33,10 @@ This runs `pdflatex` twice and skips BibTeX.
 The Docker Compose service is named `latex`.
 
 ```powershell
-docker compose run --rm latex pdflatex -interaction=nonstopmode -halt-on-error main.tex
-docker compose run --rm latex bibtex main
-docker compose run --rm latex pdflatex -interaction=nonstopmode -halt-on-error main.tex
-docker compose run --rm latex pdflatex -interaction=nonstopmode -halt-on-error main.tex
+docker compose run --rm latex pdflatex -jobname=Robotics-Software-State-of-Practice -interaction=nonstopmode -halt-on-error main.tex
+docker compose run --rm latex bibtex Robotics-Software-State-of-Practice
+docker compose run --rm latex pdflatex -jobname=Robotics-Software-State-of-Practice -interaction=nonstopmode -halt-on-error main.tex
+docker compose run --rm latex pdflatex -jobname=Robotics-Software-State-of-Practice -interaction=nonstopmode -halt-on-error main.tex
 ```
 
 If Docker commands hang before LaTeX output appears, restart Docker Desktop and run the script again.

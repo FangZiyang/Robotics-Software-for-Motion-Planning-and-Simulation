@@ -1,4 +1,4 @@
-name: Build report PDF
+name: Check thesis source
 
 on:
   push:
@@ -10,94 +10,68 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  build-pdf:
-    name: Compile LaTeX report
+  source-checks:
+    name: Static source checks
     runs-on: ubuntu-latest
-
-    env:
-      LATEX_IMAGE: texlive/texlive:latest
-      MAIN_BASENAME: main
-      FINAL_BASENAME: Robotics-Software-State-of-Practice
 
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: First LaTeX pass
+      - name: Check required project files
         run: |
-          docker run --rm \
-            -v "${{ github.workspace }}:/work" \
-            -w /work \
-            "$LATEX_IMAGE" \
-            pdflatex -interaction=nonstopmode -halt-on-error "$MAIN_BASENAME.tex"
+          test -f main.tex
+          test -f references.bib
+          test -f build-pdf.ps1
+          test -f BUILD.md
+          test -f Robotics-Software-State-of-Practice.pdf
 
-      - name: BibTeX pass when citations exist
+      - name: Check included TeX files exist
         run: |
-          if grep -q '^\\citation' "$MAIN_BASENAME.aux"; then
-            docker run --rm \
-              -v "${{ github.workspace }}:/work" \
-              -w /work \
-              "$LATEX_IMAGE" \
-              bibtex "$MAIN_BASENAME"
-          else
-            echo "No citations found in $MAIN_BASENAME.aux; skipping bibtex."
-          fi
+          python3 - <<'PY'
+          import pathlib
+          import re
+          import sys
 
-      - name: Final LaTeX passes
+          root = pathlib.Path(".")
+          main = root / "main.tex"
+          pattern = re.compile(r"\\(?:include|input)\{([^}]+)\}")
+          missing = []
+
+          for line in main.read_text(encoding="utf-8").splitlines():
+              source = line.split("%", 1)[0]
+              for match in pattern.finditer(source):
+                  target = match.group(1)
+                  path = root / (target if target.endswith(".tex") else f"{target}.tex")
+                  if not path.exists():
+                      missing.append(str(path))
+
+          if missing:
+              print("Missing TeX files referenced from main.tex:")
+              for path in missing:
+                  print(f"  - {path}")
+              sys.exit(1)
+
+          print("All active include/input TeX files exist.")
+          PY
+
+      - name: Check for merge conflict markers
         run: |
-          docker run --rm \
-            -v "${{ github.workspace }}:/work" \
-            -w /work \
-            "$LATEX_IMAGE" \
-            pdflatex -interaction=nonstopmode -halt-on-error "$MAIN_BASENAME.tex"
-
-          docker run --rm \
-            -v "${{ github.workspace }}:/work" \
-            -w /work \
-            "$LATEX_IMAGE" \
-            pdflatex -interaction=nonstopmode -halt-on-error "$MAIN_BASENAME.tex"
-
-      - name: Check for undefined citations
-        run: |
-          echo "Checking $MAIN_BASENAME.log for undefined citation warnings..."
-          if grep -E 'Citation .+ undefined' "$MAIN_BASENAME.log"; then
-            echo ""
-            echo "ERROR: One or more citations are unresolved (shown as '?' in PDF)."
-            echo "Fix the \\cite{} keys or add the missing entries to your .bib file."
+          if git grep -nE '^(<<<<<<<|=======|>>>>>>>)' -- '*.tex' '*.bib' '*.md' '*.ps1' '.github/workflows/*.yml'; then
+            echo "Merge conflict markers found."
             exit 1
           fi
-          echo "All citations resolved."
 
-      - name: Check for undefined references
+      - name: Check named PDF build configuration
         run: |
-          echo "Checking $MAIN_BASENAME.log for undefined reference warnings..."
-          if grep -E 'Reference .+ undefined' "$MAIN_BASENAME.log"; then
-            echo ""
-            echo "ERROR: One or more cross-references are unresolved (shown as '?' in PDF)."
-            echo "Fix the \\ref{} / \\eqref{} keys or ensure the referenced labels exist."
+          if ! grep -q 'Robotics-Software-State-of-Practice.pdf' BUILD.md; then
+            echo "BUILD.md does not document the named report PDF."
             exit 1
           fi
-          echo "All references resolved."
-
-      - name: Rename combined PDF
-        run: cp "$MAIN_BASENAME.pdf" "$FINAL_BASENAME.pdf"
-
-      - name: Upload PDF and log
-        uses: actions/upload-artifact@v4
-        with:
-          name: report-pdf
-          path: |
-            ${{ env.FINAL_BASENAME }}.pdf
-            ${{ env.MAIN_BASENAME }}.log
-          if-no-files-found: error
-
-      - name: Commit and push compiled PDF
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        uses: stefanzweifel/git-auto-commit-action@v7
-        with:
-          commit_message: 'Update compiled report PDF [skip ci]'
-          file_pattern: ${{ env.FINAL_BASENAME }}.pdf
-          branch: main
+          if ! grep -q 'Robotics-Software-State-of-Practice' build-pdf.ps1; then
+            echo "build-pdf.ps1 does not use the named report output."
+            exit 1
+          fi
