@@ -33,6 +33,7 @@ Thumbs.db
 .idea/
 
 # Agents
+.codegraph/
 .agents/
 AGENTS.md
 .codex/
@@ -43,11 +44,36 @@ AGENTS.md
 .aider*
 .skills/
 skills/
+AI-Agent/
+CLAUDE.md
 examples/AI_READING_NOTES.md
 examples/AIMSS-LBM-Peter/
 examples/AIMSS-MedImaging-Ao/
 examples/Gabe/
 examples/PDF/
+
+# Local reference imports and converted example material
+examples/CN - */
+examples/CN - *.pdf
+examples/Methodology for Assessing the State of the Practice for Domain X.txt
+examples/Research Software Sharing, Publication, & Distribution Checklists.pdf
+examples/State of the Practice for *.pdf
+examples/State_of_Practice_*.md
+examples/State_of_Practice_*.pdf
+examples/convert_pdf_to_md.py
+examples/domain-x-methodology.md
+examples/journal-*.md
+examples/lbm-journal-fulltext.txt
+examples/writing-reference-guide.md
+
+# Local review, feedback, and scratch artifacts
+*.dmp
+feedback/
+advisor-review-chapters-1-6.md
+comprehensive_thesis_audit.md
+review-chapters-1-6.md
+revision-summary-zh.md
+diff_batch*.txt
 
 # Common typo/local agent scratch directories
 agnet/
