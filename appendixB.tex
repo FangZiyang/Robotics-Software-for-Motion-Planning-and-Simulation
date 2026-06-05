@@ -6,7 +6,7 @@ This appendix lists the sources used to construct the consolidated mention-count
 \section*{Community-Curated Sources}
 
 Table~\ref{tab:community-mention-sources} lists the 15 community-curated sources used for candidate discovery. Each source is a public list, GitHub Topic page, or Wikipedia article that aggregates robotics software relevant to motion planning or simulation.
-The GitHub Topic pages were manually inspected as dynamic GitHub aggregations; copied raw page text is preserved for the static curated-list pages where available.
+The four GitHub Topic pages are retained because they are recorded in the source catalogue (\path{examples/sofware-counting-webs.csv}). They are dynamic GitHub aggregations, so copied page text was not preserved in \path{examples/web-list-raw-material.md} in the same way as the static curated-list pages.
 
 \begin{table}[H]
 \centering
@@ -49,7 +49,7 @@ Table~\ref{tab:academic-mention-sources} lists the ten academic survey and compa
 \toprule
 \textbf{Academic source} & \textbf{Example packages discussed} \\
 \midrule
-Brugali et al. (2007), ``Trends in Robotic Software Frameworks'' & ROS, OROCOS, OpenRTM-aist, Gazebo, YARP \\
+Brugali et al. (2007), ``Trends in Robotic Software Frameworks'' (book chapter) & ROS, OROCOS, OpenRTM-aist, Gazebo, YARP \\
 \v{Z}lajpah (2008), ``Simulation in Robotics'' & GraspIt!, ODE, Newton Dynamics, CoppeliaSim \\
 Reckhaus et al. (2010), ``An Overview about Simulation and Emulation in Robotics'' & GraspIt!, OpenRAVE, Gazebo \\
 Harris and Conrad (2011), ``Survey of Popular Robotics Simulators, Frameworks, and Toolkits'' & Gazebo, ROS, OpenRAVE, MRPT, Webots \\
@@ -82,4 +82,4 @@ Gemini-generated robotics software table & Auxiliary consolidated table of robot
 \end{tabular}
 \end{table}
 
-The source catalogue with community-source URLs and archived LLM-assisted outputs is preserved in \texttt{examples/sofware-counting-webs.csv}. Raw captured text from static public web lists is preserved in \texttt{examples/web-list-raw-material.md}. The consolidated ranking with per-package mention counts is in \texttt{examples/software-list-counting-result.xlsx} (sheet \texttt{final.m}).
+The source catalogue with community-source URLs and archived LLM-assisted outputs is preserved in \path{examples/sofware-counting-webs.csv}. Raw captured text from static public web lists is preserved in \path{examples/web-list-raw-material.md}. The consolidated ranking with per-package mention counts is in \path{examples/software-list-counting-result.xlsx} (sheet \texttt{final.m}).
