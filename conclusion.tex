@@ -4,24 +4,35 @@
 \section{Summary}
 \label{sec:conclusion-summary}
 
-% TODO: Summarize the study: scope, methodology, and main activities.
+This report applied the Domain~X State-of-the-Practice methodology to robotics software for motion planning and simulation. Candidate packages were identified from academic sources, community-curated lists, and auxiliary LLM-assisted discovery; filtered using domain relevance, public measurability, and repository evidence; and measured as a final set of 28 packages using the Domain~X quality template. The set includes simulators, physics engines, dynamics libraries, planning libraries, middleware, and manipulation or robotics toolkits.
+
+The main evidence base for the current report is public artifact measurement. The measurements cover repository metadata, installation evidence, correctness and testing evidence, surface reliability and surface robustness checks, surface usability artifacts, maintainability indicators, reusability evidence, surface understandability indicators, and visibility/transparency practices. The report also compares MPS results with prior State-of-the-Practice studies and prepares a developer-interview component for questions that cannot be answered from public repositories alone.
 
 \section{Answers to Research Questions}
 \label{sec:answers-research-questions}
 
-% TODO: Provide high-level answers to RQ1--RQ9, referencing the chapters 
-% where detailed evidence is presented.
+RQ1 asks which software packages are candidates for the State-of-the-Practice study. The study selected 28 repository-measurable packages within the MPS scope after filtering broader candidate lists for relevance, open-source availability, and measurable public evidence. Chapter~\ref{ch:methodology} documents the selection process, and Chapter~\ref{ch:selected-software-commonality} describes the resulting software family.
+
+RQ2 asks how the selected packages rank with respect to the measured software qualities. Chapter~\ref{ch:measurement-results} reports the per-quality scores and the unweighted quality-mean ranking. The highest-scoring packages tend to be active, well documented, and transparent about testing, contribution, release, and development practices. The lower-scoring packages are often inactive, low-activity, or less visible in their process documentation.
+
+RQ3--RQ5 ask how MPS software compares with other research software domains in repository artifacts, tool use, and development principles, processes, and methodologies. Chapter~\ref{ch:comparison-research-software} shows that the measured MPS packages are strong in public repository infrastructure, installation automation, API documentation, issue tracking, and testing evidence, while still showing familiar research-software gaps around coding standards, user-characteristic documentation, requirements-style artifacts, and design rationale.
+
+RQ6--RQ9 concern developer pain points, practices for addressing those pain points, cross-domain comparison of pain points, and additional practices that could support future MPS development. These questions require approved developer-interview evidence. At the current stage, Chapter~\ref{ch:developer-interviews} records the planned reporting structure and evidence requirements rather than completed findings.
 
 \section{Key Findings}
 \label{sec:key-findings}
 
-% TODO: State the most important findings from the measurement results, 
-% commonality analysis, and cross-domain comparison.
+The strongest finding is that the measured MPS ecosystem is highly visible through public artifacts. All 28 packages have public source repositories, installation instructions, installation automation, getting-started tutorials, user manuals, issue tracking or equivalent development-status records, and API documentation. This public evidence makes the domain suitable for repository-based State-of-the-Practice measurement.
+
+The second finding is that activity and quality evidence are related but not identical. Active projects with visible contributor workflows, release notes, testing evidence, and documentation tend to score well, but repository age, commit granularity, project role, and stewardship model affect the interpretation of repository metrics. Community indicators such as GitHub stars and forks are useful context, but they are not substitutes for measured software-engineering quality.
+
+The third finding is that the MPS software family must be interpreted through roles. A simulator, middleware framework, physics engine, and planning library can all belong to MPS workflows without being interchangeable. The commonality analysis is therefore necessary for interpreting the measurement scores fairly.
 
 \section{Future Work}
 \label{sec:future-work}
 
-% TODO: Identify directions for future work, including:
-% - completing the developer interview component (RQ6--RQ9)
-% - extending the study to additional software domains
-% - longitudinal measurement to track quality changes over time
+The most immediate future work is to complete the developer interview component after the required MacREM ethics process, recruitment, consent, and qualitative analysis. That work is needed to answer RQ6--RQ9 and to connect public-artifact evidence with developer-reported pain points and practices.
+
+Future work should also repeat the measurements longitudinally. Repository activity, support channels, release practices, and documentation can change quickly, so repeating the study would show whether the observed quality patterns are stable or whether they shift as robotics software infrastructure evolves.
+
+Finally, future studies could extend the comparison to adjacent robotics software domains or to a narrower subset of MPS tools. A narrower study of only simulators, only physics engines, or only planning libraries would reduce heterogeneity and allow more role-specific interpretation, while the broader study reported here provides the cross-domain baseline.

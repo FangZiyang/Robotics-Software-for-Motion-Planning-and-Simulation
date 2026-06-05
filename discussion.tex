@@ -1,47 +1,7 @@
-\chapter{Discussion}
-\label{ch:discussion}
-
-This chapter interprets the measurement results, commonality analysis, and cross-domain comparison presented in the preceding chapters. Chapter~\ref{ch:measurement-results} reports the measured evidence; Chapter~\ref{ch:comparison-research-software} compares that evidence with prior State-of-the-Practice studies. The purpose of this chapter is to explain what those results mean for the research questions and for different readers of the report.
-
-\section{Interpretation of the Measurement Results}
-\label{sec:interpretation-measurement-results}
-
-The measured MPS packages show a generally healthy public-artifact profile. All 28 packages provide public repositories, installation instructions, installation automation, getting-started tutorials, user manuals, API documentation, version control evidence, and issue tracking. These artifacts matter because MPS software is often used as part of a larger robotics workflow rather than as an isolated executable. Users need to install packages alongside middleware, libraries, physics engines, sensor models, and robot descriptions; developers need APIs and issue trackers to integrate packages into larger systems.
-
-The strongest packages in the measurement results tend to share several traits. They are actively maintained, have visible contributor communities, provide substantial documentation, and expose development practices through public repositories. Gazebo, Drake, MoveIt!, ROS~2, OMPL, and Pinocchio score strongly across several quality categories. Their scores should not be read as universal recommendations, because the packages serve different roles. A simulator, a middleware framework, and a motion-planning library answer different needs. The ranking is useful only within the measurement frame defined in Chapter~\ref{ch:methodology}.
-
-The lower-scoring packages also show a consistent pattern. Dead, inactive, or low-activity projects tend to have weaker installation support, less visible development process, fewer current support channels, and more limited contribution infrastructure. This does not mean that older packages have no technical value. Some may remain important historically or may still be useful in specific settings. It does mean that public evidence of maintainability, transparency, and usability weakens when development activity slows.
-
-The heterogeneous nature of the selected package set is therefore central to interpretation. The commonality analysis in Chapter~\ref{ch:selected-software-commonality} shows that the selected set includes full simulators, physics engines, dynamics libraries, planning libraries, middleware, and robotics development frameworks. Treating these packages as interchangeable would distort the results. The measurements are most useful when read as evidence about development practice across a domain, not as a product-buying guide.
-
-\section{Answers to Research Questions}
-\label{sec:discussion-answers-research-questions}
-
-RQ1 asks which software packages are candidates for the State-of-the-Practice study. Chapter~\ref{ch:methodology} describes the candidate discovery, filtering, and selection process. The resulting measured set contains 28 packages that are publicly available, repository-measurable, and within the working MPS scope. Chapter~\ref{ch:selected-software-commonality} then explains how these packages relate to one another as a software family.
-
-RQ2 asks how the candidate packages rank with respect to the selected software qualities. Chapter~\ref{ch:measurement-results} reports the measurements across installability, correctness and verifiability, reliability, robustness, usability, maintainability, reusability, understandability, and visibility/transparency. The overall pattern is that active, well-documented, community-facing projects score more consistently than inactive or sparsely documented ones. The ranking is a structured summary of measured public evidence; it is not a claim that one package is best for every robotics use case.
-
-RQ3 through RQ5 ask how MPS projects compare with other research software domains in repository artifacts, tool usage, and development practices. Chapter~\ref{ch:comparison-research-software} addresses these questions directly. The short answer is that measured MPS projects appear strong in public repository infrastructure, installation support, API documentation, testing evidence, and issue tracking, while still sharing familiar research-software gaps around explicit coding standards, user-characteristic documentation, requirements-style artifacts, and design rationale.
-
-RQ6 through RQ9 concern developer pain points and the practices used to address them. Chapter~\ref{ch:developer-interviews} reports the developer interview findings: the pain points identified by MPS developers, the practices developers use or propose to address them, the cross-domain comparison with prior State-of-the-Practice studies, and the relationship between the interview evidence and the public-artifact measurements in Chapters~\ref{ch:measurement-results} and~\ref{ch:comparison-research-software}.
-
-\section{Implications for Robotics Software Users}
-\label{sec:implications-users}
-
-For users, the main implication is that package choice should be guided by task fit before quality score. A high-scoring simulator may be irrelevant if the task requires a planning library, and a strong middleware framework cannot replace a physics engine. The commonality analysis should therefore be read alongside the measurement results. It explains what role each package plays in an MPS workflow and helps avoid comparisons between tools that serve different purposes.
-
-Users should also treat public artifacts as evidence of risk. Installation instructions, tutorials, API documentation, issue trackers, and release notes lower the cost of adoption. Sparse documentation, weak release history, or inactive repositories do not automatically make a package unusable, but they increase the amount of work needed to evaluate, install, and maintain it in a project.
-
-\section{Implications for Software Maintainers}
-\label{sec:implications-maintainers}
-
-For maintainers, the results suggest that MPS software already performs well on many practical open-source artifacts. The most visible opportunities for improvement are more formal and explanatory artifacts. Explicit coding standards, documented user assumptions, design rationale, and requirements-style information are less common than installation guides, tutorials, and API references.
-
-These gaps matter because MPS packages are often used by new researchers, graduate students, industry developers, and contributors who were not part of the original project. A clear contribution process tells outsiders how to propose changes. A coding standard reduces review friction. User-characteristic documentation clarifies whether the project assumes robotics expertise, software engineering experience, familiarity with ROS, or knowledge of a particular physics or planning model. Design rationale helps future maintainers understand why the software is structured as it is.
-
-\section{Implications for State-of-the-Practice Studies}
-\label{sec:implications-sop}
-
-This study also shows why commonality analysis is important for heterogeneous domains. MPS software is broader than a single product category. The domain includes tools that overlap in workflows but not in function. Future State-of-the-Practice studies in similarly broad domains should separate two questions: whether a package belongs to the domain, and what role it plays once included.
-
-The study also shows the limits of public-artifact measurement. Public repositories reveal a great deal about documentation, issue tracking, releases, testing evidence, and development visibility. They reveal less about internal decision making, informal review, funding constraints, and developer pain points. The interview component reported in Chapter~\ref{ch:developer-interviews} provides this complementary evidence, and the conclusions about developer practice draw on both public artifacts and interview findings.
+% Retired draft chapter.
+%
+% This file is intentionally not included from main.tex. Supervisor feedback folded
+% the discussion material into the body chapters, recommendations, threats to
+% validity, and conclusions. Do not re-enable this chapter without rewriting it
+% against the current chapter structure; otherwise it will duplicate
+% conclusion.tex and may revive stale interview wording.

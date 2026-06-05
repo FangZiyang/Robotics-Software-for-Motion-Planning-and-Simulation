@@ -21,11 +21,11 @@ This chapter is organized as follows. Section~\ref{sec:research-questions} state
 \section{Research Questions}
 \label{sec:research-questions}
 
-The following research questions guide this study.
+The following research questions guide this report.
 
 \begin{enumerate}[RQ1.]
     \item What software packages are candidates for the State-of-the-Practice study of MPS software?
-    \item What is the ranking of the candidate packages from RQ1 with respect to the software qualities of installability, correctness and verifiability, reliability, robustness, usability, maintainability, reusability, understandability, and visibility and transparency?
+    \item What is the ranking of the candidate packages from RQ1 with respect to the software qualities of installability, correctness and verifiability, surface reliability, surface robustness, surface usability, maintainability, reusability, surface understandability, and visibility and transparency?
     \item How do MPS projects compare to other research software domains with respect to the artifacts present in their repositories?
     \item How do MPS projects compare to other research software domains with respect to the use of tools?
     \item How do MPS projects compare to other research software domains with respect to the principles, processes, and methodologies used?
@@ -40,9 +40,9 @@ RQ1 covers candidate discovery; RQ2 measures the selected packages from public a
 \section{Scope}
 \label{sec:introduction-scope}
 
-This study covers MPS software: robotics packages for motion planning, dynamics, physics, simulation, and supporting middleware. To be included, a package must expose sufficient public evidence, such as a source repository, documentation, issue tracker, releases, or project metadata, to support consistent repository-based measurement. Tools whose core components are proprietary or otherwise closed therefore fall outside the measured set even if they are widely used in robotics practice. Chapter~\ref{ch:methodology} states the full inclusion and exclusion criteria and gives the rationale for individual tools that were considered and removed.
+This report covers MPS software: robotics packages for motion planning, dynamics, physics, simulation, and supporting middleware. To be included, a package must expose sufficient public evidence, such as a source repository, documentation, issue tracker, releases, or project metadata, to support consistent repository-based measurement. Tools whose core components are proprietary or otherwise closed therefore fall outside the measured set even if they are widely used in robotics practice. Chapter~\ref{ch:methodology} states the full inclusion and exclusion criteria and gives the rationale for individual tools that were considered and removed.
 
-The selected set is deliberately heterogeneous. Full simulators sit alongside middleware (e.g., ROS~2), planning libraries (e.g., OMPL), and integration frameworks (e.g., MoveIt!), because MPS workflows routinely combine these roles. The comparison therefore treats the selected packages as related members of a domain, not as interchangeable products.
+The selected packages play different roles within shared MPS workflows; Chapter~\ref{ch:selected-software-commonality} explains those roles before the measurement results are interpreted.
 
 \section{Overview of the Methodology}
 \label{sec:methodology-overview}
@@ -56,7 +56,7 @@ This report adapts the State-of-the-Practice methodology~\citep{Smith2021}. The 
     \item Measure and rank the selected packages relative to one another using repository artifacts, documentation, releases, issue trackers, and project metadata.
     \item Analyze the selected packages as a software family through commonality analysis.
     \item Compare the MPS findings with prior State-of-the-Practice studies of other (and relatively recent) research software domains.
-    \item Supplement the artifact-based results with developer interviews on their pain points and best practices.
+    \item Prepare the developer-interview component needed to supplement the artifact-based results with evidence about developer pain points and best practices.
 \end{enumerate}
 
 \section{Contributions}
@@ -85,7 +85,7 @@ The remainder of this report is organized as follows. The research questions are
     \item \textbf{Chapter~\ref{ch:selected-software-commonality}} presents the 28 selected packages as a software family and reports the commonality analysis: shared capabilities, variability points, and parameters of variation.
     \item \textbf{Chapter~\ref{ch:measurement-results}} ranks the selected packages on the nine Domain~X quality categories, reports the measurement results and repository metrics, and compares the quality-based ranking with community-facing indicators of visibility and adoption.
     \item \textbf{Chapter~\ref{ch:comparison-research-software}} compares MPS software with prior State-of-the-Practice studies of other scientific software domains on three dimensions: repository artifacts, tool usage, and development principles, processes, and methodologies.
-    \item \textbf{Chapter~\ref{ch:developer-interviews}} reports the developer pain points and interview findings for MPS software: the interview evidence base, recurring pain points, practices used to address them, quality-related findings, and cross-domain comparison.
+    \item \textbf{Chapter~\ref{ch:developer-interviews}} describes the planned developer-interview component for MPS software and identifies the interview evidence still needed to answer RQ6--RQ9: the evidence base, recurring pain points, practices used to address them, quality-related findings, and cross-domain comparison.
     \item \textbf{Chapter~\ref{ch:recommendations}} gives recommendations for future MPS software practice, based on the public-artifact measurements, commonality analysis, and cross-domain comparison.
     \item \textbf{Chapter~\ref{ch:threats-to-validity}} discusses threats to validity, including limitations related to candidate selection, public-artifact measurement, source bias, and the interpretation of quality scores.
     \item \textbf{Chapter~\ref{ch:conclusions}} summarizes the study, answers the research questions, states the key findings, and identifies directions for future work.
