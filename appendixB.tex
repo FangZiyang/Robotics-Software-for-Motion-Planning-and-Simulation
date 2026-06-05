@@ -1,11 +1,12 @@
 \chapter{Mention Count Source List}
 \label{appendix:mention-count-source-list}
 
-This appendix lists the sources used to construct the consolidated mention-count ranking described in Section~\ref{sec:mention-count-ranking}. Sources fall into two categories: community-curated robotics software lists and academic survey or comparison papers. The auxiliary LLM-generated lists are not enumerated here; they are recorded as a single discovery source in the project materials (\texttt{examples/sofware-counting-webs.csv}) and are discussed in Section~\ref{subsec:llm-assisted-sources}.
+This appendix lists the sources used to construct the consolidated mention-count ranking described in Section~\ref{sec:mention-count-ranking}. Sources fall into three groups: community-curated robotics software lists, academic survey or comparison papers, and auxiliary LLM-assisted discovery lists. The LLM-assisted lists were used only as supplementary discovery aids, as discussed in Section~\ref{subsec:llm-assisted-sources}.
 
 \section*{Community-Curated Sources}
 
 Table~\ref{tab:community-mention-sources} lists the 15 community-curated sources used for candidate discovery. Each source is a public list, GitHub Topic page, or Wikipedia article that aggregates robotics software relevant to motion planning or simulation.
+The GitHub Topic pages were manually inspected as dynamic GitHub aggregations; copied raw page text is preserved for the static curated-list pages where available.
 
 \begin{table}[H]
 \centering
@@ -48,8 +49,8 @@ Table~\ref{tab:academic-mention-sources} lists the ten academic survey and compa
 \toprule
 \textbf{Academic source} & \textbf{Example packages discussed} \\
 \midrule
+Brugali et al. (2007), ``Trends in Robotic Software Frameworks'' & ROS, OROCOS, OpenRTM-aist, Gazebo, YARP \\
 \v{Z}lajpah (2008), ``Simulation in Robotics'' & GraspIt!, ODE, Newton Dynamics, CoppeliaSim \\
-Brugali et al. (2008), ``A Survey of Development Frameworks for Robotics'' & ROS, OROCOS, OpenRTM-aist, Gazebo, YARP \\
 Reckhaus et al. (2010), ``An Overview about Simulation and Emulation in Robotics'' & GraspIt!, OpenRAVE, Gazebo \\
 Harris and Conrad (2011), ``Survey of Popular Robotics Simulators, Frameworks, and Toolkits'' & Gazebo, ROS, OpenRAVE, MRPT, Webots \\
 Staranowicz and Mariottini (2011), ``A Survey and Comparison of Commercial and Open-Source Robotic Simulation Software'' & Webots, Gazebo \\
@@ -62,4 +63,23 @@ Kargar et al. (2024), ``Emerging Trends in Realistic Robotic Simulations'' & Gaz
 \end{tabular}
 \end{table}
 
-The raw catalogue of these sources, including the URLs captured during discovery and the per-source package mentions, is preserved in \texttt{examples/sofware-counting-webs.csv}. The consolidated ranking with per-package mention counts is in \texttt{examples/software-list-counting-result.xlsx} (sheet \texttt{final.m}).
+\section*{LLM-Assisted Discovery Sources}
+
+Table~\ref{tab:llm-mention-sources} lists the auxiliary LLM-assisted discovery outputs archived with the source catalogue. These outputs were not treated as authoritative sources; they were used to surface additional candidate names that were then consolidated, filtered, and checked against public evidence before any package was selected for measurement.
+
+\begin{table}[H]
+\centering
+\caption{LLM-assisted discovery sources archived with the source catalogue.}
+\label{tab:llm-mention-sources}
+\small
+\begin{tabular}{@{}p{4.6cm}p{8.2cm}@{}}
+\toprule
+\textbf{Source} & \textbf{Role in candidate discovery} \\
+\midrule
+GPT-generated robotics software list & Auxiliary broad-discovery list of open-source robotics software, simulators, planning libraries, physics engines, and related tooling. \\
+Gemini-generated robotics software table & Auxiliary consolidated table of robotics frameworks, motion-planning tools, physics engines, and simulation platforms. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The source catalogue with community-source URLs and archived LLM-assisted outputs is preserved in \texttt{examples/sofware-counting-webs.csv}. Raw captured text from static public web lists is preserved in \texttt{examples/web-list-raw-material.md}. The consolidated ranking with per-package mention counts is in \texttt{examples/software-list-counting-result.xlsx} (sheet \texttt{final.m}).
