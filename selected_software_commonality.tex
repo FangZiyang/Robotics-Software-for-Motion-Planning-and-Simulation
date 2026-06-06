@@ -82,7 +82,7 @@ The following packages are primarily classified as planning or middleware tools:
 \section{Commonalities}
 \label{sec:commonalities}
 
-Despite the diversity of the selected packages, several capabilities and concerns recur across the software family. These commonalities are organized around the abstraction of a typical robotics software workflow: model representation, computation, interaction, and documentation. Figure~\ref{fig:feature-model} presents the family as a commonality/variability feature model: the mandatory features (C1--C7) are detailed in this section, and the variable features (V1--V9) in Section~\ref{sec:variabilities}.
+Despite the diversity of the selected packages, several capabilities and concerns recur across the software family. These commonalities are organized around the abstraction of a typical robotics software workflow: model representation, computation, interaction, and documentation. Figure~\ref{fig:feature-model} presents the family as a commonality/variability feature model: the recurring common concerns (C1--C7) are detailed in this section, and the variable features (V1--V9) in Section~\ref{sec:variabilities}.
 
 \begin{figure}[H]
 \centering
@@ -94,8 +94,8 @@ Despite the diversity of the selected packages, several capabilities and concern
   var/.style={grp, fill=orange!5},
 ]
 \node[root] (root) {MPS software package\\\footnotesize\mdseries family of 28 packages};
-\node[com, below=12mm of root, xshift=-3.7cm] (com) {\textbf{\normalsize Commonalities} (mandatory --- in every package)\\[3pt]
- C1\, Robot model representation (URDF/SDF/MJCF)\\
+\node[com, below=12mm of root, xshift=-3.7cm] (com) {\textbf{\normalsize Commonalities} (recurring across the family)\\[3pt]
+ C1\, Robot model representation (e.g.\ URDF/SDF/MJCF)\\
  C2\, Physics / kinematics computation\\
  C3\, Programmatic API (C++, usually Python)\\
  C4\, Open-source repository hosting\\
@@ -117,7 +117,7 @@ Despite the diversity of the selected packages, several capabilities and concern
 \fill (com.north) circle (2.3pt);
 \draw[fill=white, thick] (var.north) circle (2.3pt);
 \end{tikzpicture}
-\caption{Commonality/variability feature model for the 28-package MPS software family. Filled circle ($\bullet$) marks the mandatory features shared by every package; open circle ($\circ$) marks optional or alternative features. Commonalities C1--C7 are described in Section~\ref{sec:commonalities}; variabilities V1--V9 and their binding times appear in Section~\ref{sec:variabilities} and Table~\ref{tab:parameters-of-variation}.}
+\caption{Commonality/variability feature model for the 28-package MPS software family. Filled circle ($\bullet$) marks commonalities, the concerns that recur across the family; open circle ($\circ$) marks variabilities, the points on which packages differ. Some commonalities are near-universal (every package exposes a programmatic API, hosts an open-source repository, and ships documentation), while others (physics/kinematics computation, ecosystem integration, a simulation or planning loop) are shared by most but not all packages, as detailed in Section~\ref{sec:commonalities}. Variabilities V1--V9 and their binding times appear in Section~\ref{sec:variabilities} and Table~\ref{tab:parameters-of-variation}.}
 \label{fig:feature-model}
 \end{figure}
 
