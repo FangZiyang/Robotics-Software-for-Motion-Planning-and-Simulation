@@ -112,7 +112,37 @@ Filtering decisions, including the alive/dead status used in Section~\ref{subsec
 \section{Final Software Set}
 \label{sec:final-software-set}
 
-After ranking by mention count and applying the filtering criteria described above, the selected set consists of 28 software packages. Table~\ref{tab:final-software-set} lists the packages alphabetically with their primary roles in the robotics software ecosystem.
+After ranking by mention count and applying the filtering criteria described above, the selected set consists of 28 software packages. Figure~\ref{fig:candidate-selection} summarizes the full selection pipeline, from the three discovery sources through the mention-count ranking and the filtering criteria to the final set. Table~\ref{tab:final-software-set} lists the packages alphabetically with their primary roles in the robotics software ecosystem.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    font=\small,
+    box/.style={draw, rounded corners, align=center, inner sep=5pt, minimum height=0.85cm},
+    src/.style={box, fill=blue!5, text width=2.9cm},
+    proc/.style={box, fill=black!4, text width=8.4cm},
+    final/.style={box, fill=blue!12, text width=5.2cm, font=\small\bfseries},
+    excl/.style={box, draw=orange!60!black, fill=orange!6, align=left, text width=3.9cm, font=\footnotesize},
+    arr/.style={-{Latex[length=2.5mm]}, thick},
+    node distance=9mm and 7mm,
+]
+\node[src] (s1) {Academic\\survey papers};
+\node[src, right=of s1] (s2) {Community-curated\\lists};
+\node[src, right=of s2] (s3) {LLM-assisted\\lists};
+\node[proc, below=12mm of s2] (cons) {Consolidate equivalent names, then rank by mention count\\[2pt]\footnotesize e.g.\ Gazebo~22, Webots~16, Bullet/PyBullet~16,\\\footnotesize CoppeliaSim/V-REP~13, MuJoCo~12, ODE~10, ROS~2~10, OpenRAVE~9};
+\node[proc, below=of cons] (filt) {Filtering criteria (applied in priority order):\\[2pt]open-source availability $\cdot$ repository-based measurability\\$\cdot$ activity \& maintenance (18-month rule) $\cdot$ scope coherence};
+\node[final, below=of filt] (fin) {28 selected packages\\[1pt]\footnotesize\mdseries(measured in Chapter~\ref{ch:measurement-results})};
+\node[excl, right=10mm of filt] (ex) {\textbf{Excluded:}\\MATLAB/Simulink, Unity, Isaac~Sim, RaiSim (not OSS)\\MRDS, USARSim (inactive)\\GPMP2, CHOMP (scope)};
+\draw[arr] (s1) -- (cons);
+\draw[arr] (s2) -- (cons);
+\draw[arr] (s3) -- (cons);
+\draw[arr] (cons) -- (filt);
+\draw[arr] (filt) -- (fin);
+\draw[arr, dashed, draw=orange!60!black] (filt) -- (ex);
+\end{tikzpicture}
+\caption{Candidate selection pipeline. Packages discovered from three source types are consolidated and ranked by mention count, then reduced by the filtering criteria of Section~\ref{sec:filtering-criteria} to the 28 measured packages. Mention counts are source-appearance signals only (Section~\ref{sec:mention-count-ranking}); representative excluded tools and the reason for each exclusion are shown at right.}
+\label{fig:candidate-selection}
+\end{figure}
 
 \begin{table}[H]
 \centering

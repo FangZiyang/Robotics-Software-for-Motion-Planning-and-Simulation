@@ -82,7 +82,44 @@ The following packages are primarily classified as planning or middleware tools:
 \section{Commonalities}
 \label{sec:commonalities}
 
-Despite the diversity of the selected packages, several capabilities and concerns recur across the software family. These commonalities are organized around the abstraction of a typical robotics software workflow: model representation, computation, interaction, and documentation.
+Despite the diversity of the selected packages, several capabilities and concerns recur across the software family. These commonalities are organized around the abstraction of a typical robotics software workflow: model representation, computation, interaction, and documentation. Figure~\ref{fig:feature-model} presents the family as a commonality/variability feature model: the mandatory features (C1--C7) are detailed in this section, and the variable features (V1--V9) in Section~\ref{sec:variabilities}.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+  font=\small,
+  root/.style={draw, rounded corners, fill=blue!12, font=\small\bfseries, inner sep=6pt, align=center},
+  grp/.style={draw, rounded corners, align=left, inner sep=6pt, text width=6.7cm, font=\footnotesize},
+  com/.style={grp, fill=blue!4},
+  var/.style={grp, fill=orange!5},
+]
+\node[root] (root) {MPS software package\\\footnotesize\mdseries family of 28 packages};
+\node[com, below=12mm of root, xshift=-3.7cm] (com) {\textbf{\normalsize Commonalities} (mandatory --- in every package)\\[3pt]
+ C1\, Robot model representation (URDF/SDF/MJCF)\\
+ C2\, Physics / kinematics computation\\
+ C3\, Programmatic API (C++, usually Python)\\
+ C4\, Open-source repository hosting\\
+ C5\, User-facing documentation\\
+ C6\, Robotics-ecosystem integration\\
+ C7\, Simulation / planning loop};
+\node[var, below=12mm of root, xshift=3.7cm] (var) {\textbf{\normalsize Variabilities} (optional / alternative)\\[3pt]
+ V1\, Primary role: simulator $|$ engine $|$ planning $|$ middleware\\
+ V2\, Interface: GUI $|$ API $|$ both\\
+ V3\, Domain: general vs.\ application-specific\\
+ V4\, Physics fidelity: real-time $|$ high-fidelity\\
+ V5\, Platform: Linux $\pm$ Windows/macOS\\
+ V6\, Language bindings: C++ $|$ +Python $|$ multi\\
+ V7\, ROS integration: native $|$ bridge $|$ independent\\
+ V8\, License: permissive $|$ reciprocal\\
+ V9\, Governance: company $|$ academic $|$ community};
+\draw[thick] (root) -- (com.north);
+\draw[thick] (root) -- (var.north);
+\fill (com.north) circle (2.3pt);
+\draw[fill=white, thick] (var.north) circle (2.3pt);
+\end{tikzpicture}
+\caption{Commonality/variability feature model for the 28-package MPS software family. Filled circle ($\bullet$) marks the mandatory features shared by every package; open circle ($\circ$) marks optional or alternative features. Commonalities C1--C7 are described in Section~\ref{sec:commonalities}; variabilities V1--V9 and their binding times appear in Section~\ref{sec:variabilities} and Table~\ref{tab:parameters-of-variation}.}
+\label{fig:feature-model}
+\end{figure}
 
 \textbf{C1: Robot Model Representation.} All selected packages provide or consume some form of robot model representation. Simulators and physics engines represent robot kinematics and dynamics through internal model structures (often supporting standard formats such as URDF, SDF, or MJCF). Motion planning libraries operate on kinematic and geometric descriptions of robots and environments. Middleware packages define standardized message formats for communicating robot state.
 

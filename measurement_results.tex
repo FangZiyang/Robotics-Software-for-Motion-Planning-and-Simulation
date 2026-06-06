@@ -335,7 +335,7 @@ The percentage of code that is comments shows substantial variation, from 1.1\% 
 \section{Overall Observations}
 \label{sec:overall-observations}
 
-Table~\ref{tab:overall-impressions} summarizes the overall impression scores across all nine quality categories for each package, along with a simple unweighted per-package mean. The scores reported here are the raw 1--10 impression values assigned during measurement using the Domain~X Appendix~C calculator. The unweighted mean treats all nine qualities as equally important; an AHP-weighted ranking would require a defensible criterion-weighting elicitation and is therefore not computed in this report.
+Table~\ref{tab:overall-impressions} summarizes the overall impression scores across all nine quality categories for each package, along with a simple unweighted per-package mean. Figure~\ref{fig:quality-heatmap} renders the same matrix as a heatmap, Figure~\ref{fig:quality-ranking} plots the per-package mean as a ranked bar chart coloured by activity status, and Figure~\ref{fig:category-distribution} shows how the scores are distributed within each of the nine categories. The scores reported here are the raw 1--10 impression values assigned during measurement using the Domain~X Appendix~C calculator. The unweighted mean treats all nine qualities as equally important. A fully defensible AHP-weighted ranking would require a formal criterion-weighting elicitation, which this study does not perform; for illustration, Figure~\ref{fig:ahp-ranking} reports an AHP ranking computed with the Domain~X pairwise-comparison algorithm applied to these scores under equal category weights. It acts as a cross-check on the unweighted mean rather than as an elicited result: under equal weights the two orderings agree at the top, and the figure should be read as a methodological illustration of how the Domain~X weighting step would operate, not as a weighted verdict on the packages.
 
 \begin{table}[H]
 \centering
@@ -378,7 +378,35 @@ YARP & 7 & 8 & 7 & 7 & 7 & 8 & 7 & 7 & 8 & 7.3 \\
 \end{tabular}
 \end{table}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.78\textwidth]{figures/fig_quality_ranking}
+    \caption{Quality-mean ranking of the 28 MPS packages (Table~\ref{tab:overall-impressions}, Mean column), coloured by activity status (May 2026 snapshot). Bars give the unweighted mean of the nine category impression scores.}
+    \label{fig:quality-ranking}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.72\textwidth]{figures/fig_quality_heatmap}
+    \caption{Quality impression scores (1--10) for the 28 MPS packages across the nine Domain~X quality categories, rendered as a heatmap (Table~\ref{tab:overall-impressions}). Packages are ordered top-to-bottom by their unweighted mean. Darker cells denote higher scores.}
+    \label{fig:quality-heatmap}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.88\textwidth]{figures/fig_category_distribution}
+    \caption{Distribution of the impression scores across the 28 packages within each of the nine quality categories (Table~\ref{tab:overall-impressions}). Boxes span the interquartile range with the median marked; whiskers and points show the spread and outliers. The categories are bunched in a narrow 7--8 band, with Installability and Maintainability showing the widest low-end spread.}
+    \label{fig:category-distribution}
+\end{figure}
+
 A handful of packages anchor the top of the table. Gazebo scores 10 in all nine categories and is the most consistently high-rated package in the study. Drake and MoveIt! score 9 or 10 across most categories, and ROS~2, OMPL, and Pinocchio sit just below them. These packages share several traits: established stewardship (large organizations or active research groups), continuous contributor activity, comprehensive documentation, automated testing wired into CI/CD, and published contribution guidelines and release notes. None of these traits is individually decisive, but the combination separates the top tier from the rest.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.82\textwidth]{figures/fig_ahp_ranking}
+    \caption{Illustrative AHP global-priority ranking obtained by applying the Domain~X pairwise-comparison algorithm to the impression scores of Table~\ref{tab:overall-impressions} under equal category weights. Higher priority is better and the values sum to one across packages. Equal weights are used because no formal criterion-weighting elicitation was performed; the ordering reproduces the unweighted-mean leaders (Gazebo, Drake, MoveIt!, Pinocchio, ROS~2, OMPL) and is shown to illustrate the Domain~X weighting step, not as an elicited result.}
+    \label{fig:ahp-ranking}
+\end{figure}
 
 The bottom of the table tracks maintenance status, but only loosely. GraspIt! (last commit July 2020), Flightmare (last commit May 2023), and MORSE (last commit March 2022) appear in the lower tier for most quality categories. Newton Dynamics, though technically alive at the May 2026 measurement date, joins them, reflecting its largely individual-maintained codebase and thin documentation infrastructure. OpenRAVE is also classified as dead under the 18-month rule (last commit August 2024), but its quality scores cluster in the middle of the table rather than the bottom; the documentation, test infrastructure, and codebase organization built during years of active development have not visibly degraded in the period since. In short, packages that go inactive tend to accumulate outdated documentation, broken installation procedures, and unresolved issues, but the rate at which they do so depends on the engineering capital accumulated before they went quiet.
 
@@ -438,6 +466,20 @@ GraspIt!         & 5.0  & 28 & 213    & 24 & $-4$  \\
 \end{tabular}
 \end{table}
 
-The 28 packages fall into four broad patterns. \textbf{Rough agreement at the top.} Drake ($\Delta = +6$), ROS~2 ($\Delta = +2$), Pinocchio ($\Delta = +7$), and Habitat ($\Delta = +2$) appear in the top tier on both indicators; well-resourced projects with sustained development tend to combine strong engineering practice with substantial visibility. \textbf{High quality, low visibility.} Gazebo ($\Delta = +16$), OMPL ($\Delta = +11$), and MoveIt! ($\Delta = +12$) score at or near the top on quality but sit well below their quality rank on stars. The Gazebo gap is partially explained at the end of Section~\ref{sec:repository-metrics-results}: Gazebo's user base interacts with it primarily through ROS rather than its GitHub repository directly, so star counts undercount its reach. OMPL and MoveIt! are libraries embedded inside larger workflows and may attract attention as dependencies rather than as standalone projects. \textbf{High visibility, mid-pack quality.} AirSim ($\Delta = -8$), Bullet/PyBullet ($\Delta = -13$), CARLA ($\Delta = -9$), and PhysX (OSS) ($\Delta = -16$) sit at or near the top on stars but in the middle or lower tier on the quality mean. These projects share characteristics: broad user bases drawn from adjacent fields (gaming, autonomous-driving research, real-time physics), corporate or game-engine origins, and uneven research-software quality practice. \textbf{Consistently low.} GraspIt! ($\Delta = -4$) and Newton Dynamics ($\Delta = -1$) cluster near the bottom on both indicators; inactive or narrowly used projects tend to accumulate gaps in documentation, releases, and visibility together. OpenRTM-aist sits near the bottom on both indicators as well, but with $\Delta = +5$ its quality rank (21) is modestly better than its stars rank (26), so it belongs in this group only in the sense of low absolute standing on both axes, not as a case where popularity outruns quality.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth]{figures/fig_quality_vs_popularity}
+    \caption{Measured quality mean (Table~\ref{tab:overall-impressions}) versus GitHub stars (log scale, Table~\ref{tab:repository-metrics}) for the 28 packages, coloured by activity status (May 2026 snapshot). Dashed lines mark the mean quality and the median star count. Packages in the lower-right combine high measured quality with comparatively modest popularity; those in the upper-left are popular without proportional quality scores.}
+    \label{fig:quality-vs-popularity}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.78\textwidth]{figures/fig_quality_popularity_delta}
+    \caption{Rank divergence $\Delta = S - Q$ between the GitHub-stars rank and the quality-mean rank for each package (Table~\ref{tab:quality-vs-community}). Positive (blue) bars indicate packages that are under-recognized relative to their measured quality; negative (orange) bars indicate packages that are more popular than their quality scores alone would suggest.}
+    \label{fig:quality-popularity-delta}
+\end{figure}
+
+The 28 packages fall into four broad patterns, summarized visually in Figures~\ref{fig:quality-vs-popularity} and~\ref{fig:quality-popularity-delta}. \textbf{Rough agreement at the top.} Drake ($\Delta = +6$), ROS~2 ($\Delta = +2$), Pinocchio ($\Delta = +7$), and Habitat ($\Delta = +2$) appear in the top tier on both indicators; well-resourced projects with sustained development tend to combine strong engineering practice with substantial visibility. \textbf{High quality, low visibility.} Gazebo ($\Delta = +16$), OMPL ($\Delta = +11$), and MoveIt! ($\Delta = +12$) score at or near the top on quality but sit well below their quality rank on stars. The Gazebo gap is partially explained at the end of Section~\ref{sec:repository-metrics-results}: Gazebo's user base interacts with it primarily through ROS rather than its GitHub repository directly, so star counts undercount its reach. OMPL and MoveIt! are libraries embedded inside larger workflows and may attract attention as dependencies rather than as standalone projects. \textbf{High visibility, mid-pack quality.} AirSim ($\Delta = -8$), Bullet/PyBullet ($\Delta = -13$), CARLA ($\Delta = -9$), and PhysX (OSS) ($\Delta = -16$) sit at or near the top on stars but in the middle or lower tier on the quality mean. These projects share characteristics: broad user bases drawn from adjacent fields (gaming, autonomous-driving research, real-time physics), corporate or game-engine origins, and uneven research-software quality practice. \textbf{Consistently low.} GraspIt! ($\Delta = -4$) and Newton Dynamics ($\Delta = -1$) cluster near the bottom on both indicators; inactive or narrowly used projects tend to accumulate gaps in documentation, releases, and visibility together. OpenRTM-aist sits near the bottom on both indicators as well, but with $\Delta = +5$ its quality rank (21) is modestly better than its stars rank (26), so it belongs in this group only in the sense of low absolute standing on both axes, not as a case where popularity outruns quality.
 
 These patterns are consistent with the finding from the Medical Imaging State-of-the-Practice study that GitHub popularity and measurement-based rankings do not align in a simple way~\citep{Dong2021}. They support the broader argument that community-facing indicators of visibility and adoption are not interchangeable with measured software engineering quality; treating stars as a quality proxy obscures meaningful differences across packages.
