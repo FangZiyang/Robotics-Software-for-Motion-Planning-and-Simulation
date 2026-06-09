@@ -1,0 +1,142 @@
+\chapter{Exploratory AI-Assisted Measurement}
+\label{appendix:ai-assisted-measurement}
+
+This appendix records a small exploratory trial in which an AI coding agent was
+asked to carry out the measurement protocol of this study on its own. The trial
+covered two physics engines from the selected set, PyBullet and MuJoCo, and used
+the template described in Appendix~\ref{appendix:measurement-template} together
+with the procedure in Section~\ref{sec:measurement-procedure}. The trial is not
+part of the validated measurement results in Chapter~\ref{ch:measurement-results};
+it is reported here as a feasibility check and as the basis for the future-work
+direction in Section~\ref{sec:future-work}. The agent worked in a Linux shell
+with file-system and network access in early June 2026, so its repository
+snapshots fall slightly later than the May 2026 snapshot used for the main study.
+
+\section*{Task Given to the Agent}
+
+The agent was given a single natural-language prompt and no installation commands.
+It had to locate the official documentation, install each package, verify the
+installation, and complete the template without further guidance. The prompt is
+reproduced below.
+
+\begin{quote}
+\small
+Read the CSV file in the current directory and use the first column
+(``Metric'') as the measurement template. Measure two software packages,
+PyBullet and MuJoCo. The requirements were:
+\begin{itemize}[noitemsep]
+  \item Only fill in the columns for these two packages; do not modify the other
+        software columns. A new CSV file may be created.
+  \item Do not rely on user-provided installation commands; find the official
+        documentation, GitHub README, or project website to determine the
+        installation and verification steps.
+  \item Follow each metric in the CSV to complete installation, verification,
+        observation, and data entry.
+  \item Take a screenshot at every step and save it to a screenshots folder.
+        Screenshots must cover at least: reading the CSV, finding the official
+        documentation, the installation steps, the verification steps, error
+        messages or successful output, and the final CSV result.
+  \item Evidence may come only from official documentation, GitHub, terminal
+        output, and commands actually executed.
+  \item Write ``unclear'' for uncertain values and ``n/a'' for values that do
+        not apply.
+  \item Also write a \texttt{notes.md} file recording the selected packages, the
+        official links used, the commands run at each step, the screenshot
+        filenames, whether installation succeeded, whether verification
+        succeeded, which CSV cells were filled or changed, and any problems
+        encountered with their recovery.
+\end{itemize}
+Complete Bullet/PyBullet first, then MuJoCo.
+\end{quote}
+
+\section*{Official Sources Located by the Agent}
+
+Working only from the prompt, the agent found the official sources in
+Table~\ref{tab:ai-pilot-sources} and used them to choose the installation and
+verification steps.
+
+\begin{table}[H]
+\centering
+\caption{Official sources the agent used for the two packages.}
+\label{tab:ai-pilot-sources}
+\small
+\begin{tabular}{@{}p{2.6cm}p{3.8cm}p{6.2cm}@{}}
+\toprule
+\textbf{Package} & \textbf{Resource} & \textbf{Location} \\
+\midrule
+PyBullet & Website and forum  & \url{https://pybullet.org} \\
+         & Source repository  & \url{https://github.com/bulletphysics/bullet3} \\
+         & Python package     & \url{https://pypi.org/project/pybullet/} \\
+\midrule
+MuJoCo   & Website            & \url{https://mujoco.org} \\
+         & Source repository  & \url{https://github.com/google-deepmind/mujoco} \\
+         & Documentation      & \url{https://mujoco.readthedocs.io} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section*{Installation and Verification}
+
+Both packages installed with a single \texttt{pip} command inside a Python
+virtual environment, and both were verified with a short program that the agent
+wrote and ran. Table~\ref{tab:ai-pilot-outcome} summarizes the outcome.
+
+\begin{table}[H]
+\centering
+\caption{Installation and verification outcome of the AI-assisted trial.}
+\label{tab:ai-pilot-outcome}
+\small
+\begin{tabular}{@{}p{3.1cm}p{4.7cm}p{4.7cm}@{}}
+\toprule
+\textbf{Item} & \textbf{PyBullet} & \textbf{MuJoCo} \\
+\midrule
+Install command     & \texttt{pip install pybullet} & \texttt{pip install mujoco} \\
+Installed version   & 3.2.7 & 3.9.0 \\
+Installation steps  & 1 (single pip command) & 1 (single pip command) \\
+Extra packages      & none (self-contained) & bundled with the wheel \\
+Operating system    & Linux (Ubuntu) & Linux (Ubuntu) \\
+Verification        & Loaded the bundled \texttt{plane.urdf} model in DIRECT mode & Compiled an inline XML model of a free-jointed box on a plane \\
+Result              & Succeeded & Succeeded \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Alongside the installation, the agent queried the GitHub API and recorded the
+project metadata that the template asks for. For PyBullet
+(\path{bulletphysics/bullet3}) it recorded 311 contributors, a zlib license, a
+first commit in April 2011, and a most recent push in October 2025. For MuJoCo
+(\path{google-deepmind/mujoco}) it recorded 116 contributors, an Apache-2.0
+license, a first commit in August 2021, and a most recent push in June 2026.
+Each entry was tied to the source the agent read, either the official site, the
+repository README, or the GitHub API.
+
+\section*{Problems Encountered and Recovery}
+
+The agent encountered three problems and recovered from each without manual
+intervention. First, a direct \texttt{pip install} failed because the system
+Python was externally managed; the agent created a virtual environment and
+installed into it. Second,
+its first PyBullet verification script queried the physics engine before
+connecting to it; the agent reordered the calls so that the connection came
+first. Third, no screenshot utility was present, so the agent installed one
+before continuing.
+
+\section*{Limitations and Relationship to the Main Study}
+
+This was a single run over two packages by one agent, so it shows feasibility
+rather than a result that belongs with the validated measurements in
+Chapter~\ref{ch:measurement-results}.
+The checkable, factual entries, such as the installation command, the installed
+version, the license, the contributor count, and the verification result, were
+each tied to a public source recorded by the agent and were straightforward to
+confirm. The subjective impression scores and the free-text judgements that the
+template also asks for were not validated here; in places they disagree with the
+agent's own notes, which is the clearest reason that a human still has to review
+the output before it can serve as evidence.
+
+The artifacts from the trial, namely the completed template
+\texttt{summary\_measured.csv} and the notes document, are preserved in the
+project materials under the \path{AI-Agent/} directory. The trial motivates the
+future-work direction in Section~\ref{sec:future-work}, where agent-assisted
+measurement under human supervision is discussed as a way to scale
+State-of-the-Practice studies.
