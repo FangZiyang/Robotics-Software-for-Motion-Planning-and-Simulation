@@ -1,16 +1,16 @@
 \chapter{Introduction}
 \label{ch:introduction}
 
-Robotics software for motion planning and simulation (MPS) enables researchers and engineers to model robot kinematics and dynamics, simulate sensor data, plan collision-free trajectories, and test control strategies before deploying to physical hardware. A sample of MPS software is shown in Figure~\ref{fig:motion-planning-example}.
+Robotics software for motion planning and simulation (MPS) enables researchers and engineers to model robot kinematics and dynamics, simulate sensor data, plan collision-free trajectories, and test control strategies before deploying to physical hardware. An application of MPS software is shown in Figure~\ref{fig:motion-planning-example}.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.68\textwidth]{figures/chapter1-motion-planning}
+    \includegraphics[width=0.95\textwidth]{figures/chapter1-motion-planning}
     \caption{An illustrative path planning task: a manipulator computing a collision-free path around an obstacle.}
     \label{fig:motion-planning-example}
 \end{figure}
 
-In practice, this software is central to experimental reproducibility and to the transition from simulation to physical deployment, so its engineering quality has direct consequences for both research and operational outcomes. These consequences make software quality a central concern for motion planning and simulation software. A simulator that produces incorrect trajectories, or a planner that crashes under realistic inputs, can compromise experimental results in ways that are not immediately obvious. Qualities such as correctness, reliability, and long-term sustainability are important for MPS software.
+In practice, this software is central to experimental reproducibility and to the transition from simulation to physical deployment, so its engineering quality has direct consequences for both research and operational outcomes. These consequences make software quality a central concern for motion planning and simulation software. A simulator that produces incorrect trajectories, or a planner that crashes under realistic inputs, can compromise experimental results. Qualities such as correctness, reliability, and long-term sustainability are important for MPS software.
 
 Software engineers have developed methods and tools for improving software quality: version control, automated testing, and continuous integration are standard practice in professional contexts. However, a gap exists between these practices and what researchers actually do when developing scientific software. Scientists and engineers working on research software tend to learn software engineering skills informally, picking them up from colleagues or through trial and error rather than through formal training~\citep{Hannay2009}. \citet{Hannay2009} observe that many scientists show indifference to standard software engineering concepts, and \citet{Prabhu2011} report that more than half of the scientists they surveyed did not use a debugger. Because much of the software studied in this report originates in research settings, these concerns apply directly to the MPS domain.
 
