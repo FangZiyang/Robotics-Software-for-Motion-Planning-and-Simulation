@@ -8,6 +8,8 @@ Any study based on publicly available artifacts is constrained by what those art
 
 All measurements are based on public evidence collected in May 2026 and reflect the state of each repository at that moment. The same project measured earlier or later might score differently. Some quality questions also require judgement, such as whether documentation is adequate or whether project metadata is complete enough to support a score. Where judgement calls were made, the rationale is recorded in the measurement template.
 
+All measurements were performed by a single assessor without an independent inter-rater check, so individual judgement calls are not cross-validated. The impression scores additionally summarize observations beyond the recorded checklist answers (Section~\ref{subsec:measurement-template}), which introduces subjectivity that the recorded data alone cannot fully reconstruct. The time budget of one to four hours per package also bounds the depth of every check; the surface measures are shallow by design.
+
 \section{Construct Validity}
 \label{sec:threat-construct-validity}
 
@@ -22,3 +24,5 @@ The candidate set was built from academic survey papers, community-curated lists
 \label{sec:threat-external-validity}
 
 The selected set covers open-source MPS software that can be measured through public artifacts. Proprietary platforms, discontinued projects, and narrowly scoped libraries may differ from the measured packages. The results therefore describe the selected open-source MPS sample, not all robotics software. Because the packages play different roles, comparisons should be interpreted as evidence about development practice across a domain rather than as direct product-to-product comparisons.
+
+The installation-based measurements were performed on a Linux virtual machine, so the installability, surface reliability, and surface robustness results reflect Linux behaviour only. The same packages may install and behave differently on Windows or macOS, and installation routes available at measurement time, such as distribution packages, may not exist for other operating systems or for later distribution releases.

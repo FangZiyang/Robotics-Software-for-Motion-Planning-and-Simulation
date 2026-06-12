@@ -4,39 +4,115 @@
 \section{Summary}
 \label{sec:conclusion-summary}
 
-% TODO (after interviews): Summarize the study: scope, methodology, and main activities.
+This report assessed the state of the practice for robotics motion planning and
+simulation (MPS) software by adapting the Domain~X methodology to a new domain.
+Candidate packages were discovered from academic surveys, community-curated
+lists, and auxiliary LLM-assisted discovery, consolidated into 295 unique
+candidate names, ranked by mention count, and filtered by open-source
+availability, repository-based measurability, and maintenance activity. The
+resulting 28 packages, spanning full simulators, physics and dynamics engines,
+planning libraries, manipulation frameworks, and middleware, were measured in
+May 2026 against the Domain~X template: roughly 108 fields per package covering
+project metadata, nine quality categories, and repository metrics. A
+commonality analysis described the selected packages as a software family, and
+the findings were compared with prior State-of-the-Practice studies of medical
+imaging and Lattice Boltzmann method software. A developer-interview component
+was designed but, pending ethics approval and recruitment, has not yet been
+executed.
 
 \section{Answers to Research Questions}
 \label{sec:answers-research-questions}
 
-% TODO (after interviews): Provide high-level answers to RQ1--RQ9, referencing the
-% chapters where detailed evidence is presented. RQ6--RQ9 depend on the developer
-% interview component and cannot be finalized until that evidence is collected.
+\textbf{RQ1 (candidate packages).} Chapter~\ref{ch:methodology} and
+Appendix~\ref{appendix:full-candidate-software-list} answer RQ1. Consolidating
+the three discovery sources produced 295 unique candidate names. Filtering by
+open-source availability, repository-based measurability, activity status, and
+scope coherence reduced the leading candidates to the 28 measured packages;
+notable exclusions include MATLAB/Simulink, Unity, NVIDIA Isaac Sim, and RaiSim
+(closed core components), MRDS and USARSim (inactive), and GPMP2 and CHOMP
+(single-algorithm scope).
+
+\textbf{RQ2 (quality ranking).} Chapter~\ref{ch:measurement-results} answers
+RQ2. Across the nine quality categories, the unweighted quality mean is led by
+Gazebo (10.0), Drake (8.8), and a tied group of MoveIt!, OMPL, Pinocchio, and
+ROS~2 (8.7); GraspIt! (5.0), Newton Dynamics (5.6), and Flightmare (6.1) rank
+lowest, consistent with their inactive or thinly maintained status. Category
+means are tightly bunched (7.3--7.8), so the rankings separate a strong top
+tier and a weak bottom tier more clearly than they separate the middle of the
+table. An elicited-weight AHP ranking remains future work; an illustrative
+equal-weight computation reproduces the same leaders.
+
+\textbf{RQ3 (repository artifacts).} Chapter~\ref{ch:comparison-research-software}
+answers RQ3. Practical artifacts are near-universal in the MPS sample:
+installation instructions, installation automation, tutorials, user manuals,
+API documentation, issue tracking, and version control are present for all 28
+packages, which compares favourably with the medical imaging and LBM samples.
+The recurring gaps are formal artifacts: documented user characteristics (1 of
+28) and explicit coding standards (14 of 28).
+
+\textbf{RQ4 (tool usage).} The measured MPS projects are tightly connected to
+modern open-source tooling: git-based version control and issue tracking are
+universal, automated testing or CI evidence appears for 26 of 28 packages, and
+documentation-generation tools are recorded for 12. Part of this uniformity is
+a selection effect of the repository-based inclusion rule, but within the
+measured set, tool adoption is stronger than in the LBM comparison point and at
+least comparable with medical imaging.
+
+\textbf{RQ5 (principles, processes, and methodologies).} Process evidence is
+visible but artifact-bound: 25 of 28 packages expose a defined development
+process, 27 publish release notes, and 26 provide contribution guidance. What
+repositories do not reveal, design rationale, requirements assumptions, and
+internal decision making, remains under-documented in MPS software, the same
+broad pattern reported for other research software domains.
+
+\textbf{RQ6--RQ9 (pain points and practices).} These questions require
+developer-interview evidence and remain open. Chapter~\ref{ch:developer-interviews}
+records the planned evidence base and reporting structure, and
+Chapter~\ref{ch:recommendations} gives artifact-based recommendations that will
+be revisited once interview findings are available.
+% TODO (after interviews): replace this paragraph with summarized answers to
+% RQ6--RQ9 based on the approved interview records.
 
 \section{Key Findings}
 \label{sec:key-findings}
 
-% TODO (after interviews): State the most important findings from the measurement
-% results, commonality analysis, and cross-domain comparison.
+Four findings stand out from the artifact evidence. First, the practical
+engineering infrastructure of MPS software is strong: every measured package
+can be installed from documented instructions with some form of automation, and
+only two installations broke during measurement, both recoverably. Second, the
+weaknesses are concentrated in formal and explanatory artifacts rather than in
+tooling: user assumptions, coding standards, and design rationale are the
+recurring gaps. Third, community popularity and measured quality are different
+signals: Gazebo scores highest on quality while sitting in the middle of the
+star ranking, and several highly starred packages place mid-table on quality,
+so popularity indicators should not be used as quality proxies. Fourth,
+activity status only loosely predicts measured quality: packages that go
+inactive decay at different rates depending on the engineering capital they
+accumulated while active, as the contrast between OpenRAVE and GraspIt!
+illustrates.
 
 \section{Future Work}
 \label{sec:future-work}
 
-One direction concerns the measurement process itself. The template used in this
-study contains roughly one hundred fields per package
-(Appendix~\ref{appendix:measurement-template}), and completing it by hand is the
-most time-consuming part of the work. As an exploratory check, an AI coding agent
-was asked to install, verify, and measure two of the selected physics engines on
-its own, using only the official documentation and the measurement template. The
-agent installed and verified both packages and filled the template; its factual
-entries were tied to public sources, while its subjective scores still needed
-human review. The trial is documented in
+The most immediate direction is the developer-interview component: completing
+ethics approval, recruitment, and analysis would answer RQ6--RQ9 and connect
+the measured artifact gaps to the pain points developers actually experience.
+A second direction is an elicited-weight AHP ranking with sensitivity analysis,
+which would turn the per-quality measurements into a defensible weighted
+ordering. Longitudinal repeat measurements would track how the domain's
+practices change over time, and the same methodology could be extended to
+adjacent robotics software domains.
+
+One further direction concerns the measurement process itself. The template
+used in this study contains roughly one hundred fields per package
+(Appendix~\ref{appendix:measurement-template}), and completing it by hand is
+the most time-consuming part of the work. As an exploratory check, an AI coding
+agent was asked to install, verify, and measure two of the selected physics
+engines on its own, using only the official documentation and the measurement
+template. The agent installed and verified both packages and filled the
+template; its factual entries were tied to public sources, while its subjective
+scores still needed human review. The trial is documented in
 Appendix~\ref{appendix:ai-assisted-measurement}. With a person checking the
 evidence, this kind of agent-assisted measurement could make it practical to
 cover more packages, or to repeat the measurements over time, without straining
 the time budget that constrains a manual study.
-
-% TODO (after interviews): Identify directions for future work, including:
-% - completing the developer interview component (RQ6--RQ9)
-% - extending the study to additional software domains
-% - longitudinal measurement to track quality changes over time

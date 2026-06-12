@@ -16,8 +16,8 @@ snapshots fall slightly later than the May 2026 snapshot used for the main study
 
 The agent was given a single natural-language prompt and no installation commands.
 It had to locate the official documentation, install each package, verify the
-installation, and complete the template without further guidance. The prompt is
-reproduced below.
+installation, and complete the template without further guidance. An English
+rendering of the prompt is reproduced below.
 
 \begin{quote}
 \small
@@ -108,7 +108,11 @@ first commit in April 2011, and a most recent push in October 2025. For MuJoCo
 (\path{google-deepmind/mujoco}) it recorded 116 contributors, an Apache-2.0
 license, a first commit in August 2021, and a most recent push in June 2026.
 Each entry was tied to the source the agent read, either the official site, the
-repository README, or the GitHub API.
+repository README, or the GitHub API. The contributor counts come from the
+GitHub contributors API, which returns fewer entries than the commit-log method
+used for the main study (Section~\ref{subsec:repository-metrics}); the
+main-study records list 333 developers for Bullet/PyBullet and 138 for MuJoCo,
+so the two sets of numbers are not directly comparable.
 
 \section*{Problems Encountered and Recovery}
 
@@ -134,9 +138,9 @@ template also asks for were not validated here; in places they disagree with the
 agent's own notes, which is the clearest reason that a human still has to review
 the output before it can serve as evidence.
 
-The artifacts from the trial, namely the completed template
-\texttt{summary\_measured.csv} and the notes document, are preserved in the
-project materials under the \path{AI-Agent/} directory. The trial motivates the
+The artifacts from the trial, namely the completed template and the notes
+document, are preserved in the supplementary project materials that accompany
+this report. The trial motivates the
 future-work direction in Section~\ref{sec:future-work}, where agent-assisted
 measurement under human supervision is discussed as a way to scale
 State-of-the-Practice studies.

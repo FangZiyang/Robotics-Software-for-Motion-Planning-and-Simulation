@@ -1,2 +1,33 @@
 \prefacesection{Abstract}
 
+% TODO: revisit after the developer-interview component is complete (RQ6--RQ9).
+
+Software for motion planning and simulation (MPS) supports the design, testing,
+and deployment of robotic systems. Because experiments and applications depend
+on this software behaving correctly, its engineering quality matters beyond any
+single project. This report assesses the state of the practice for MPS software
+by adapting the research-software assessment methodology of Smith et al.
+Candidate packages were gathered from academic surveys, community-curated
+lists, and auxiliary LLM-assisted discovery; after consolidation of 295 unique
+candidate names and filtering by open-source availability, repository-based
+measurability, and maintenance activity, 28 packages were selected, spanning
+full simulators, physics and dynamics engines, motion planning libraries, and
+middleware. Each package was measured in May 2026 against a standard template
+covering installability, correctness and verifiability, surface reliability,
+surface robustness, surface usability, maintainability, reusability, surface
+understandability, and visibility and transparency, together with repository
+metrics. A commonality analysis describes the selected packages as a software
+family.
+
+The measured packages show strong practical infrastructure: all 28 provide
+installation instructions, installation automation, tutorials, user manuals,
+and API documentation, and only two installations broke during measurement.
+Weaknesses concentrate in formal artifacts: only one package documents expected
+user characteristics, and half do not identify a coding standard. Measured
+quality and community popularity diverge for several packages, so popularity
+indicators such as GitHub stars are not reliable proxies for engineering
+quality. Compared with prior State-of-the-Practice studies of medical imaging
+and Lattice Boltzmann method software, MPS software is at least as well
+equipped in repository artifacts and development tooling. A developer-interview
+component has been designed to investigate pain points and practices; its
+execution is left for future work.

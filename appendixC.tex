@@ -1,7 +1,7 @@
 \chapter{Measurement Template}
 \label{appendix:measurement-template}
 
-This appendix reproduces the structure of the measurement template used in this report. The template is adapted from the Domain~X Appendix~B template~\citep{Smith2021} and is grouped into project metadata, the nine quality categories described in Section~\ref{sec:software-quality-attributes}, and repository metrics collected through the DomainX tooling. The full per-package responses are recorded in the project material \texttt{summary.csv}, with one row per question and one column per package. Each quality section ends with an overall impression score on a 1--10 scale.
+This appendix reproduces the structure of the measurement template used in this report. The template is adapted from the template in Appendix~B of \citet{Smith2021} and is grouped into project metadata, the nine quality categories described in Section~\ref{sec:software-quality-attributes}, and repository metrics collected in the GitHub-style, GitStats-style, and SCC-style groups of Section~\ref{subsec:repository-metrics}. The full per-package responses are recorded in the measurement spreadsheet included in the supplementary project materials, with one row per question and one column per package. Each quality section ends with an overall impression score on a 1--10 scale.
 
 \section*{Project Metadata}
 
@@ -152,6 +152,8 @@ Counts collected from the primary repository at the measurement date. For projec
     \item Number of repository watchers.
     \item Number of open pull requests.
     \item Number of closed pull requests.
+    \item Number of open issues.
+    \item Number of closed issues.
 \end{itemize}
 
-Each substantive question above corresponds to one row in \texttt{summary.csv}, with the per-package answer recorded in the column for that package. Including the supplementary entries (overall impression scores per category and the free-text additional-comments fields), the template contains approximately 108 fields per package.
+Each substantive question above corresponds to one row in the measurement spreadsheet, with the per-package answer recorded in the column for that package. Including the supplementary entries (overall impression scores per category and the free-text additional-comments fields), the template contains approximately 108 fields per package.

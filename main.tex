@@ -1,4 +1,5 @@
 \documentclass[12pt]{report} % Times New Roman, 12pt
+\pdfminorversion=7 % Included figure PDFs are PDF 1.7; avoids pdfTeX inclusion warnings
 %\usepackage{gscale_thesis_singlespace} % Single spaced thesis
 \usepackage{gscale_thesis_doublespace} % Double spaced thesis
 \usepackage{fancyheadings} % Header and footer styling
@@ -36,7 +37,7 @@
 \beforepreface % Half title page, title page, declaration page   
   \include{layabstr} % Lay Abstract
   \include{abstr} % Abstract
-  \include{dedic} % Dedication
+  %\include{dedic} % Dedication (optional) -- re-enable after personalizing dedic.tex
   \include{acknowledgements} % Acknowledgements
   \referencepages % Table of Contents, List of Figures, List of Tables
   \include{notation}
@@ -132,9 +133,8 @@
         \setcounter{table}{0}
 \end{appendix}
 
-% The bibliography is set up to allow for multiple bib files
 \bibliographystyle{plainnat}
-\bibliography{references,references_another}
+\bibliography{references}
 
 \label{NumDocumentPages}
 

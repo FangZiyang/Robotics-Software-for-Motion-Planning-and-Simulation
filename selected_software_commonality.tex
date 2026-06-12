@@ -3,7 +3,7 @@
 
 Chapter~\ref{ch:methodology} explains how the final 28 packages were selected. This chapter characterizes that set for RQ1 and gives the commonality context used later when interpreting the RQ2 measurements. It first summarizes the packages, then groups them by primary role, identifies shared capabilities and major variation points, records parameters of variation and binding times, and closes with boundary cases that do not fit cleanly into one category.
 
-The commonality analysis follows the approach described by \citet{Weiss1997} and is based on evidence from project documentation, repositories, publications, and other reliable sources. Capabilities described as likely but not yet verified against project materials are explicitly noted.
+The commonality analysis follows the approach described by \citet{Weiss1998} and is based on evidence from project documentation, repositories, publications, and other reliable sources. Capabilities are reported only where they could be verified against these materials.
 
 \section{Overview of Selected Software}
 \label{sec:overview-selected-software}
@@ -28,9 +28,9 @@ The following packages from the selected set are primarily classified as robotic
 
 \begin{itemize}
     \item \textbf{Gazebo} (including the Ignition/Gazebo Sim lineage) is a long-established open-source 3D robotics simulator developed by Open Robotics. It provides physics simulation through multiple backends, rendering, sensor models, and ROS integration.
-    \item \textbf{Webots} is a multi-platform robot simulator maintained by Cyberbotics. It supports modeling, programming, and simulating robots, vehicles, and mechanical systems, with a large library of pre-built robot models.
+    \item \textbf{Webots} is a multi-platform robot simulator maintained by Cyberbotics. It supports modelling, programming, and simulating robots, vehicles, and mechanical systems, with a large library of pre-built robot models.
     \item \textbf{CoppeliaSim} (formerly V-REP) is a versatile robot simulation framework developed by Coppelia Robotics. It supports rapid algorithm development, factory automation simulation, prototyping, verification, and digital twin applications.
-    \item \textbf{AirSim} is an open-source simulator for autonomous vehicles (drones and ground vehicles) built on Unreal Engine and developed by Microsoft Research. The measured repository is \texttt{microsoft/AirSim}; under the May 2026 18-month activity rule it is classified as alive, with a last recorded commit on 2026-03-15. Because project materials also point users toward Project AirSim, this alive/dead label is used only as a repository snapshot and not as a claim about continuing stewardship of the original AirSim line.
+    \item \textbf{AirSim} is an open-source simulator for autonomous vehicles (drones and ground vehicles) built on Unreal Engine and developed by Microsoft Research. The measured repository is \texttt{microsoft/AirSim}; under the May 2026 18-month activity rule it is classified as alive, with a last recorded commit on 2026-03-15. This label should be read narrowly: the repository README has announced since 2022 that development has ended (``no further updates will be made, effective immediately'') and points users toward Project AirSim, and the few commits recorded after 2022 are README-level changes. The alive label is therefore a repository snapshot under the activity rule, not a claim about continuing stewardship of the original AirSim line.
     \item \textbf{CARLA} is an open-source autonomous driving simulator built on Unreal Engine and developed by the Computer Vision Center in Barcelona and Intel. It provides photorealistic urban environments and a broad sensor suite for autonomous driving research.
     \item \textbf{MORSE} (Modular OpenRobots Simulation Engine) is a generic academic robotic simulator based on Blender and the Bullet physics engine, designed to remain middleware-agnostic across ROS, YARP, and other frameworks.
     \item \textbf{Habitat} is a 3D simulator for embodied AI research developed by Meta AI Research. It supports training and evaluation of embodied AI agents in photorealistic indoor environments.
@@ -84,7 +84,7 @@ The following packages are primarily classified as planning or middleware tools:
 
 Despite the diversity of the selected packages, several capabilities and concerns recur across the software family. These commonalities are organized around the abstraction of a typical robotics software workflow: model representation, computation, interaction, and documentation. Figure~\ref{fig:feature-model} presents the family as a commonality/variability feature model: the recurring common concerns (C1--C7) are detailed in this section, and the variable features (V1--V9) in Section~\ref{sec:variabilities}.
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 \centering
 \begin{tikzpicture}[
   font=\small,
@@ -148,13 +148,13 @@ The selected packages differ along several important dimensions. These variabili
 
 \textbf{V4: Physics Fidelity and Approach.} Physics engines differ in their simulation approach and fidelity. Some prioritize speed for real-time or reinforcement learning applications (MuJoCo, Bullet), while others emphasize physical accuracy for engineering analysis (Project Chrono, Simbody). Differences include the choice of constraint solver, collision detection algorithm, integration method, and support for deformable bodies or fluid dynamics.
 
-\textbf{V5: Platform Support.} While all packages support Linux, support for other platforms varies. Some packages provide first-class support for Windows and macOS (Webots, CoppeliaSim, Bullet), while others are primarily developed for Linux with limited cross-platform support.
+\textbf{V5: Platform Support.} Nearly all packages support Linux (27 of 28 in the measured records; the PhysX platform field recorded only Windows, a known under-report discussed in Chapter~\ref{ch:measurement-results}), and support for other platforms varies. Some packages provide first-class support for Windows and macOS (Webots, CoppeliaSim, Bullet), while others are primarily developed for Linux with limited cross-platform support.
 
 \textbf{V6: Programming Language Interfaces.} C++ is the dominant implementation language across the selected packages, but packages differ in the range and quality of language bindings they provide. Python bindings are increasingly common because Python has become central to robotics research and machine learning. Fewer packages provide interfaces for languages such as MATLAB, Java, or Rust.
 
 \textbf{V7: ROS Integration Depth.} Packages vary in their relationship to the ROS ecosystem. Some (Gazebo, MoveIt!) are tightly integrated and depend on ROS for core functionality. Others (Webots, CARLA) provide ROS bridges as optional components. Some (YARP, OROCOS) are alternatives to ROS that provide their own middleware infrastructure.
 
-\textbf{V8: License Model.} Although all packages are open source, they use different licenses. The most common are Apache~2.0, BSD (2-clause and 3-clause), MIT, and LGPL. License choice affects how the software can be reused and integrated into other projects.
+\textbf{V8: License Model.} Although all packages are open source, they use different licenses. The most common are BSD (2-clause and 3-clause), Apache~2.0, MIT, and LGPL. License choice affects how the software can be reused and integrated into other projects.
 
 \textbf{V9: Community and Governance.} Packages differ in their development governance. Some are stewarded by established organizations (Open Robotics for Gazebo and ROS~2, Google DeepMind for MuJoCo, NVIDIA for PhysX), some by academic research groups (Drake at MIT/TRI, OMPL at Rice, DART at Georgia Tech), and some by individual maintainers or small communities (ODE, Newton Dynamics, GraspIt!).
 
@@ -163,10 +163,11 @@ The selected packages differ along several important dimensions. These variabili
 
 For each variability identified in Section~\ref{sec:variabilities}, Table~\ref{tab:parameters-of-variation} summarizes the parameters of variation and their typical binding times. Binding time indicates when a particular choice is fixed: at specification time (when the software is designed), build time (when it is compiled), configuration time (when it is set up), or run time (during execution).
 
-\begin{table}[H]
+\begin{table}[htbp]
 \centering
 \caption{Parameters of variation and binding times.}
 \label{tab:parameters-of-variation}
+\singlespacing
 \begin{tabular}{@{}p{3.5cm}p{7cm}p{3cm}@{}}
 \toprule
 \textbf{Variability} & \textbf{Parameters of Variation} & \textbf{Binding Time} \\
@@ -179,7 +180,7 @@ V3: Domain specificity & General-purpose robotics, autonomous driving, aerial ve
 \hline
 V4: Physics fidelity & Real-time (game-quality), high-fidelity (engineering-quality), configurable trade-off & Specification / configuration time \\
 \hline
-V5: Platform support & Linux-only, Linux + Windows + macOS, web-based & Specification / build time \\
+V5: Platform support & Windows-only (as recorded), Linux-only, Linux + Windows, Linux + Windows + macOS & Specification / build time \\
 \hline
 V6: Language bindings & C++ only, C++ with Python, multi-language (Python, MATLAB, Java, etc.) & Build / configuration time \\
 \hline
