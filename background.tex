@@ -12,26 +12,39 @@ The MPS domain in this report is broader than a single class of software. It cov
 
 \begin{figure}[htbp]
 \centering
+% Figure palette: the two structural rails (middleware, physics) share one
+% neutral slate; the two subject roles (planning, simulation) each carry one
+% accent. Three colours total, each with a matching deeper border.
+\definecolor{mpsSlateFill}{HTML}{EDEEF1}
+\definecolor{mpsSlateLine}{HTML}{5E6675}
+\definecolor{mpsSlateText}{HTML}{394150}
+\definecolor{mpsTealFill}{HTML}{E0F1EC}
+\definecolor{mpsTealLine}{HTML}{0F8E78}
+\definecolor{mpsTealText}{HTML}{0A5446}
+\definecolor{mpsBlueFill}{HTML}{E6EEFA}
+\definecolor{mpsBlueLine}{HTML}{2C6FCE}
+\definecolor{mpsBlueText}{HTML}{1A4A8F}
+\definecolor{mpsArrow}{HTML}{7A828C}
 \begin{tikzpicture}[
   font=\small,
-  comp/.style={draw, rounded corners, align=center, inner sep=5pt, minimum height=1.15cm},
-  mw/.style={comp, fill=black!5, text width=9cm},
-  plan/.style={comp, fill=blue!6, text width=4cm},
-  sim/.style={comp, fill=green!6, text width=4cm},
-  phys/.style={comp, fill=orange!6, text width=9cm},
-  bus/.style={{Latex[length=2mm]}-{Latex[length=2mm]}, thick},
-  uses/.style={-{Latex[length=2.6mm]}, thick},
+  comp/.style={draw, rounded corners, align=center, inner sep=5pt, minimum height=1.15cm, line width=0.8pt},
+  mw/.style={comp, fill=mpsSlateFill, draw=mpsSlateLine, text=mpsSlateText, text width=9cm},
+  plan/.style={comp, fill=mpsTealFill, draw=mpsTealLine, text=mpsTealText, text width=4cm},
+  sim/.style={comp, fill=mpsBlueFill, draw=mpsBlueLine, text=mpsBlueText, text width=4cm},
+  phys/.style={comp, fill=mpsSlateFill, draw=mpsSlateLine, text=mpsSlateText, text width=9cm},
+  bus/.style={{Latex[length=2mm]}-{Latex[length=2mm]}, thick, draw=mpsArrow},
+  uses/.style={-{Latex[length=2.6mm]}, thick, draw=mpsArrow},
 ]
 \node[mw] (mw) at (2.5,0) {\textbf{Middleware} \footnotesize(ROS~2, YARP)\\[1pt]\footnotesize communication, hardware abstraction, system integration};
-\node[plan] (plan) at (0,-1.95) {\textbf{Motion planning \&}\\\textbf{manipulation}\\[1pt]\footnotesize OMPL, MoveIt!};
-\node[sim] (sim) at (5,-1.95) {\textbf{Simulation}\\\textbf{environments}\\[1pt]\footnotesize Gazebo, Webots, CoppeliaSim, CARLA};
-\node[phys] (phys) at (2.5,-4.15) {\textbf{Physics \& dynamics engines}\\[1pt]\footnotesize Bullet, MuJoCo, ODE, DART};
+\node[plan] (plan) at (0,-2.25) {\textbf{Motion planning \&}\\\textbf{manipulation}\\[1pt]\footnotesize OMPL, MoveIt!};
+\node[sim] (sim) at (5,-2.25) {\textbf{Simulation}\\\textbf{environments}\\[1pt]\footnotesize Gazebo, Webots, CoppeliaSim, CARLA};
+\node[phys] (phys) at (2.5,-5.15) {\textbf{Physics \& dynamics engines}\\[1pt]\footnotesize Bullet, MuJoCo, ODE, DART};
 \draw[bus] (plan.north) -- (mw.south -| plan.north);
 \draw[bus] (sim.north) -- (mw.south -| sim.north);
-\draw[uses] (plan.south) -- node[left=1pt, font=\footnotesize, align=center] {collision \&\\dynamics} (phys.north -| plan.south);
-\draw[uses] (sim.south) -- node[right=1pt, font=\footnotesize, align=center] {contact \&\\dynamics} (phys.north -| sim.south);
+\draw[uses] (plan.south) -- node[left=3pt, pos=0.48, font=\footnotesize, align=center, fill=white, inner sep=1pt] {collision /\\dynamics} (phys.north -| plan.south);
+\draw[uses] (sim.south) -- node[right=3pt, pos=0.48, font=\footnotesize, align=center, fill=white, inner sep=1pt] {contact /\\dynamics} (phys.north -| sim.south);
 \end{tikzpicture}
-\caption{Representative software roles in a motion planning and simulation workflow and how they interact. Simulation environments and planning or manipulation stacks both build on shared physics and dynamics engines (downward arrows: contact, collision, and dynamics queries), while middleware wires the functional components together (double arrows: messages, services, and hardware abstraction). The packages named in each box are illustrative examples from this report's selected set; many tools span more than one role, as discussed in Chapter~\ref{ch:selected-software-commonality}.}
+\caption[Representative MPS software roles]{Representative MPS software roles. Box contents are example packages from the selected set.}
 \label{fig:mps-software-stack}
 \end{figure}
 
@@ -61,7 +74,7 @@ This methodology builds on prior State-of-the-Practice assessments conducted acr
 
 The MI and LBM reports share a common structure. They open with motivation and background, describe the methodology, present the measurement results by quality category, compare those results with community rankings, report developer interviews and pain points, discuss the research questions, and close with recommendations and a conclusion. This report follows that same outline and adapts it to the MPS domain.
 
-Key features of the Domain~X methodology that distinguish it from ad hoc software comparisons include: (i)~the involvement of a domain expert to vet the software list, domain analysis, and ranking; (ii)~a transparent candidate discovery process using multiple source types; (iii)~a standardized measurement template that applies the same set of fields (approximately 108, counting substantive questions and supplementary entries together) to every package; (iv)~the use of repository-based metrics alongside qualitative assessments; and (v)~a commonality analysis that treats the selected packages as members of a software family rather than as unrelated products.
+Key features of the Domain~X methodology that distinguish it from ad hoc software comparisons include: (i)~the involvement of a domain expert to vet the software list, domain analysis, and ranking (Chapter~\ref{ch:methodology} describes how the domain expert was involved in this study); (ii)~a transparent candidate discovery process using multiple source types; (iii)~a standardized measurement template that applies the same set of fields (approximately 108, counting substantive questions and supplementary entries together) to every package; (iv)~the use of repository-based metrics alongside qualitative assessments; and (v)~a commonality analysis that treats the selected packages as members of a software family rather than as unrelated products.
 
 Practitioner-facing research software checklists provide complementary guidance on themes such as source control, licensing, documentation, testing, automation, distribution, and governance~\citep{Acton2026Checklists}. These themes overlap with several Domain~X quality categories, but this report uses the Domain~X template as its measurement instrument.
 
