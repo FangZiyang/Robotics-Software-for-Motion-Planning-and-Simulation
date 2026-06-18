@@ -70,6 +70,7 @@ examples/writing-reference-guide.md
 REPORT_REVIEW.md
 FIGURE_CORRECTNESS_REVIEW.md
 figure-verification-report.md
+CSV_FIGURE_VERIFICATION.md
 *.dmp
 feedback/
 advisor-review-chapters-1-6.md
