@@ -80,7 +80,41 @@ Taken together, the evidence suggests that MPS projects are relatively mature in
 \section{Summary of Cross-Domain Findings}
 \label{sec:cross-domain-summary}
 
-The cross-domain comparison answers RQ3--RQ5 as follows.
+The cross-domain comparison answers RQ3--RQ5 as follows. Table~\ref{tab:cross-domain-comparison} first consolidates the quantitative comparison discussed across this chapter, placing the MPS counts alongside the corresponding figures reported by the medical imaging and Lattice Boltzmann method studies.
+
+\begin{table}[htbp]
+\centering
+\caption{Cross-domain comparison of repository artifacts, tools, and process evidence: motion planning and simulation (MPS, this study) against the medical imaging (MI) and Lattice Boltzmann method (LBM) State-of-the-Practice studies. MPS counts are out of 28 packages (Chapter~\ref{ch:measurement-results}, May 2026); MI counts are out of 29 packages~\citep{Smith2024MI} and LBM counts out of 24 packages~\citep{Smith2024LBM}. Percentages are taken over each study's own package count, so the columns are comparable despite the different denominators.}
+\label{tab:cross-domain-comparison}
+\small
+\singlespacing
+\begin{tabular}{@{}p{5.4cm}ccc@{}}
+\toprule
+\textbf{Artifact / evidence} & \textbf{MPS} & \textbf{MI} & \textbf{LBM} \\
+ & \textbf{(n{=}28)} & \textbf{(n{=}29)} & \textbf{(n{=}24)} \\
+\midrule
+\multicolumn{4}{@{}l}{\textit{Repository artifacts (RQ3)}}\\
+Version control            & 28 (100\%) & 29 (100\%) & 16 (67\%) \\
+Issue tracking             & 28 (100\%) & 28 (97\%)  & n/r \\
+Tutorial (getting-started) & 28 (100\%) & 18 (62\%)  & 19 (79\%) \\
+User manual                & 28 (100\%) & 22 (76\%)  & 13 (54\%) \\
+Installation instructions  & 28 (100\%) & 16 (55\%)  & n/r \\
+API documentation          & 28 (100\%) & 7 (24\%)   & 0 (0\%) \\
+Release notes              & 27 (96\%)  & 22 (76\%)  & 9 (38\%) \\
+Contribution / review guidance & 26 (93\%) & 8 (28\%) & n/r \\
+\addlinespace
+\multicolumn{4}{@{}l}{\textit{Tools and process evidence (RQ4--RQ5)}}\\
+Unit tests available           & 27 (96\%) & 15 (52\%) & 2 (8\%) \\
+Continuous integration         & 26 (93\%) & 5 (17\%)  & 3 (13\%) \\
+Documentation-generation tools & 12 (43\%) & n/r       & 13 (54\%) \\
+Explicit coding standard       & 14 (50\%) & 3 (10\%)  & 3 (13\%) \\
+Documented user characteristics & 1 (4\%)  & n/r       & 5 (21\%) \\
+\bottomrule
+\end{tabular}
+
+\smallskip
+{\footnotesize \textit{Notes:} MPS values restate Chapter~\ref{ch:measurement-results}. ``n/r'' marks an artifact that the cited study does not report as a count. The LBM API-documentation entry is zero because that study recorded no package with explicit API documentation~\citep{Smith2024LBM}.}
+\end{table}
 
 For RQ3, MPS projects compare favourably with prior research software domains in the presence of repository artifacts. Installation instructions, installation automation, tutorials, user manuals, API documentation, issue tracking, version control, unit tests, release notes, and contribution guidance are common or near-universal in the measured MPS set. Compared with MI and LBM, the MPS sample appears especially strong in user manuals, API documentation, and testing evidence. Its basic repository infrastructure is comparable with MI and stronger than the LBM comparison point. The main gaps are formal artifacts: documented user characteristics, requirements-style information, design rationale, and explicit coding standards for the half of packages that do not record one.
 

@@ -8,7 +8,32 @@ This chapter sets out the concepts the rest of the report relies on. Section~\re
 
 MPS software supports the design, testing, evaluation, and deployment of robotic systems. Motion planning software generates feasible robot motions under constraints such as geometry, kinematics, dynamics, collisions, and task requirements~\citep{lavalle2006planning}. Simulation software provides virtual environments for representing robots, sensors, actuators, controllers, and physical interactions before, or alongside, work with physical hardware~\citep{collins2021simulators}.
 
-The MPS domain in this report is broader than a single class of software. It covers full simulation environments such as Gazebo, Webots, CoppeliaSim, and CARLA, physics and dynamics engines such as Bullet, MuJoCo, ODE, and DART, motion planning libraries such as OMPL, manipulation frameworks such as MoveIt!, and middleware such as ROS~2 and YARP. These tools are not interchangeable but often appear in the same workflow: a simulator may call a physics engine for contact and dynamics, a planning stack may sit on top of a collision-checking library and communicate through middleware, and middleware may wire planning, control, perception, and simulation together.
+The MPS domain in this report is broader than a single class of software. It covers full simulation environments such as Gazebo, Webots, CoppeliaSim, and CARLA, physics and dynamics engines such as Bullet, MuJoCo, ODE, and DART, motion planning libraries such as OMPL, manipulation frameworks such as MoveIt!, and middleware such as ROS~2 and YARP. These tools are not interchangeable but often appear in the same workflow: a simulator may call a physics engine for contact and dynamics, a planning stack may sit on top of a collision-checking library and communicate through middleware, and middleware may wire planning, control, perception, and simulation together. Figure~\ref{fig:mps-software-stack} sketches these relationships among the four software roles.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+  font=\small,
+  comp/.style={draw, rounded corners, align=center, inner sep=5pt, minimum height=1.15cm},
+  mw/.style={comp, fill=black!5, text width=9cm},
+  plan/.style={comp, fill=blue!6, text width=4cm},
+  sim/.style={comp, fill=green!6, text width=4cm},
+  phys/.style={comp, fill=orange!6, text width=9cm},
+  bus/.style={{Latex[length=2mm]}-{Latex[length=2mm]}, thick},
+  uses/.style={-{Latex[length=2.6mm]}, thick},
+]
+\node[mw] (mw) at (2.5,0) {\textbf{Middleware} \footnotesize(ROS~2, YARP)\\[1pt]\footnotesize communication, hardware abstraction, system integration};
+\node[plan] (plan) at (0,-1.95) {\textbf{Motion planning \&}\\\textbf{manipulation}\\[1pt]\footnotesize OMPL, MoveIt!};
+\node[sim] (sim) at (5,-1.95) {\textbf{Simulation}\\\textbf{environments}\\[1pt]\footnotesize Gazebo, Webots, CoppeliaSim, CARLA};
+\node[phys] (phys) at (2.5,-4.15) {\textbf{Physics \& dynamics engines}\\[1pt]\footnotesize Bullet, MuJoCo, ODE, DART};
+\draw[bus] (plan.north) -- (mw.south -| plan.north);
+\draw[bus] (sim.north) -- (mw.south -| sim.north);
+\draw[uses] (plan.south) -- node[left=1pt, font=\footnotesize, align=center] {collision \&\\dynamics} (phys.north -| plan.south);
+\draw[uses] (sim.south) -- node[right=1pt, font=\footnotesize, align=center] {contact \&\\dynamics} (phys.north -| sim.south);
+\end{tikzpicture}
+\caption{Representative software roles in a motion planning and simulation workflow and how they interact. Simulation environments and planning or manipulation stacks both build on shared physics and dynamics engines (downward arrows: contact, collision, and dynamics queries), while middleware wires the functional components together (double arrows: messages, services, and hardware abstraction). The packages named in each box are illustrative examples from this report's selected set; many tools span more than one role, as discussed in Chapter~\ref{ch:selected-software-commonality}.}
+\label{fig:mps-software-stack}
+\end{figure}
 
 This breadth creates a scope challenge for a State-of-the-Practice study. A narrow definition restricted to full simulators would make comparison simpler, but it would exclude software that practitioners routinely use in motion planning and simulation workflows. A broader definition better reflects the practical ecosystem, provided the report is explicit about the different roles that software packages play within the MPS domain.
 
