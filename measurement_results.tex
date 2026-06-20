@@ -339,7 +339,8 @@ The percentage of code that is comments shows substantial variation, from 1.1\% 
 \section{Overall Observations}
 \label{sec:overall-observations}
 
-Table~\ref{tab:overall-impressions} summarizes the overall impression scores across all nine quality categories for each package, along with a simple unweighted per-package mean. Figure~\ref{fig:quality-ranking} plots the per-package mean as a ranked bar chart coloured by activity status, Figure~\ref{fig:quality-heatmap} renders the full score matrix as a heatmap, and Figure~\ref{fig:category-distribution} shows how the scores are distributed within each of the nine categories. The scores reported here are the raw 1--10 impression values assigned during measurement using the Domain~X Appendix~C calculator. The unweighted mean treats all nine qualities as equally important. A fully defensible AHP-weighted ranking would require a formal criterion-weighting elicitation, which this study does not perform. For illustration, Figure~\ref{fig:ahp-ranking} reports an AHP ranking computed with the Domain~X pairwise-comparison algorithm applied to these scores under equal category weights. Under equal weights the two orderings agree at the top; the figure illustrates how the Domain~X weighting step operates, not a weighted verdict on the packages.
+Table~\ref{tab:overall-impressions} summarizes the overall impression scores across all nine quality categories for each package, along with a simple unweighted per-package mean. Figure~\ref{fig:quality-ranking} plots the per-package mean as a ranked bar chart coloured by activity status, Figure~\ref{fig:quality-heatmap} renders the full score matrix as a heatmap, and Figure~\ref{fig:category-distribution} shows how the scores are distributed within each of the nine categories. The scores reported here are the raw 1--10 impression values assigned during measurement using the Domain~X Appendix~C calculator. The unweighted mean treats all nine qualities as equally important. Because this study does not elicit criterion weights, Figure~\ref{fig:ahp-ranking} presents an illustrative AHP ranking under equal category weights ($c_k = 1/9$), following the pairwise-comparison, priority, and aggregation steps defined in Section~\ref{sec:ahp-background} (Equations~\eqref{eq:ahp-pairwise}--\eqref{eq:ahp-aggregate}). Under equal weights the AHP global priorities and the unweighted mean agree at the top of the table, as Equation~\eqref{eq:ahp-aggregate} implies.
+% TODO (sensitivity): the 10\% score-perturbation check described in Section~\ref{sec:ahp-background} is run separately; once the result is available, add one sentence here reporting its effect on the ranking (e.g. whether the top tier is unchanged), so Chapter 5 actually delivers the sensitivity check that the method describes.
 
 \begin{table}[p]
 \centering
@@ -385,22 +386,22 @@ YARP & 7 & 8 & 7 & 7 & 7 & 8 & 7 & 7 & 8 & 7.3 \\
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.78\textwidth]{figures/fig_quality_ranking}
+    \includegraphics[width=0.92\textwidth]{figures/fig_quality_ranking}
     \caption{Quality-mean ranking of the 28 MPS packages (Table~\ref{tab:overall-impressions}, Mean column), coloured by activity status (May 2026 snapshot). Bars give the unweighted mean of the nine category impression scores.}
     \label{fig:quality-ranking}
 \end{figure}
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.72\textwidth]{figures/fig_quality_heatmap}
+    \includegraphics[width=0.95\textwidth]{figures/fig_quality_heatmap}
     \caption{Quality impression scores (1--10) for the 28 MPS packages across the nine Domain~X quality categories, rendered as a heatmap (Table~\ref{tab:overall-impressions}). Packages are ordered top-to-bottom by their unweighted mean. Darker cells denote higher scores.}
     \label{fig:quality-heatmap}
 \end{figure}
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.88\textwidth]{figures/fig_category_distribution}
-    \caption{Distribution of the impression scores across the 28 packages within each of the nine quality categories (Table~\ref{tab:overall-impressions}). Boxes span the interquartile range with the median marked; whiskers and points show the spread and outliers. The categories are bunched in a narrow 7--8 band, with Installability and Maintainability showing the widest low-end spread.}
+    \includegraphics[width=0.95\textwidth]{figures/fig_category_distribution}
+    \caption{Distribution of the impression scores across the 28 packages within each of the nine quality categories (Table~\ref{tab:overall-impressions}). Boxes span the interquartile range with the median marked; whiskers and points show the spread and outliers.}
     \label{fig:category-distribution}
 \end{figure}
 
@@ -408,8 +409,8 @@ A handful of packages anchor the top of the table. Gazebo scores 10 in all nine 
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.82\textwidth]{figures/fig_ahp_ranking}
-    \caption{Illustrative AHP global-priority ranking obtained by applying the Domain~X pairwise-comparison algorithm to the impression scores of Table~\ref{tab:overall-impressions} under equal category weights. Higher priority is better and the values sum to one across packages. Equal weights are used because no formal criterion-weighting elicitation was performed; the ordering reproduces the unweighted-mean leaders (Gazebo, Drake, MoveIt!, Pinocchio, ROS~2, OMPL) and is shown to illustrate the Domain~X weighting step, not as an elicited result. Beyond the top tier, the AHP ordering and the unweighted-mean ordering differ at several mid-table positions, which is expected from the pairwise score mapping.}
+    \includegraphics[width=0.92\textwidth]{figures/fig_ahp_ranking}
+    \caption{Illustrative equal-weight AHP global-priority ranking ($c_k = 1/9$), computed from the overall impression scores of Table~\ref{tab:overall-impressions} by the AHP procedure of Section~\ref{sec:ahp-background} (priorities sum to one; higher is better).}
     \label{fig:ahp-ranking}
 \end{figure}
 
@@ -421,8 +422,8 @@ Documentation is universally present but varies in depth. All packages provide t
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.8\textwidth]{figures/fig_key_indicators}
-    \caption{Coverage of selected measurement-template indicators across the 28 packages (May 2026), sorted from least to most common. The values restate Tables~\ref{tab:installability}, \ref{tab:correctness-summary}, \ref{tab:maintainability-summary}, \ref{tab:understandability-summary}, and \ref{tab:visibility-summary}, together with the documented-user-characteristics result of Section~\ref{sec:surface-usability-results}. Practical, user-facing artifacts cluster at or near 100\%, while explicit coding standards (50\%) and documented user characteristics (4\%) are the clear outliers.}
+    \includegraphics[width=0.92\textwidth]{figures/fig_key_indicators}
+    \caption{Coverage of selected measurement-template indicators across the 28 packages (May 2026), sorted from least to most common. Values restate Tables~\ref{tab:installability}, \ref{tab:correctness-summary}, \ref{tab:maintainability-summary}, \ref{tab:understandability-summary}, and \ref{tab:visibility-summary} and the documented-user-characteristics result of Section~\ref{sec:surface-usability-results}.}
     \label{fig:key-indicators}
 \end{figure}
 
@@ -430,7 +431,7 @@ Repository activity is concentrated in a small subset of packages: Drake, SOFA, 
 
 The relationship between community popularity and measurement scores is not linear. Section~\ref{sec:quality-vs-community} reports the explicit ranking comparison. Star counts accumulate over years and capture cumulative attention; the quality scores capture what each project's documentation, tests, and release infrastructure look like today, so the two indicators answer different questions and need not agree.
 
-Chapter~\ref{ch:comparison-research-software} interprets these results against prior State-of-the-Practice studies, and Chapter~\ref{ch:conclusions} answers the research questions in light of the evidence.
+Chapter~\ref{ch:comparison-research-software} interprets these results against prior studies of the state of the practice, and Chapter~\ref{ch:conclusions} answers the research questions in light of the evidence.
 
 \section{Comparison with Community Indicators}
 \label{sec:quality-vs-community}
@@ -482,13 +483,13 @@ GraspIt!         & 5.0  & 28 & 213    & 24 & $-4$  \\
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.92\textwidth]{figures/fig_quality_vs_popularity}
-    \caption{Measured quality mean (Table~\ref{tab:overall-impressions}) versus GitHub stars (log scale, Table~\ref{tab:repository-metrics}) for the 28 packages, coloured by activity status (May 2026 snapshot). Dashed lines mark the mean quality and the median star count, both computed over the 27 packages with star data. Packages in the lower-right combine high measured quality with comparatively modest popularity; those in the upper-left are popular without proportional quality scores.}
+    \caption{Measured quality mean (Table~\ref{tab:overall-impressions}) versus GitHub stars (log scale, Table~\ref{tab:repository-metrics}) for the 28 packages, coloured by activity status (May 2026 snapshot). Dashed lines mark the mean quality and the median star count, both computed over the 27 packages with star data.}
     \label{fig:quality-vs-popularity}
 \end{figure}
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.78\textwidth]{figures/fig_quality_popularity_delta}
+    \includegraphics[width=0.92\textwidth]{figures/fig_quality_popularity_delta}
     \caption{Rank divergence $\Delta = S - Q$ between the GitHub-stars rank and the quality-mean rank for each package (Table~\ref{tab:quality-vs-community}). Positive (blue) bars indicate packages that are under-recognized relative to their measured quality; negative (orange) bars indicate packages that are more popular than their quality scores alone would suggest.}
     \label{fig:quality-popularity-delta}
 \end{figure}
@@ -503,4 +504,4 @@ The 28 packages fall into four broad patterns, summarized visually in Figures~\r
 
 \textbf{Consistently low.} GraspIt! ($\Delta = -4$) and Newton Dynamics ($\Delta = -1$) cluster near the bottom on both indicators; inactive or narrowly used projects tend to accumulate gaps in documentation, releases, and visibility together. For Newton Dynamics this placement carries the repository-migration caveat from Section~\ref{sec:repository-project-metadata}: measured against its original repository's accumulated stars, its popularity rank would sit closer to the middle of the table, although its quality rank would not change. OpenRTM-aist sits near the bottom on both indicators as well, but with $\Delta = +5$ its quality rank (21) is modestly better than its stars rank (26), so it belongs in this group only in the sense of low absolute standing on both axes, not as a case where popularity outruns quality.
 
-These patterns are consistent with the finding from the Medical Imaging State-of-the-Practice study that GitHub popularity and measurement-based rankings do not align in a simple way~\citep{Smith2024MI}. They support the broader argument that community-facing indicators of visibility and adoption are not interchangeable with measured software engineering quality; treating stars as a quality proxy obscures meaningful differences across packages.
+These patterns are consistent with the finding from the medical imaging study of the state of the practice that GitHub popularity and measurement-based rankings do not align in a simple way~\citep{Smith2024MI}. They support the broader argument that community-facing indicators of visibility and adoption are not interchangeable with measured software engineering quality; treating stars as a quality proxy obscures meaningful differences across packages.

@@ -67,6 +67,7 @@ examples/lbm-journal-fulltext.txt
 examples/writing-reference-guide.md
 
 # Local review, feedback, and scratch artifacts
+working_notes/
 REPORT_REVIEW.md
 FIGURE_CORRECTNESS_REVIEW.md
 figure-verification-report.md

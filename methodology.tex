@@ -1,7 +1,7 @@
 \chapter{Methodology}
 \label{ch:methodology}
 
-This chapter describes the methodology used to conduct the State-of-the-Practice study of MPS software and addresses RQ1 (candidate identification) by documenting how the candidate set was assembled. The methodology follows \citet{Smith2021} and adapts it to the MPS domain. Section~\ref{sec:domain-selection} explains how the domain was chosen, and Section~\ref{sec:domain-expert-interaction} describes the role of the domain expert. Section~\ref{sec:candidate-software-discovery} covers the three-source candidate discovery process; Section~\ref{sec:mention-count-ranking} introduces the mention-count ranking that orders those candidates; and Section~\ref{sec:filtering-criteria} sets out the filtering criteria applied to the ranked list. The resulting selected set of 28 packages appears in Section~\ref{sec:final-software-set}. Section~\ref{sec:measurement-procedure} then walks through the measurement procedure using the Domain~X template, Section~\ref{sec:commonality-analysis-procedure} outlines the commonality analysis, and Section~\ref{sec:interview-component} describes the developer interview component.
+This chapter describes the methodology used to conduct the study of the state of the practice for MPS software and addresses RQ1 (candidate identification) by documenting how the candidate set was assembled. The methodology follows \citet{Smith2021} and adapts it to the MPS domain. Section~\ref{sec:domain-selection} explains how the domain was chosen, and Section~\ref{sec:domain-expert-interaction} describes the role of the domain expert. Section~\ref{sec:candidate-software-discovery} covers the three-source candidate discovery process; Section~\ref{sec:mention-count-ranking} introduces the mention-count ranking that orders those candidates; and Section~\ref{sec:filtering-criteria} sets out the filtering criteria applied to the ranked list. The resulting selected set of 28 packages appears in Section~\ref{sec:final-software-set}. Section~\ref{sec:measurement-procedure} then walks through the measurement procedure using the Domain~X template, Section~\ref{sec:commonality-analysis-procedure} outlines the commonality analysis, and Section~\ref{sec:interview-component} describes the developer interview component.
 
 \section{Domain Selection}
 \label{sec:domain-selection}
@@ -21,7 +21,7 @@ The Domain~X methodology emphasizes that a domain expert is an essential member 
 
 Domain experts may be recruited from academia or industry. The only requirements are knowledge of the domain and a willingness to be engaged in the assessment process. The domain expert does not need to be a software developer, but they should be a user of domain software. Given that domain experts are likely to be busy people, the methodology is designed to minimize the burden on their time~\citep{Smith2024MI}.
 
-For this report, the domain expert is Dr.~Matthew Giamou of the Department of Computing and Software at McMaster University, whose research includes robotics, motion planning, and state estimation. Dr.~Giamou reviewed the candidate software list and provided feedback on scope and coverage. He confirmed that the list was reasonable and that most of the shortlisted tools were familiar to him. He noted that several packages (ROS~2, MoveIt!, and OMPL) are not full simulators but can fit within a coherent narrative if their roles are explained carefully. He also confirmed that excluding MATLAB/Simulink, Unity, NVIDIA Isaac Sim, and RaiSim on methodological grounds (closed source or non-OSS licensing for core components, as detailed in Section~\ref{subsec:open-source-availability}) was acceptable and would not misrepresent the MPS domain. MRDS and USARSim, which are also excluded, were filtered on independent activity grounds (Section~\ref{subsec:activity-maintenance-status}) rather than as a separate expert decision.
+For this report, the domain expert is Dr.~Matthew Giamou of the Department of Computing and Software at McMaster University, whose research includes robotics, motion planning, and state estimation. Dr.~Giamou reviewed the candidate software list and provided feedback on scope and coverage. He confirmed that the list was reasonable and that most of the shortlisted packages were familiar to him. He noted that several packages (ROS~2, MoveIt!, and OMPL) are not full simulators but can fit within a coherent narrative if their roles are explained carefully. He also confirmed that excluding MATLAB/Simulink, Unity, NVIDIA Isaac Sim, and RaiSim on methodological grounds (closed source or non-OSS licensing for core components, as detailed in Section~\ref{subsec:open-source-availability}) was acceptable and would not misrepresent the MPS domain. MRDS and USARSim, which are also excluded, were filtered on independent activity grounds (Section~\ref{subsec:activity-maintenance-status}) rather than as a separate expert decision.
 
 \section{Candidate Software Discovery}
 \label{sec:candidate-software-discovery}
@@ -63,7 +63,7 @@ Mention count is a source-appearance signal and must be interpreted accordingly.
 \section{Filtering Criteria}
 \label{sec:filtering-criteria}
 
-The ranked candidate list was filtered to identify packages suitable for repository-based State-of-the-Practice measurement. In the Domain~X methodology, the initial filters are scope, usage, and age, applied in priority order until the list reaches a manageable size of approximately 30 packages~\citep{Smith2021}. In this report, these filters are implemented through three criteria: open-source availability, repository-based measurability, and activity and maintenance status. Both the initial and filtered lists are preserved for traceability.
+The ranked candidate list was filtered to identify packages suitable for repository-based measurement of the state of the practice. In the Domain~X methodology, the initial filters are scope, usage, and age, applied in priority order until the list reaches a manageable size of approximately 30 packages~\citep{Smith2021}. In this report, these filters are implemented through three criteria: open-source availability, repository-based measurability, and activity and maintenance status. Both the initial and filtered lists are preserved for traceability.
 
 \subsection{Open Source Availability}
 \label{subsec:open-source-availability}
@@ -110,7 +110,7 @@ Filtering decisions, including the alive/dead status used in Section~\ref{subsec
 \section{Final Software Set}
 \label{sec:final-software-set}
 
-After ranking by mention count and applying the filtering criteria described above, the selected set consists of 28 software packages. Appendix~\ref{appendix:full-candidate-software-list} records the disposition of the leading candidates, and Appendix~\ref{appendix:excluded-software-packages} details the excluded tools. Figure~\ref{fig:candidate-selection} summarizes the full selection pipeline, from the three discovery sources through the mention-count ranking and the filtering criteria to the final set. Table~\ref{tab:final-software-set} lists the packages alphabetically with their primary roles in the robotics software ecosystem.
+After ranking by mention count and applying the filtering criteria described above, the selected set consists of 28 software packages. Appendix~\ref{appendix:full-candidate-software-list} records the disposition of the leading candidates, and Appendix~\ref{appendix:excluded-software-packages} details the excluded packages. Figure~\ref{fig:candidate-selection} summarizes the full selection pipeline, from the three discovery sources through the mention-count ranking and the filtering criteria to the final set. Table~\ref{tab:final-software-set} lists the packages alphabetically with their primary roles in the robotics software ecosystem.
 
 \begin{figure}[htbp]
 \centering
@@ -138,7 +138,7 @@ After ranking by mention count and applying the filtering criteria described abo
 \draw[arr] (filt) -- (fin);
 \draw[arr, dashed, draw=orange!60!black] (filt) -- (ex);
 \end{tikzpicture}
-\caption{Candidate selection pipeline. Packages discovered from three source types are consolidated and ranked by mention count, then reduced by the filtering criteria of Section~\ref{sec:filtering-criteria} to the 28 measured packages. Mention counts are source-appearance signals only (Section~\ref{sec:mention-count-ranking}); representative excluded tools and the reason for each exclusion are shown at right.}
+\caption{Candidate selection pipeline, from the three discovery sources through mention-count ranking and the filtering criteria of Section~\ref{sec:filtering-criteria} to the 28 measured packages. Mention counts are source-appearance signals only (Section~\ref{sec:mention-count-ranking}); representative excluded tools are shown at right.}
 \label{fig:candidate-selection}
 \end{figure}
 
@@ -248,9 +248,9 @@ Several measurement questions require explicit interpretation rules:
 \subsection{Ranking with AHP}
 \label{subsec:ahp-ranking}
 
-After the quality measures are collected, the Domain~X methodology uses the Analytic Hierarchy Process (AHP) to support ranking across the nine quality categories~\citep{Saaty1980}. AHP is a decision-making technique that uses pairwise comparisons between alternatives to calculate relative scores. It organizes multiple criteria in a hierarchical structure and enables the combination of individual quality rankings into an overall ranking based on the relative priorities assigned to each quality.
+After the quality measures are collected, the Domain~X methodology uses the Analytic Hierarchy Process (AHP) to support ranking across the nine quality categories~\citep{Saaty1980}. AHP is a decision-making technique that uses pairwise comparisons between alternatives to calculate relative scores. It organizes multiple criteria in a hierarchical structure and enables the combination of individual quality rankings into an overall ranking based on the relative priorities assigned to each quality. The pairwise comparison, priority calculation, and weighted aggregation are defined in Section~\ref{sec:ahp-background}, Equations~\eqref{eq:ahp-pairwise}--\eqref{eq:ahp-aggregate}.
 
-In this report, AHP would be applied to the nine quality impression scores for the 28 software packages and would produce a ranking that depends on the chosen criterion weights. Sensitivity analysis would then assess whether the ranking is stable under reasonable variations in those weights. An elicited-weight AHP ranking is not computed here, because a defensible criterion-weighting elicitation has not been completed at the time of writing; Chapter~\ref{ch:measurement-results} therefore reports the per-package quality-mean ranking and a comparison with community indicators, together with an illustrative equal-weight AHP computation that demonstrates the weighting step.
+In this report, AHP is applied to the nine quality impression scores for the 28 packages. Because no criterion-weight elicitation was carried out, the qualities are weighted equally ($c_k = 1/9$), so the overall priority of Equation~\eqref{eq:ahp-aggregate} reduces to the mean of the nine per-quality priorities. Chapter~\ref{ch:measurement-results} reports the resulting equal-weight AHP ranking alongside the per-package quality-mean ranking and the comparison with community indicators.
 
 \section{Commonality Analysis Procedure}
 \label{sec:commonality-analysis-procedure}
@@ -268,9 +268,9 @@ Following the Domain~X methodology, the analysis proceeds in six steps:
     \item \textbf{Add terminology, definitions, and acronyms} that are standard in the domain, to ensure that the analysis is accessible to readers outside robotics.
 \end{enumerate}
 
-The procedure first groups the selected packages into broad categories based on their primary roles: robotics simulators, physics and dynamics engines, and planning or middleware tools. It then identifies capabilities that appear across multiple categories, such as support for robot model representation, simulated environments, motion planning workflows, dynamics computation, and integration with robotics ecosystems.
+The procedure first groups the selected packages into broad categories based on their primary roles: robotics simulators, physics and dynamics engines, and planning or middleware packages. It then identifies capabilities that appear across multiple categories, such as support for robot model representation, simulated environments, motion planning workflows, dynamics computation, and integration with robotics ecosystems.
 
-Because the selected packages span multiple roles, the commonality analysis does not force all tools into a single comparison template. Its purpose is to describe shared concerns and meaningful differences, not to claim that every package provides identical functionality. The analysis is based on checked evidence from documentation, repositories, publications, and other reliable project materials. Capabilities that could not be verified against these materials are not reported.
+Because the selected packages span multiple roles, the commonality analysis does not force all packages into a single comparison template. Its purpose is to describe shared concerns and meaningful differences, not to claim that every package provides identical functionality. The analysis is based on checked evidence from documentation, repositories, publications, and other reliable project materials. Capabilities that could not be verified against these materials are not reported.
 
 \section{Interview Component}
 \label{sec:interview-component}
