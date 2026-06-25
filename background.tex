@@ -1,14 +1,14 @@
 \chapter{Background}
 \label{ch:background}
 
-This chapter sets out the concepts that the rest of the report relies on. Section~\ref{sec:robotics-software-background} introduces the MPS domain. Section~\ref{sec:software-categories} defines the software licensing categories (open source, freeware, and commercial) relevant to this report. Section~\ref{sec:state-of-practice-background} reviews the methodology for assessing the state of the practice and its prior applications. Section~\ref{sec:software-quality-attributes} defines the nine software quality attributes measured in this report. Section~\ref{sec:commonality-analysis-background} introduces commonality analysis as a method for describing software families. Section~\ref{sec:ahp-background} introduces the Analytic Hierarchy Process used to support ranking. Section~\ref{sec:open-source-repository-measurement} discusses the role and limitations of open-source repository-based measurement.
+This chapter sets out the concepts the rest of the report relies on: the MPS domain, the software licensing categories, state-of-the-practice methodology, the nine quality attributes, commonality analysis, the Analytic Hierarchy Process, and the role of repository-based measurement.
 
 \section{Robotics Software for Motion Planning and Simulation}
 \label{sec:robotics-software-background}
 
 MPS software supports the design, testing, evaluation, and deployment of robotic systems. Motion planning software generates feasible robot motions under constraints such as geometry, kinematics, dynamics, collisions, and task requirements~\citep{lavalle2006planning}. Simulation software provides virtual environments for representing robots, sensors, actuators, controllers, and physical interactions before, or alongside, work with physical hardware~\citep{collins2021simulators}.
 
-The MPS domain in this report is defined to span more than a single class of software, so that the study includes enough packages to support a meaningful comparison. It covers full simulation environments such as Gazebo, Webots, CoppeliaSim, and CARLA; physics and dynamics engines such as Bullet, MuJoCo, ODE, and DART; motion planning libraries such as OMPL; manipulation frameworks such as MoveIt!; and middleware such as ROS~2 and YARP. These classes of software are not interchangeable, but they are unified because they appear together in the same workflow: a simulator may call a physics engine for contact and dynamics, a planning stack may sit on top of a collision-checking library and communicate through middleware, and middleware may call planning, control, perception, and simulation. Figure~\ref{fig:mps-software-stack} sketches these relationships among the four software roles.
+The MPS domain in this report is defined to span more than a single class of software, so that the study includes enough packages to support a meaningful comparison. It covers full simulation environments, physics and dynamics engines, motion planning libraries, manipulation frameworks, and middleware. These classes of software are not interchangeable, but they are unified because they appear together in the same workflow: a simulator may call a physics engine for contact and dynamics, a planning stack may sit on top of a collision-checking library and communicate through middleware, and middleware may call planning, control, perception, and simulation. Figure~\ref{fig:mps-software-stack} sketches these relationships among the four software roles.
 
 \begin{figure}[htbp]
 \centering
@@ -48,7 +48,7 @@ The MPS domain in this report is defined to span more than a single class of sof
 \label{fig:mps-software-stack}
 \end{figure}
 
-This breadth creates a scope challenge for a study of the state of the practice. A narrow definition restricted to full simulators would make comparison simpler, but it would exclude software that practitioners routinely use in motion planning and simulation workflows. A broader definition better reflects the practical ecosystem, provided the report is explicit about the different roles that software packages play within the MPS domain.
+This breadth creates a scope challenge. A definition restricted to full simulators would simplify comparison but exclude software that practitioners routinely use; the broader definition adopted here better reflects the ecosystem, provided the report is explicit about the roles packages play.
 
 \section{Software Categories}
 \label{sec:software-categories}
@@ -57,8 +57,8 @@ Assessing software packages requires understanding the licensing model under whi
 
 \begin{description}
     \item[Open Source Software (OSS):] For OSS, the source code is openly accessible. Users have the right to study, change, and distribute it under a license granted by the copyright holder. For many OSS projects, the development process relies on collaboration among contributors worldwide. Accessible source code exposes the underlying logic of software functions, the development practices used to produce them, and the flaws and potential risks in the final product. OSS is therefore suitable for the kind of repository-based analysis performed here.
-    \item[Freeware:] Freeware is software that can be used free of charge. Unlike OSS, the authors of freeware do not permit access to or modification of the source code. To many end users, the distinction between freeware and OSS may not matter. However, for researchers seeking insight into software development processes, inaccessible source code is a barrier to measurement.
-    \item[Commercial Software:] Commercial software is developed and sold by companies as a product. Typically, commercial software requires payment to access all features and does not include access to the source code. Some commercial software is available free of charge, but the lack of source access prevents the kind of repository-based assessment used in this report.
+    \item[Freeware:] Freeware is software that can be used free of charge. Unlike OSS, the authors of freeware do not permit access to or modification of the source code. To many end users, the distinction between freeware and OSS may not matter.
+    \item[Commercial Software:] Commercial software is developed and sold by companies as a product. Typically, commercial software requires payment to access all features and does not include access to the source code. Some commercial software is available free of charge, but its source code is still not accessible.
 \end{description}
 
 This report assesses only software that fits under the Open Source Software category. This restriction is a methodological necessity, not a judgement about the quality or importance of freeware or commercial tools.
@@ -72,7 +72,7 @@ The methodology used in this report is based on ``Methodology for Assessing the 
 
 The methodology builds on prior assessments of the state of the practice conducted across several research software domains: Geographic Information Systems~\citep{smith2018state}, Mesh Generators~\citep{smith2016state}, Seismology software~\citep{Smith2018Seismology}, and Statistical software for psychology~\citep{smith2018statistical}. More recently, the methodology was refined and applied to Medical Imaging (MI) software~\citep{Smith2024MI} and Lattice Boltzmann Method (LBM) software~\citep{Smith2024LBM,Michalski2021}. These studies are the primary structural and stylistic references for this report.
 
-The MI and LBM reports share a common structure. They open with motivation and background, describe the methodology, present the measurement results by quality category, compare those results with community rankings, report developer interviews and pain points, discuss the research questions, and close with recommendations and a conclusion. This report follows that same outline and adapts it to the MPS domain.
+The MI and LBM reports share a common structure that this report follows and adapts to the MPS domain.
 
 Key features of the Domain~X methodology that distinguish it from ad hoc software comparisons include: (i)~the involvement of a domain expert to vet the software list, domain analysis, and ranking (Chapter~\ref{ch:methodology} describes how the domain expert was involved in this study); (ii)~a transparent candidate discovery process using multiple source types; (iii)~a standardized measurement template that applies the same set of fields (approximately 108, counting substantive questions and supplementary entries together) to every package; (iv)~the use of repository-based metrics alongside qualitative assessments; and (v)~a commonality analysis that treats the selected packages as members of a software family rather than as unrelated products.
 
@@ -110,12 +110,12 @@ A domain analysis consists of systematically identifying and documenting the com
 
 Commonality analysis was added to the Domain~X methodology after early applications revealed that software packages within a domain can vary considerably, even when they appear to belong to the same family~\citep{Smith2024LBM}. Without it, comparisons risk treating fundamentally different types of software as if they were interchangeable. The analysis records where the packages do similar things and where their roles diverge, so a low score on, for example, installability means different things for a full simulator and a focused dynamics library.
 
-In this report, commonality analysis carries the role-sensitive interpretation: it identifies shared concerns across full simulators, physics engines, planning libraries, and middleware while documenting the dimensions on which packages differ. Chapter~\ref{ch:selected-software-commonality} presents this commonality analysis for the selected packages.
+Chapter~\ref{ch:selected-software-commonality} presents this commonality analysis for the selected packages.
 
 \section{Analytic Hierarchy Process}
 \label{sec:ahp-background}
 
-The Domain~X methodology ranks the 28 software packages with the Analytic Hierarchy Process (AHP), a pairwise-comparison technique introduced by \citet{Saaty1980}. Each package has one impression score, from 1 to 10, for each of the nine qualities. AHP combines these scores into a single overall priority for each package, and the packages are ordered by that priority. \citet{smith2016state} apply AHP to software ranking in this way, and this report follows their procedure.
+The Domain~X methodology ranks the 28 software packages with the Analytic Hierarchy Process (AHP), a pairwise-comparison technique introduced by \citet{Saaty1980}. Each package has one impression score, from 1 to 10, for each of the nine qualities. AHP combines these scores into a single overall priority per package, by which the packages are ordered, following the approach of \citet{smith2016state}.
 
 AHP is applied to one quality at a time. For a given quality, let the package scores be $s_1,\dots,s_n$. Each ordered pair of packages $(i,j)$ is given a comparison value on Saaty's 1--9 scale, read directly from the two scores:
 \begin{equation}
@@ -142,13 +142,13 @@ p_i = \sum_{k=1}^{9} c_k\, w_i^{(k)},
 
 The packages are ranked by $p_i$. With equal weights, Equation~\eqref{eq:ahp-aggregate} reduces to the mean of the nine per-quality priorities.
 
-AHP is an analysis aid for cross-quality comparison under a stated weighting, not a universal recommendation of any particular package. Because this report does not elicit quality weights, it presents the equal-weight ranking rather than an elicited-weight one. Selecting a software package for a specific application would involve finding the weights appropriate for that application. Chapter~\ref{ch:methodology} places AHP within the full procedure, and Chapter~\ref{ch:measurement-results} reports the per-package quality-mean ranking, its comparison with community indicators, and an illustrative equal-weight AHP ranking ($c_k = 1/9$) that shows how the per-quality priorities combine into one overall score.
+AHP is an analysis aid for cross-quality comparison under a stated weighting, not a universal recommendation of any particular package. Selecting a software package for a specific application would involve finding the weights appropriate for that application. Chapter~\ref{ch:methodology} places AHP within the full procedure, and Chapter~\ref{ch:measurement-results} reports the per-package quality-mean ranking, its comparison with community indicators, and an illustrative equal-weight AHP ranking ($c_k = 1/9$).
 
 \section{Open Source and Repository-Based Measurement}
 \label{sec:open-source-repository-measurement}
 
-The measurement process in this report depends on evidence from public artifacts. Public repositories can reveal commit history, release activity, issue tracking, documentation, source code organization, testing practices, dependencies, and community interaction. Public documentation and project websites can add evidence about installation procedures, usage patterns, supported platforms, and design goals. This dependence on public evidence makes open-source availability a prerequisite for inclusion in the selected set.
+The measurement process in this report depends on evidence from public artifacts. Public repositories can reveal commit history, release activity, issue tracking, documentation, source code organization, testing practices, dependencies, and community interaction. Public documentation and project websites can add evidence about installation procedures, usage patterns, supported platforms, and design goals.
 
 Repository-based measurement has inherent limitations. Repository metadata represents a snapshot in time: last commit dates, issue counts, release information, and pull request activity can change after measurement. Some projects distribute their development activity across multiple repositories or use external issue trackers, making it difficult to capture a complete picture from any single repository. The interpretation of repository metrics requires care: a high number of open issues may indicate an active user community rather than poor maintenance, and a low commit frequency may reflect project maturity rather than abandonment.
 
-The measurement record therefore documents measurement dates, repository choices, and interpretation rules. The dependence on public evidence also shapes which packages enter the selected set. Proprietary tools and tools with closed core components may be important in robotics practice, but they cannot be measured with the same procedure as open-source software. Chapter~\ref{ch:methodology} discusses the specific inclusion and exclusion decisions that follow from this constraint.
+The measurement record therefore documents measurement dates, repository choices, and interpretation rules. Proprietary tools and tools with closed core components may be important in robotics practice, but they cannot be measured with the same procedure as open-source software; Chapter~\ref{ch:methodology} discusses the specific inclusion and exclusion decisions that follow.

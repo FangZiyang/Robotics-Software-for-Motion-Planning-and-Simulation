@@ -1,21 +1,21 @@
 \chapter{Selected Software and Commonality Analysis}
 \label{ch:selected-software-commonality}
 
-This chapter characterizes the final 28 packages (Section~\ref{sec:final-software-set}) for RQ1 and gives the commonality context used later when interpreting the RQ2 measurements. It summarizes the packages, groups them by primary role, identifies shared capabilities and major variation points, records parameters of variation and binding times, and closes with boundary cases that do not fit cleanly into one role. The commonality analysis follows the \citet{Weiss1998} procedure described in Section~\ref{sec:commonality-analysis-procedure}; capabilities are reported only where they could be verified against the project materials.
+This chapter characterizes the final 28 packages (Section~\ref{sec:final-software-set}) for RQ1 and gives the commonality context used later when interpreting the RQ2 measurements. The commonality analysis follows the \citet{Weiss1998} procedure described in Section~\ref{sec:commonality-analysis-procedure}; capabilities are reported only where they could be verified against the project materials.
 
 \section{Overview of Selected Software}
 \label{sec:overview-selected-software}
 
 The selected packages come from a mix of development settings. Academic research groups account for several entries (for example, Drake, DART, and OMPL). Open-source foundations and companies steward others, notably ROS~2 and Gazebo through Open Robotics, with the ROS-Industrial Consortium coordinating related industrial applications. Corporate research labs contribute MuJoCo (Google DeepMind), AirSim (Microsoft Research), and Habitat (Meta AI Research). Smaller communities or individual contributors maintain projects such as ODE and Newton Dynamics.
 
-The packages span a period of active development from 2001 (ODE's initial release) to the present, with most showing recent repository activity as of the May 2026 measurement date. All 28 packages have public source repositories. Twenty-seven use standard open-source licenses; CoppeliaSim follows a mixed model that combines a GPL-licensed open-source core with commercial and educational distributions. BSD is the most common license (11 packages), followed by Apache~2.0 (5) and MIT (4); the remainder use LGPL, GPL, zlib, or mixed/dual schemes, as detailed in Table~\ref{tab:summary-metadata}. The majority of packages are written primarily in C++ with Python bindings, reflecting the dominant languages in the robotics software community. All 28 packages support Linux. Most packages also support Windows or macOS, with cross-platform support varying by project (see Section~\ref{sec:repository-project-metadata} for the per-platform counts).
+The packages span a period of active development from 2001 (ODE's initial release) to the present, with most showing recent repository activity as of the May 2026 measurement date. All 28 packages have public source repositories. Twenty-seven use standard open-source licenses; CoppeliaSim follows a mixed model that combines a GPL-licensed open-source core with commercial and educational distributions. BSD is the most common license (11 packages), followed by Apache~2.0 (5) and MIT (4); the remainder use LGPL, GPL, zlib, or mixed/dual schemes, as detailed in Table~\ref{tab:summary-metadata}. The majority of packages are written primarily in C++ with Python bindings. All 28 packages support Linux. Most also support Windows or macOS (see Section~\ref{sec:repository-project-metadata} for per-platform counts).
 
 Measurement scores and quality rankings are not reported here; those appear in Chapter~\ref{ch:measurement-results}.
 
 \section{Functional Software Roles}
 \label{sec:robotics-software-categories}
 
-The selected packages can be grouped into three broad functional roles by their primary function in a robotics workflow. These roles are not strict boundaries---some packages span several---but they structure the commonality analysis that follows.
+The selected packages can be grouped into three broad functional roles by their primary function in a robotics workflow. These roles are not strict boundaries---some packages span several (see Section~\ref{sec:boundary-cases})---but they structure the commonality analysis.
 
 \subsection{Robotics Simulators}
 \label{subsec:robotics-simulators}
@@ -26,7 +26,7 @@ Robotics simulators provide virtual environments for representing robots, worlds
     \item \textbf{Gazebo} (including the Ignition/Gazebo Sim lineage) is a long-established open-source 3D robotics simulator developed by Open Robotics. It provides physics simulation through multiple backends, rendering, sensor models, and ROS integration.
     \item \textbf{Webots} is a multi-platform robot simulator maintained by Cyberbotics. It supports modelling, programming, and simulating robots, vehicles, and mechanical systems, with a large library of pre-built robot models.
     \item \textbf{CoppeliaSim} (formerly V-REP) is a versatile robot simulation framework developed by Coppelia Robotics. It supports rapid algorithm development, factory automation simulation, prototyping, verification, and digital twin applications.
-    \item \textbf{AirSim} is an open-source simulator for autonomous vehicles (drones and ground vehicles) built on Unreal Engine and developed by Microsoft Research. The measured repository is \texttt{microsoft/AirSim}; under the May 2026 18-month activity rule it is classified as alive, with a last recorded commit on 2026-03-15. This label should be read narrowly: the repository README has announced since 2022 that development has ended (``no further updates will be made, effective immediately'') and points users toward Project AirSim, and the few commits recorded after 2022 are README-level changes. The alive label is therefore a repository snapshot under the activity rule, not a claim about continuing stewardship of the original AirSim line.
+    \item \textbf{AirSim} is an open-source simulator for autonomous vehicles (drones and ground vehicles) built on Unreal Engine and developed by Microsoft Research. The measured repository is \texttt{microsoft/AirSim}; under the May 2026 18-month activity rule it is classified as alive (last commit 2026-03-15), but the README has announced since 2022 that development has ended (``no further updates will be made, effective immediately'') and points users to Project AirSim. Post-2022 commits are README-level only, so the alive label is a repository snapshot, not a claim of continuing stewardship.
     \item \textbf{CARLA} is an open-source autonomous driving simulator built on Unreal Engine and developed by the Computer Vision Center in Barcelona and Intel. It provides photorealistic urban environments and a broad sensor suite for autonomous driving research.
     \item \textbf{MORSE} (Modular OpenRobots Simulation Engine) is a generic academic robotic simulator based on Blender and the Bullet physics engine, designed to remain middleware-agnostic across ROS, YARP, and other frameworks.
     \item \textbf{Habitat} is a 3D simulator for embodied AI research developed by Meta AI Research. It supports training and evaluation of embodied AI agents in photorealistic indoor environments.
@@ -115,7 +115,7 @@ Despite the diversity of the selected packages, several capabilities and concern
 
 \textbf{C1: Robot Model Representation.} All selected packages provide or consume some form of robot model representation. Simulators and physics engines represent robot kinematics and dynamics through internal model structures (often supporting standard formats such as URDF, SDF, or MJCF). Motion planning libraries operate on kinematic and geometric descriptions of robots and environments. Middleware packages define standardized message formats for communicating robot state.
 
-\textbf{C2: Physics or Kinematics Computation.} The packages in the simulator and physics engine roles share the capability of computing robot motion under physical constraints. This includes forward and inverse kinematics, rigid-body dynamics, collision detection, and contact resolution. Even middleware and planning packages typically include kinematic computation capabilities or depend on libraries that provide them.
+\textbf{C2: Physics or Kinematics Computation.} The packages in the simulator and physics engine roles share the capability of computing robot motion under physical constraints. This includes forward and inverse kinematics, rigid-body dynamics, collision detection, and contact resolution. Even middleware and planning packages typically include or depend on kinematic computation.
 
 \textbf{C3: Programmatic Interface.} All 28 packages provide a programmatic interface (typically a C++ API, often with Python bindings) that allows developers to control the software, configure simulations or planners, and integrate the package into larger robotics workflows.
 
@@ -130,13 +130,13 @@ Despite the diversity of the selected packages, several capabilities and concern
 \section{Variabilities}
 \label{sec:variabilities}
 
-The selected packages differ along several important dimensions. These variabilities are not deficiencies; they reflect the different roles that packages play within the robotics software ecosystem.
+The selected packages differ along several important dimensions.
 
-\textbf{V1: Primary Software Role.} The most fundamental variability is the role a package plays in a robotics workflow. As described in Section~\ref{sec:robotics-software-categories}, packages range from full simulation environments (Gazebo, Webots, CoppeliaSim) to physics engines (Bullet, MuJoCo, ODE) to planning libraries (OMPL) to middleware frameworks (ROS~2, YARP).
+\textbf{V1: Primary Software Role.} The most fundamental variability is the role a package plays in a robotics workflow, ranging from full simulation environments to physics engines to planning libraries to middleware frameworks (Section~\ref{sec:robotics-software-categories}).
 
 \textbf{V2: User Interface Model.} Packages differ in how users interact with them. Some provide graphical user interfaces with 3D rendering, scene editors, and interactive controls (Gazebo, Webots, CoppeliaSim). Others are primarily libraries or APIs intended for programmatic use (OMPL, Pinocchio, ODE). Some provide both (Drake, MRPT).
 
-\textbf{V3: Domain Specificity.} Some packages are general-purpose robotics simulators or engines (Gazebo, Bullet, MuJoCo), while others target specific application domains: CARLA and AirSim for autonomous vehicles, Flightmare for quadrotor flight, Habitat for embodied AI in indoor environments, SOFA for medical simulation, and GraspIt! for robotic grasping.
+\textbf{V3: Domain Specificity.} Some packages are general-purpose robotics simulators or engines (Gazebo, Bullet, MuJoCo), while others target specific application domains---autonomous driving, aerial vehicles, embodied AI, medical simulation, and grasping (see the role descriptions in Section~\ref{sec:robotics-software-categories}).
 
 \textbf{V4: Physics Fidelity and Approach.} Physics engines differ in their simulation approach and fidelity. Some prioritize speed for real-time or reinforcement learning applications (MuJoCo, Bullet), while others emphasize physical accuracy for engineering analysis (Project Chrono, Simbody). Differences include the choice of constraint solver, collision detection algorithm, integration method, and support for deformable bodies or fluid dynamics.
 
@@ -187,12 +187,12 @@ V9: Governance & Single institution or company, academic consortium, community-m
 \end{tabular}
 \end{table}
 
-The binding times reflect when a user or integrator can still make a choice. Primary role and governance are inherent to a package's design and so are fixed at specification time, whereas ROS integration depth is often a configuration-time choice because many packages offer optional bridges, and physics fidelity can be bound at both specification time (choice of engine) and run time (solver parameters or time step).
+The binding times reflect when a user or integrator can still make a choice: roles and governance are fixed by a package's design, whereas ROS integration and physics fidelity remain configurable later (Table~\ref{tab:parameters-of-variation}).
 
 \section{Boundary Cases}
 \label{sec:boundary-cases}
 
-Several of the selected packages occupy intermediate positions in the classification above. These boundary cases are not classification errors; they illustrate the interconnected nature of the robotics software ecosystem and the difficulty of drawing sharp boundaries between roles.
+Several of the selected packages occupy intermediate positions in the classification above; the boundaries between roles are not always sharp.
 
 \textbf{ROS~2} is classified as middleware in this analysis, but its scope extends well beyond communication infrastructure. ROS~2 provides an SDK with libraries, drivers, visualization tools (RViz), simulation integration (through Gazebo), and a package management system. It is the de facto integration layer for robotics software components, and many other packages in the selected set assume it as their runtime environment. Its inclusion in a study of MPS software is justified by its central role in the workflows that combine these capabilities.
 

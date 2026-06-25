@@ -1,14 +1,14 @@
 \chapter{Recommendations for Future Practice}
 \label{ch:recommendations}
 
-The recommendations in this chapter come from the public-artifact measurements, the commonality analysis, and the comparison with prior studies of the state of the practice. They are not a ranking of packages or a prescription that every project adopt the same process. They are also partial answers to the research questions: RQ8 and RQ9 ask which practices address developer pain points, but the pain points (RQ6) await the interview component (Chapter~\ref{ch:developer-interviews}). The recommendations therefore rest on artifact evidence alone and should be revisited once interview evidence is available.
+The recommendations in this chapter come from the public-artifact measurements, the commonality analysis, and the comparison with prior studies of the state of the practice. They are not a ranking of packages or a prescription that every project adopt the same process. RQ8 and RQ9 ask which practices address developer pain points, but those pain points (RQ6) depend on the interview component (Chapter~\ref{ch:developer-interviews}); the recommendations therefore rest on artifact evidence alone and should be revisited once interview evidence is available.
 
 \section{Recommendations for MPS Software Users}
 \label{sec:recommendations-users}
 
 Users should choose packages by task fit before quality score. The selected packages serve different roles and are not direct substitutes, so a highly ranked simulator may be the wrong choice for a project that needs a planning library. The commonality analysis in Chapter~\ref{ch:selected-software-commonality} should therefore be read alongside the measurement results in Chapter~\ref{ch:measurement-results}.
 
-Users should also treat public artifacts as evidence of adoption risk. Installation instructions, tutorials, API documentation, issue trackers, and release notes reduce the effort needed to evaluate and maintain a package; sparse documentation, weak release history, or inactive repositories raise it. Popularity indicators deserve caution in the other direction: Section~\ref{sec:quality-vs-community} shows that GitHub stars and measured engineering quality diverge for several packages, so a star count is not a substitute for checking the artifacts directly.
+Users should also treat public artifacts as evidence of adoption risk. Installation instructions, tutorials, API documentation, issue trackers, and release notes reduce the effort needed to evaluate and maintain a package; sparse documentation, weak release history, or inactive repositories raise it. Popularity indicators deserve caution: Section~\ref{sec:quality-vs-community} shows that GitHub stars and measured engineering quality diverge for several packages, so a star count is not a substitute for checking the artifacts directly.
 
 \section{Recommendations for MPS Software Maintainers}
 \label{sec:recommendations-maintainers}
@@ -19,7 +19,7 @@ Three gaps recur in the measurements and are inexpensive to close. First, only o
 
 Maintainers should document the purpose of testing and automation, not only expose the workflow files. Continuous-integration evidence is common in the measured repositories, but CI can mean builds, tests, documentation generation, static checks, packaging, or release automation. A short note stating what the automation verifies would make the evidence easier for users and contributors to interpret.
 
-Maintainers should also keep repository identity legible. Several measured packages distribute development across repositories or have migrated repositories; Section~\ref{sec:repository-project-metadata} documents PhysX, OROCOS, and Newton Dynamics as examples. A prominent pointer from old locations to the current development home keeps community signals such as stars, forks, and issue history interpretable for users and for studies like this one.
+Maintainers should also keep repository identity legible. Several measured packages distribute development across repositories or have migrated repositories; Section~\ref{sec:repository-project-metadata} documents PhysX, OROCOS, and Newton Dynamics as examples. A prominent pointer from old locations to the current development home keeps community signals such as stars, forks, and issue history interpretable.
 
 \section[Recommendations for Future State-of-the-Practice Studies]{Recommendations for Future\\ State-of-the-Practice Studies}
 \label{sec:recommendations-sop}
@@ -28,4 +28,4 @@ Future studies of the state of the practice in heterogeneous software domains sh
 
 Future studies should also keep public-artifact evidence separate from developer-reported evidence. Repositories can reveal documentation, issue tracking, releases, testing evidence, and development visibility. They reveal less about internal decision making, informal review, funding constraints, and developer pain points. Those topics require interviews or other qualitative evidence, and claims about them should be tied to the interview records or consented summaries that support them.
 
-Finally, future studies should record at measurement time the observations behind each impression score. Because the scores summarize more than the binary checklist answers (Section~\ref{subsec:measurement-template}), they carry the subjectivity discussed in Chapter~\ref{ch:threats-to-validity}. A short per-package note on which observations drove each score would make the scores easier to audit and reproduce, at little extra cost.
+Finally, future studies should record at measurement time the observations behind each impression score. Because the scores summarize more than the binary checklist answers (Section~\ref{subsec:measurement-template}), they carry the subjectivity discussed in Chapter~\ref{ch:threats-to-validity}. A short per-package note on which observations drove each score would make the scores easier to audit and reproduce.

@@ -4,7 +4,7 @@
 \section{Summary}
 \label{sec:conclusion-summary}
 
-This report assessed the state of the practice for robotics motion planning and
+This study assessed the state of the practice for robotics motion planning and
 simulation (MPS) software by adapting the Domain~X methodology
 (Chapter~\ref{ch:methodology}) to a new domain. From 295 consolidated candidate
 names, 28 packages were selected and measured in May 2026 against the Domain~X
@@ -19,26 +19,25 @@ recruitment, has not yet been executed.
 \section{Answers to Research Questions}
 \label{sec:answers-research-questions}
 
-\textbf{RQ1 (candidate packages).} Chapter~\ref{ch:methodology} and
-Appendix~\ref{appendix:full-candidate-software-list} answer RQ1. Filtering the
+\textbf{RQ1 (candidate packages).} Filtering the
 295 candidates by open-source availability, repository-based measurability,
-activity status, and scope coherence yielded the 28 measured packages; notable
+activity status, and scope coherence (Chapter~\ref{ch:methodology},
+Appendix~\ref{appendix:full-candidate-software-list}) yielded the 28 measured packages; notable
 exclusions include MATLAB/Simulink, Unity, NVIDIA Isaac Sim, and RaiSim (closed
 core components), MRDS and USARSim (inactive), and GPMP2 and CHOMP
 (single-algorithm scope).
 
-\textbf{RQ2 (quality ranking).} Chapter~\ref{ch:measurement-results} answers
-RQ2. Across the nine quality categories, the unweighted quality mean is led by
+\textbf{RQ2 (quality ranking).} Across the nine quality categories
+(Chapter~\ref{ch:measurement-results}), the unweighted quality mean is led by
 Gazebo (10.0), Drake (8.8), and a tied group of MoveIt!, OMPL, Pinocchio, and
 ROS~2 (8.7); GraspIt! (5.0), Newton Dynamics (5.6), and Flightmare (6.1) rank
 lowest, consistent with their inactive or thinly maintained status. Category
-means are tightly bunched (7.3--7.8), so the rankings separate a strong top
-tier and a weak bottom tier more clearly than they separate the middle of the
-table. An elicited-weight AHP ranking remains future work; an illustrative
+means are tightly bunched (7.3--7.8), so the rankings separate the top and
+bottom tiers more clearly than the middle. An elicited-weight AHP ranking remains future work; an illustrative
 equal-weight AHP ranking reproduces the same leaders.
 
-\textbf{RQ3 (repository artifacts).} Chapter~\ref{ch:comparison-research-software}
-answers RQ3. Practical artifacts are near-universal in the MPS sample:
+\textbf{RQ3 (repository artifacts).} Practical artifacts are near-universal in the MPS sample
+(Chapter~\ref{ch:comparison-research-software}):
 installation instructions, installation automation, tutorials, user manuals,
 API documentation, issue tracking, and version control are present for all 28
 packages, which compares favourably with the medical imaging and LBM samples.
@@ -60,11 +59,10 @@ repositories do not reveal---design rationale, requirements assumptions, and
 internal decision making---remains under-documented in MPS software, the same
 broad pattern reported for other research software domains.
 
-\textbf{RQ6--RQ9 (pain points and practices).} These questions require
-developer-interview evidence and remain open. Chapter~\ref{ch:developer-interviews}
-records the planned evidence base and reporting structure, and
-Chapter~\ref{ch:recommendations} gives artifact-based recommendations that will
-be revisited once interview findings are available.
+\textbf{RQ6--RQ9 (pain points and practices).} These require
+developer-interview evidence; Chapter~\ref{ch:developer-interviews}
+records the planned evidence base, and
+Chapter~\ref{ch:recommendations} gives artifact-based recommendations.
 % TODO (after interviews): replace this paragraph with summarized answers to
 % RQ6--RQ9 based on the approved interview records.
 
@@ -78,9 +76,9 @@ only two installations broke during measurement, both recoverably. Second, the
 weaknesses are concentrated in formal and explanatory artifacts rather than in
 tooling: user assumptions, coding standards, and design rationale are the
 recurring gaps. Third, community popularity and measured quality are different
-signals: Gazebo scores highest on quality while sitting in the middle of the
-star ranking, and several highly starred packages place mid-table on quality,
-so popularity indicators should not be used as quality proxies. Fourth,
+signals: Gazebo leads on quality yet sits mid-table on stars,
+and several highly starred packages place mid-table on quality,
+so popularity indicators are not quality proxies. Fourth,
 activity status only loosely predicts measured quality: packages that go
 inactive decay at different rates depending on the engineering capital they
 accumulated while active, as the contrast between OpenRAVE and GraspIt!

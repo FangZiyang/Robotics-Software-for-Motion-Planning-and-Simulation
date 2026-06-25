@@ -1,14 +1,14 @@
 \chapter{Methodology}
 \label{ch:methodology}
 
-This chapter describes the methodology used to conduct the study of the state of the practice for MPS software and addresses RQ1 (software candidate identification) by documenting how the candidate set was assembled. The methodology follows \citet{Smith2021} and adapts it to the MPS domain. It proceeds in the following major steps, which map to the sections of this chapter:
+This chapter presents the study methodology and addresses RQ1 (software candidate identification), documenting how the candidate set was assembled. The methodology follows \citet{Smith2021}, adapted to the MPS domain, in the following steps:
 
 \begin{enumerate}
     \item \textbf{Select the research domain} (Section~\ref{sec:domain-selection}).
-    \item \textbf{Engage a domain expert} who participates in the assessment and later reviews the assembled candidate list and filtering outcome (Section~\ref{sec:domain-expert-interaction}).
+    \item \textbf{Engage a domain expert} who participates in the assessment and later reviews the candidate list (Section~\ref{sec:domain-expert-interaction}).
     \item \textbf{Identify candidate software} from academic survey papers, community-curated lists, and LLM-assisted lists (Section~\ref{sec:candidate-software-discovery}).
     \item \textbf{Rank the candidates} by mention count (Section~\ref{sec:mention-count-ranking}).
-    \item \textbf{Filter the ranked list} to the selected set of 28 packages, which the domain expert then reviews (Sections~\ref{sec:filtering-criteria} and~\ref{sec:final-software-set}).
+    \item \textbf{Filter the ranked list} to the selected set of 28 packages (Sections~\ref{sec:filtering-criteria} and~\ref{sec:final-software-set}).
     \item \textbf{Measure each package} with the Domain~X template and rank the results with AHP (Section~\ref{sec:measurement-procedure}).
     \item \textbf{Analyze commonalities} across the selected packages (Section~\ref{sec:commonality-analysis-procedure}).
     \item \textbf{Interview developers} about their development practices and pain points (Section~\ref{sec:interview-component}).
@@ -42,9 +42,9 @@ Candidate software packages were identified from three types of sources: academi
 \subsection{Academic Survey Papers}
 \label{subsec:academic-sources}
 
-Academic sources identify software packages that appear in research discussions of robotics simulators, simulation tools, and related challenges. These sources included survey papers and comparative studies, such as \citet{Harris2011}, \citet{collins2021simulators}, \citet{Korber2021}, and \citet{Farley2022}, that discuss packages such as Gazebo, Webots, V-REP/CoppeliaSim, MuJoCo, and PyBullet in the context of robotics research. The full list of academic sources used for mention counting appears in Appendix~\ref{appendix:mention-count-source-list}. Academic sources connect software packages to published research contexts and provide a research-facing view of the MPS domain.
+Academic sources identify software packages that appear in research discussions of robotics simulators, simulation tools, and related challenges. These sources included survey papers and comparative studies, such as \citet{Harris2011}, \citet{collins2021simulators}, \citet{Korber2021}, and \citet{Farley2022}, that discuss packages such as Gazebo, Webots, V-REP/CoppeliaSim, MuJoCo, and PyBullet in the context of robotics research. The full list of academic sources used for mention counting appears in Appendix~\ref{appendix:mention-count-source-list}.
 
-Academic sources have known limitations as the sole basis for candidate discovery. Survey papers tend to emphasize packages relevant to a specific research question, robot type, or time period; some active tools may not appear in any of the surveys consulted, while older tools sometimes remain visible because they were prominent when a survey was written. For that reason, academic sources were combined with community-curated and LLM-assisted sources instead of being used on their own.
+Academic sources have known limitations as the sole basis for candidate discovery. Survey papers tend to emphasize packages relevant to a specific research question, robot type, or time period; some active tools may not appear in any of the surveys consulted, while older tools sometimes remain visible because they were prominent when a survey was written.
 
 \subsection{Community-Curated Sources}
 \label{subsec:community-curated-sources}
@@ -58,7 +58,7 @@ These sources collect software that practitioners and community contributors con
 
 LLM-generated software lists were used as an auxiliary source for candidate discovery. This modifies the original Domain~X methodology, which prescribes search engine queries and domain expert consultation as the primary discovery methods. The modification is recorded explicitly so that the methodology remains transparent and reproducible in principle.
 
-The reason for including LLM-assisted discovery is practical. Large language models surface software names that appear across a wide range of public information, and they act as a broad aggregator over that data. LLM output can also be incomplete, outdated, or incorrect, so names obtained from LLM-generated lists were consolidated, filtered, and verified against public evidence before any claims in this report were based on them. In this report, LLM-assisted sources contributed to candidate discovery but did not determine the selected set, and they were never treated as authoritative.
+The reason for including LLM-assisted discovery is practical. Large language models surface software names that appear across a wide range of public information. LLM output can also be incomplete, outdated, or incorrect, so names obtained from LLM-generated lists were consolidated, filtered, and verified against public evidence before any claims in this report were based on them.
 
 The use of LLMs is defensible for two reasons: (i)~LLMs were used together with academic and community-curated sources, not as the sole discovery method; and (ii)~an LLM, in this context, is a large-scale aggregator over existing public information, analogous in effect to a broad search over indexed web content.
 
@@ -69,7 +69,7 @@ After consolidating equivalent names across the collected sources, each unique s
 
 Consolidation produced 295 unique candidate names. The top entries in the consolidated ranking include Gazebo (22 mentions), Webots (16), Bullet/PyBullet (16), CoppeliaSim/V-REP (13), MuJoCo (12), ODE (10), ROS~2 (10), and OpenRAVE (9). These counts help organize the candidate list and make the selection process auditable. Appendix~\ref{appendix:full-candidate-software-list} records every candidate with at least four mentions, together with its mention count and filtering outcome, and Appendix~\ref{appendix:mention-count-source-list} lists the counted sources. The full ranked list of all 295 names, including packages that did not survive the filtering step described in Section~\ref{sec:filtering-criteria}, is preserved in the supplementary project materials that accompany this report (a consolidated ranking spreadsheet and a companion source catalogue).\footnote{The supplementary project materials are available in the project repository at \suppurl.}
 
-Mention count is a source-appearance signal and must be interpreted accordingly. It does not measure software quality, user adoption, research impact, maintainability, or the overall suitability of any particular software package. A package may appear frequently because it is historically established, because it is broadly useful across application areas, or simply because the sources collected happened to surface it. A more specialized or newer package may be under-represented even when it is technically strong. The mention count is one input to candidate filtering, not the final ranking of the software.
+Mention count is a source-appearance signal and must be interpreted accordingly. It does not measure software quality, user adoption, research impact, maintainability, or the overall suitability of any particular software package. A package may appear often because it is historically established or broadly useful, while a newer or more specialized package may be under-represented even when it is technically strong.
 
 \section{Filtering Criteria}
 \label{sec:filtering-criteria}
@@ -104,7 +104,7 @@ This criterion also governs how multi-repository projects are handled. Some robo
 
 Activity and maintenance status were considered because the study focuses on contemporary software practice. In the Domain~X methodology, age is one of the initial filtering criteria, measured by the last date when a change was made, with exceptions for older packages that remain highly recommended and currently in use~\citep{Smith2021}. Tools that are no longer maintained provide weaker evidence about current development practices.
 
-The primary activity indicator used in this report is the Domain~X alive/dead rule: a package is considered alive if it has received commits or version releases within the last 18 months from the measurement date. This indicator was used as a weighed signal rather than as an automatic cutoff: a package was set aside on activity grounds only when prolonged inactivity coincided with the tool no longer being prominent or having been superseded by an actively maintained alternative. On that basis, the following packages were excluded:
+The primary activity indicator used in this report is the Domain~X alive/dead rule: a package is considered alive if it has received commits or version releases within the last 18 months from the measurement date. This indicator was used as a weighted signal rather than as an automatic cutoff: a package was set aside on activity grounds only when prolonged inactivity coincided with the tool no longer being prominent or having been superseded by an actively maintained alternative. On that basis, the following packages were excluded:
 
 \begin{itemize}
     \item \textbf{MRDS} (Microsoft Robotics Developer Studio) has not received updates since 2012 and is no longer supported by Microsoft.
@@ -116,9 +116,9 @@ By contrast, inactivity was not treated as grounds for exclusion for packages th
 \subsection{Scope and Coverage Filters}
 \label{subsec:scope-coverage-filters}
 
-Two algorithm-level reference implementations were excluded to keep the selected packages methodologically coherent rather than for quality reasons. \textbf{GPMP2} (Gaussian Process Motion Planner 2) and \textbf{CHOMP} (Covariant Hamiltonian Optimization for Motion Planning) are optimization-based motion planning algorithms with public reference implementations. They are relevant to motion planning research but are narrower in scope than the general-purpose simulators, physics engines, planning frameworks, and middleware tools that dominate the candidate list. Including them alongside Gazebo, MoveIt!, or ROS~2 would force a comparison between full software stacks and single-algorithm libraries, which would distort the commonality analysis and the cross-package measurements. They were therefore excluded to maintain methodological consistency, not because of any quality concern.
+Two algorithm-level reference implementations were excluded to keep the selected packages methodologically coherent rather than for quality reasons. \textbf{GPMP2} (Gaussian Process Motion Planner 2) and \textbf{CHOMP} (Covariant Hamiltonian Optimization for Motion Planning) are optimization-based motion planning algorithms with public reference implementations. They are relevant to motion planning research but are narrower in scope than the general-purpose simulators, physics engines, planning frameworks, and middleware tools that dominate the candidate list. Including them alongside Gazebo, MoveIt!, or ROS~2 would force a comparison between full software stacks and single-algorithm libraries, which would distort the commonality analysis and the cross-package measurements.
 
-Filtering decisions, including the alive/dead status used in Section~\ref{subsec:activity-maintenance-status}, are based on a measurement-time snapshot of repository activity, last commit dates, and release status. These signals can change after measurement, so the measurement records in Chapter~\ref{ch:measurement-results} include the measurement date.
+Filtering decisions use a measurement-time snapshot of repository activity and release status; these signals can change afterward, so the measurement date is recorded with the results (Chapter~\ref{ch:measurement-results}).
 
 \section{Final Software Set}
 \label{sec:final-software-set}
@@ -153,7 +153,7 @@ The domain expert, Dr.~Matthew Giamou, reviewed the candidate list and the filte
 \draw[arr] (filt) -- (fin);
 \draw[arr, dashed, draw=orange!60!black] (filt) -- (ex);
 \end{tikzpicture}
-\caption{Candidate selection pipeline, from the three discovery sources to the 28 measured packages. The activity and maintenance criterion is a weighed signal rather than a hard cutoff: packages are set aside on activity grounds only when they are both inactive and no longer prominent, while inactive but still-prominent packages are retained and their alive/dead status is reported as a measured outcome in Chapter~\ref{ch:measurement-results}.}
+\caption{Candidate selection pipeline, from the three discovery sources to the 28 measured packages. The activity criterion is a weighted signal, not a hard cutoff (Section~\ref{subsec:activity-maintenance-status}).}
 \label{fig:candidate-selection}
 \end{figure}
 
@@ -162,7 +162,7 @@ The domain expert, Dr.~Matthew Giamou, reviewed the candidate list and the filte
 \footnotesize
 \setlength{\tabcolsep}{4pt}
 \begin{longtable}{@{}p{2.5cm}p{3.0cm}llp{2.7cm}@{}}
-\caption{Final software set: primary role, repository release date, last commit date, and a representative publication. Repository dates are a May~2026 snapshot; the ``Released'' date is the first release in the measured public repository, which for packages renamed, re-licensed, or migrated to open source after an earlier proprietary or pre-release phase (CoppeliaSim, MuJoCo, Webots, Gazebo, PhysX) reflects that later event rather than the project's original creation. ``---'' marks packages for which no representative publication was selected; the listed publications are the most representative reference available and are not necessarily peer reviewed.}
+\caption{Final software set: primary role, repository release date, last commit date, and a representative publication. Repository dates are a May~2026 snapshot; the ``Released'' date is the first release in the measured public repository, which for renamed, re-licensed, or migrated projects (e.g.\ MuJoCo, PhysX, Webots) reflects that later event rather than the project's original creation (Section~\ref{sec:repository-project-metadata}). ``---'' marks packages for which no representative publication was selected; the listed publications are the most representative reference available and are not necessarily peer reviewed.}
 \label{tab:final-software-set}\\
 \toprule
 \textbf{Software} & \textbf{Primary role} & \textbf{Released} & \textbf{Updated} & \textbf{Publication} \\
@@ -210,7 +210,7 @@ The role column is necessary because the packages are not direct substitutes; Ch
 \section{Measurement Procedure}
 \label{sec:measurement-procedure}
 
-The measurement procedure follows the Domain~X method for collecting structured evidence about software packages in a selected domain~\citep{Smith2021}. For each of the 28 selected packages, the study gathered source code, documentation, publications where applicable, repository metadata, issue-tracker evidence, release information, and installation evidence. The measurement record identifies the specific repository or repositories measured, since some robotics projects are distributed across multiple repositories.
+The measurement procedure follows the Domain~X method for collecting structured evidence about software packages in a selected domain~\citep{Smith2021}. For each of the 28 selected packages, the study gathered source code, documentation, publications where applicable, repository metadata, issue-tracker evidence, release information, and installation evidence. The measurement record identifies the specific repository or repositories measured (Section~\ref{subsec:repository-based-measurability}).
 
 \subsection{Measurement Template}
 \label{subsec:measurement-template}
@@ -230,7 +230,7 @@ The primary measurement instrument is the measurement template from Appendix~B o
     \item \textbf{Visibility and Transparency} (4 questions): development process definition, process documentation, development environment documentation, and release notes.
 \end{enumerate}
 
-Applying the same template to every package ensures that comparisons are based on a consistent set of observations rather than ad hoc impressions. Each quality section concludes with an overall impression score on a scale of 1 to 10, assigned using the scoring guidelines of the impression calculator in Appendix~C of \citet{Smith2021}. The impression scores summarize more than the recorded checklist answers alone: they also reflect observations made during measurement, such as the quality and currency of documentation, the clarity of error messages, and the overall installation and tutorial experience, which the mostly binary checklist fields do not capture. Two packages with identical checklist answers can therefore receive different impression scores; Chapter~\ref{ch:threats-to-validity} discusses the subjectivity this introduces.
+Each quality section concludes with an overall impression score on a scale of 1 to 10, assigned using the scoring guidelines of the impression calculator in Appendix~C of \citet{Smith2021}. The impression scores summarize more than the recorded checklist answers alone: they also reflect observations made during measurement, such as the quality and currency of documentation, the clarity of error messages, and the overall installation and tutorial experience, which the mostly binary checklist fields do not capture. Two packages with identical checklist answers can therefore receive different impression scores; Chapter~\ref{ch:threats-to-validity} discusses the subjectivity this introduces.
 
 \subsection{Repository Metrics}
 \label{subsec:repository-metrics}
@@ -246,7 +246,7 @@ Repository metrics are collected separately from the quality impression scores. 
 From these raw data, three processed measures are calculated:
 
 \begin{enumerate}
-    \item \textbf{Alive/dead status:} alive is defined as the presence of commits or version releases within the last 18 months from the measurement date.
+    \item \textbf{Alive/dead status:} computed under the 18-month alive/dead rule (Section~\ref{subsec:activity-maintenance-status}).
     \item \textbf{Percentage of identified issues that are closed:} computed as closed issues divided by total identified issues.
     \item \textbf{Percentage of code that is comments:} computed as comment lines divided by total lines.
 \end{enumerate}
