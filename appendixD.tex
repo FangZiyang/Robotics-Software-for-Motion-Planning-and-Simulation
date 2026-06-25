@@ -1,7 +1,7 @@
 \chapter{Excluded Software Packages}
 \label{appendix:excluded-software-packages}
 
-This appendix records software packages that were considered during candidate discovery but excluded before measurement. Exclusions follow the criteria described in Section~\ref{sec:filtering-criteria}: open-source availability, repository-based measurability, and activity and maintenance status. A small number of additional packages were excluded to keep the selected set methodologically coherent, also described below.
+This appendix records software packages considered during candidate discovery but excluded before measurement, following the criteria in Section~\ref{sec:filtering-criteria}. A small number were also excluded to keep the selected set methodologically coherent.
 
 \section*{Excluded for Lack of Open-Source Availability}
 
@@ -45,7 +45,7 @@ USARSim (Unified System for Automation and Robot Simulation) & No active mainten
 
 \section*{Excluded to Maintain Methodological Coherence}
 
-The packages in Table~\ref{tab:excluded-scope} are public reference implementations of motion planning algorithms rather than general-purpose simulators, planning frameworks, physics engines, or middleware. Including them alongside Gazebo, MoveIt!, or ROS~2 would force a comparison between full software stacks and single-algorithm libraries and would distort both the commonality analysis and the cross-package measurements. They were excluded to maintain methodological consistency, not because of any quality concern.
+The packages in Table~\ref{tab:excluded-scope} are public reference implementations of single motion planning algorithms rather than general-purpose simulators, planning frameworks, physics engines, or middleware. Comparing them alongside full stacks such as Gazebo, MoveIt!, or ROS~2 would distort both the commonality analysis and the cross-package measurements. They were excluded for methodological consistency, not on quality grounds.
 
 \begin{table}[H]
 \centering
@@ -62,4 +62,4 @@ CHOMP (Covariant Hamiltonian Optimization for Motion Planning) & Single-algorith
 \end{tabular}
 \end{table}
 
-The full filtered candidate list, including packages excluded at each step, is preserved in the supplementary project materials that accompany this report; Appendix~\ref{appendix:full-candidate-software-list} records the leading candidates with their mention counts and dispositions.
+The full filtered candidate list is preserved in the supplementary project materials; Appendix~\ref{appendix:full-candidate-software-list} records the leading candidates with their mention counts and dispositions.

@@ -5,31 +5,26 @@
 \label{sec:conclusion-summary}
 
 This report assessed the state of the practice for robotics motion planning and
-simulation (MPS) software by adapting the Domain~X methodology to a new domain.
-Candidate packages were discovered from academic surveys, community-curated
-lists, and auxiliary LLM-assisted discovery, consolidated into 295 unique
-candidate names, ranked by mention count, and filtered by open-source
-availability, repository-based measurability, and maintenance activity. The
-resulting 28 packages, spanning full simulators, physics and dynamics engines,
-planning libraries, manipulation frameworks, and middleware, were measured in
-May 2026 against the Domain~X template: roughly 108 fields per package covering
-project metadata, nine quality categories, and repository metrics. A
-commonality analysis (Chapter~\ref{ch:selected-software-commonality}) described the selected packages as a software family, and
-the findings were compared with prior studies of the state of the practice for medical
-imaging and Lattice Boltzmann method software. A developer-interview component
-was designed but, pending ethics approval and recruitment, has not yet been
-executed.
+simulation (MPS) software by adapting the Domain~X methodology
+(Chapter~\ref{ch:methodology}) to a new domain. From 295 consolidated candidate
+names, 28 packages were selected and measured in May 2026 against the Domain~X
+template, spanning full simulators, physics and dynamics engines, planning
+libraries, manipulation frameworks, and middleware. A commonality analysis
+(Chapter~\ref{ch:selected-software-commonality}) described the selected packages
+as a software family, and the findings were compared with prior studies of the
+state of the practice for medical imaging and Lattice Boltzmann method software.
+A developer-interview component was designed but, pending ethics approval and
+recruitment, has not yet been executed.
 
 \section{Answers to Research Questions}
 \label{sec:answers-research-questions}
 
 \textbf{RQ1 (candidate packages).} Chapter~\ref{ch:methodology} and
-Appendix~\ref{appendix:full-candidate-software-list} answer RQ1. Consolidating
-the three discovery sources produced 295 unique candidate names. Filtering by
-open-source availability, repository-based measurability, activity status, and
-scope coherence reduced the leading candidates to the 28 measured packages;
-notable exclusions include MATLAB/Simulink, Unity, NVIDIA Isaac Sim, and RaiSim
-(closed core components), MRDS and USARSim (inactive), and GPMP2 and CHOMP
+Appendix~\ref{appendix:full-candidate-software-list} answer RQ1. Filtering the
+295 candidates by open-source availability, repository-based measurability,
+activity status, and scope coherence yielded the 28 measured packages; notable
+exclusions include MATLAB/Simulink, Unity, NVIDIA Isaac Sim, and RaiSim (closed
+core components), MRDS and USARSim (inactive), and GPMP2 and CHOMP
 (single-algorithm scope).
 
 \textbf{RQ2 (quality ranking).} Chapter~\ref{ch:measurement-results} answers
@@ -53,10 +48,10 @@ The recurring gaps are formal artifacts: documented user characteristics (1 of
 \textbf{RQ4 (tool usage).} The measured MPS projects are tightly connected to
 modern open-source tooling: git-based version control and issue tracking are
 universal, automated testing or CI evidence appears for 26 of 28 packages, and
-documentation-generation tools are recorded for 12. Part of this uniformity is
-a selection effect of the repository-based inclusion rule, but within the
-measured set, tool adoption is stronger than in the LBM comparison point and at
-least comparable with medical imaging.
+documentation-generation tools are recorded for 12. The repository-based
+inclusion rule partly explains this uniformity, but within the measured set tool
+adoption is stronger than in the LBM comparison point and at least comparable
+with medical imaging.
 
 \textbf{RQ5 (principles, processes, and methodologies).} Process evidence is
 visible but artifact-bound: 25 of 28 packages expose a defined development
@@ -97,22 +92,18 @@ illustrates.
 The most immediate direction is the developer-interview component: completing
 ethics approval, recruitment, and analysis would answer RQ6--RQ9 and connect
 the measured artifact gaps to the pain points developers actually experience.
-A second direction is an elicited-weight AHP ranking, in which the criterion
-weights are obtained by pairwise comparison of the qualities rather than set
-equal, turning the per-quality measurements into a defensible weighted ordering. Longitudinal repeat measurements would track how the domain's
-practices change over time, and the same methodology could be extended to
-adjacent robotics software domains.
+A second direction is an elicited-weight AHP ranking, replacing the equal weights
+of Chapter~\ref{ch:measurement-results} with weights obtained by pairwise
+comparison of the qualities. Longitudinal repeat measurements would track how the
+domain's practices change over time, and the same methodology could be extended
+to adjacent robotics software domains.
 
-One further direction concerns the measurement process itself. The template
-used in this study contains roughly one hundred fields per package
-(Appendix~\ref{appendix:measurement-template}), and completing it by hand is
-the most time-consuming part of the work. As an exploratory check, an AI coding
-agent was asked to install, verify, and measure two of the selected physics
-engines on its own, using only the official documentation and the measurement
-template. The agent installed and verified both packages and filled the
-template; its factual entries were tied to public sources, while its subjective
-scores still needed human review. The trial is documented in
-Appendix~\ref{appendix:ai-assisted-measurement}. With a person checking the
-evidence, this kind of agent-assisted measurement could make it practical to
-cover more packages, or to repeat the measurements over time, without straining
-the time budget that constrains a manual study.
+One further direction concerns the measurement process itself, since completing
+the template by hand is the most time-consuming part of the work. An exploratory
+trial in which an AI coding agent installed, verified, and measured two physics
+engines (Appendix~\ref{appendix:ai-assisted-measurement}) produced factual
+entries tied to public sources but subjective scores that still needed human
+review. With a person checking the evidence, this kind of agent-assisted
+measurement could make it practical to cover more packages, or to repeat the
+measurements over time, without straining the time budget that constrains a
+manual study.

@@ -126,22 +126,23 @@ a_{ij} =
 \end{cases}
 \label{eq:ahp-pairwise}
 \end{equation}
-Here $a_{ij} = 1$ means the two packages are judged equal on the quality, and $a_{ij} = 9$ is the maximum of the scale, used when package~$i$'s score far exceeds package~$j$'s. The values form an $n \times n$ reciprocal matrix $A$, with $a_{ji} = 1/a_{ij}$. The priority of each package on the quality follows the standard AHP averaging method~\citep{Saaty1980}: each column of $A$ is normalized to sum to one, and the entries of each row are averaged,
+Here $a_{ij} = 1$ means the two packages are judged equal on the quality, and $a_{ij} = 9$ is the maximum of the scale, used when package~$i$'s score far exceeds package~$j$'s. The values form an $n \times n$ reciprocal matrix $A$ (with $n = 28$ packages), with $a_{ji} = 1/a_{ij}$. The priority of each package on the quality follows the standard AHP averaging method~\citep{Saaty1980}: each column of $A$ is normalized to sum to one, and the entries of each row are averaged,
 \begin{equation}
 w_i = \frac{1}{n} \sum_{j=1}^{n} \frac{a_{ij}}{\sum_{l=1}^{n} a_{lj}}.
 \label{eq:ahp-priority}
 \end{equation}
-The priorities $w_1,\dots,w_n$ are non-negative and sum to one, and $w_i$ is the priority of package~$i$ on that quality. Repeating this for all nine qualities gives nine priority vectors $\mathbf{w}^{(1)},\dots,\mathbf{w}^{(9)}$.
+The priorities $w_1,\dots,w_n$ are non-negative and sum to one, and $w_i$ is the priority of package~$i$ on that quality; sorting the packages by $w_i$ gives their ranking on that quality. Repeating the procedure for all nine qualities gives nine priority vectors $\mathbf{w}^{(1)},\dots,\mathbf{w}^{(9)}$, and hence nine per-quality rankings.
 
-The nine qualities also require weights $c_1,\dots,c_9$, which are obtained by applying the same AHP pairwise-comparison procedure to the qualities themselves. This report adopts equal importance as its stated weighting assumption: every pairwise quality comparison is therefore assigned the value 1, so the $9 \times 9$ quality-comparison matrix $B=(b_{k\ell})$ has $b_{k\ell}=1$ for all $k$ and $\ell$. Normalizing each column and averaging each row as in Equation~\eqref{eq:ahp-priority} yields $c_k=1/9$ for every quality; none is privileged, consistent with the equal weighting used in the LBM assessment~\citep{Smith2024LBM}. A package's overall priority is then the weighted sum of its per-quality priorities,
+Combining the nine per-quality rankings into a single overall ranking requires weights $c_1,\dots,c_9$ that express the importance of each quality. These weights are obtained by applying the same AHP pairwise-comparison procedure to the qualities themselves. This report adopts equal importance as its stated weighting assumption: every pairwise quality comparison is therefore assigned the value 1, so the $9 \times 9$ quality-comparison matrix $B=(b_{k\ell})$ has $b_{k\ell}=1$ for all $k$ and $\ell$. Normalizing each column and averaging each row as in Equation~\eqref{eq:ahp-priority} yields $c_k=1/9$ for every quality; none is privileged, consistent with the equal weighting used in the LBM assessment~\citep{Smith2024LBM}. A package's overall priority is the weighted sum of its per-quality priorities:
 \begin{equation}
 p_i = \sum_{k=1}^{9} c_k\, w_i^{(k)},
 \qquad \sum_{k=1}^{9} c_k = 1,
 \label{eq:ahp-aggregate}
 \end{equation}
-and the packages are ranked by $p_i$. With equal weights, Equation~\eqref{eq:ahp-aggregate} reduces to the mean of the nine per-quality priorities. To check that a ranking does not hinge on small differences in the scores, the LBM assessment perturbs the scores by about 10\% and recomputes the ranking~\citep{Smith2024LBM}; this report applies the same check to its equal-weight ranking, with the outcome reported in Chapter~\ref{ch:measurement-results}.
 
-AHP is an analysis aid for cross-quality comparison under a stated weighting, not a universal recommendation of any particular package. Because this report does not elicit quality weights, it presents the equal-weight ranking rather than an elicited-weight one. Chapter~\ref{ch:methodology} places AHP within the full procedure, and Chapter~\ref{ch:measurement-results} reports the per-package quality-mean ranking, its comparison with community indicators, and an illustrative equal-weight AHP ranking ($c_k = 1/9$) that shows how the per-quality priorities combine into one overall score.
+The packages are ranked by $p_i$. With equal weights, Equation~\eqref{eq:ahp-aggregate} reduces to the mean of the nine per-quality priorities.
+
+AHP is an analysis aid for cross-quality comparison under a stated weighting, not a universal recommendation of any particular package. Because this report does not elicit quality weights, it presents the equal-weight ranking rather than an elicited-weight one. Selecting a software package for a specific application would involve finding the weights appropriate for that application. Chapter~\ref{ch:methodology} places AHP within the full procedure, and Chapter~\ref{ch:measurement-results} reports the per-package quality-mean ranking, its comparison with community indicators, and an illustrative equal-weight AHP ranking ($c_k = 1/9$) that shows how the per-quality priorities combine into one overall score.
 
 \section{Open Source and Repository-Based Measurement}
 \label{sec:open-source-repository-measurement}

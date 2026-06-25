@@ -84,6 +84,10 @@ diff_batch*.txt
 agnet/
 agent/
 
+# Temporary / scratch reference material, not for the repo
+# (e.g. tmp/AIMSS reference dumps and ethics paperwork kept locally only)
+tmp/
+
 # Internal Chinese translation (not for submission)
 zh/*.md
 zh/*.py

@@ -1,6 +1,42 @@
 \chapter{Interview Materials}
 \label{appendix:interview-materials}
 
-% Drafting note: Include only approved ethics materials, interview protocols, or
-% interview artifacts that are actually available. Do not invent interview data.
+% Drafting note: this appendix reproduces the semi-structured interview guide
+% referenced in Section~\ref{sec:interview-component}. Source: the MREB interview
+% guide in the project materials (interview_materials/MACREM-2026). Include only
+% approved ethics materials and interview artifacts that are actually available;
+% do not invent interview data or findings.
 
+This appendix reproduces the semi-structured interview guide referenced in Section~\ref{sec:interview-component}. The guide contains 18 questions in three groups: the interviewee's background, the development process and tools, and the software's users. The interviewer may adjust the exact wording during the conversation and may use short clarification prompts to ask for more detail or concrete examples.
+
+\paragraph{Interviewee background.}
+\begin{enumerate}
+    \item What is your current position or title? What degrees do you hold?
+    \item What is your contribution to, or relationship with, the software?
+    \item How long have you been involved with this software?
+\end{enumerate}
+
+\paragraph{Developers, development process, tools, and techniques.}
+\begin{enumerate}
+    \setcounter{enumi}{3}
+    \item How large is the development group?
+    \item What is the typical background of a developer?
+    \item Currently, what are the most significant pain points in your development process? Specifically, what are the pain points in requirements definition, design, implementation, and verification?
+    \item How does documentation fit into your development process? Would improved documentation help with the obstacles you typically face?
+    \item In the past, was there any major obstacle to your development process that has been solved? How did you solve it?
+    \item What is your software development model? For example, waterfall, agile, or another model.
+    \item What is your project management process? Are any project management tools used?
+    \item Is it hard to ensure the correctness of the software? If there were obstacles, what methods have been considered or practiced to improve the situation? If practiced, did they work?
+    \item When designing the software, did you consider the ease of future changes? For example, will it be hard to change the system structure, modules, or code blocks? What measures have been taken to support future changes and maintenance?
+    \item Do you have any concern that your computational results will not be reproducible in the future? Have you taken any steps to ensure reproducibility?
+    \item What positive contributions do LLM-based tools have on your development process with respect to documentation, coding, and testing?
+    \item What negatives are associated with LLM-based tools?
+\end{enumerate}
+
+\paragraph{Users.}
+\begin{enumerate}
+    \setcounter{enumi}{15}
+    \item What is the typical background of a user?
+    \item Can you provide instances where users have misunderstood or misused the software? What actions, if any, were taken to address usability issues?
+    \item Do you think the current documentation clearly conveys all necessary knowledge to users? If yes, how did you successfully achieve it? If no, what improvements are needed?
+\end{enumerate}

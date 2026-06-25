@@ -1,23 +1,22 @@
 \chapter{Exploratory AI-Assisted Measurement}
 \label{appendix:ai-assisted-measurement}
 
-This appendix records a small exploratory trial in which an AI coding agent was
-asked to carry out the measurement protocol of this study on its own. The trial
-covered two physics engines from the selected set, PyBullet and MuJoCo, and used
-the template described in Appendix~\ref{appendix:measurement-template} together
-with the procedure in Section~\ref{sec:measurement-procedure}. The trial is not
-part of the validated measurement results in Chapter~\ref{ch:measurement-results};
-it is reported here as a feasibility check and as the basis for the future-work
-direction in Section~\ref{sec:future-work}. The agent worked in a Linux shell
-with file-system and network access in early June 2026, so its repository
-snapshots fall slightly later than the May 2026 snapshot used for the main study.
+This appendix records a small exploratory trial in which an AI coding agent
+carried out this study's measurement protocol on its own, over two physics
+engines from the selected set (PyBullet and MuJoCo), using the template of
+Appendix~\ref{appendix:measurement-template} and the procedure of
+Section~\ref{sec:measurement-procedure}. It is not part of the validated results
+in Chapter~\ref{ch:measurement-results}; it is a feasibility check and the basis
+for the future-work direction in Section~\ref{sec:future-work}. The agent worked
+in a Linux shell with file-system and network access in early June 2026, so its
+repository snapshots fall slightly later than the May 2026 snapshot of the main
+study.
 
 \section*{Task Given to the Agent}
 
-The agent was given a single natural-language prompt and no installation commands.
-It had to locate the official documentation, install each package, verify the
-installation, and complete the template without further guidance. The prompt is
-reproduced verbatim below.
+The agent was given a single natural-language prompt and no installation commands;
+it had to locate the official documentation, install each package, verify the
+installation, and complete the template unaided. The prompt is reproduced below.
 
 \begin{quote}
 \small
@@ -51,9 +50,8 @@ Complete Bullet/PyBullet first, then MuJoCo.
 
 \section*{Official Sources Located by the Agent}
 
-Working only from the prompt, the agent found the official sources in
-Table~\ref{tab:ai-pilot-sources} and used them to choose the installation and
-verification steps.
+The agent found the official sources in Table~\ref{tab:ai-pilot-sources} and used
+them to choose the installation and verification steps.
 
 \begin{table}[H]
 \centering
@@ -101,46 +99,38 @@ Result              & Succeeded & Succeeded \\
 \end{tabular}
 \end{table}
 
-Alongside the installation, the agent queried the GitHub API and recorded the
-project metadata that the template asks for. For PyBullet
+The agent also queried the GitHub API and recorded the template's project
+metadata, each entry tied to the source it read. For PyBullet
 (\path{bulletphysics/bullet3}) it recorded 311 contributors, a zlib license, a
-first commit in April 2011, and a most recent push in October 2025. For MuJoCo
-(\path{google-deepmind/mujoco}) it recorded 116 contributors, an Apache-2.0
-license, a first commit in August 2021, and a most recent push in June 2026.
-Each entry was tied to the source the agent read, either the official site, the
-repository README, or the GitHub API. The contributor counts come from the
-GitHub contributors API, which returns fewer entries than the commit-log method
-used for the main study (Section~\ref{subsec:repository-metrics}); the
-main-study records list 333 developers for Bullet/PyBullet and 138 for MuJoCo,
-so the two sets of numbers are not directly comparable.
+first commit in April 2011, and a most recent push in October 2025; for MuJoCo
+(\path{google-deepmind/mujoco}), 116 contributors, an Apache-2.0 license, a
+first commit in August 2021, and a most recent push in June 2026. These
+contributor counts come from the GitHub contributors API, which returns fewer
+entries than the commit-log method of the main study
+(Section~\ref{subsec:repository-metrics}; 333 developers for Bullet/PyBullet,
+138 for MuJoCo), so the two are not directly comparable.
 
 \section*{Problems Encountered and Recovery}
 
 The agent encountered three problems and recovered from each without manual
 intervention. First, a direct \texttt{pip install} failed because the system
 Python was externally managed; the agent created a virtual environment and
-installed into it. Second,
-its first PyBullet verification script queried the physics engine before
-connecting to it; the agent reordered the calls so that the connection came
-first. Third, no screenshot utility was present, so the agent installed one
-before continuing.
+installed into it. Second, its first PyBullet verification script queried the
+physics engine before connecting to it; the agent reordered the calls so the
+connection came first. Third, no screenshot utility was present, so the agent
+installed one.
 
 \section*{Limitations and Relationship to the Main Study}
 
-This was a single run over two packages by one agent, so it shows feasibility
-rather than a result that belongs with the validated measurements in
-Chapter~\ref{ch:measurement-results}.
-The checkable, factual entries, such as the installation command, the installed
-version, the license, the contributor count, and the verification result, were
-each tied to a public source recorded by the agent and were straightforward to
-confirm. The subjective impression scores and the free-text judgements that the
-template also asks for were not validated here; in places they disagree with the
-agent's own notes, which is the clearest reason that a human still has to review
-the output before it can serve as evidence.
+As a single run over two packages by one agent, this shows feasibility, not a
+result. The checkable, factual entries (installation command, installed version,
+license, contributor count, verification result) were each tied to a public
+source and straightforward to confirm. The subjective impression scores and
+free-text judgements were not validated here, and in places disagree with the
+agent's own notes, which is the clearest reason a human must still review the
+output before it can serve as evidence.
 
-The artifacts from the trial, namely the completed template and the notes
-document, are preserved in the supplementary project materials that accompany
-this report. The trial motivates the
-future-work direction in Section~\ref{sec:future-work}, where agent-assisted
-measurement under human supervision is discussed as a way to scale
-studies of the state of the practice.
+The trial's artifacts, the completed template and the notes document, are
+preserved in the supplementary project materials. The trial motivates the
+agent-assisted measurement under human supervision discussed in
+Section~\ref{sec:future-work}.
