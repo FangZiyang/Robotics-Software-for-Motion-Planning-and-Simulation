@@ -29,6 +29,7 @@ main.pdf
 # Editor and OS noise
 .DS_Store
 Thumbs.db
+~$*.docx
 .vscode/
 .idea/
 
