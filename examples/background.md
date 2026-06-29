@@ -132,14 +132,14 @@ There was discussion about whether the tool should:
 Fei helped with onboarding, shared a testing document, added me to Discord, and helped with the process for collecting and consolidating GitHub metrics. When writing about the tool, do not invent details. Read the actual tool documentation or project files first.
 
 Interview and research ethics component:
-The project may also include interviews with relevant software developers, maintainers, or programmers associated with the studied software packages.
+The project includes an interview component with relevant software developers, maintainers, or programmers associated with the studied software packages.
 
-Professor Smith is preparing a MacREM Research Ethics Application for the interviews associated with the State-of-the-Practice exercise. I received an invitation from MacREM, logged into the system, and created my account. Professor Smith said no further action was needed from me at that time other than creating the account.
+Professor Smith's MacREM Research Ethics Application for the interviews associated with the State-of-the-Practice exercise has been approved: the study holds McMaster Research Ethics Board (MREB) clearance under project #8215, granted 2026-06-22. Developer recruitment is underway (outreach emails have been sent). Interviews have not yet been conducted, coded, or analyzed.
 
 Important constraint:
 Do not assume that interviews have already been conducted. Do not invent interview questions, interview participants, participant responses, developer opinions, or qualitative findings.
 
-Treat the interview component as planned or pending unless actual ethics approval information, interview protocols, transcripts, notes, or approved summaries are provided.
+Ethics approval is now in place (MREB #8215, granted 2026-06-22), so the component is no longer pending at the ethics stage. Still do not treat it as completed: report interview findings only when actual interview protocols, transcripts, notes, or approved/consented summaries exist. Until interviews are conducted and analyzed, the component is designed and approved but has no empirical results to report yet.
 
 If writing about this component, clearly distinguish it from repository-based measurements and commonality analysis. The interview component may involve research ethics, recruitment, consent, confidentiality, and qualitative analysis, but those details should remain TODO or be based only on actual approved materials.
 
