@@ -3,7 +3,7 @@
 
 This chapter compares the findings for motion planning and simulation (MPS) software with prior studies of the state of the practice in other research software domains, especially Medical Imaging (MI) software~\citep{Smith2024MI} and Lattice Boltzmann Method (LBM) software~\citep{Smith2024LBM}. The goal is not to claim that one domain is better than another. The domains differ in age, user communities, computational goals, and measurement dates. Instead, the comparison identifies where MPS software follows patterns already observed in research software and where it appears to differ.
 
-Following the LBM study~\citep{Smith2024LBM}, the comparison uses three dimensions---repository artifacts, tool usage, and development principles, processes, and methodologies---which map directly to RQ3, RQ4, and RQ5.
+Following the LBM study~\citep{Smith2024LBM}, the comparison uses three dimensions that map directly to RQ3, RQ4, and RQ5: repository artifacts, tool usage, and development principles, processes, and methodologies.
 
 \section{Comparison of Repository Artifacts}
 \label{sec:comparison-artifacts}
@@ -41,6 +41,34 @@ This difference likely reflects the way MPS software is used. Rather than stand-
 
 The comparison is less uniformly positive for formal software engineering artifacts. Only one MPS package documents expected user characteristics, and 14 of 28 explicitly identify a coding standard---stronger than in the MI and LBM studies, but still absent from half the sample. The LBM study observed that research software projects often fall short of recommended artifacts such as roadmaps, coding standards, checklists, uninstall instructions, and formal design or requirements documentation~\citep{Smith2024LBM}. The MPS results follow the same broad pattern: practical artifacts that help users install, run, and call the software are widespread, while artifacts that record design intent, expected user assumptions, and explicit development rules are less common.
 
+Following the LBM~\citep{Smith2024LBM} and MI~\citep{Smith2024MI} studies, which group repository artifacts into frequency bands, Table~\ref{tab:cross-domain-artifact-bands} classifies the MPS artifacts as \emph{Common} (present in more than 67\% of packages), \emph{Uncommon} (33--67\%), or \emph{Rare} (fewer than 33\%), following the band thresholds used in the MI study, and places each band beside the corresponding MI and LBM results.
+
+\begin{table}[H]
+\centering
+\caption{Repository artifacts grouped by frequency band---Common ($>$67\% of packages), Uncommon (33--67\%), and Rare ($<$33\%)---for motion planning and simulation (MPS, this study), medical imaging (MI)~\citep{Smith2024MI}, and Lattice Boltzmann method (LBM)~\citep{Smith2024LBM} software. Percentages are taken over each study's own package count (MPS 28, MI 29, LBM 24). ``n/r'' marks an artifact the cited study does not report as a count.}
+\label{tab:cross-domain-artifact-bands}
+\small
+\singlespacing
+\begin{tabular}{@{}p{4.8cm}ccc@{}}
+\toprule
+\textbf{Artifact} & \textbf{MPS} & \textbf{MI} & \textbf{LBM} \\
+\midrule
+Version control                 & Common (100\%)  & Common (100\%)  & Uncommon (67\%) \\
+Issue tracking                  & Common (100\%)  & Common (97\%)   & n/r \\
+Installation instructions       & Common (100\%)  & Uncommon (55\%) & Common (100\%) \\
+Getting-started tutorial        & Common (100\%)  & Uncommon (62\%) & Common (79\%) \\
+User manual                     & Common (100\%)  & Common (76\%)   & Uncommon (54\%) \\
+API documentation               & Common (100\%)  & Rare (24\%)     & Rare (0\%) \\
+Release notes                   & Common (96\%)   & Common (76\%)   & Uncommon (38\%) \\
+Contribution / review guidance  & Common (93\%)   & Rare (28\%)     & n/r \\
+Explicit coding standard        & Uncommon (50\%) & Rare (10\%)     & Rare (13\%) \\
+Documented user characteristics & Rare (4\%)      & n/r             & Rare (21\%) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The banding makes the cross-domain contrast explicit. Almost every user- and developer-facing artifact is \emph{Common} in the MPS sample, whereas several are only \emph{Uncommon} or \emph{Rare} in the other two domains: API documentation is \emph{Rare} in MI and absent in LBM, an explicit coding standard is \emph{Rare} in both but \emph{Uncommon} in MPS, and release notes and contribution guidance drop to \emph{Uncommon} or \emph{Rare} outside MPS. The one artifact that is \emph{Rare} across all three domains is documented expected user characteristics. This pattern is consistent with the inclusion rule (Chapter~\ref{ch:methodology}), which requires a public, measurable repository and so favours actively maintained projects; the residual gaps---design rationale, requirements-style information, and explicit user assumptions---match the shortfalls reported for the LBM and MI domains.
+
 \section{Comparison of Tool Usage}
 \label{sec:comparison-tools}
 
@@ -50,7 +78,7 @@ Version control and issue tracking provide the most direct tool comparison. All 
 
 Build and installation automation are also widespread: all 28 packages provide build files, scripts, package-manager support, or container-based installation. MPS packages often depend on compiled C++, Python bindings, physics and graphics libraries, middleware, and OS packages that are hard to reproduce by hand, so this installability tooling (Section~\ref{sec:installability-results}) reflects real maintainer investment.
 
-Testing and verification tooling are also visible: unit tests for 27 of 28 packages, automated testing for 26, assertions for 23, and documentation-generation tools for 12. The LBM study treated test cases as an uncommon artifact and automated testing as a prerequisite for effective continuous integration~\citep{Smith2024LBM}; in the MPS sample, testing evidence is far more common. This does not imply complete coverage or realistic robotics workloads, but it shows that test infrastructure is a visible part of most measured projects.
+Testing and verification tooling are also visible: unit tests for 27 of 28 packages, automated testing for 26, assertions for 23, and documentation-generation tools for 12. The LBM study treated test cases as a rare artifact (2 of 24 packages) and automated testing as a prerequisite for effective continuous integration~\citep{Smith2024LBM}; in the MPS sample, testing evidence is far more common. This does not imply complete coverage or realistic robotics workloads, but it shows that test infrastructure is a visible part of most measured projects.
 
 Continuous integration should be read more cautiously. Chapter~\ref{ch:measurement-results} records CI or an equivalent setup for 26 of 28 packages and visible development-process evidence (CI/CD workflows, contribution guides, pull request and issue templates) for 25 of 28. These counts do not indicate that all packages use CI in the same way or to the same depth---for builds, tests, documentation, static checks, packaging, or releases. The narrower conclusion is that MPS repositories often expose automation and workflow infrastructure; this report does not rank CI maturity separately.
 
@@ -92,7 +120,7 @@ Version control            & 28 (100\%) & 29 (100\%) & 16 (67\%) \\
 Issue tracking             & 28 (100\%) & 28 (97\%)  & n/r \\
 Tutorial (getting-started) & 28 (100\%) & 18 (62\%)  & 19 (79\%) \\
 User manual                & 28 (100\%) & 22 (76\%)  & 13 (54\%) \\
-Installation instructions  & 28 (100\%) & 16 (55\%)  & n/r \\
+Installation instructions  & 28 (100\%) & 16 (55\%)  & 24 (100\%) \\
 API documentation          & 28 (100\%) & 7 (24\%)   & 0 (0\%) \\
 Release notes              & 27 (96\%)  & 22 (76\%)  & 9 (38\%) \\
 Contribution / review guidance & 26 (93\%) & 8 (28\%) & n/r \\
