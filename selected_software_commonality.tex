@@ -127,6 +127,8 @@ Despite the diversity of the selected packages, several capabilities and concern
 
 \textbf{C7: Simulation or Planning Loop.} Simulators and planners share a common architectural pattern: a loop that iteratively updates the system state. In simulators, this is the physics stepping loop that advances the simulation in time. In planners, it is the search or optimization loop that explores the configuration space to find a valid path.
 
+Not every commonality holds with equal strength across all 28 packages. Some---notably C2 (physics or kinematics computation), C6 (ecosystem integration), and C7 (simulation or planning loop)---are dominant, role-specific patterns rather than strictly universal properties; C7, for example, characterises simulators and planners more than pure middleware. They are reported here because they recur across most of the domain, while the role-specific exceptions are captured in the variabilities below.
+
 \section{Variabilities}
 \label{sec:variabilities}
 
