@@ -3,6 +3,22 @@
 
 The recommendations in this chapter come from the public-artifact measurements, the commonality analysis, and the comparison with prior studies of the state of the practice. They are not a ranking of packages or a prescription that every project adopt the same process. RQ8 and RQ9 ask which practices address developer pain points, but those pain points (RQ6) depend on the interview component (Chapter~\ref{ch:developer-interviews}); the recommendations therefore rest on artifact evidence alone and should be revisited once interview evidence is available.
 
+\section{Recommendations by Software Quality}
+\label{sec:recommendations-by-quality}
+
+Read together, the measurements in Chapter~\ref{ch:measurement-results} suggest one concrete, low-cost improvement for each measured quality. The list below is organized by the nine qualities; where a recommendation is developed further from the maintainer's point of view, it points to Section~\ref{sec:recommendations-maintainers}.
+
+\begin{itemize}
+\item \textbf{Installability.} All 28 packages give installation instructions, but many omit the supported operating-system and dependency versions; recording both, and providing at least one tested installation route, would remove the most common source of installation friction (Section~\ref{sec:recommendations-maintainers}).
+\item \textbf{Correctness and verifiability.} Test infrastructure is a strength---unit tests are visible for 27 of the 28 packages---so the useful addition is evidence a user can re-run: reference outputs, benchmark results, or worked examples published alongside the tests let users confirm correctness rather than infer it from the presence of tests.
+\item \textbf{Surface reliability and robustness.} The packages generally handle ordinary and malformed input in the surface checks, but that behaviour is rarely documented; a short statement of known limitations and expected failure modes would make the observed reliability something users can depend on.
+\item \textbf{Surface usability.} Getting-started tutorials and user manuals are universal, so the gap is audience definition: only one package documents its expected users, and a brief statement of intended audience and prerequisites would help users self-select and give tutorial authors a defined reader (Section~\ref{sec:recommendations-maintainers}).
+\item \textbf{Maintainability.} Release notes and contribution or code-review guidance are already present in most repositories (27 and 26 of 28); the few projects without them would most improve maintainability by adopting both, since these are the artifacts that let external contributors participate without direct contact with the original team.
+\item \textbf{Reusability.} Every package documents its API, but only 12 of 28 record a documentation-generation tool such as Doxygen or Sphinx; generating API documentation from the source, rather than maintaining it by hand, keeps it current as the interface evolves and lowers the cost of reuse.
+\item \textbf{Surface understandability.} All 28 packages format their code consistently, yet only half name an explicit coding standard; naming the standard, or publishing the formatter configuration, turns an implicit convention into a checkable artifact for new contributors (Section~\ref{sec:recommendations-maintainers}).
+\item \textbf{Visibility and transparency.} Continuous-integration evidence and a defined development process are visible for most packages, but a short note stating what the automation verifies---builds, tests, documentation, or releases---would make that evidence interpretable rather than merely present.
+\end{itemize}
+
 \section{Recommendations for MPS Software Users}
 \label{sec:recommendations-users}
 
