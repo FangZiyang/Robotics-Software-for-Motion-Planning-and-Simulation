@@ -6,11 +6,9 @@ This chapter characterizes the final 28 packages (Section~\ref{sec:final-softwar
 \section{Overview of Selected Software}
 \label{sec:overview-selected-software}
 
-The selected packages come from a mix of development settings. Academic research groups account for several entries (for example, Drake, DART, and OMPL). Open-source foundations and companies steward others, notably ROS~2 and Gazebo through Open Robotics, with the ROS-Industrial Consortium coordinating related industrial applications. Corporate research labs contribute MuJoCo (Google DeepMind), AirSim (Microsoft Research), and Habitat (Meta AI Research). Smaller communities or individual contributors maintain projects such as ODE and Newton Dynamics.
+The selected packages come from a mix of development settings---academic research groups, open-source foundations and companies, corporate research labs, and smaller communities or individual maintainers---detailed under V9 (Section~\ref{sec:variabilities}).
 
-The packages span a period of active development from 2001 (ODE's initial release) to the present, with most showing recent repository activity as of the May 2026 measurement date. All 28 packages have public source repositories. Twenty-seven use standard open-source licenses; CoppeliaSim follows a mixed model that combines a GPL-licensed open-source core with commercial and educational distributions. BSD is the most common license (11 packages), followed by Apache~2.0 (5) and MIT (4); the remainder use LGPL, GPL, zlib, or mixed/dual schemes, as detailed in Table~\ref{tab:summary-metadata}. The majority of packages are written primarily in C++ with Python bindings. All 28 packages support Linux. Most also support Windows or macOS (see Section~\ref{sec:repository-project-metadata} for per-platform counts).
-
-Measurement scores and quality rankings are not reported here; those appear in Chapter~\ref{ch:measurement-results}.
+The packages span a period of active development from 2001 (ODE's initial release) to the present, with most showing recent repository activity as of the May 2026 measurement date. Licensing, language, and platform details are reported with the measurement data in Section~\ref{sec:repository-project-metadata} (Table~\ref{tab:summary-metadata}).
 
 \section{Functional Software Roles}
 \label{sec:robotics-software-categories}
@@ -33,7 +31,7 @@ Robotics simulators provide virtual environments for representing robots, worlds
     \item \textbf{Flightmare} is a flexible modular quadrotor simulator developed by the Robotics and Perception Group at the University of Zurich and ETH Zurich. It separates rendering from the RL environment for flexible configuration between fast and photorealistic modes.
 \end{itemize}
 
-Several additional packages provide simulation capabilities as part of broader functionality. Drake includes simulation features within its model-based design toolbox. MRPT includes a 3D simulation environment alongside its mobile robotics libraries. SOFA provides interactive simulation for medical and soft robotics applications. These packages may be considered simulators in some contexts but serve broader roles.
+Drake, MRPT, and SOFA also provide simulation capabilities as part of broader roles (Section~\ref{sec:boundary-cases}).
 
 \subsection{Physics Engines and Dynamics Libraries}
 \label{subsec:physics-engines-dynamics-libraries}
@@ -127,7 +125,7 @@ Despite the diversity of the selected packages, several capabilities and concern
 
 \textbf{C7: Simulation or Planning Loop.} Simulators and planners share a common architectural pattern: a loop that iteratively updates the system state. In simulators, this is the physics stepping loop that advances the simulation in time. In planners, it is the search or optimization loop that explores the configuration space to find a valid path.
 
-Not every commonality holds with equal strength across all 28 packages. Some---notably C2 (physics or kinematics computation), C6 (ecosystem integration), and C7 (simulation or planning loop)---are dominant, role-specific patterns rather than strictly universal properties; C7, for example, characterises simulators and planners more than pure middleware. They are reported here because they recur across most of the domain, while the role-specific exceptions are captured in the variabilities below.
+Not every commonality holds with equal strength across all 28 packages: C2, C6, and C7 are dominant, role-specific patterns rather than strictly universal properties, and the role-specific exceptions are captured in the variabilities below.
 
 \section{Variabilities}
 \label{sec:variabilities}
@@ -136,23 +134,23 @@ The selected packages differ along several important dimensions.
 
 \textbf{V1: Primary Software Role.} The most fundamental variability is the role a package plays in a robotics workflow, ranging from full simulation environments to physics engines to planning libraries to middleware frameworks (Section~\ref{sec:robotics-software-categories}).
 
-\textbf{V2: User Interface Model.} Packages differ in how users interact with them. Some provide graphical user interfaces with 3D rendering, scene editors, and interactive controls (Gazebo, Webots, CoppeliaSim). Others are primarily libraries or APIs intended for programmatic use (OMPL, Pinocchio, ODE). Some provide both (Drake, MRPT).
+\textbf{V2: User Interface Model.} Some packages provide graphical user interfaces with 3D rendering, scene editors, and interactive controls (Gazebo, Webots, CoppeliaSim). Others are primarily libraries or APIs intended for programmatic use (OMPL, Pinocchio, ODE). Some provide both (Drake, MRPT).
 
 \textbf{V3: Domain Specificity.} Some packages are general-purpose robotics simulators or engines (Gazebo, Bullet, MuJoCo), while others target specific application domains---autonomous driving, aerial vehicles, embodied AI, medical simulation, and grasping (see the role descriptions in Section~\ref{sec:robotics-software-categories}).
 
-\textbf{V4: Physics Fidelity and Approach.} Physics engines differ in their simulation approach and fidelity. Some prioritize speed for real-time or reinforcement learning applications (MuJoCo, Bullet), while others emphasize physical accuracy for engineering analysis (Project Chrono, Simbody). Differences include the choice of constraint solver, collision detection algorithm, integration method, and support for deformable bodies or fluid dynamics.
+\textbf{V4: Physics Fidelity and Approach.} Some engines prioritize speed for real-time or reinforcement learning applications (MuJoCo, Bullet), while others emphasize physical accuracy for engineering analysis (Project Chrono, Simbody). Differences include the choice of constraint solver, collision detection algorithm, integration method, and support for deformable bodies or fluid dynamics.
 
 \textbf{V5: Platform Support.} All packages support Linux, and support for other platforms varies. Some packages provide first-class support for Windows and macOS (Webots, CoppeliaSim, Bullet), while others are primarily developed for Linux with limited cross-platform support.
 
 \textbf{V6: Programming Language Interfaces.} C++ is the dominant implementation language across the selected packages, but packages differ in the range and quality of language bindings they provide. Python bindings are increasingly common because Python has become central to robotics research and machine learning. Fewer packages provide interfaces for languages such as MATLAB, Java, or Rust.
 
-\textbf{V7: ROS Integration Depth.} Packages vary in their relationship to the ROS ecosystem. Some (Gazebo, MoveIt!) are tightly integrated and depend on ROS for core functionality. Others (Webots, CARLA) provide ROS bridges as optional components. Some (YARP, OROCOS) are alternatives to ROS that provide their own middleware infrastructure.
+\textbf{V7: ROS Integration Depth.} Some packages (Gazebo, MoveIt!) are tightly integrated and depend on ROS for core functionality. Others (Webots, CARLA) provide ROS bridges as optional components. Some (YARP, OROCOS) are alternatives to ROS that provide their own middleware infrastructure.
 
 \textbf{V8: License Model.} Although all packages are open source, they use different licenses. The most common are BSD (2-clause and 3-clause), Apache~2.0, MIT, and LGPL. License choice affects how the software can be reused and integrated into other projects.
 
-\textbf{V9: Community and Governance.} Packages differ in their development governance. Some are stewarded by established organizations (Open Robotics for Gazebo and ROS~2, Google DeepMind for MuJoCo, NVIDIA for PhysX), some by academic research groups (Drake at MIT/TRI, OMPL at Rice, DART at Georgia Tech), and some by individual maintainers or small communities (ODE, Newton Dynamics, GraspIt!).
+\textbf{V9: Community and Governance.} Some packages are stewarded by established organizations (Open Robotics for Gazebo and ROS~2, Google DeepMind for MuJoCo, NVIDIA for PhysX), some by academic research groups (Drake at MIT/TRI, OMPL at Rice, DART at Georgia Tech), and some by individual maintainers or small communities (ODE, Newton Dynamics, GraspIt!).
 
-Spatial dimensionality was considered as a possible variability but is not listed among V1--V9: every selected package operates in three dimensions, and no purely 2D or planar-only tool appears in the final set. The one 2D-capable candidate, Player/Stage, was not selected (Appendix~\ref{appendix:full-candidate-software-list}).
+Spatial dimensionality was considered as a possible variability but is not listed among V1--V9: every selected package operates in three dimensions. The one 2D-capable candidate, Player/Stage, was not selected (Appendix~\ref{appendix:full-candidate-software-list}).
 
 \section{Parameters of Variation}
 \label{sec:parameters-of-variation}
@@ -196,12 +194,12 @@ The binding times reflect when a user or integrator can still make a choice: rol
 
 Several of the selected packages occupy intermediate positions in the classification above; the boundaries between roles are not always sharp.
 
-\textbf{ROS~2} is classified as middleware in this analysis, but its scope extends well beyond communication infrastructure. ROS~2 provides an SDK with libraries, drivers, visualization tools (RViz), simulation integration (through Gazebo), and a package management system. It is the de facto integration layer for robotics software components, and many other packages in the selected set assume it as their runtime environment. Its inclusion in a study of MPS software is justified by its central role in the workflows that combine these capabilities.
+\textbf{ROS~2} is classified as middleware in this analysis, but its scope extends well beyond communication infrastructure. It is the de facto integration layer for robotics software components, and many other packages in the selected set assume it as their runtime environment.
 
-\textbf{Drake} spans multiple roles. It provides simulation capabilities without being a full simulator in the sense of Gazebo or Webots. It includes sophisticated multibody dynamics without being solely a physics engine. It offers trajectory optimization and model predictive control without being only a planning library. Drake is best understood as a model-based design toolbox that integrates dynamics, planning, and control into a unified framework.
+\textbf{Drake} spans multiple roles. It provides simulation capabilities without being a full simulator in the sense of Gazebo or Webots. It includes sophisticated multibody dynamics without being solely a physics engine. It offers trajectory optimization and model predictive control without being only a planning library.
 
-\textbf{MoveIt!} and \textbf{OMPL} are closely related but serve different roles. OMPL is a general-purpose motion planning library that can be used independently. MoveIt! is a manipulation framework that integrates OMPL (among other planners) with kinematics, collision checking, and trajectory execution for robot arms. OMPL is classified as a motion planning library and MoveIt! as a manipulation framework, but the boundary between them reflects architectural layering rather than functional separation.
+The boundary between \textbf{MoveIt!} and \textbf{OMPL} reflects architectural layering rather than functional separation: OMPL is a general-purpose planning library usable independently, while MoveIt! builds kinematics, collision checking, and trajectory execution around it (Section~\ref{subsec:motion-planning-middleware-manipulation}).
 
-\textbf{SOFA} is grouped with physics engines and dynamics libraries here because the measured materials emphasize deformable-body simulation, finite element methods, and haptic physical interaction. The package also presents itself as a simulation framework, especially for medical and soft-robotics applications. For that reason, it is treated as a boundary case rather than as a direct peer of rigid-body engines such as ODE or Bullet.
+\textbf{SOFA} is grouped with the physics engines because the measured materials emphasize deformable-body physics rather than whole-robot simulation (Section~\ref{subsec:physics-engines-dynamics-libraries}); it is a boundary case rather than a direct peer of rigid-body engines such as ODE or Bullet.
 
 In the chapters that follow, measurements are reported for each package individually and interpreted in the context of its role, so these boundary cases are not treated as measurement anomalies.

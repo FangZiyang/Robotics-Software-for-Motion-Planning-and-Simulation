@@ -8,7 +8,7 @@ This chapter sets out the concepts the rest of the report relies on: the MPS dom
 
 MPS software supports the design, testing, evaluation, and deployment of robotic systems. Motion planning software generates feasible robot motions under constraints such as geometry, kinematics, dynamics, collisions, and task requirements~\citep{lavalle2006planning}. Simulation software provides virtual environments for representing robots, sensors, actuators, controllers, and physical interactions before, or alongside, work with physical hardware~\citep{collins2021simulators}.
 
-The MPS domain in this report is defined to span more than a single class of software, so that the study includes enough packages to support a meaningful comparison. It covers full simulation environments, physics and dynamics engines, motion planning libraries, manipulation frameworks, and middleware. These classes of software are not interchangeable, but they are unified because they appear together in the same workflow: a simulator may call a physics engine for contact and dynamics, a planning stack may sit on top of a collision-checking library and communicate through middleware, and middleware may call planning, control, perception, and simulation. Figure~\ref{fig:mps-software-stack} sketches these relationships among the four software roles.
+The MPS domain in this report is defined to span more than a single class of software, so that the study includes enough packages to support a meaningful comparison. It covers full simulation environments, physics and dynamics engines, motion planning libraries, manipulation frameworks, and middleware. These classes of software are not interchangeable, but they are unified because they appear together in the same workflow: a simulator may call a physics engine for contact and dynamics, a planning stack may sit on top of a collision-checking library and communicate through middleware, and middleware may call planning, control, perception, and simulation. Figure~\ref{fig:mps-software-stack} sketches these relationships among the four software roles; the report is explicit throughout about which role each package plays.
 
 \begin{figure}[htbp]
 \centering
@@ -48,15 +48,13 @@ The MPS domain in this report is defined to span more than a single class of sof
 \label{fig:mps-software-stack}
 \end{figure}
 
-This breadth creates a scope challenge. A definition restricted to full simulators would simplify comparison but exclude software that practitioners routinely use; the broader definition adopted here better reflects the ecosystem, provided the report is explicit about the roles packages play.
-
 \section{Software Categories}
 \label{sec:software-categories}
 
 Assessing software packages requires understanding the licensing model under which each package is distributed. In particular, the availability of source code determines whether repository-based measurement is possible. Following the terminology used in prior studies of the state of the practice~\citep{Smith2024MI,Smith2024LBM}, this report distinguishes three common software categories:
 
 \begin{description}
-    \item[Open Source Software (OSS):] For OSS, the source code is openly accessible. Users have the right to study, change, and distribute it under a license granted by the copyright holder. For many OSS projects, the development process relies on collaboration among contributors worldwide. Accessible source code exposes the underlying logic of software functions, the development practices used to produce them, and the flaws and potential risks in the final product. OSS is therefore suitable for the kind of repository-based analysis performed here.
+    \item[Open Source Software (OSS):] For OSS, the source code is openly accessible. Users have the right to study, change, and distribute it under a license granted by the copyright holder. For many OSS projects, the development process relies on collaboration among contributors worldwide. Accessible source code exposes the underlying logic of software functions, the development practices used to produce them, and the flaws and potential risks in the final product.
     \item[Freeware:] Freeware is software that can be used free of charge. Unlike OSS, the authors of freeware do not permit access to or modification of the source code. To many end users, the distinction between freeware and OSS may not matter.
     \item[Commercial Software:] Commercial software is developed and sold by companies as a product. Typically, commercial software requires payment to access all features and does not include access to the source code. Some commercial software is available free of charge, but its source code is still not accessible.
 \end{description}
@@ -68,13 +66,9 @@ This report assesses only software that fits under the Open Source Software cate
 
 A study of the state of the practice examines existing tools, artifacts, processes, and evidence in a chosen domain. The goal is not to build new software but to learn from what already exists, by collecting and organizing public evidence in a systematic way. Claims about development activity, documentation, issue management, installation behaviour, or maintainability must be backed by observable project artifacts. When evidence is missing or ambiguous, the gap is recorded rather than filled with assumptions.
 
-The methodology used in this report is based on ``Methodology for Assessing the State of the Practice for Domain X'' by \citet{Smith2021}. It is generic enough to apply to any research software domain, and its authors estimate a full assessment of a given domain at roughly 173 person-hours, close to their stated goal of one person-month (160 hours), so that a small team can complete it. The prescribed process moves from domain selection to measurement and analysis. It starts with selecting a suitable domain and engaging a domain expert. The candidate software list is then constructed and filtered, followed by a domain analysis. Source code, documentation, and repository metrics are collected for the selected packages, and a measurement template covering nine quality categories is applied to each. Developers are surveyed through semi-structured interviews, and the Analytic Hierarchy Process (AHP) is used to support cross-quality ranking. The procedure ends with answers to a set of research questions about the domain.
+The methodology used in this report is based on ``Methodology for Assessing the State of the Practice for Domain X'' by \citet{Smith2021}. It is generic enough to apply to any research software domain and is designed to be completed by a small team within a bounded time budget (Section~\ref{subsec:measurement-execution}). The prescribed process runs from domain selection through candidate filtering, template-based measurement, developer interviews, and AHP-based ranking to answers to a set of research questions; Chapter~\ref{ch:methodology} enumerates the steps as applied to MPS.
 
 The methodology builds on prior assessments of the state of the practice conducted across several research software domains: Geographic Information Systems~\citep{smith2018state}, Mesh Generators~\citep{smith2016state}, Seismology software~\citep{Smith2018Seismology}, and Statistical software for psychology~\citep{smith2018statistical}. More recently, the methodology was refined and applied to Medical Imaging (MI) software~\citep{Smith2024MI} and Lattice Boltzmann Method (LBM) software~\citep{Smith2024LBM,Michalski2021}. These studies are the primary structural and stylistic references for this report.
-
-The MI and LBM reports share a common structure that this report follows and adapts to the MPS domain.
-
-Key features of the Domain~X methodology that distinguish it from ad hoc software comparisons include: (i)~the involvement of a domain expert to vet the software list, domain analysis, and ranking (Chapter~\ref{ch:methodology} describes how the domain expert was involved in this study); (ii)~a transparent candidate discovery process using multiple source types; (iii)~a standardized measurement template that applies the same set of fields (approximately 108, counting substantive questions and supplementary entries together) to every package; (iv)~the use of repository-based metrics alongside qualitative assessments; and (v)~a commonality analysis that treats the selected packages as members of a software family rather than as unrelated products.
 
 Practitioner-facing research software checklists provide complementary guidance on themes such as source control, licensing, documentation, testing, automation, distribution, and governance~\citep{Acton2026Checklists}. These themes overlap with several Domain~X quality categories, but this report uses the Domain~X template as its measurement instrument.
 
@@ -133,16 +127,16 @@ w_i = \frac{1}{n} \sum_{j=1}^{n} \frac{a_{ij}}{\sum_{l=1}^{n} a_{lj}}.
 \end{equation}
 The priorities $w_1,\dots,w_n$ are non-negative and sum to one, and $w_i$ is the priority of package~$i$ on that quality; sorting the packages by $w_i$ gives their ranking on that quality. Repeating the procedure for all nine qualities gives nine priority vectors $\mathbf{w}^{(1)},\dots,\mathbf{w}^{(9)}$, and hence nine per-quality rankings.
 
-Combining the nine per-quality rankings into a single overall ranking requires weights $c_1,\dots,c_9$ that express the importance of each quality. These weights are obtained by applying the same AHP pairwise-comparison procedure to the qualities themselves. This report adopts equal importance as its stated weighting assumption: every pairwise quality comparison is therefore assigned the value 1, so the $9 \times 9$ quality-comparison matrix $B=(b_{k\ell})$ has $b_{k\ell}=1$ for all $k$ and $\ell$. Normalizing each column and averaging each row as in Equation~\eqref{eq:ahp-priority} yields $c_k=1/9$ for every quality; none is privileged, consistent with the equal weighting used in the LBM assessment~\citep{Smith2024LBM}. A package's overall priority is the weighted sum of its per-quality priorities:
+Combining the nine per-quality rankings into a single overall ranking requires weights $c_1,\dots,c_9$ that express the importance of each quality; these weights are obtained by applying the same AHP pairwise-comparison procedure to the qualities themselves. A package's overall priority is the weighted sum of its per-quality priorities:
 \begin{equation}
 p_i = \sum_{k=1}^{9} c_k\, w_i^{(k)},
 \qquad \sum_{k=1}^{9} c_k = 1,
 \label{eq:ahp-aggregate}
 \end{equation}
 
-The packages are ranked by $p_i$. With equal weights, Equation~\eqref{eq:ahp-aggregate} reduces to the mean of the nine per-quality priorities.
+The packages are ranked by $p_i$.
 
-AHP is an analysis aid for cross-quality comparison under a stated weighting, not a universal recommendation of any particular package. Selecting a software package for a specific application would involve finding the weights appropriate for that application. Chapter~\ref{ch:methodology} places AHP within the full procedure, and Chapter~\ref{ch:measurement-results} reports the per-package quality-mean ranking, its comparison with community indicators, and an illustrative equal-weight AHP ranking ($c_k = 1/9$).
+AHP is an analysis aid for cross-quality comparison under a stated weighting, not a universal recommendation of any particular package. Selecting a software package for a specific application would involve finding the weights appropriate for that application. The weighting adopted in this report, and the resulting ranking, are stated in Section~\ref{subsec:ahp-ranking} and Chapter~\ref{ch:measurement-results}.
 
 \section{Open Source and Repository-Based Measurement}
 \label{sec:open-source-repository-measurement}
@@ -151,4 +145,4 @@ The measurement process in this report depends on evidence from public artifacts
 
 Repository-based measurement has inherent limitations. Repository metadata represents a snapshot in time: last commit dates, issue counts, release information, and pull request activity can change after measurement. Some projects distribute their development activity across multiple repositories or use external issue trackers, making it difficult to capture a complete picture from any single repository. The interpretation of repository metrics requires care: a high number of open issues may indicate an active user community rather than poor maintenance, and a low commit frequency may reflect project maturity rather than abandonment.
 
-The measurement record therefore documents measurement dates, repository choices, and interpretation rules. Proprietary tools and tools with closed core components may be important in robotics practice, but they cannot be measured with the same procedure as open-source software; Chapter~\ref{ch:methodology} discusses the specific inclusion and exclusion decisions that follow.
+The measurement record therefore documents measurement dates, repository choices, and interpretation rules. Proprietary tools and tools with closed core components may be important in robotics practice but fall outside this procedure (Section~\ref{sec:software-categories}); Chapter~\ref{ch:methodology} discusses the specific inclusion and exclusion decisions that follow.

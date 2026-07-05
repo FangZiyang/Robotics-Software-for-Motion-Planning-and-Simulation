@@ -8,7 +8,7 @@ Following the LBM study~\citep{Smith2024LBM}, the comparison uses three dimensio
 \section{Comparison of Repository Artifacts}
 \label{sec:comparison-artifacts}
 
-RQ3 concerns the artifacts present in MPS repositories. Following the LBM study, which grouped repository artifacts by frequency and compared them with research software development guidelines~\citep{Smith2024LBM}, Table~\ref{tab:mps-artifact-comparison-summary} summarizes the artifact observations from Chapter~\ref{ch:measurement-results} (May 2026 snapshot).
+Table~\ref{tab:mps-artifact-comparison-summary} summarizes the artifact observations from Chapter~\ref{ch:measurement-results} (May 2026 snapshot).
 
 \begin{table}[H]
 \centering
@@ -67,33 +67,33 @@ Documented user characteristics & Rare (4\%)      & n/r             & Rare (21\%
 \end{tabular}
 \end{table}
 
-The banding makes the cross-domain contrast explicit. Almost every user- and developer-facing artifact is \emph{Common} in the MPS sample, whereas several are only \emph{Uncommon} or \emph{Rare} in the other two domains: API documentation is \emph{Rare} in MI and absent in LBM, an explicit coding standard is \emph{Rare} in both but \emph{Uncommon} in MPS, and release notes and contribution guidance drop to \emph{Uncommon} or \emph{Rare} outside MPS. The one artifact that is \emph{Rare} across all three domains is documented expected user characteristics. This pattern is consistent with the inclusion rule (Chapter~\ref{ch:methodology}), which requires a public, measurable repository and so favours actively maintained projects; the residual gaps---design rationale, requirements-style information, and explicit user assumptions---match the shortfalls reported for the LBM and MI domains.
+The banding makes the cross-domain contrast explicit: almost every user- and developer-facing artifact is \emph{Common} in the MPS sample, whereas several are only \emph{Uncommon} or \emph{Rare} in MI and LBM. The one artifact that is \emph{Rare} across all three domains is documented expected user characteristics.
 
 \section{Comparison of Tool Usage}
 \label{sec:comparison-tools}
 
-RQ4 concerns tool usage. The LBM study discussed this in terms of development tools, dependencies, and project management tools, with special attention to version control and continuous integration~\citep{Smith2024LBM}. The MPS measurement provides strong evidence for version control, issue tracking, build or installation automation, testing, API documentation, and visible development infrastructure; evidence for documentation-generation tools is narrower, at 12 of 28 packages.
+The LBM study discussed tool usage in terms of development tools, dependencies, and project management tools, with special attention to version control and continuous integration~\citep{Smith2024LBM}. The MPS measurement provides strong evidence for version control, issue tracking, build or installation automation, testing, API documentation, and visible development infrastructure.
 
 Version control and issue tracking provide the most direct tool comparison. All 28 MPS packages use git-based version control on GitHub or an equivalent public platform, and all 28 use GitHub Issues or an equivalent tracker. The LBM study reported version control for 67\% of all LBM packages and 73\% of alive ones~\citep{Smith2024LBM}. The MPS result is higher, partly because the inclusion rule requires public repository evidence and so filters out packages without suitable repositories (Chapter~\ref{ch:methodology}). Even so, the measured MPS ecosystem is strongly aligned with contemporary repository-centered development.
 
 Build and installation automation are also widespread: all 28 packages provide build files, scripts, package-manager support, or container-based installation. MPS packages often depend on compiled C++, Python bindings, physics and graphics libraries, middleware, and OS packages that are hard to reproduce by hand, so this installability tooling (Section~\ref{sec:installability-results}) reflects real maintainer investment.
 
-Testing and verification tooling are also visible: unit tests for 27 of 28 packages, automated testing for 26, assertions for 23, and documentation-generation tools for 12. The LBM study treated test cases as a rare artifact (2 of 24 packages) and automated testing as a prerequisite for effective continuous integration~\citep{Smith2024LBM}; in the MPS sample, testing evidence is far more common. This does not imply complete coverage or realistic robotics workloads, but it shows that test infrastructure is a visible part of most measured projects.
+Testing and verification tooling are also visible: unit tests for 27 of 28 packages, automated testing for 26, and assertions for 23. The LBM study treated test cases as a rare artifact (2 of 24 packages) and automated testing as a prerequisite for effective continuous integration~\citep{Smith2024LBM}; in the MPS sample, testing evidence is far more common. This does not imply complete coverage or realistic robotics workloads, but it shows that test infrastructure is a visible part of most measured projects.
 
-Continuous integration should be read more cautiously. Chapter~\ref{ch:measurement-results} records CI or an equivalent setup for 26 of 28 packages and visible development-process evidence (CI/CD workflows, contribution guides, pull request and issue templates) for 25 of 28. These counts do not indicate that all packages use CI in the same way or to the same depth---for builds, tests, documentation, static checks, packaging, or releases. The narrower conclusion is that MPS repositories often expose automation and workflow infrastructure; this report does not rank CI maturity separately.
+Continuous integration should be read more cautiously. Chapter~\ref{ch:measurement-results} records CI or an equivalent setup for 26 of 28 packages and visible development-process evidence (CI/CD workflows, contribution guides, pull request and issue templates) for 25 of 28. These counts show that MPS repositories commonly expose automation and workflow infrastructure; they do not reveal how deeply each project uses CI, and this report does not rank CI maturity separately.
 
-API documentation should be distinguished from the tools that produce it. The MPS measurement found API documentation for all 28 packages, but documentation-generation tools such as Doxygen or Sphinx are recorded for only 12. The LBM paper reported that roughly half of LBM packages mentioned such tools and that API documentation itself was rare~\citep{Smith2024LBM}. The MPS result is stronger on API documentation, likely because many MPS packages are libraries, frameworks, or middleware whose adoption depends on programmable interfaces.
+API documentation should be distinguished from the tools that produce it. The MPS measurement found API documentation for all 28 packages, but documentation-generation tools such as Doxygen or Sphinx are recorded for only 12. The LBM paper reported that roughly half of LBM packages mentioned such tools and that API documentation itself was rare~\citep{Smith2024LBM}.
 
-Overall, MPS projects use modern repository and development tools consistently in the categories visible from public repositories. The weaker point is not the absence of tools but the uneven visibility of how they are governed: coding standards, process rules, review expectations, and user assumptions are documented less consistently than the tools themselves.
+Overall, MPS projects use modern repository and development tools consistently in the categories visible from public repositories.
 
 \section[Comparison of Principles, Processes, and Methodologies]{Comparison of Principles, Processes, and\\ Methodologies}
 \label{sec:comparison-practices}
 
-RQ5 concerns principles, processes, and methodologies. This is harder to answer from public artifacts alone, because process is partly social: repositories show issue trackers, pull requests, release notes, contribution guides, and workflows, but not how teams make design decisions, negotiate priorities, or conduct informal review outside the repository.
+Principles, processes, and methodologies are harder to assess from public artifacts alone, because process is partly social: repositories show issue trackers, pull requests, release notes, contribution guides, and workflows, but not how teams make design decisions, negotiate priorities, or conduct informal review outside the repository.
 
 Within that limitation, MPS projects show more visible process structure than many research software projects in prior studies. Twenty-five of 28 packages show evidence of a defined development process (see Section~\ref{sec:comparison-tools}), 27 of 28 publish release notes, and 26 of 28 provide contribution or code-review guidance. These indicate that many measured projects expect external users or contributors and have created at least minimal structures for that interaction.
 
-This contrasts with the LBM discussion, where process evidence was often informal and was strengthened by interviews: LBM developers described small-team practices, lead developer roles, informal peer review, and issue tracking~\citep{Smith2024LBM}. The MPS interview component is reported separately (Chapter~\ref{ch:developer-interviews}); the present comparison is limited to the public artifacts of open collaboration above.
+This contrasts with the LBM discussion, where process evidence was often informal and was strengthened by interviews: LBM developers described small-team practices, lead developer roles, informal peer review, and issue tracking~\citep{Smith2024LBM}. The MPS interview component is reported separately (Chapter~\ref{ch:developer-interviews}).
 
 The two RQ3 gaps (Section~\ref{sec:comparison-artifacts}) also limit the process picture: the missing coding standard and the single package documenting expected user characteristics weaken traceability between the intended audience and the design of tutorials, APIs, examples, and support channels.
 
@@ -138,10 +138,4 @@ Documented user characteristics & 1 (4\%)  & n/r       & 5 (21\%) \\
 {\footnotesize \textit{Notes:} MPS values restate Chapter~\ref{ch:measurement-results}. ``n/r'' marks an artifact that the cited study does not report as a count. The LBM API-documentation entry is zero because that study recorded no package with explicit API documentation~\citep{Smith2024LBM}.}
 \end{table}
 
-For RQ3, MPS projects compare favourably with MI and LBM in the presence of repository artifacts, especially user manuals, API documentation, and testing evidence; basic repository infrastructure is comparable with MI and stronger than the LBM point. The main gaps are formal artifacts: documented user characteristics, requirements-style information, design rationale, and the coding standard absent from half the packages.
-
-For RQ4, MPS projects show strong tool adoption in the categories visible from public repositories, indicating development tightly connected to modern open-source tooling. As in Section~\ref{sec:comparison-tools}, the public-repository inclusion rule matters: proprietary or closed-core robotics tools may differ.
-
-For RQ5, the public evidence of development processes is substantial but mostly artifact-based. This places MPS software between two tendencies: more visibly tooled and documented than some prior research software domains, yet bounded by what public artifacts reveal.
-
-The measured MPS ecosystem shows a solid public-artifact profile: strengths that are practical and integration-oriented, and weaknesses---formal requirements, explicit user assumptions, coding standards, and design rationale---familiar from prior research software studies. This characterizes the state of the practice rather than recommending any package.
+The consolidated counts confirm the pattern of Sections~\ref{sec:comparison-artifacts}--\ref{sec:comparison-practices}: MPS leads MI and LBM on practical, integration-oriented artifacts and visible tooling, while formal artifacts remain the shared gap. Chapter~\ref{ch:conclusions} answers RQ3--RQ5 individually.
