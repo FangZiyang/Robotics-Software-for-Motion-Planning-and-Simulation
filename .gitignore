@@ -93,3 +93,7 @@ tmp/
 zh/*.md
 zh/*.py
 zh/*.pdf
+
+# Interview recruitment materials — real developer contact PII (names/emails),
+# email drafts, logs, scripts. Kept LOCAL ONLY, never tracked/published.
+interview_materials/recruitment_outreach/
