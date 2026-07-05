@@ -1,19 +1,18 @@
-# LLM-Assisted Discovery — Reproducibility Record
+# LLM-Assisted Discovery — Provenance Record
 
 Supplementary material for the auxiliary LLM-assisted candidate-discovery step described in
 Section 3.3 (LLM-Assisted Sources) and Appendix B (Table B.3). It records the model, prompt, and
-access date for each LLM output so the discovery step is reproducible in principle. These LLM
+access date for each LLM output so the discovery step is documented and auditable. These LLM
 outputs were auxiliary discovery aids only: every candidate name was consolidated, filtered, and
 verified against public evidence before any package was selected for measurement.
 
 Both lists were produced on the **same day** with the **same prompt**, issued independently to two
 different assistants — a controlled cross-model discovery pass.
 
-Reproducibility of an LLM query rests on the **model, the exact prompt, and the access date** — not
-on a conversation URL. No chat links are cited: the private conversation URLs are unstable and not
-reader-accessible, and reporting model + prompt + date is the standard, reproducible-in-principle
-record. The archived outputs live in the project's supplementary source catalogue
-(`sofware-counting-webs.csv`).
+An LLM query is documented by the **model, the exact prompt, and the access date** — not by a
+conversation URL. No chat links are cited: the private conversation URLs are unstable and not
+reader-accessible, so recording model + prompt + date is the auditable record instead. The archived
+outputs live in the project's supplementary source catalogue (`sofware-counting-webs.csv`).
 
 ## Shared prompt (verbatim, issued to both GPT and Gemini)
 
