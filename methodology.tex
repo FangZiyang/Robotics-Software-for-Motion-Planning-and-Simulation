@@ -1,7 +1,7 @@
 \chapter{Methodology}
 \label{ch:methodology}
 
-This chapter presents the study methodology and addresses RQ1 (software candidate identification), documenting how the candidate set was assembled. The methodology follows \citet{Smith2021}, adapted to the MPS domain, in the following steps:
+This chapter presents the study methodology and addresses RQ1 (software candidate identification) by documenting how the candidate set was assembled. The methodology follows \citet{Smith2021}, adapted to the MPS domain, in the following steps:
 
 \begin{enumerate}
     \item \textbf{Select the research domain} (Section~\ref{sec:domain-selection}).
@@ -102,14 +102,14 @@ This criterion also governs how multi-repository projects are handled. Some robo
 
 Activity and maintenance status were considered because the study focuses on contemporary software practice. In the Domain~X methodology, age is one of the initial filtering criteria, measured by the last date when a change was made, with exceptions for older packages that remain highly recommended and currently in use~\citep{Smith2021}. Tools that are no longer maintained provide weaker evidence about current development practices.
 
-The primary activity indicator used in this report is the Domain~X alive/dead rule: a package is considered alive if it has received commits or version releases within the last 18 months from the measurement date. This indicator was used as a weighted signal rather than as an automatic cutoff: a package was set aside on activity grounds only when prolonged inactivity coincided with the tool no longer being prominent or having been superseded by an actively maintained alternative. On that basis, the following packages were excluded:
+The primary activity indicator used in this report is the Domain~X 18-month repository-activity flag: a package receives the value \emph{alive} if its measured repository has received any commit or version release within the 18 months preceding the measurement date, and \emph{dead} otherwise. The flag records repository events; it does not by itself establish that substantive software development or project stewardship is continuing. For example, documentation-only commits can produce an alive flag even when a project's maintainers have announced that development has ended. The flag was therefore used as a weighted signal rather than as an automatic cutoff: a package was set aside on activity grounds only when prolonged inactivity coincided with the tool no longer being prominent or having been superseded by an actively maintained alternative. On that basis, the following packages were excluded:
 
 \begin{itemize}
     \item \textbf{MRDS} (Microsoft Robotics Developer Studio) has not received updates since 2012 and is no longer supported by Microsoft.
     \item \textbf{USARSim} (Unified System for Automation and Robot Simulation) is no longer actively maintained and does not represent current practice.
 \end{itemize}
 
-Four packages (OpenRAVE, MORSE, GraspIt!, and Flightmare) had become inactive by the measurement date but remain prominent and widely referenced, and so were retained in the measured set; their alive/dead status is recorded and reported as a measured outcome in Chapter~\ref{ch:measurement-results} (Section~\ref{sec:repository-project-metadata}), so that the study can examine how software quality persists after development activity declines.
+Four packages (OpenRAVE, MORSE, GraspIt!, and Flightmare) received a dead repository-activity flag at the measurement date but remain prominent and widely referenced, and so were retained in the measured set. Their flags are reported as measured outcomes in Chapter~\ref{ch:measurement-results} (Section~\ref{sec:repository-project-metadata}), where they are interpreted together with project-specific maintenance evidence rather than as stand-alone claims about project viability.
 
 \subsection{Scope and Coverage Filters}
 \label{subsec:scope-coverage-filters}
@@ -159,7 +159,7 @@ The domain expert, Dr.~Matthew Giamou, reviewed the candidate list and the filte
 \singlespacing
 \footnotesize
 \setlength{\tabcolsep}{4pt}
-\begin{longtable}{@{}p{2.5cm}p{3.0cm}llp{2.7cm}@{}}
+\begin{longtable}{@{}P{2.5cm}P{3.0cm}llP{2.7cm}@{}}
 \caption{Final software set: primary role, repository release date, last commit date, and a representative publication. Repository dates are a May~2026 snapshot; the ``Released'' date is the first release in the measured public repository, which for renamed, re-licensed, or migrated projects (e.g.\ MuJoCo, PhysX, Webots) reflects that later event rather than the project's original creation (Section~\ref{sec:repository-project-metadata}). ``---'' marks packages for which no representative publication was selected; the listed publications are the most representative reference available and are not necessarily peer reviewed.}
 \label{tab:final-software-set}\\
 \toprule
@@ -217,7 +217,7 @@ The primary measurement instrument is the measurement template from Appendix~B o
 
 \begin{enumerate}
     \item \textbf{Summary Information} (17 questions): software name, URL, affiliation, purpose, number of developers, funding, initial release date, last commit date, status, license, platforms, software category, development model, publications, source code URL, programming languages, and evidence of performance consideration.
-    \item \textbf{Installability} (14 questions): installation instructions (presence, single-document organization, linear ordering, completeness, and assumed pre-installed dependencies), compatible operating system versions, installation automation, error handling, installation validation procedure, number of installation steps, operating system used during measurement, dependencies (presence of guidance and required version listing), and uninstall behaviour (problems and residue).
+    \item \textbf{Installability} (14 questions): installation instructions (presence, one-place organization, linear ordering, completeness, and assumed pre-installed dependencies), compatible operating system versions, installation automation, error handling, a validation procedure, the number of steps, the operating system used, dependency guidance and version listing, and uninstall behaviour (problems and residue).
     \item \textbf{Correctness and Verifiability} (8 questions): requirements or theory documentation, correctness techniques, tutorial availability and quality, unit tests, and continuous integration evidence.
     \item \textbf{Surface Reliability} (5 questions): installation and tutorial breakage, error messages, and recoverability.
     \item \textbf{Surface Robustness} (2 questions): handling of unexpected input and edge cases.
@@ -244,7 +244,7 @@ Repository metrics are collected separately from the quality impression scores. 
 From these raw data, three processed measures are calculated:
 
 \begin{enumerate}
-    \item \textbf{Alive/dead status:} computed under the 18-month alive/dead rule (Section~\ref{subsec:activity-maintenance-status}).
+    \item \textbf{Repository-activity flag:} computed under the 18-month commit-or-release rule (Section~\ref{subsec:activity-maintenance-status}), with \emph{alive} and \emph{dead} recorded as repository-event values rather than complete maintenance judgments.
     \item \textbf{Percentage of identified issues that are closed:} computed as closed issues divided by total identified issues, using GitHub issue data where available.
     \item \textbf{Percentage of code that is comments:} computed with the SCC tool's line-based method, as comment lines divided by total lines.
 \end{enumerate}
@@ -275,13 +275,13 @@ Following the Domain~X methodology, the analysis proceeds in six steps:
 \begin{enumerate}
     \item \textbf{Write an introduction} to the domain and the software family.
     \item \textbf{Write an overview of domain knowledge,} summarizing the key concepts and terminology relevant to MPS software.
-    \item \textbf{List commonalities:} identify goals, assumptions, functions, artifacts, and domain concepts that recur across multiple family members.
-    \item \textbf{List variabilities:} identify dimensions on which family members differ, such as software role, supported platforms, licensing, programming language interfaces, documentation style, and intended use cases.
+    \item \textbf{List commonalities:} identify goals, assumptions, functions, artifacts, and domain concepts at the level where they hold: family-wide commonalities across all selected packages and sub-family commonalities within role-based groups.
+    \item \textbf{List variabilities:} identify dimensions on which family members differ, including role-specific capabilities and implementation choices such as software role, supported platforms, licensing, recorded programming languages, documentation style, and intended use cases.
     \item \textbf{List parameters of variation:} for each variability, describe the possible values.
     \item \textbf{Add terminology, definitions, and acronyms} that are standard in the domain, to ensure that the analysis is accessible to readers outside robotics.
 \end{enumerate}
 
-The procedure first groups the selected packages into broad categories based on their primary roles: robotics simulators, physics and dynamics engines, and planning or middleware packages. It then identifies capabilities that appear across multiple categories, such as support for robot model representation, simulated environments, motion planning workflows, dynamics computation, and integration with robotics ecosystems.
+The procedure first groups the selected packages into broad categories based on their primary roles: robotics simulators, physics and dynamics engines, and planning or middleware packages. It then separates family-wide commonalities, sub-family commonalities, and capabilities that vary by role, such as simulation loops, planning workflows, dynamics computation, and ecosystem integration.
 
 Because the selected packages span multiple roles, the commonality analysis does not force all packages into a single comparison template. The analysis is based on checked evidence from documentation, repositories, publications, and other reliable project materials. Capabilities that could not be verified against these materials are not reported.
 
@@ -297,3 +297,5 @@ Chapter~\ref{ch:developer-interviews} addresses the developer interview componen
 % TODO: MREB clearance granted (#8215, 2026-06-22); once interviews are conducted, report the developer findings in Chapter~\ref{ch:developer-interviews} (do not fabricate findings until real interview records exist).
 
 The methodology recommends sending interview requests to developers from all packages in the study set to avoid selection bias. Prior applications of the methodology report response rates roughly in the 15\%--30\% range~\citep{Smith2021,Smith2024MI}; the exact rate for this report will depend on outreach timing and the response practices of the contacted developers. Interview contacts are typically identified through project websites, code repositories, publications, or institutional biography pages.
+
+Chapter~\ref{ch:selected-software-commonality} applies the selection and commonality-analysis procedures to the resulting 28-package study set. It defines the family and its role-based sub-families, then maps each package to the variability values used later to interpret the measurements.

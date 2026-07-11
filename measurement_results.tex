@@ -59,7 +59,7 @@ All 28 packages have publicly accessible source repositories. Twenty-seven follo
 
 C++ is the dominant implementation language, listed as a primary or major language by 25 of 28 packages in the measurement records. Three packages fall outside that count: MORSE (primary languages: C and Python), ODE (primary language listed as ``unclear'' because the public source tree mixes C and C++ files without a single declared primary), and ROS~2 (also ``unclear'' because the ROS~2 organization spans hundreds of repositories with different primary languages, although the core communication libraries themselves are in C++). Python is a primary or secondary language in most packages, reflecting its growing role in robotics research and its use for scripting, bindings, and machine learning integration. All 28 packages support Linux. Twenty-four packages support Windows and 23 support macOS.
 
-As of the May 2026 measurement date, 24 of the 28 packages (86\%) were classified as alive under the Domain~X 18-month activity rule, which defines alive as the presence of any commit or release in the preceding 18 months. Four packages were classified as dead: OpenRAVE (last commit August 2024), MORSE (last commit March 2022), GraspIt! (last commit July 2020), and Flightmare (last commit May 2023). These four packages were retained in the selected set because they remain prominent in the domain (Section~\ref{subsec:activity-maintenance-status}); their dead classification here is a measured outcome rather than a selection criterion. ODE is technically alive under the 18-month rule (last commit 2026-04-14) but its commit activity in the trailing twelve months is sparse (five commits across the year); the analysis that follows treats ODE as a low-activity alive package and discusses its limitations alongside the dead packages where appropriate.
+As of the May 2026 measurement date, 24 of the 28 packages (86\%) received an alive value under the Domain~X 18-month repository-activity flag, which records the presence of any commit or release in the preceding 18 months. Four packages received a dead value: OpenRAVE (last commit August 2024), MORSE (last commit March 2022), GraspIt! (last commit July 2020), and Flightmare (last commit May 2023). These four packages were retained because they remain prominent in the domain (Section~\ref{subsec:activity-maintenance-status}); the flag is a measured repository outcome rather than a selection decision or a complete maintenance assessment. AirSim illustrates this distinction: README-only commits in the time window produce an alive flag, while the project's own README states that development ended in 2022 (Section~\ref{subsec:robotics-simulators}). ODE also receives an alive flag (last commit 2026-04-14), but its trailing twelve-month activity is sparse (five commits). The analysis therefore interprets the flag together with commit content and official project statements.
 
 The number of developers (anyone who has made at least one accepted commit) ranges from 6 (CoppeliaSim, Flightmare) to 598 (MoveIt!). The median is approximately 128.5 (the mean of the 14th and 15th values, YARP at 125 and MRPT at 132). The total number of commits across all measured repositories exceeds 240,000. Drake leads with 34{,}786 commits, followed by SOFA (27{,}404) and Project Chrono (19{,}510). These repository-level metrics are snapshots and should not be interpreted as direct measures of project scale or quality without considering factors such as repository age, commit granularity, and whether development activity is concentrated in a single repository.
 
@@ -340,7 +340,7 @@ Against the 10\% comment-density threshold used by the maintainability calculato
 \section{Overall Observations}
 \label{sec:overall-observations}
 
-Table~\ref{tab:overall-impressions} summarizes the overall impression scores across all nine quality categories for each package, along with a simple unweighted per-package mean. Figure~\ref{fig:quality-ranking} plots the per-package mean as a ranked bar chart coloured by activity status, Figure~\ref{fig:quality-heatmap} renders the full score matrix as a heatmap, and Figure~\ref{fig:category-distribution} shows how the scores are distributed within each of the nine categories. The scores reported here are the raw 1--10 impression values assigned during measurement using the Domain~X Appendix~C calculator. The unweighted mean treats all nine qualities as equally important. Figure~\ref{fig:ahp-ranking} presents the illustrative equal-weight AHP ranking specified in Section~\ref{subsec:ahp-ranking}; under equal weights the AHP global priorities and the unweighted mean agree at the top of the table.
+Table~\ref{tab:overall-impressions} summarizes the overall impression scores across all nine quality categories for each package, along with a simple unweighted per-package mean. Figure~\ref{fig:quality-ranking} plots the per-package mean as a ranked bar chart coloured by the 18-month repository-activity flag (so AirSim is coloured alive despite being officially discontinued, as discussed in Section~\ref{sec:repository-project-metadata}), Figure~\ref{fig:quality-heatmap} renders the full score matrix as a heatmap, and Figure~\ref{fig:category-distribution} shows how the scores are distributed within each of the nine categories. The scores reported here are the raw 1--10 impression values assigned during measurement using the Domain~X Appendix~C calculator. The unweighted mean treats all nine qualities as equally important. Figure~\ref{fig:ahp-ranking} presents the illustrative equal-weight AHP ranking specified in Section~\ref{subsec:ahp-ranking}; under equal weights the AHP global priorities and the unweighted mean agree at the top of the table.
 
 \begin{table}[p]
 \centering
@@ -387,7 +387,7 @@ YARP & 7 & 8 & 7 & 7 & 7 & 8 & 7 & 7 & 8 & 7.3 \\
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.92\textwidth]{figures/fig_quality_ranking}
-    \caption{Quality-mean ranking of the 28 packages (unweighted mean of the nine category scores), coloured by activity status.}
+    \caption{Quality-mean ranking of the 28 packages (unweighted mean of the nine category scores), coloured by the 18-month repository-activity flag (Section~\ref{subsec:activity-maintenance-status}).}
     \label{fig:quality-ranking}
 \end{figure}
 
@@ -493,7 +493,7 @@ GraspIt!         & 5.0  & 28 & 213    & 24 & $-4$  \\
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.92\textwidth]{figures/fig_quality_vs_popularity}
-    \caption{Measured quality mean versus GitHub stars (log scale) for the 28 packages, coloured by activity status. Dashed lines mark the mean quality and the median star count.}
+    \caption{Measured quality mean versus GitHub stars (log scale) for the 28 packages, coloured by the 18-month repository-activity flag (Section~\ref{subsec:activity-maintenance-status}). Dashed lines mark the mean quality and the median star count.}
     \label{fig:quality-vs-popularity}
 \end{figure}
 
