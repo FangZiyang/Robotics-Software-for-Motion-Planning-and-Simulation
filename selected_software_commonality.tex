@@ -77,34 +77,34 @@ For this analysis, a commonality must hold at the level where it is claimed. A f
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}[
-  font=\small,
-  root/.style={draw, rounded corners, fill=blue!12, font=\small\bfseries, inner sep=6pt, align=center},
-  grp/.style={draw, rounded corners, align=left, inner sep=6pt, text width=6.7cm, font=\footnotesize},
-  com/.style={grp, fill=blue!4},
-  var/.style={grp, fill=orange!5},
+  font=\footnotesize,
+  root/.style={draw, rounded corners, fill=blue!12, font=\small\bfseries, inner sep=6pt, align=center, text width=9.2cm},
+  sub/.style={draw, rounded corners, fill=blue!4, align=left, inner sep=5pt, text width=4.0cm},
+  var/.style={draw, rounded corners, fill=orange!7, align=left, inner sep=5pt, text width=12.8cm},
+  arr/.style={-{Stealth[length=2mm]}, thick},
 ]
-\node[root] (root) {MPS software package\\\footnotesize\mdseries family of 28 packages};
-\node[com, below=12mm of root, xshift=-3.7cm] (com) {\textbf{\normalsize Commonalities}\\[3pt]
- \textit{Family-wide:}\\
- C1\, MPS-related software artifact\\
- C2\, Three-dimensional robot/world state\\
- C3\, Public measurable technical artifact\\[2pt]
- \textit{Sub-family:}\\
- S1\, Simulator commonalities\\
- S2\, Physics/dynamics commonalities\\
- S3\, Planning/integration commonalities};
-\node[var, below=12mm of root, xshift=3.7cm] (var) {\textbf{\normalsize Variabilities} (optional / alternative)\\[3pt]
- V1\, Primary role \quad V2\, Interaction mode\\
- V3\, Application scope \quad V4\, Computation/execution model\\
- V5\, Platform support \quad V6\, Programming languages\\
- V7\, Ecosystem integration \quad V8\, License model\\
- V9\, Governance model \quad V10\, Repository host};
-\draw[thick] (root) -- (com.north);
-\draw[thick] (root) -- (var.north);
-\fill (com.north) circle (2.3pt);
-\draw[fill=white, thick] (var.north) circle (2.3pt);
+\node[root] (root) {MPS software family (28 packages)\\[-1pt]
+\mdseries C1: MPS-related artifact \quad C2: 3D robot/world state \quad C3: public measurable artifact};
+\node[sub, below=11mm of root, xshift=-4.7cm] (s1) {\textbf{S1: Robotics simulators} (8)\\
+3D environments and simulation or environment-stepping workflows\\[2pt]
+\textit{Associated:} V2, V3, V4, V7};
+\node[sub, below=11mm of root] (s2) {\textbf{S2: Physics/dynamics} (10)\\
+Physical, kinematic, dynamic, contact, or multiphysics computation\\[2pt]
+\textit{Associated:} V3, V4, V5, V6};
+\node[sub, below=11mm of root, xshift=4.7cm] (s3) {\textbf{S3: Planning/integration} (10)\\
+Planning, manipulation, middleware, and control abstractions\\[2pt]
+\textit{Associated:} V1, V3, V4, V7};
+\node[var, below=13mm of s2] (vars) {\textbf{Family variability catalogue:}
+V1 role; V2 interaction; V3 scope; V4 computation/execution; V5 platform; V6 languages; V7 ecosystem integration; V8 license; V9 governance; V10 repository host.\\[2pt]
+V8--V10 cut across all three sub-families; the arrows above identify the role-dependent variability dimensions most directly associated with each sub-family.};
+\draw[arr] (root.south) -- (s1.north);
+\draw[arr] (root.south) -- (s2.north);
+\draw[arr] (root.south) -- (s3.north);
+\draw[arr] (s1.south) -- (vars.north west);
+\draw[arr] (s2.south) -- (vars.north);
+\draw[arr] (s3.south) -- (vars.north east);
 \end{tikzpicture}
-\caption{Layered commonality/variability feature model for the 28-package MPS family. Filled circle ($\bullet$), commonality; open circle ($\circ$), variability.}
+\caption{Relationship between the MPS family, its three role-based sub-families, and the ten variability dimensions. The sub-family boxes identify their most direct role-dependent variabilities; V8--V10 apply across all three groups.}
 \label{fig:feature-model}
 \end{figure}
 
@@ -190,7 +190,7 @@ V6: Recorded languages & C++; C/C++; C/Python; C++/Python; multi-language; uncle
 \hline
 V7: Ecosystem integration & ROS-native/integrated, ROS bridge, multi-middleware, alternative middleware/component model, standalone & Build / configuration / run time \\
 \hline
-V8: License & Specific permissive, reciprocal, dual, or mixed open-source/commercial licence recorded in Table~\ref{tab:delivery-variability-map} & Specification time \\
+V8: License & Specific permissive, reciprocal, dual, or mixed open-source/commercial licence recorded in the sub-family package maps below & Specification time \\
 \hline
 V9: Governance & Company, foundation, academic/public institution, mixed consortium, independent/community & Specification time \\
 \hline
@@ -201,105 +201,95 @@ V10: Repository host & GitHub, Bitbucket with GitHub mirror & Specification time
 
 The binding times reflect when a user or integrator can still make a choice. Roles, governance, and repository hosting are fixed at specification or project-organization time, whereas ecosystem integration may also be selected when a package is built, configured, or connected at run time.
 
-Tables~\ref{tab:functional-variability-map} and \ref{tab:delivery-variability-map} provide a package-level mapping for all ten variabilities. The mapping synthesizes the final-set roles in Table~\ref{tab:final-software-set}, the measured metadata in Table~\ref{tab:summary-metadata}, and the package purposes recorded in the measurement dataset. It is descriptive rather than evaluative: no parameter value represents a higher quality score.
+Tables~\ref{tab:simulator-variability-map}--\ref{tab:planning-variability-map} map all ten variabilities at package level, one table per sub-family. This arrangement keeps a package's functional, delivery, and governance values in one row. The values synthesize the final-set roles in Table~\ref{tab:final-software-set}, the metadata in Table~\ref{tab:summary-metadata}, and the package purposes in the measurement dataset; they are descriptive, not quality scores.
 
+For compactness, L, W, M, A, and B denote Linux, Windows, macOS, Android, and BSD; GH and BB denote GitHub and Bitbucket; and MW denotes middleware. V7 distinguishes ROS-native or closely integrated software, optional ROS bridges, multi-middleware support, alternative middleware/component models, and standalone use.
+
+\newcommand{\variationmapheader}{%
+\toprule
+\textbf{Software} & \textbf{V1 Role} & \textbf{V2 Interact.} & \textbf{V3 Scope} & \textbf{V4 Execution} & \textbf{V5 Platform} & \textbf{V6 Languages} & \textbf{V7 Integration} & \textbf{V8 License} & \textbf{V9 Governance} & \textbf{V10 Host} \\
+\midrule}
+
+\begin{landscape}
+\begin{table}[H]
+\centering
+\caption{Complete V1--V10 package map for S1: robotics simulators.}
+\label{tab:simulator-variability-map}
 \begingroup
-\scriptsize
 \singlespacing
-\setlength{\tabcolsep}{3pt}
-\begin{longtable}{@{}P{2.2cm}P{2.5cm}P{1.7cm}P{2.7cm}P{3.1cm}@{}}
-\caption{Package mapping for functional variabilities V1--V4.}
-\label{tab:functional-variability-map}\\
-\toprule
-\textbf{Software} & \textbf{V1: Primary role} & \textbf{V2: Interaction} & \textbf{V3: Scope} & \textbf{V4: Computation/execution} \\
-\midrule
-\endfirsthead
-\toprule
-\textbf{Software} & \textbf{V1: Primary role} & \textbf{V2: Interaction} & \textbf{V3: Scope} & \textbf{V4: Computation/execution} \\
-\midrule
-\endhead
+\fontsize{7pt}{8.2pt}\selectfont
+\setlength{\tabcolsep}{1.2pt}
+\begin{tabular}{@{}P{2.0cm}P{2.2cm}P{1.25cm}P{2.15cm}P{2.35cm}P{1.35cm}P{1.65cm}P{1.65cm}P{1.4cm}P{1.65cm}P{1.05cm}@{}}
+\variationmapheader
+AirSim & Simulator & GUI + API & Autonomous vehicles & Simulation loop & L/W & C++/\allowbreak{}Python & ROS bridge & MIT & Company & GH \\
+CARLA & Simulator & GUI + API & Autonomous driving & Simulation loop & L/W & C++/\allowbreak{}Python & ROS bridge & MIT & Mixed consortium & GH \\
+CoppeliaSim & Simulator & GUI + API & General robotics & Simulation loop & L/W/M & C++/\allowbreak{}Python & ROS bridge & GPL + commercial & Company & GH \\
+Flightmare & Simulator & GUI + API & Aerial vehicles & Simulation loop & L & C++/\allowbreak{}Python & Standalone & MIT & Academic & GH \\
+Gazebo & Simulator & GUI + API & General robotics & Simulation loop & L/W/M & C++/\allowbreak{}Python & ROS integrated & Apache-2.0 & Foundation & GH \\
+Habitat & Simulator & API & Embodied AI & Simulation loop & L/M & C++/\allowbreak{}Python & Standalone & MIT & Company & GH \\
+MORSE & Simulator & GUI + API & General robotics & Simulation loop & L/W/M & C/\allowbreak{}Python & Multi-MW & BSD & Academic & GH \\
+Webots & Simulator & GUI + API & General robotics & Simulation loop & L/W/M & Multi-language & ROS bridge & Apache-2.0 & Company & GH \\
 \bottomrule
-\endlastfoot
-AirSim & Simulator & GUI + API & Autonomous vehicles & Simulation loop \\
-Bullet/PyBullet & Physics engine & API & General physics/robotics & Dynamics solver \\
-CARLA & Simulator & GUI + API & Autonomous driving & Simulation loop \\
-CoppeliaSim & Simulator & GUI + API & General robotics & Simulation loop \\
-DART & Dynamics library & API & General robotics/dynamics & Dynamics/kinematics solver \\
-Drake & Multi-purpose toolbox & API & General robotics & Multi-role \\
-Flightmare & Simulator & GUI + API & Aerial vehicles & Simulation loop \\
-Gazebo & Simulator & GUI + API & General robotics & Simulation loop \\
-GraspIt! & Manipulation framework & GUI + API & Robotic grasping & Planning/simulation \\
-Habitat & Simulator & API & Embodied AI & Simulation loop \\
-MORSE & Simulator & GUI + API & General robotics & Simulation loop \\
-MoveIt! & Manipulation framework & GUI + API & Manipulation & Planning pipeline \\
-MRPT & Multi-purpose library & GUI + API & Mobile robotics & Multi-role \\
-MuJoCo & Physics engine & GUI + API & General physics/robotics & Dynamics solver \\
-Newton Dynamics & Physics engine & API & General physics & Dynamics solver \\
-ODE & Physics engine & API & General physics & Dynamics solver \\
-OMPL & Motion planning library & API & Motion planning & Planning/search \\
-OpenRAVE & Planning framework & GUI + API & Manipulation/planning & Planning pipeline \\
-OpenRTM-\allowbreak aist & Middleware & GUI + API & General robotics & Component runtime \\
-OROCOS & Control framework & API & Real-time control & Component/kinematics \\
-PhysX & Physics engine & API & General physics & Dynamics solver \\
-Pinocchio & Dynamics library & API & Rigid-body robotics & Dynamics/kinematics solver \\
-Project Chrono & Multi-physics simulation & API & Multiphysics/vehicles & Dynamics/simulation \\
-ROS~2 & Middleware and SDK & GUI + API & General robotics & Middleware runtime \\
-Simbody & Dynamics library & API & Multibody/biomechanics & Dynamics solver \\
-SOFA & Simulation framework & GUI + API & Medical/soft robotics & Simulation loop \\
-Webots & Simulator & GUI + API & General robotics & Simulation loop \\
-YARP & Middleware & API & Humanoid/general robotics & Middleware runtime \\
-\end{longtable}
+\end{tabular}
 \endgroup
+\end{table}
+\end{landscape}
 
-For compactness in Table~\ref{tab:delivery-variability-map}, platforms are abbreviated as L (Linux), W (Windows), M (macOS), A (Android), and B (BSD); GH and BB denote GitHub and Bitbucket; MW abbreviates middleware. The ecosystem values distinguish ROS-native or closely integrated software, optional ROS bridges, support for multiple middleware systems, alternative middleware/component models, and standalone use.
-
+\begin{landscape}
+\begin{table}[H]
+\centering
+\caption{Complete V1--V10 package map for S2: physics engines and dynamics libraries.}
+\label{tab:physics-variability-map}
 \begingroup
-\scriptsize
 \singlespacing
-\setlength{\tabcolsep}{2.5pt}
-\begin{longtable}{@{}P{1.9cm}P{1.6cm}P{1.8cm}P{1.9cm}P{1.8cm}P{2.0cm}P{1.4cm}@{}}
-\caption{Package mapping for delivery and ecosystem variabilities V5--V10.}
-\label{tab:delivery-variability-map}\\
-\toprule
-\textbf{Software} & \textbf{V5: Platform} & \textbf{V6: Languages} & \textbf{V7: Integration} & \textbf{V8: License} & \textbf{V9: Governance} & \textbf{V10: Host} \\
-\midrule
-\endfirsthead
-\toprule
-\textbf{Software} & \textbf{V5: Platform} & \textbf{V6: Languages} & \textbf{V7: Integration} & \textbf{V8: License} & \textbf{V9: Governance} & \textbf{V10: Host} \\
-\midrule
-\endhead
+\fontsize{7pt}{8.2pt}\selectfont
+\setlength{\tabcolsep}{1.2pt}
+\begin{tabular}{@{}P{2.0cm}P{2.2cm}P{1.25cm}P{2.15cm}P{2.35cm}P{1.35cm}P{1.65cm}P{1.65cm}P{1.4cm}P{1.65cm}P{1.05cm}@{}}
+\variationmapheader
+Bullet/PyBullet & Physics engine & API & General physics/robotics & Dynamics solver & L/W/M & C++/\allowbreak{}Python & Standalone & zlib & Community & GH \\
+DART & Dynamics library & API & General robotics/\allowbreak{}dynamics & Dynamics/kinematics solver & L/W/M/\allowbreak{}B & C++/\allowbreak{}Python & Standalone & BSD & Academic & GH \\
+MuJoCo & Physics engine & GUI + API & General physics/robotics & Dynamics solver & L/W/M & C++/\allowbreak{}Python & Standalone & Apache-2.0 & Company & GH \\
+Newton Dynamics & Physics engine & API & General physics & Dynamics solver & L/W/M/\allowbreak{}A & C/\allowbreak{}C++ & Standalone & zlib & Independent & GH \\
+ODE & Physics engine & API & General physics & Dynamics solver & L/W/M & Unclear & Standalone & BSD/\allowbreak{}LGPL & Independent & BB + GH \\
+PhysX & Physics engine & API & General physics & Dynamics solver & L/W & C++ & Standalone & BSD & Company & GH \\
+Pinocchio & Dynamics library & API & Rigid-body robotics & Dynamics/kinematics solver & L/W/M & C++/\allowbreak{}Python & Standalone & BSD & Academic & GH \\
+Project Chrono & Multi-physics simulation & API & Multiphysics/vehicles & Dynamics/simulation & L/W/M & C++/\allowbreak{}Python & Standalone & BSD & Academic & GH \\
+Simbody & Dynamics library & API & Multibody/\allowbreak{}biomechanics & Dynamics solver & L/W/M & C/\allowbreak{}C++ & Standalone & Apache-2.0 & Academic & GH \\
+SOFA & Simulation framework & GUI + API & Medical/soft robotics & Simulation loop & L/W/M & C++/\allowbreak{}Python & Standalone & LGPL-2.1 & Academic & GH \\
 \bottomrule
-\endlastfoot
-AirSim & L/W & C++/Python & ROS bridge & MIT & Company & GH \\
-Bullet/PyBullet & L/W/M & C++/Python & Standalone & zlib & Community & GH \\
-CARLA & L/W & C++/Python & ROS bridge & MIT & Mixed consortium & GH \\
-CoppeliaSim & L/W/M & C++/Python & ROS bridge & GPL + commercial & Company & GH \\
-DART & L/W/M/B & C++/Python & Standalone & BSD & Academic & GH \\
-Drake & L/M & C++/Python & Standalone & BSD & Mixed consortium & GH \\
-Flightmare & L & C++/Python & Standalone & MIT & Academic & GH \\
-Gazebo & L/W/M & C++/Python & ROS integrated & Apache-2.0 & Foundation & GH \\
-GraspIt! & L/W/M & C/C++/IDL & Standalone & GPL v3+ & Academic & GH \\
-Habitat & L/M & C++/Python & Standalone & MIT & Company & GH \\
-MORSE & L/W/M & C/Python & Multi-middleware & BSD & Academic & GH \\
-MoveIt! & L & C++/Python & ROS native & BSD & Mixed consortium & GH \\
-MRPT & L/W/M & C++/Python & ROS bridge & BSD & Academic & GH \\
-MuJoCo & L/W/M & C++/Python & Standalone & Apache-2.0 & Company & GH \\
-Newton Dynamics & L/W/M/A & C/C++ & Standalone & zlib & Independent & GH \\
-ODE & L/W/M & Unclear & Standalone & BSD/LGPL & Independent & BB + GH \\
-OMPL & L/W/M & C++/Python & Standalone & BSD & Academic & GH \\
-OpenRAVE & L/W/M & C++/Python & ROS bridge & LGPL/A2.0 & Mixed & GH \\
-OpenRTM-\allowbreak aist & L/W/M & C++/Python & Alternative MW & LGPL-2.1 & Public institute & GH \\
-OROCOS & L/W/M & C++/Python & Alternative MW & GPL/LGPL & Academic/\allowbreak community & GH \\
-PhysX & L/W & C++ & Standalone & BSD & Company & GH \\
-Pinocchio & L/W/M & C++/Python & Standalone & BSD & Academic & GH \\
-Project Chrono & L/W/M & C++/Python & Standalone & BSD & Academic & GH \\
-ROS~2 & L/W/M & Multi-language & ROS native & Apache-2.0 & Foundation & GH \\
-Simbody & L/W/M & C/C++ & Standalone & Apache-2.0 & Academic & GH \\
-SOFA & L/W/M & C++/Python & Standalone & LGPL-2.1 & Academic & GH \\
-Webots & L/W/M & Multi-language & ROS bridge & Apache-2.0 & Company & GH \\
-YARP & L/W/M & Multi-language & Alternative MW & BSD & Public institute & GH \\
-\end{longtable}
+\end{tabular}
 \endgroup
+\end{table}
+\end{landscape}
+
+\begin{landscape}
+\begin{table}[H]
+\centering
+\caption{Complete V1--V10 package map for S3: planning, middleware, and manipulation software.}
+\label{tab:planning-variability-map}
+\begingroup
+\singlespacing
+\fontsize{7pt}{8.2pt}\selectfont
+\setlength{\tabcolsep}{1.2pt}
+\begin{tabular}{@{}P{2.0cm}P{2.2cm}P{1.25cm}P{2.15cm}P{2.35cm}P{1.35cm}P{1.65cm}P{1.65cm}P{1.4cm}P{1.65cm}P{1.05cm}@{}}
+\variationmapheader
+Drake & Multi-purpose toolbox & API & General robotics & Multi-role & L/M & C++/\allowbreak{}Python & Standalone & BSD & Mixed consortium & GH \\
+GraspIt! & Manipulation framework & GUI + API & Robotic grasping & Planning/simulation & L/W/M & C/\allowbreak{}C++/\allowbreak{}IDL & Standalone & GPL v3+ & Academic & GH \\
+MoveIt! & Manipulation framework & GUI + API & Manipulation & Planning pipeline & L & C++/\allowbreak{}Python & ROS native & BSD & Mixed consortium & GH \\
+MRPT & Multi-purpose library & GUI + API & Mobile robotics & Multi-role & L/W/M & C++/\allowbreak{}Python & ROS bridge & BSD & Academic & GH \\
+OMPL & Motion planning library & API & Motion planning & Planning/search & L/W/M & C++/\allowbreak{}Python & Standalone & BSD & Academic & GH \\
+OpenRAVE & Planning framework & GUI + API & Manipulation/planning & Planning pipeline & L/W/M & C++/\allowbreak{}Python & ROS bridge & LGPL/\allowbreak{}A2.0 & Mixed & GH \\
+OpenRTM-\allowbreak aist & Middleware & GUI + API & General robotics & Component runtime & L/W/M & C++/\allowbreak{}Python & Alternative MW & LGPL-2.1 & Public institute & GH \\
+OROCOS & Control framework & API & Real-time control & Component/kinematics & L/W/M & C++/\allowbreak{}Python & Alternative MW & GPL/\allowbreak{}LGPL & Academic/\allowbreak{}community & GH \\
+ROS~2 & Middleware and SDK & GUI + API & General robotics & Middleware runtime & L/W/M & Multi-language & ROS native & Apache-2.0 & Foundation & GH \\
+YARP & Middleware & API & Humanoid/general robotics & Middleware runtime & L/W/M & Multi-language & Alternative MW & BSD & Public institute & GH \\
+\bottomrule
+\end{tabular}
+\endgroup
+\end{table}
+\end{landscape}
+
+\let\variationmapheader\relax
 
 \section{Boundary Cases}
 \label{sec:boundary-cases}
